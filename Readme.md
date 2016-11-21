@@ -7,7 +7,8 @@ Shopware Essentials is a tool collection for professional shopware environments:
 
 # Caching
 **What it does**: Allows you to cache additional resources in Shopware
-** Needed for**: Uncached pages, Shopware instances without HTTP cache
+
+**Needed for**: Uncached pages, Shopware instances without HTTP cache
 
 ## Setting it up:
 ### Enabling it
@@ -48,6 +49,7 @@ Also each of these resouces can have an individual TTL (caching time):
 
 # CacheMultiplexer
 **What it does**: Multiplexes cache invalidation (e.g. from the cache/performance module) to multiple instances of shopware.
+
 **Needed for**: Cluster setups, where you need to invalidate multiple appservers at once
 
 ## Setting it up:
@@ -94,7 +96,9 @@ Configuration in your service.xml:
 ```
 
 # Primary / replica
-Allows you to use mutiple database connections for shopware. For write queries as well as for reads from tables which have been written for in the same session, the primary connection is used. For all other tables, replica connections are choosen randomly.
+**What it does**: Use mutiple databases for shopware. Will split write queries to primary connection and read queries to replica connections.
+
+**Needed for**: Cluster setups and setups with high load on the primary database connection
 
 ## Setting it up
 ### Enabling it
