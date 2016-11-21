@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+
+<container
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+
+    <!--
+        Imports will load the submodules of this plugin. Just remove / uncomment modules, you don't need
+    -->
+    <imports>
+        <import resource="Caching/service.xml"/>
+        <import resource="CacheMultiplexer/service.xml"/>
+    </imports>
+
+    <parameters>
+
+        <!--
+            Cache Multiplexer
+                Warning: Disallow access from outside or consider storing credentials in environment variables!
+                See: http://symfony.com/doc/current/configuration/external_parameters.html#environment-variables
+                E.g.
+
+                fastcgi_param:
+                    fastcgi_param SYMFONY__HOST1__HOST user;
+                    fastcgi_param SYMFONY__HOST1__USER user;
+                    fastcgi_param SYMFONY__HOST1__PASSWORD secret;
+                service.xml:
+                    <parameter type="collection">
+                        <parameter key="host">%host1.host%</parameter>
+                        <parameter key="user">%host1.user%</parameter>
+                        <parameter key="password">%host1.password%</parameter>
+                    </parameter>
+        -->
+        <parameter key="swag_essentials.cache_multiplexer_hosts" type="collection">
+                <parameter type="collection">
+                    <parameter key="host">http://localhost/53/api</parameter>
+                    <parameter key="user">demo</parameter>
+                    <parameter key="password">89e495e7941cf9e40e6980d14a16bf023ccd4c91</parameter>
+                </parameter>
+        </parameter>
+
+        <!--
+            Caching
+        -->
+        <!-- Enable / disable caches -->
+        <parameter key="swag_essentials.caching_enable_urls">1</parameter>
+        <parameter key="swag_essentials.caching_enable_list_product">1</parameter>
+        <parameter key="swag_essentials.caching_enable_product">1</parameter>
+        <parameter key="swag_essentials.caching_enable_search">1</parameter>
+        <parameter key="swag_essentials.caching_enable_shop">1</parameter>
+
+        <!-- TTL configs -->
+        <parameter key="swag_essentials.caching_ttl_urls">3600</parameter>
+        <parameter key="swag_essentials.caching_ttl_list_product">3600</parameter>
+        <parameter key="swag_essentials.caching_ttl_product">3600</parameter>
+        <parameter key="swag_essentials.caching_ttl_search">3600</parameter>
+        <parameter key="swag_essentials.caching_ttl_shop">300</parameter>
+    </parameters>
+
+</container>
