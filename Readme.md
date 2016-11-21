@@ -1,9 +1,9 @@
 # SwagEssentials
 Shopware Essentials is a tool collection for professional shopware environments:
 
-* Additional, low level cache layers
-* Manage / invalidate caches of multiple appservers
-* Read / write query splitting
+* [Additional, low level cache layers](#caching)
+* [Manage / invalidate caches of multiple appservers](#cachemultiplexer)
+* [Read / write query splitting](#primary--replica)
 
 # Caching
 **What it does**: Allows you to cache additional resources in Shopware
@@ -93,7 +93,7 @@ Configuration in your service.xml:
 </parameter>
 ```
 
-# Primary / replica ("master / slave") query splitter
+# Primary / replica
 Allows you to use mutiple database connections for shopware. For write queries as well as for reads from tables which have been written for in the same session, the primary connection is used. For all other tables, replica connections are choosen randomly.
 
 ## Setting it up
