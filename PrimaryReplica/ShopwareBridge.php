@@ -89,7 +89,7 @@ class ShopwareBridge
         /** @var ConnectionDecision $decision */
         $decision = $this->container->get('primaryreplica.decision');
 
-        $decision->setPinnedTables(array_merge(Shopware()->Session()->get('tables'), $decision->getPinnedTables()));
+        $decision->setPinnedTables(array_merge(Shopware()->Session()->get('tables', []), $decision->getPinnedTables()));
     }
 
     public function dispatchShutdown()
@@ -122,7 +122,8 @@ class ShopwareBridge
     {
         return new ConnectionDecision(
             $this->connection,
-            $this->container->get('primaryreplica.connection_pool')
+            $this->container->get('primaryreplica.connection_pool'),
+            $this->container->get('cache')
         );
     }
 

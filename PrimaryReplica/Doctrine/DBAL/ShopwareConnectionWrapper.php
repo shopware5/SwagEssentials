@@ -47,7 +47,6 @@ class ShopwareConnectionWrapper extends \Doctrine\DBAL\Connection
     private function initShopwareBridge()
     {
         if ($this->shopwareBridge) {
-
             return $this->shopwareBridge;
         }
 

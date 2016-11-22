@@ -1,6 +1,7 @@
 <?php
 
 namespace SwagEssentials\PrimaryReplica;
+use Doctrine\Common\Util\Debug;
 
 /**
  * Class ConnectionDecision returns the primary or a replica connection depending on the given query
@@ -25,10 +26,16 @@ class ConnectionDecision
         's_core_sessions' => true
     ];
 
-    public function __construct(\PDO $primaryConnection, ConnectionPool $replicaPool)
+    /** @var \Zend_Cache_Core  */
+    private $cache;
+
+    public function __construct(\PDO $primaryConnection, ConnectionPool $replicaPool, \Zend_Cache_Core $cache)
     {
         $this->primaryConnection = $primaryConnection;
         $this->replicaPool = $replicaPool;
+
+        $this->cache = $cache;
+        $this->tables= $this->getTables();
     }
 
     /**
@@ -83,12 +90,6 @@ class ConnectionDecision
         return (stripos($sql, 'SELECT') !== 0);
     }
 
-    public function __destruct()
-    {
-        error_log(print_r($_SERVER['REQUEST_URI'], true)."\n", 3, Shopware()->DocPath() . '/../error.log');
-        error_log(print_r($this->counter, true)."\n", 3, Shopware()->DocPath() . '/../error.log');
-    }
-
     /**
      * @return array
      */
@@ -117,7 +118,7 @@ class ConnectionDecision
     {
         $matches = [];
         $number = preg_match_all(
-            '#(s_article|s_categorie|s_blog|s_core|s_user|s_library|s_emotion|s_plugin|s_order)[a-z0-9_]*#i',
+            '#(' . $this->tables . ')[a-z0-9_]*#i',
             $sql,
             $matches
         );
@@ -126,5 +127,31 @@ class ConnectionDecision
         }
 
         return [];
+    }
+
+    /**
+     * Gets a shortened and cached list of all database tables. It is safe to assume, that the cache will be cleared
+     * after a structural change in the database
+     *
+     * @return string
+     */
+    private function getTables()
+    {
+        if ($tables = $this->cache->load('primary_replica_tables')) {
+            return $tables;
+        }
+
+        $tables = $this->primaryConnection->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
+
+        $result = [];
+        foreach ($tables as $table) {
+            $parts = explode('_', $table);
+            $result[] = $parts[0] . '_' . $parts[1];
+        }
+        $tables = implode('|', array_map('preg_quote', array_unique($result)));
+
+        $this->cache->save($tables, 'primary_replica_tables', [], 3600);
+
+        return $tables;
     }
 }
