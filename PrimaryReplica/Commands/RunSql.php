@@ -3,6 +3,7 @@
 namespace SwagEssentials\PrimaryReplica\Commands;
 
 use Shopware\Commands\ShopwareCommand;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -54,7 +55,9 @@ EOF
             if ($isReadQuery) {
                 $stmt = $connection->query($sql);
                 $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-                print_r($result);
+                $table = new Table($output);
+                $table->setHeaders(array_keys($result[0]))->setRows($result);
+                $table->render();
             } else {
                 $connection->exec($sql);
             }

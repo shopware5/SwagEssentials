@@ -82,12 +82,12 @@ class ConnectionDecision
         $this->counter[$name] += 1;
     }
 
-
+    
     private function isWriteQuery($sql)
     {
         $sql = trim($sql);
 
-        return (stripos($sql, 'SELECT') !== 0);
+        return (stripos($sql, 'SELECT') !== 0 && stripos($sql, 'DESCRIBE') !== 0);
     }
 
     /**

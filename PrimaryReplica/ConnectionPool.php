@@ -60,6 +60,11 @@ class ConnectionPool
         if ($name == 'primary') {
             return $this->primaryConnection;
         }
+
+        if (!isset($this->replicaConfig[$name])) {
+            throw new \RuntimeException("Connection '$name' not found");
+        }
+
         if (!isset($this->replicaConnections[$name])) {
             $this->buildConnection($name);
         }
@@ -92,7 +97,6 @@ class ConnectionPool
         }
         $name = $connectionNames[$id];
 
-
         if ($this->doStickToConnection) {
             $this->stickyConnectionName = $name;
         }
@@ -100,6 +104,11 @@ class ConnectionPool
         return [$name, $this->getConnectionByName($name)];
     }
 
+    /**
+     * Create a connection to a replica server
+     *
+     * @param $name
+     */
     private function buildConnection($name)
     {
         $replicaConfig = $this->replicaConfig[$name];
@@ -113,8 +122,7 @@ class ConnectionPool
     }
 
     /**
-     * @param $attributes
-     * @return mixed
+     * Create a list of PDO attributes based on the primary connection
      */
     private function createAttributeTemplate()
     {
