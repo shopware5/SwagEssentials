@@ -9,12 +9,12 @@ class Client
     const METHODE_POST   = 'POST';
     const METHODE_DELETE = 'DELETE';
 
-    protected $validMethods = array(
+    protected $validMethods = [
         self::METHODE_GET,
         self::METHODE_PUT,
         self::METHODE_POST,
         self::METHODE_DELETE
-    );
+    ];
 
     protected $apiUrl;
     protected $cURL;
@@ -35,12 +35,12 @@ class Client
         curl_setopt($this->cURL, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($this->cURL, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
         curl_setopt($this->cURL, CURLOPT_USERPWD, $username . ':' . $apiKey);
-        curl_setopt($this->cURL, CURLOPT_HTTPHEADER, array(
+        curl_setopt($this->cURL, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json; charset=utf-8',
-        ));
+        ]);
     }
 
-    public function call($url, $method = self::METHODE_GET, $data = array(), $params = array())
+    public function call($url, $method = self::METHODE_GET, $data = [], $params = [])
     {
         if (!in_array($method, $this->validMethods)) {
             throw new \Exception('Invalid HTTP-Methode: ' . $method);
@@ -66,22 +66,22 @@ class Client
         return new Response($body, $this->cURL);
     }
 
-    public function get($url, $params = array())
+    public function get($url, $params = [])
     {
-        return $this->call($url, self::METHODE_GET, array(), $params);
+        return $this->call($url, self::METHODE_GET, [], $params);
     }
 
-    public function post($url, $data = array(), $params = array())
+    public function post($url, $data = [], $params = [])
     {
         return $this->call($url, self::METHODE_POST, $data, $params);
     }
 
-    public function put($url, $data = array(), $params = array())
+    public function put($url, $data = [], $params = [])
     {
         return $this->call($url, self::METHODE_PUT, $data, $params);
     }
 
-    public function delete($url, $data = array(), $params = array())
+    public function delete($url, $data = [], $params = [])
     {
         return $this->call($url, self::METHODE_DELETE, $data, $params);
     }

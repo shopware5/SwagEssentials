@@ -2,12 +2,10 @@
 
 namespace SwagEssentials\Caching\Caches;
 
-use Shopware\Bundle\StoreFrontBundle\Struct;
 use Shopware\Components\Routing\Context;
-use Shopware\Components\Routing\GeneratorListInterface;
 use Shopware\Components\Routing\Generators\RewriteGenerator;
 
-class CachingRewriteGeneratorDecorator extends RewriteGenerator implements GeneratorListInterface
+class CachingRewriteGeneratorDecorator extends RewriteGenerator
 {
     /**
      * @var \Zend_Cache_Core
@@ -18,11 +16,17 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator implements Gener
      * @var RewriteGenerator The previously existing service
      */
     private $service;
+
     /**
-     * @var \Enlight_Event_EventManager
+     * @var int
      */
     private $ttl;
 
+    /**
+     * @param \Zend_Cache_Core $cache
+     * @param RewriteGenerator $service
+     * @param int $ttl
+     */
     public function __construct(\Zend_Cache_Core $cache, RewriteGenerator $service, $ttl)
     {
         $this->service = $service;

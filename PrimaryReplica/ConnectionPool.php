@@ -92,7 +92,7 @@ class ConnectionPool
         $id = array_rand($connectionNames);
 
         if (null === $id) {
-            throw new \RuntimeException("No connection found");
+            throw new \RuntimeException('No connection found');
         }
         $name = $connectionNames[$id];
 

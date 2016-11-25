@@ -8,10 +8,10 @@ class ShopRepository implements SubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             'Shopware\Models\Shop\Repository::getActiveById::replace' => 'onReplaceGetActiveById',
             'Shopware\Models\Shop\Repository::getActiveByRequest::replace' => 'onReplaceGetActiveByRequest'
-        );
+        ];
     }
 
     public function onReplaceGetActiveById(\Enlight_Hook_HookArgs $args)
@@ -45,13 +45,12 @@ class ShopRepository implements SubscriberInterface
 
     /**
      * @param \Enlight_Hook_HookArgs $args
-     * @param $cache
-     * @param $hash
+     * @param string $hash
      * @return mixed
      */
     private function returnCached(\Enlight_Hook_HookArgs $args, $hash)
     {
-        /** @var \Zend_Cache_Core $result */
+        /** @var \Zend_Cache_Core $cache */
         $cache = Shopware()->Cache();
 
         if ($result = $cache->load($hash)) {

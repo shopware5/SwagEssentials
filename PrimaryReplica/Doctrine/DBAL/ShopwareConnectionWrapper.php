@@ -5,7 +5,7 @@ namespace Doctrine\DBAL;
 use SwagEssentials\PrimaryReplica\PdoDecorator;
 use SwagEssentials\PrimaryReplica\ShopwareBridge;
 
-class ShopwareConnectionWrapper extends \Doctrine\DBAL\Connection
+class ShopwareConnectionWrapper extends Connection
 {
     /** @var  ShopwareBridge */
     private $shopwareBridge;
@@ -47,7 +47,7 @@ class ShopwareConnectionWrapper extends \Doctrine\DBAL\Connection
     private function initShopwareBridge()
     {
         if ($this->shopwareBridge) {
-            return $this->shopwareBridge;
+            return;
         }
 
         Shopware()->Loader()->registerNamespace('SwagEssentials\PrimaryReplica', __DIR__ . '/../../');

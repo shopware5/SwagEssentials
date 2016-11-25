@@ -32,7 +32,7 @@ class PdoDecorator extends \PDO
     # in order to inspect the queries
     #
 
-    public function prepare($statement, $options = array())
+    public function prepare($statement, $options = [])
     {
         return $this->connectionDecision->getConnectionForQuery($statement)->prepare($statement, $options);
     }
@@ -43,7 +43,7 @@ class PdoDecorator extends \PDO
         // remove empty constructor params list if it exists
         $args = func_get_args();
 
-        return call_user_func_array(array($this->connectionDecision->getConnectionForQuery($args[0]), 'query'), $args);
+        return call_user_func_array([$this->connectionDecision->getConnectionForQuery($args[0]), 'query'], $args);
     }
 
     public function exec($statement)
@@ -104,10 +104,5 @@ class PdoDecorator extends \PDO
     public function quote($string, $parameter_type = PDO::PARAM_STR)
     {
         return $this->primaryPdo->quote($string, $parameter_type);
-    }
-
-    public static function getAvailableDrivers()
-    {
-        parent::getAvailableDrivers();
     }
 }

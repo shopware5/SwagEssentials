@@ -2,7 +2,6 @@
 
 namespace SwagEssentials\Caching\Caches;
 
-use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Service\ProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
 
@@ -14,14 +13,20 @@ class CachingProductDecorator implements ProductServiceInterface
     private $cache;
 
     /**
-     * @var ListProductServiceInterface The previously existing service
+     * @var ProductServiceInterface The previously existing service
      */
     private $service;
+
     /**
-     * @var
+     * @var int
      */
     private $ttl;
 
+    /**
+     * @param \Zend_Cache_Core $cache
+     * @param ProductServiceInterface $service
+     * @param int $ttl
+     */
     public function __construct(\Zend_Cache_Core $cache, ProductServiceInterface $service, $ttl)
     {
         $this->service = $service;
@@ -30,6 +35,9 @@ class CachingProductDecorator implements ProductServiceInterface
         $this->ttl = $ttl;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getList(array $numbers, Struct\ProductContextInterface $context)
     {
         if (empty($numbers)) {
@@ -47,6 +55,9 @@ class CachingProductDecorator implements ProductServiceInterface
         return $result;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($number, Struct\ProductContextInterface $context)
     {
         $products = $this->getList([$number], $context);

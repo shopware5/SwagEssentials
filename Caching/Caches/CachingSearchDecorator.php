@@ -4,7 +4,6 @@ namespace SwagEssentials\Caching\Caches;
 
 use Shopware\Bundle\SearchBundle\Criteria;
 use Shopware\Bundle\SearchBundle\ProductSearchInterface;
-use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
 
 class CachingSearchDecorator implements ProductSearchInterface
@@ -18,12 +17,18 @@ class CachingSearchDecorator implements ProductSearchInterface
      * @var ProductSearchInterface The previously existing service
      */
     private $service;
+
     /**
-     * @var
+     * @var int
      */
     private $ttl;
 
-    public function __construct(\Zend_Cache_Core $cache, ListProductServiceInterface $service, $ttl)
+    /**
+     * @param \Zend_Cache_Core $cache
+     * @param ProductSearchInterface $service
+     * @param $ttl
+     */
+    public function __construct(\Zend_Cache_Core $cache, ProductSearchInterface $service, $ttl)
     {
         $this->service = $service;
 

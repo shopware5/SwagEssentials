@@ -2,8 +2,6 @@
 
 namespace SwagEssentials\PrimaryReplica;
 
-use Doctrine\Common\Util\Debug;
-
 /**
  * Class ConnectionDecision returns the primary or a replica connection depending on the given query
  * Write queries and queries involving tables that have been written to before will get the primary connection
@@ -80,10 +78,10 @@ class ConnectionDecision
         if (!isset($this->counter[$name])) {
             $this->counter[$name] = 0;
         }
-        $this->counter[$name] += 1;
+        ++$this->counter[$name];
     }
 
-    
+
     private function isWriteQuery($sql)
     {
         $sql = trim($sql);

@@ -11,7 +11,7 @@ In order to enable the submodule, import it in your `service.xml`:
 
 ### Configuration
 Generally, you can configure the submodule for the following resources:
-	
+
  * `urls`: Caching of generated SEO urls
  * `list_product`: Caching for listings
  * `product`: Caching for detail pages

@@ -17,9 +17,9 @@ class CacheMultiplexer implements SubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             'Enlight_Controller_Action_PostDispatchSecure_Backend_Cache' => 'onBackendCache'
-        );
+        ];
     }
 
     public function onBackendCache(\Enlight_Event_EventArgs $args)
@@ -44,8 +44,7 @@ class CacheMultiplexer implements SubscriberInterface
     /**
      * Iterate all endpoints and clear all caches one by one
      *
-     * @param $caches
-     * @return bool
+     * @param string[] $caches
      */
     private function remoteClear($caches)
     {
@@ -56,8 +55,8 @@ class CacheMultiplexer implements SubscriberInterface
             $caches
         );
 
+        /** @var array[] $endpoints */
         $endpoints = Shopware()->Container()->getParameter('swag_essentials.cache_multiplexer_hosts');
-
         foreach ($endpoints as $endpoint) {
             $error = null;
             try {
@@ -84,7 +83,7 @@ class CacheMultiplexer implements SubscriberInterface
      */
     private function clearCache(\Enlight_Controller_Request_RequestHttp $request)
     {
-        $caches = $request->getPost('cache', array());
+        $caches = $request->getPost('cache', []);
 
         return array_keys(
             array_filter(

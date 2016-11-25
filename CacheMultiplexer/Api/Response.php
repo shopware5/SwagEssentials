@@ -22,12 +22,12 @@ class Response
         $this->code = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
 
         if (null === $decodedResult = json_decode($this->rawBody, true)) {
-            $jsonErrors = array(
+            $jsonErrors = [
                 JSON_ERROR_NONE => 'No error has occurred.',
                 JSON_ERROR_DEPTH => 'The maximum stack depth has been exceeded.',
                 JSON_ERROR_CTRL_CHAR => 'Control character error, possibly incorrectly encoded.',
                 JSON_ERROR_SYNTAX => 'Syntax error.',
-            );
+            ];
 
             $jsonError = $jsonErrors[json_last_error()];
             $rawErrorBody = print_r($body, true);

@@ -16,11 +16,17 @@ class CachingListProductDecorator implements ListProductServiceInterface
      * @var ListProductServiceInterface The previously existing service
      */
     private $service;
+
     /**
-     * @var
+     * @var int
      */
     private $ttl;
 
+    /**
+     * @param \Zend_Cache_Core $cache
+     * @param ListProductServiceInterface $service
+     * @param int $ttl
+     */
     public function __construct(\Zend_Cache_Core $cache, ListProductServiceInterface $service, $ttl)
     {
         $this->service = $service;
@@ -29,6 +35,9 @@ class CachingListProductDecorator implements ListProductServiceInterface
         $this->ttl = $ttl;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getList(array $numbers, Struct\ProductContextInterface $context)
     {
         if (empty($numbers)) {
@@ -46,6 +55,9 @@ class CachingListProductDecorator implements ListProductServiceInterface
         return $result;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($number, Struct\ProductContextInterface $context)
     {
         $products = $this->getList([$number], $context);
