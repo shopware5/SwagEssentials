@@ -46,7 +46,6 @@ class ConnectionPool
         $this->doStickToConnection = $doSticktoConnection;
 
         $this->createAttributeTemplate();
-
     }
 
     /**
@@ -118,7 +117,6 @@ class ConnectionPool
             $dsn, $replicaConfig['username'], $replicaConfig['password'], $this->attributes
         );
         $this->replicaConnections[$name]->exec("SET @@session.sql_mode = ''");
-
     }
 
     /**

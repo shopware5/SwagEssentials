@@ -26,7 +26,6 @@ class ShopRepository implements SubscriberInterface
         $hash = md5(json_encode($keys));
 
         return $this->returnCached($args, $hash);
-
     }
 
     public function onReplaceGetActiveByRequest(\Enlight_Hook_HookArgs $args)

@@ -1,6 +1,7 @@
 <?php
 
 namespace SwagEssentials\PrimaryReplica;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use SwagEssentials\PrimaryReplica\Commands\RunSql;
 
@@ -74,7 +75,6 @@ class ShopwareBridge
             'Enlight_Controller_Front_DispatchLoopShutdown',
             [$this, 'dispatchShutdown']
         );
-
     }
 
     public function addConsoleCommands()
@@ -126,5 +126,4 @@ class ShopwareBridge
             $this->container->get('cache')
         );
     }
-
 }

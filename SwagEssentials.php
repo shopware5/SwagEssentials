@@ -23,7 +23,5 @@ class SwagEssentials extends Plugin
             throw new \RuntimeException("SwagEssentials: Rename service.xml.dist to service.xml and configure it as needed");
         }
         $loader->load($this->getPath() . '/service.xml');
-
     }
-
 }

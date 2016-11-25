@@ -24,7 +24,6 @@ class Cache implements SubscriberInterface
 
     public function onDecorateRouter()
     {
-
         if (!Shopware()->Container()->getParameter('swag_essentials.caching_enable_urls')) {
             return;
         }
@@ -48,7 +47,6 @@ class Cache implements SubscriberInterface
     
     public function onDecorateListProduct()
     {
-
         if (!Shopware()->Container()->getParameter('swag_essentials.caching_enable_list_product')) {
             return;
         }
@@ -64,12 +62,10 @@ class Cache implements SubscriberInterface
             $coreService,
             Shopware()->Container()->getParameter('swag_essentials.caching_ttl_list_product')
         ));
-
     }
 
     public function onDecorateProduct()
     {
-
         if (!Shopware()->Container()->getParameter('swag_essentials.caching_enable_product')) {
             return;
         }
@@ -85,12 +81,10 @@ class Cache implements SubscriberInterface
             $coreService,
             Shopware()->Container()->getParameter('swag_essentials.caching_ttl_product')
         ));
-
     }
 
     public function onDecorateSearch()
     {
-
         if (!Shopware()->Container()->getParameter('swag_essentials.caching_enable_search')) {
             return;
         }
@@ -106,6 +100,5 @@ class Cache implements SubscriberInterface
             $coreService,
             Shopware()->Container()->getParameter('swag_essentials.caching_ttl_search')
         ));
-
     }
 }

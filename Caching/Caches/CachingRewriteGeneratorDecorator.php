@@ -78,7 +78,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator implements Gener
         // save those new items one by one
         foreach ($results as $result) {
             $this->cache->save([$result], $this->hashItem($result, $context), [], $this->ttl);
-
         }
 
 
@@ -93,7 +92,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator implements Gener
 
     private function getCachedItemsFromList($list, $context)
     {
-
         return array_map(
             function ($param) use ($context) {
                 $hash = $this->hashItem($param, $context);
@@ -113,5 +111,4 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator implements Gener
     {
         return md5(serialize(['single_url', $params, $context]));
     }
-
 }

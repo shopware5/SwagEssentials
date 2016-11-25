@@ -1,6 +1,7 @@
 <?php
 
 namespace SwagEssentials\PrimaryReplica;
+
 use Doctrine\Common\Util\Debug;
 
 /**
