@@ -12,9 +12,35 @@
             <argument type="service" id="service_container" />
             <tag name="shopware.event_subscriber" />
         </service>
+
         <service id="swag_essentials.shop_repo" class="SwagEssentials\Caching\Subscriber\ShopRepository">
             <argument type="service" id="service_container" />
             <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="swag_essentials.cache_factory" class="SwagEssentials\Caching\CacheFactory" public="false">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="swag_essentials.list_product_service"
+                 class="SwagEssentials\Caching\Caches\CachingListProductDecorator"
+                 decorates="shopware_storefront.list_product_service">
+            <factory service="swag_essentials.cache_factory" method="createListProductService" />
+            <argument type="service" id="swag_essentials.list_product_service.inner"/>
+        </service>
+
+        <service id="swag_essentials.product_service"
+                 class="SwagEssentials\Caching\Caches\CachingProductDecorator"
+                 decorates="shopware_storefront.product_service">
+            <factory service="swag_essentials.cache_factory" method="createProductService" />
+            <argument type="service" id="swag_essentials.product_service.inner"/>
+        </service>
+
+        <service id="swag_essentials.product_search"
+                 class="SwagEssentials\Caching\Caches\CachingSearchDecorator"
+                 decorates="shopware_search.product_search">
+            <factory service="swag_essentials.cache_factory" method="createProductSearch" />
+            <argument type="service" id="swag_essentials.product_search.inner"/>
         </service>
     </services>
 </container>
