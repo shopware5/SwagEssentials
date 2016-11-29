@@ -54,6 +54,15 @@ In the main `db` array of your `config.php` you can set additional options:
  * `includePrimary`: Also make the primary connection part of the "read" connection pool. Default: `false`
  * `stickyConnection`: Within a request, choose one random read connection from the replica pool and stick to that connection.  If disabled, for every request a new random connection will be chosen. Default: `true`
 
+### Using a proxy for replica connections
+In more advanced setups, you probably don't want to maintain a list of all database replicase in the application itself. If you have some sort of load balancer / proxy for your database replicas in place, you can just configure it as (the only) replica connection. 
+This has several advantages:
+
+ * the proxy takes care of query distribution acrooss the replica pool
+ * only the proxy needs to "know" of all replicas
+ * the proxy can take care of e.g. health checks etc. 
+ * solutions with haproxy or nginx are quite common 
+
 ## Testing it
 For testing the primary / replica setup, I used the tutum mysql docker library.
 
