@@ -5,7 +5,7 @@
 
 ## Setting it up
 ### Enabling it
-This functionality is enabled in your `config.php` in three steps:
+For this functionality you don't need to install / activate the plugin. It just needs to be in place. Then just enable the primary/replica setup in your `config.php` in three steps:
 
  1. require `ShopwareConnectionWrapper`
  2. configure `'wrapperClass' => '\Doctrine\DBAL\ShopwareConnectionWrapper'` in your `db` array
