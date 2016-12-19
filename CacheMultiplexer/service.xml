@@ -12,5 +12,14 @@
             <argument type="service" id="service_container" />
             <tag name="shopware.event_subscriber" />
         </service>
+
+        <service id="shopware.cache_manager" class="SwagEssentials\CacheMultiplexer\CacheManager">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="swag_essentials.cache_multiplexer.cache_invalidator" class="SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator">
+            <argument>%swag_essentials.cache_multiplexer_hosts%</argument>
+            <argument type="service" id="corelogger" />
+        </service>
     </services>
 </container>
