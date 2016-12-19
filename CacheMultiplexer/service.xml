@@ -7,12 +7,6 @@
 >
     <services>
 
-        <!-- Event Subscriber -->
-        <service id="swag_essentials.cache_multiplexer" class="SwagEssentials\CacheMultiplexer\Subscriber\CacheMultiplexer">
-            <argument type="service" id="service_container" />
-            <tag name="shopware.event_subscriber" />
-        </service>
-
         <service id="shopware.cache_manager" class="SwagEssentials\CacheMultiplexer\CacheManager">
             <argument type="service" id="service_container" />
         </service>

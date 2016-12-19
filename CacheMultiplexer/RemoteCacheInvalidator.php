@@ -81,7 +81,7 @@ class RemoteCacheInvalidator
      */
     private function log($host, $caches)
     {
-        $this->logger->info(
+        $this->logger->debug(
             "Invalidated host {$host}",
             $caches
         );
