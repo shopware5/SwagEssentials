@@ -13,11 +13,6 @@
             <tag name="shopware.event_subscriber" />
         </service>
 
-        <service id="swag_essentials.shop_repo" class="SwagEssentials\Caching\Subscriber\ShopRepository">
-            <argument type="service" id="service_container" />
-            <tag name="shopware.event_subscriber" />
-        </service>
-
         <service id="swag_essentials.cache_factory" class="SwagEssentials\Caching\CacheFactory" public="false">
             <argument type="service" id="service_container" />
         </service>
