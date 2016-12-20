@@ -6,14 +6,23 @@ namespace SwagEssentials\CacheMultiplexer;
 use Shopware\Components\Logger;
 use SwagEssentials\CacheMultiplexer\Api\Client;
 
+/**
+ * Class RemoteCacheInvalidator will call a given list of app servers via API in order to invalidate the given caches
+ */
 class RemoteCacheInvalidator
 {
     const ENDPOINT_HOST = 'host';
     const ENDPOINT_USER = 'user';
     const ENDPOINT_PASSWORD = 'password';
 
-    private $hosts;
     /**
+     * List of all hosts
+     * @var array[]
+     */
+    private $hosts;
+
+    /**
+     * Core logger
      * @var Logger
      */
     private $logger;
@@ -24,7 +33,6 @@ class RemoteCacheInvalidator
         $this->logger = $logger;
     }
 
-
     /**
      * Iterate all endpoints and clear all caches one by one
      *
@@ -32,12 +40,7 @@ class RemoteCacheInvalidator
      */
     public function remoteClear($caches)
     {
-        $caches = array_map(
-            function ($cache) {
-                return ['id' => $cache];
-            },
-            $caches
-        );
+        $caches = $this->normalizeCacheIds($caches);
 
         foreach ($this->hosts as $endpoint) {
             $error = null;
@@ -52,39 +55,11 @@ class RemoteCacheInvalidator
             }
 
             if ($error) {
-                $this->logException($endpoint[self::ENDPOINT_HOST], $error);
+                $this->logger->error("Cache multiplexing failed for host {$endpoint[self::ENDPOINT_HOST]}", $error);
             } else {
-                $this->log($endpoint[self::ENDPOINT_HOST], $caches);
+                $this->logger->debug("Invalidated host {$endpoint[self::ENDPOINT_HOST]}", $caches);
             }
         }
-    }
-
-    /**
-     * Log an error
-     *
-     * @param $host
-     * @param $context
-     */
-    private function logException($host, $context)
-    {
-        $this->logger->error(
-            "Cache multiplexing failed for host {$host}",
-            $context
-        );
-    }
-
-    /**
-     * Log
-     *
-     * @param $host
-     * @param $caches
-     */
-    private function log($host, $caches)
-    {
-        $this->logger->debug(
-            "Invalidated host {$host}",
-            $caches
-        );
     }
 
     /**
@@ -101,5 +76,20 @@ class RemoteCacheInvalidator
             $endpoint[self::ENDPOINT_PASSWORD]
         );
         return $client;
+    }
+
+    /**
+     * @param $caches
+     * @return array
+     */
+    private function normalizeCacheIds($caches)
+    {
+        $caches = array_map(
+            function ($cache) {
+                return ['id' => $cache];
+            },
+            $caches
+        );
+        return $caches;
     }
 }
