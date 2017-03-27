@@ -15,15 +15,19 @@ class PdoDecorator extends \PDO
      * @var ConnectionDecision
      */
     private $connectionDecision;
-    /**
-     * @var PDO
-     */
-    private $primaryPdo;
 
-    public function __construct(PDO $primaryPdo, ConnectionDecision $connectionDecision)
+    private $lastConnection = null;
+    /**
+     * @var ConnectionPool
+     */
+    private $connectionPool;
+
+    public function __construct(ConnectionDecision $connectionDecision, ConnectionPool $connectionPool)
     {
         $this->connectionDecision = $connectionDecision;
-        $this->primaryPdo = $primaryPdo;
+        $this->connectionPool = $connectionPool;
+
+        $this->lastConnection = $connectionPool->getRandomConnection();
     }
 
 
@@ -34,7 +38,9 @@ class PdoDecorator extends \PDO
 
     public function prepare($statement, $options = [])
     {
-        return $this->connectionDecision->getConnectionForQuery($statement)->prepare($statement, $options);
+        $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
+
+        return $this->lastConnection->prepare($statement, $options);
     }
 
 
@@ -43,12 +49,16 @@ class PdoDecorator extends \PDO
         // remove empty constructor params list if it exists
         $args = func_get_args();
 
-        return call_user_func_array([$this->connectionDecision->getConnectionForQuery($args[0]), 'query'], $args);
+        $this->lastConnection = $this->connectionDecision->getConnectionForQuery($args[0]);
+
+        return call_user_func_array([$this->lastConnection, 'query'], $args);
     }
 
     public function exec($statement)
     {
-        return $this->connectionDecision->getConnectionForQuery($statement)->exec($statement);
+        $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
+
+        return $this->lastConnection->exec($statement);
     }
 
     #
@@ -58,51 +68,51 @@ class PdoDecorator extends \PDO
 
     public function beginTransaction()
     {
-        return $this->primaryPdo->beginTransaction();
+        return $this->connectionPool->getConnectionByName('primary')->beginTransaction();
     }
 
     public function commit()
     {
-        return $this->primaryPdo->commit();
+        return $this->connectionPool->getConnectionByName('primary')->commit();
     }
 
     public function rollBack()
     {
-        return $this->primaryPdo->rollBack();
+        return $this->connectionPool->getConnectionByName('primary')->rollBack();
     }
 
     public function inTransaction()
     {
-        return $this->primaryPdo->inTransaction();
+        return $this->connectionPool->getConnectionByName('primary')->inTransaction();
     }
 
     public function setAttribute($attribute, $value)
     {
-        $this->primaryPdo->setAttribute($attribute, $value);
+        $this->connectionPool->getConnectionByName('primary')->setAttribute($attribute, $value);
     }
 
     public function lastInsertId($name = null)
     {
-        return $this->primaryPdo->lastInsertId($name);
+        return $this->connectionPool->getConnectionByName('primary')->lastInsertId($name);
     }
 
     public function errorCode()
     {
-        return $this->primaryPdo->errorCode();
+        return $this->lastConnection->errorCode();
     }
 
     public function errorInfo()
     {
-        return $this->primaryPdo->errorInfo();
+        return $this->lastConnection->errorInfo();
     }
 
     public function getAttribute($attribute)
     {
-        return $this->primaryPdo->getAttribute($attribute);
+        return $this->connectionPool->getRandomConnection()[1]->getAttribute($attribute);
     }
 
     public function quote($string, $parameter_type = PDO::PARAM_STR)
     {
-        return $this->primaryPdo->quote($string, $parameter_type);
+        return $this->connectionPool->getRandomConnection()[1]->quote($string, $parameter_type);
     }
 }

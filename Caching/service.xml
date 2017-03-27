@@ -26,7 +26,9 @@
 
         <service id="swag_essentials.product_service"
                  class="SwagEssentials\Caching\Caches\CachingProductDecorator"
-                 decorates="shopware_storefront.product_service">
+                 decorates="shopware_storefront.product_service"
+                 decoration-priority="10"
+        >
             <factory service="swag_essentials.cache_factory" method="createProductService" />
             <argument type="service" id="swag_essentials.product_service.inner"/>
         </service>

@@ -11,10 +11,6 @@ namespace SwagEssentials\PrimaryReplica;
 class ConnectionDecision
 {
     /**
-     * @var \PDO
-     */
-    private $primaryConnection;
-    /**
      * @var ConnectionPool
      */
     private $replicaPool;
@@ -25,16 +21,14 @@ class ConnectionDecision
         's_core_sessions' => true
     ];
 
-    /** @var \Zend_Cache_Core  */
-    private $cache;
+    private $config;
 
-    public function __construct(\PDO $primaryConnection, ConnectionPool $replicaPool, \Zend_Cache_Core $cache)
+    public function __construct(ConnectionPool $replicaPool, $config)
     {
-        $this->primaryConnection = $primaryConnection;
         $this->replicaPool = $replicaPool;
 
-        $this->cache = $cache;
-        $this->tables= $this->getTables();
+        $this->tables = $this->getTables();
+        $this->config = $config;
     }
 
     /**
@@ -49,6 +43,13 @@ class ConnectionDecision
         $affected = $this->getAffectedTables($sql);     // tables in this query
         $isWriteQuery = $this->isWriteQuery($sql);         // is write query?
         $queryInvolvesPinnedTable = false;                   // is only write query because of prior write?
+//        $isBasketQuery = stripos($sql, 's_order_basket') !== false;
+//
+//        if ($isBasketQuery && isset($this->config['basket_connection'])) {
+//            $name = $this->config['basket_connection'];
+//            $this->count($name, $sql);
+//            return $this->replicaPool->getConnectionByName($name);
+//        }
 
         if (!$isWriteQuery) {
             foreach ($affected as $table) {
@@ -65,10 +66,12 @@ class ConnectionDecision
                     $this->pinnedTables[$table] = $sql;
                 }
             }
-            return $this->primaryConnection;
+            
+            return $this->replicaPool->getConnectionByName('primary');
         }
 
         list($name, $replica) = $this->replicaPool->getRandomConnection();
+
         $this->count($name, $sql);
         return $replica;
     }
@@ -81,12 +84,14 @@ class ConnectionDecision
         ++$this->counter[$name];
     }
 
-
     private function isWriteQuery($sql)
     {
         $sql = trim($sql);
 
-        return (stripos($sql, 'SELECT') !== 0 && stripos($sql, 'DESCRIBE') !== 0);
+        return (stripos($sql, 'SHOW') !== 0 && stripos($sql, 'SELECT') !== 0 && stripos($sql, 'DESCRIBE') !== 0) || stripos(
+            $sql,
+            'FOR UPDATE'
+        ) !== false;
     }
 
     /**
@@ -136,11 +141,16 @@ class ConnectionDecision
      */
     private function getTables()
     {
-        if ($tables = $this->cache->load('primary_replica_tables')) {
-            return $tables;
+        $apc_fetch = function_exists('apc_fetch') ? 'apc_fetch' : function_exists('apcu_fetch') ? 'apcu_fetch' : null;
+        $apc_store = function_exists('apc_store') ? 'apc_fetch' : function_exists('apcu_store') ? 'apcu_store' : null;
+
+        $apc_available = $apc_store && $apc_fetch;
+
+        if ($apc_available && $tables = $apc_fetch('primary_replica_tables')) {
+            return unserialize($tables);
         }
 
-        $tables = $this->primaryConnection->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
+        $tables = $this->replicaPool->getRandomConnection()[1]->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
 
         $result = [];
         foreach ($tables as $table) {
@@ -149,7 +159,9 @@ class ConnectionDecision
         }
         $tables = implode('|', array_map('preg_quote', array_unique($result)));
 
-        $this->cache->save($tables, 'primary_replica_tables', [], 3600);
+        if ($apc_available) {
+            $apc_store('primary_replica_tables', serialize($tables));
+        }
 
         return $tables;
     }
