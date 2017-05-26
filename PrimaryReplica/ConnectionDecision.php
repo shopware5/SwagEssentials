@@ -88,6 +88,15 @@ class ConnectionDecision
     {
         $sql = trim($sql);
 
+        if (
+            stripos($sql, 'START') === 0 ||
+            stripos($sql, 'BEGIN') === 0 ||
+            stripos($sql, 'ROLLBACK') === 0 ||
+            stripos($sql, 'COMMIT') === 0
+        ) {
+            return true;
+        }
+
         return (stripos($sql, 'SHOW') !== 0 && stripos($sql, 'SELECT') !== 0 && stripos($sql, 'DESCRIBE') !== 0) || stripos(
             $sql,
             'FOR UPDATE'

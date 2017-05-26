@@ -164,6 +164,8 @@ class ConnectionPool
             );
         }
 
+        $this->connections[$name] = $conn;
+
         return $conn;
 
     }

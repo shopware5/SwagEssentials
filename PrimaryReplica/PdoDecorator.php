@@ -38,7 +38,7 @@ class PdoDecorator extends \PDO
 
     public function prepare($statement, $options = [])
     {
-        $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
+        $this->lastConnection = $this->connectionPool->getConnectionByName('primary');
 
         return $this->lastConnection->prepare($statement, $options);
     }
