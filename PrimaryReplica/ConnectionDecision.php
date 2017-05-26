@@ -61,7 +61,7 @@ class ConnectionDecision
                     $this->pinnedTables[$table] = self::$DEBUG ? $sql : true;
                 }
             }
-            
+
             return $this->replicaPool->getConnectionByName('primary');
         }
 
@@ -92,6 +92,8 @@ class ConnectionDecision
     {
         $sql = trim($sql);
 
+
+        // detect transaction related commands
         if (
             stripos($sql, 'START') === 0 ||
             stripos($sql, 'BEGIN') === 0 ||
@@ -101,10 +103,26 @@ class ConnectionDecision
             return true;
         }
 
-        return (stripos($sql, 'SHOW') !== 0 && stripos($sql, 'SELECT') !== 0 && stripos($sql, 'DESCRIBE') !== 0) || stripos(
-            $sql,
-            'FOR UPDATE'
-        ) !== false;
+        // FOR UPDATE clause requires primary connection as well
+        if (stripos($sql, 'FOR UPDATE') !== false) {
+            return true;
+        }
+
+        // if query does not start with common READ keywords,
+        // assume read connection as well
+        if (
+            stripos($sql, 'SHOW') !== 0 &&
+            stripos($sql, 'SELECT') !== 0 &&
+            stripos($sql, 'EXPLAIN') !== 0 &&
+            stripos($sql, 'DESC') !== 0 &&
+            stripos($sql, 'DESCRIBE') !== 0
+        ) {
+            return true;
+        }
+
+
+        // by now, only read queries should remain
+        return false;
     }
 
     /**
