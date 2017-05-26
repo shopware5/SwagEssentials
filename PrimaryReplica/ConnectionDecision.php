@@ -10,6 +10,8 @@ namespace SwagEssentials\PrimaryReplica;
  */
 class ConnectionDecision
 {
+    private static $DEBUG = false;
+
     /**
      * @var ConnectionPool
      */
@@ -43,13 +45,6 @@ class ConnectionDecision
         $affected = $this->getAffectedTables($sql);     // tables in this query
         $isWriteQuery = $this->isWriteQuery($sql);         // is write query?
         $queryInvolvesPinnedTable = false;                   // is only write query because of prior write?
-//        $isBasketQuery = stripos($sql, 's_order_basket') !== false;
-//
-//        if ($isBasketQuery && isset($this->config['basket_connection'])) {
-//            $name = $this->config['basket_connection'];
-//            $this->count($name, $sql);
-//            return $this->replicaPool->getConnectionByName($name);
-//        }
 
         if (!$isWriteQuery) {
             foreach ($affected as $table) {
@@ -63,7 +58,7 @@ class ConnectionDecision
             $this->count('primary', $sql);
             if (!$queryInvolvesPinnedTable) {
                 foreach ($affected as $table) {
-                    $this->pinnedTables[$table] = $sql;
+                    $this->pinnedTables[$table] = self::$DEBUG ? $sql : true;
                 }
             }
             
@@ -82,6 +77,15 @@ class ConnectionDecision
             $this->counter[$name] = 0;
         }
         ++$this->counter[$name];
+    }
+
+    public function __destruct()
+    {
+        if (!self::$DEBUG) {
+            return;
+        }
+
+        error_log(print_r($this->counter, true));
     }
 
     private function isWriteQuery($sql)
