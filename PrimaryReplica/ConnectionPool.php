@@ -82,6 +82,12 @@ class ConnectionPool
         return [$name, $this->getConnectionByName($name)];
     }
 
+    /**
+     * Return a random connection based on the configured weights. E.g. a connection with weight "10" is more likely
+     * to be returned than a connection with weight "1"
+     *
+     * @return null|string
+     */
     private function getWeightedRandomConnection()
     {
         $weightedConnections = $this->weightedConnections;
@@ -113,6 +119,12 @@ class ConnectionPool
         }
     }
 
+    /**
+     * Create a PDO connection.
+     *
+     * @param $name
+     * @return \PDO
+     */
     public function getPDOConnection($name)
     {
         if (isset($this->connections[$name])) {

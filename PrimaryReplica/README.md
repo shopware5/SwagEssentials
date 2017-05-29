@@ -1,5 +1,5 @@
 # Primary / replica
-**What it does**: Use mutiple databases for shopware. Will split write queries to primary connection and read queries to replica connections.
+**What it does**: Use multiple databases for shopware. Will split write queries to primary connection and read queries to replica connections.
 
 **Needed for**: Cluster setups and setups with high load on the primary database connection
 

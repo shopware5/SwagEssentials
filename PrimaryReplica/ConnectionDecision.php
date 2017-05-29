@@ -42,10 +42,13 @@ class ConnectionDecision
      */
     public function getConnectionForQuery($sql)
     {
-        $affected = $this->getAffectedTables($sql);     // tables in this query
-        $isWriteQuery = $this->isWriteQuery($sql);         // is write query?
-        $queryInvolvesPinnedTable = false;                   // is only write query because of prior write?
+        // get list of tables involved in the query
+        $affected = $this->getAffectedTables($sql);
+        // is the given query a write query which needs to go to the primary connection?
+        $isWriteQuery = $this->isWriteQuery($sql);
 
+        // does the query contain a table which has been written to before?
+        $queryInvolvesPinnedTable = false;
         if (!$isWriteQuery) {
             foreach ($affected as $table) {
                 if (isset($this->pinnedTables[$table])) {
@@ -71,6 +74,12 @@ class ConnectionDecision
         return $replica;
     }
 
+    /**
+     * Simple statistics: Which connection has been used how often?
+     *
+     * @param $name
+     * @param $query
+     */
     private function count($name, $query)
     {
         if (!isset($this->counter[$name])) {
@@ -79,6 +88,9 @@ class ConnectionDecision
         ++$this->counter[$name];
     }
 
+    /**
+     * In debug mode: Print some debug information
+     */
     public function __destruct()
     {
         if (!self::$DEBUG) {
@@ -88,10 +100,15 @@ class ConnectionDecision
         error_log(print_r($this->counter, true));
     }
 
+    /**
+     * Determine, whether the given query is a write query or not
+     *
+     * @param $sql
+     * @return bool
+     */
     private function isWriteQuery($sql)
     {
         $sql = trim($sql);
-
 
         // detect transaction related commands
         if (
@@ -188,6 +205,8 @@ class ConnectionDecision
             $parts = explode('_', $table);
             $result[] = $parts[0] . '_' . $parts[1];
         }
+
+
         $tables = implode('|', array_map('preg_quote', array_unique($result)));
 
         if ($apc_available) {
