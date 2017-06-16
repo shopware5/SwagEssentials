@@ -66,7 +66,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
 
         // try to get whole list from cache
         if ($cache = $this->cache->load($multiHash)) {
-            return $cache;
+            return array_combine(array_keys($list), $cache);
         }
 
         $allItems = $this->getCachedItemsFromList($list, $context);
@@ -89,9 +89,8 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
         $totalResult = array_merge($cachedItems, $results);
         $this->cache->save($totalResult, $multiHash, [], $this->ttl);
 
-        return $totalResult;
+        return array_combine(array_keys($list), $totalResult);
     }
-
 
 
     private function getCachedItemsFromList($list, $context)

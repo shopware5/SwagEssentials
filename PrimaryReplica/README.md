@@ -1,14 +1,14 @@
 # Primary / replica
-**What it does**: Use mutiple databases for shopware. Will split write queries to primary connection and read queries to replica connections.
+**What it does**: Use multiple databases for shopware. Will split write queries to primary connection and read queries to replica connections.
 
 **Needed for**: Cluster setups and setups with high load on the primary database connection
 
 ## Setting it up
 ### Enabling it
-For this functionality you don't need to install / activate the plugin. It just needs to be in place. Then just enable the primary/replica setup in your `config.php` in three steps:
+Install the SwagEssentials Plugin and enable `PrimaryReplica` in your service.xml. Then just enable the primary/replica setup in your `config.php` in two steps:
 
- 1. require `ShopwareConnectionWrapper`
- 2. configure `'wrapperClass' => '\Doctrine\DBAL\ShopwareConnectionWrapper'` in your `db` array
+ 1. `require_once __DIR__ . '/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php'`;
+ 2. Add `'factory' => '\SwagEssentials\PrimaryReplica\PdoFactory',` to the `db` array
  3. configure at least one replica database in the `db.replicas` array
 
 
@@ -18,15 +18,15 @@ The result could look like this:
 ```
 <?php
 
-require_once __DIR__ . '/custom/plugins/SwagEssentials/PrimaryReplica/Doctrine/DBAL/ShopwareConnectionWrapper.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php'`;
 
 return array(
     'db' => array(
-        'wrapperClass' => '\Doctrine\DBAL\ShopwareConnectionWrapper',
         'username' => 'root',
         'password' => 'root',
         'dbname' => 'training',
         'host' => 'localhost',
+        'factory' => '\SwagEssentials\PrimaryReplica\PdoFactory',
         'port' => '',
         'replicas' => array(
             'replica-backup' => array(
@@ -54,8 +54,11 @@ In the main `db` array of your `config.php` you can set additional options:
  * `includePrimary`: Also make the primary connection part of the "read" connection pool. Default: `false`
  * `stickyConnection`: Within a request, choose one random read connection from the replica pool and stick to that connection.  If disabled, for every request a new random connection will be chosen. Default: `true`
 
+Furthermore you can set a `weight` for every connection (also for the primary connection). This way you can define,
+how often a connection should be choosen im comparison to other connections.
+
 ### Using a proxy for replica connections
-In more advanced setups, you probably don't want to maintain a list of all database replicase in the application itself. If you have some sort of load balancer / proxy for your database replicas in place, you can just configure it as (the only) replica connection. 
+In more advanced setups, you probably don't want to maintain a list of all database replicas in the application itself. If you have some sort of load balancer / proxy for your database replicas in place, you can just configure it as (the only) replica connection.
 This has several advantages:
 
  * the proxy takes care of query distribution acrooss the replica pool
