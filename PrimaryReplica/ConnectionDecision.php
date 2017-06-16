@@ -10,10 +10,8 @@ namespace SwagEssentials\PrimaryReplica;
  */
 class ConnectionDecision
 {
-    /**
-     * @var \PDO
-     */
-    private $primaryConnection;
+    private static $DEBUG = false;
+
     /**
      * @var ConnectionPool
      */
@@ -25,16 +23,14 @@ class ConnectionDecision
         's_core_sessions' => true
     ];
 
-    /** @var \Zend_Cache_Core  */
-    private $cache;
+    private $config;
 
-    public function __construct(\PDO $primaryConnection, ConnectionPool $replicaPool, \Zend_Cache_Core $cache)
+    public function __construct(ConnectionPool $replicaPool, $config)
     {
-        $this->primaryConnection = $primaryConnection;
         $this->replicaPool = $replicaPool;
 
-        $this->cache = $cache;
-        $this->tables= $this->getTables();
+        $this->tables = $this->getTables();
+        $this->config = $config;
     }
 
     /**
@@ -46,10 +42,13 @@ class ConnectionDecision
      */
     public function getConnectionForQuery($sql)
     {
-        $affected = $this->getAffectedTables($sql);     // tables in this query
-        $isWriteQuery = $this->isWriteQuery($sql);         // is write query?
-        $queryInvolvesPinnedTable = false;                   // is only write query because of prior write?
+        // get list of tables involved in the query
+        $affected = $this->getAffectedTables($sql);
+        // is the given query a write query which needs to go to the primary connection?
+        $isWriteQuery = $this->isWriteQuery($sql);
 
+        // does the query contain a table which has been written to before?
+        $queryInvolvesPinnedTable = false;
         if (!$isWriteQuery) {
             foreach ($affected as $table) {
                 if (isset($this->pinnedTables[$table])) {
@@ -62,17 +61,25 @@ class ConnectionDecision
             $this->count('primary', $sql);
             if (!$queryInvolvesPinnedTable) {
                 foreach ($affected as $table) {
-                    $this->pinnedTables[$table] = $sql;
+                    $this->pinnedTables[$table] = self::$DEBUG ? $sql : true;
                 }
             }
-            return $this->primaryConnection;
+
+            return $this->replicaPool->getConnectionByName('primary');
         }
 
         list($name, $replica) = $this->replicaPool->getRandomConnection();
+
         $this->count($name, $sql);
         return $replica;
     }
 
+    /**
+     * Simple statistics: Which connection has been used how often?
+     *
+     * @param $name
+     * @param $query
+     */
     private function count($name, $query)
     {
         if (!isset($this->counter[$name])) {
@@ -81,12 +88,58 @@ class ConnectionDecision
         ++$this->counter[$name];
     }
 
+    /**
+     * In debug mode: Print some debug information
+     */
+    public function __destruct()
+    {
+        if (!self::$DEBUG) {
+            return;
+        }
 
+        error_log(print_r($this->counter, true));
+    }
+
+    /**
+     * Determine, whether the given query is a write query or not
+     *
+     * @param $sql
+     * @return bool
+     */
     private function isWriteQuery($sql)
     {
         $sql = trim($sql);
 
-        return (stripos($sql, 'SELECT') !== 0 && stripos($sql, 'DESCRIBE') !== 0);
+        // detect transaction related commands
+        if (
+            stripos($sql, 'START') === 0 ||
+            stripos($sql, 'BEGIN') === 0 ||
+            stripos($sql, 'ROLLBACK') === 0 ||
+            stripos($sql, 'COMMIT') === 0
+        ) {
+            return true;
+        }
+
+        // FOR UPDATE clause requires primary connection as well
+        if (stripos($sql, 'FOR UPDATE') !== false) {
+            return true;
+        }
+
+        // if query does not start with common READ keywords,
+        // assume read connection as well
+        if (
+            stripos($sql, 'SHOW') !== 0 &&
+            stripos($sql, 'SELECT') !== 0 &&
+            stripos($sql, 'EXPLAIN') !== 0 &&
+            stripos($sql, 'DESC') !== 0 &&
+            stripos($sql, 'DESCRIBE') !== 0
+        ) {
+            return true;
+        }
+
+
+        // by now, only read queries should remain
+        return false;
     }
 
     /**
@@ -136,20 +189,29 @@ class ConnectionDecision
      */
     private function getTables()
     {
-        if ($tables = $this->cache->load('primary_replica_tables')) {
-            return $tables;
+        $apc_fetch = function_exists('apc_fetch') ? 'apc_fetch' : function_exists('apcu_fetch') ? 'apcu_fetch' : null;
+        $apc_store = function_exists('apc_store') ? 'apc_fetch' : function_exists('apcu_store') ? 'apcu_store' : null;
+
+        $apc_available = $apc_store && $apc_fetch;
+
+        if ($apc_available && $tables = $apc_fetch('primary_replica_tables')) {
+            return unserialize($tables);
         }
 
-        $tables = $this->primaryConnection->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
+        $tables = $this->replicaPool->getRandomConnection()[1]->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
 
         $result = [];
         foreach ($tables as $table) {
             $parts = explode('_', $table);
             $result[] = $parts[0] . '_' . $parts[1];
         }
+
+
         $tables = implode('|', array_map('preg_quote', array_unique($result)));
 
-        $this->cache->save($tables, 'primary_replica_tables', [], 3600);
+        if ($apc_available) {
+            $apc_store('primary_replica_tables', serialize($tables));
+        }
 
         return $tables;
     }

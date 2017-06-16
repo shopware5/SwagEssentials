@@ -1,0 +1,35 @@
+<phpunit
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        bootstrap="./tests/bootstrap.php"
+
+>
+    <testsuite name="primary replica unit tests">
+        <directory>tests/</directory>
+    </testsuite>
+
+    <filter>
+        <blacklist>
+            <directory suffix=".php"></directory>
+            <file></file>
+            <exclude>
+                <directory suffix=".php"></directory>
+                <file></file>
+            </exclude>
+        </blacklist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php"></directory>
+            <file></file>
+            <exclude>
+                <directory suffix=".php"></directory>
+                <file></file>
+            </exclude>
+        </whitelist>
+    </filter>
+
+
+</phpunit>

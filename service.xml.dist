@@ -15,26 +15,31 @@
         <import resource="RedisStore/service.xml"/>
         <import resource="Caching/service.xml"/>
         <import resource="CacheMultiplexer/service.xml"/>
+        <import resource="CacheMultiplexer/service.xml"/>
+        <import resource="PrimaryReplica/service.xml"/>
+        <import resource="RedisProductGateway/service.xml"/>
     </imports>
 
     <parameters>
+        <!--
+             Warning: Disallow access from outside or consider storing credentials in environment variables!
+             See: http://symfony.com/doc/current/configuration/external_parameters.html#environment-variables
+             E.g.
+
+             fastcgi_param:
+                 fastcgi_param SYMFONY__HOST1__HOST user;
+                 fastcgi_param SYMFONY__HOST1__USER user;
+                 fastcgi_param SYMFONY__HOST1__PASSWORD secret;
+             service.xml:
+                 <parameter type="collection">
+                     <parameter key="host">%host1.host%</parameter>
+                     <parameter key="user">%host1.user%</parameter>
+                     <parameter key="password">%host1.password%</parameter>
+                 </parameter>
+        -->
 
         <!--
             Cache Multiplexer
-                Warning: Disallow access from outside or consider storing credentials in environment variables!
-                See: http://symfony.com/doc/current/configuration/external_parameters.html#environment-variables
-                E.g.
-
-                fastcgi_param:
-                    fastcgi_param SYMFONY__HOST1__HOST user;
-                    fastcgi_param SYMFONY__HOST1__USER user;
-                    fastcgi_param SYMFONY__HOST1__PASSWORD secret;
-                service.xml:
-                    <parameter type="collection">
-                        <parameter key="host">%host1.host%</parameter>
-                        <parameter key="user">%host1.user%</parameter>
-                        <parameter key="password">%host1.password%</parameter>
-                    </parameter>
         -->
         <parameter key="swag_essentials.cache_multiplexer_hosts" type="collection">
                 <parameter type="collection">
