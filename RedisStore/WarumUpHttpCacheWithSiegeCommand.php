@@ -30,6 +30,7 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
             ->setName('sw:cache:siege')
             ->setDescription('warm up http cache using siege')
             ->addOption('concurrency', 'c', InputOption::VALUE_OPTIONAL, 'Number of parallel workers')
+            ->addOption('urls', 'u', InputOption::VALUE_OPTIONAL, 'URL file')
             ->addArgument('shopId', InputArgument::OPTIONAL, 'The Id of the shop')
             ->setHelp('The <info>%command.name%</info> warms up the http cache faster by re-using the kernel');
     }
@@ -59,9 +60,15 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
 
         /** @var \Shopware\Components\HttpCache\CacheWarmer $cacheWarmer */
         $cacheWarmer = $this->container->get('http_cache_warmer');
-        $totalUrlCount = $cacheWarmer->getAllSEOUrlCount($shopId);
 
-        $fileName = $this->exportUrls($shopId, $totalUrlCount);
+        if ($this->input->getOption('urls')) {
+            $file = $this->input->getOption('urls');
+            $totalUrlCount = count(file($file));
+            $fileName = $file;
+        } else {
+            $totalUrlCount = $cacheWarmer->getAllSEOUrlCount($shopId);
+            $fileName = $this->exportUrls($shopId, $totalUrlCount);
+        }
 
         $output->writeln("\n Starting warmup from URL file {$fileName} and {$concurrency} workers\n");
 
@@ -113,9 +120,12 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
      */
     protected function runSiege($concurrency, $fileName, $progressBar)
     {
-        $progressBar->start();
         $cmd = "siege -b -v -c {$concurrency} -f {$fileName} -r once ";
+        $this->output->writeln("Running: $cmd");
+
+        $progressBar->start();
         $fp = popen($cmd . " 2>&1 ", "r");
+
 
         while (!feof($fp)) {
             $lines = array_filter(
@@ -159,7 +169,7 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
         $fileName = tempnam(sys_get_temp_dir(), 'urls');
         $fh = fopen($fileName, 'w');
         while ($offset < $totalUrlCount) {
-            $urls = $cacheWarmer->getAllSEOUrls($shopId, 10, $offset);
+            $urls = $cacheWarmer->getAllSEOUrls($shopId, 1000, $offset);
             fwrite($fh, implode("\n", $urls));
             $offset += count($urls);
         }

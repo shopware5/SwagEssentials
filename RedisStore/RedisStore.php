@@ -39,11 +39,14 @@ class RedisStore implements StoreInterface
     const ID_KEY = 'ids';
 
     protected $redisClient;
+    protected $cacheCookies;
 
     protected $keyCache;
 
     public function __construct($options)
     {
+        $this->cacheCookies = $options['cache_cookies'];
+
         $this->redisClient = RedisFactory::factory($options['redisConnections']);
 
         $this->keyCache = new \SplObjectStorage();
@@ -253,20 +256,6 @@ class RedisStore implements StoreInterface
         return true;
     }
 
-    /**
-     * Returns a metadata key for the given request
-     *
-     * @param Request $request
-     * @return string
-     */
-    private function getMetadataKey(Request $request)
-    {
-        if (isset($this->keyCache[$request])) {
-            return $this->keyCache[$request];
-        }
-
-        return $this->keyCache[$request] = sha1($request->getUri());
-    }
 
     private function getShopwareIdKey($cacheId)
     {
@@ -489,6 +478,39 @@ class RedisStore implements StoreInterface
         }
 
         return $metadataKey;
+    }
+
+    protected function getMetadataKey(Request $request)
+    {
+        $uri = $this->sortQueryStringParameters($request->getUri());
+
+        foreach ($this->cacheCookies as $cookieName) {
+            if ($request->cookies->has($cookieName)) {
+                $uri .= '&__' . $cookieName . '=' . $request->cookies->get($cookieName);
+            }
+        }
+
+        return hash('sha256', $uri);
+    }
+
+    private function sortQueryStringParameters($url)
+    {
+        $pos = strpos($url, '?');
+        if ($pos === false) {
+            return $url;
+        }
+
+        $urlPath = substr($url, 0, $pos + 1);
+        $queryString = substr($url, $pos + 1);
+
+        $queryParts = [];
+        parse_str($queryString, $queryParts);
+        ksort($queryParts, SORT_STRING);
+
+
+        $queryString = http_build_query($queryParts);
+
+        return $urlPath . $queryString;
     }
 
 }
