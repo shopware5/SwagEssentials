@@ -79,8 +79,9 @@ class CacheManager extends \Shopware\Components\CacheManager
 
     public function __destruct()
     {
+
         // prevent recursive cache invalidation, if cache was invalidated using the API
-        if (strpos(Shopware()->Front()->Request()->getRequestUri(), 'api') !== false) {
+        if (PHP_SAPI !== 'cli' && strpos(Shopware()->Front()->Request()->getRequestUri(), 'api') !== false) {
             return;
         }
 

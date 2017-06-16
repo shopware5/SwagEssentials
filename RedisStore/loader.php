@@ -1,6 +1,5 @@
 <?php
 
-
 require_once 'RedisStore.php';
 require_once __DIR__ .'/../Common/RedisFactory.php';
 

@@ -12,6 +12,7 @@
     <imports>
         <import resource="Common/service.xml"/>
         <import resource="RedisNumberRange/service.xml"/>
+        <import resource="RedisStore/service.xml"/>
         <import resource="Caching/service.xml"/>
         <import resource="CacheMultiplexer/service.xml"/>
     </imports>
