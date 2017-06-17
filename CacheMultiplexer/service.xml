@@ -7,8 +7,11 @@
 >
     <services>
 
-        <service id="shopware.cache_manager" class="SwagEssentials\CacheMultiplexer\CacheManager">
+        <service id="swag_essentials.cache_multiplexer.cache_manager" class="SwagEssentials\CacheMultiplexer\CacheManager"
+                 decorates="shopware.cache_manager"
+            >
             <argument type="service" id="service_container" />
+            <argument type="service" id="swag_essentials.cache_multiplexer.cache_manager.inner"/>
         </service>
 
         <service id="swag_essentials.cache_multiplexer.cache_invalidator" class="SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator">

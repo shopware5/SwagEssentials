@@ -33,10 +33,11 @@ use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
  */
 class RedisStore implements StoreInterface
 {
-    const CACHE_KEY = 'cache';
-    const META_KEY = 'meta';
-    const LOCK_KEY = 'lock';
-    const ID_KEY = 'ids';
+    const CACHE_KEY = 'cache_body';
+    const META_KEY = 'cache_meta';
+    const LOCK_KEY = 'cache_lock';
+    const ID_KEY = 'cache_ids';
+    const CACHE_SIZE_KEY = 'cache_size';
 
     protected $redisClient;
     protected $cacheCookies;
@@ -241,6 +242,9 @@ class RedisStore implements StoreInterface
     {
         $metadataKey = $this->getMetadataKey(Request::create($url));
 
+        // keep track of the overall HTTP cache size
+        $this->redisClient->decrBy(self::CACHE_SIZE_KEY, strlen($this->load(self::META_KEY, $metadataKey)));
+
         $result = $this->redisClient->hdel(self::META_KEY, $metadataKey);
 
         return $result == 1;
@@ -252,7 +256,6 @@ class RedisStore implements StoreInterface
     public function cleanup()
     {
         $this->redisClient->del(self::LOCK_KEY);
-
         return true;
     }
 
@@ -311,6 +314,9 @@ class RedisStore implements StoreInterface
     private function save($hash, $key, $data)
     {
         $this->redisClient->hset($hash, $key, $data);
+
+        // keep track of the overall HTTP cache size
+        $this->redisClient->incrBy(self::CACHE_SIZE_KEY, strlen($data));
     }
 
     /**
@@ -382,7 +388,10 @@ class RedisStore implements StoreInterface
         $status = $headers['X-Status'][0];
         unset($headers['X-Status']);
 
-        return new Response($body, $status, $headers);
+        $response = new Response($body, $status, $headers);
+
+
+        return $response;
     }
 
     /**
@@ -394,6 +403,9 @@ class RedisStore implements StoreInterface
         $this->redisClient->del(self::META_KEY);
         $this->redisClient->del(self::ID_KEY);
         $this->redisClient->del(self::LOCK_KEY);
+
+        // keep track of the overall HTTP cache size
+        $this->redisClient->set(self::CACHE_SIZE_KEY, 0);
     }
 
     /**
@@ -433,11 +445,14 @@ class RedisStore implements StoreInterface
 
         // unlink all cache files which contain the given id
         foreach ($content as $cacheKey => $headerKey) {
-            // remove cache entry
+            // keep track of the overall HTTP cache size
+            $this->redisClient->decrBy(self::CACHE_SIZE_KEY, strlen($this->load(self::CACHE_KEY, $cacheKey)));
+            $this->redisClient->decrBy(self::CACHE_SIZE_KEY, strlen($this->load(self::META_KEY, $headerKey)));
+            $this->redisClient->decrBy(self::CACHE_SIZE_KEY, strlen($this->load(self::ID_KEY, $cacheInvalidateKey)));
+
+            // remove fields
             $this->redisClient->hdel(self::CACHE_KEY, $cacheKey);
-            // remove header information
             $this->redisClient->hdel(self::META_KEY, $headerKey);
-            // remove invalidation key
             $this->redisClient->hdel(self::ID_KEY, $cacheInvalidateKey);
         }
 
@@ -480,8 +495,18 @@ class RedisStore implements StoreInterface
         return $metadataKey;
     }
 
+    /**
+     * Build metadata key from URL + some cookies
+     *
+     * @param Request $request
+     * @return mixed|object
+     */
     protected function getMetadataKey(Request $request)
     {
+        if (isset($this->keyCache[$request])) {
+            return $this->keyCache[$request];
+        }
+
         $uri = $this->sortQueryStringParameters($request->getUri());
 
         foreach ($this->cacheCookies as $cookieName) {
@@ -490,9 +515,17 @@ class RedisStore implements StoreInterface
             }
         }
 
-        return hash('sha256', $uri);
+        $this->keyCache[$request] = hash('sha256', $uri);
+
+        return $this->keyCache[$request];
     }
 
+    /**
+     * Sort query params, so that shop.de/?foo=1&bar=2 and shop.de/?bar=2&foo=1 are handled as the same cached page
+     *
+     * @param $url
+     * @return string
+     */
     private function sortQueryStringParameters($url)
     {
         $pos = strpos($url, '?');
@@ -511,6 +544,27 @@ class RedisStore implements StoreInterface
         $queryString = http_build_query($queryParts);
 
         return $urlPath . $queryString;
+    }
+
+    /**
+     * Return information regarding cache keys and size
+     *
+     * @return array
+     */
+    public function getCacheInfo()
+    {
+        $entries = array_sum([
+            $this->redisClient->hLen(self::CACHE_KEY),
+            $this->redisClient->hLen(self::META_KEY),
+            $this->redisClient->hLen(self::ID_KEY)
+        ]);
+
+        $size = $this->redisClient->get(self::CACHE_SIZE_KEY);
+
+        return [
+            'entries' => $entries,
+            'size' => $size,
+        ];
     }
 
 }

@@ -12,5 +12,14 @@
                 class="SwagEssentials\RedisStore\WarumUpHttpCacheWithSiegeCommand">
             <tag name="console.command"/>
         </service>
+
+
+        <service id="swag_essentials.redis_store.cache_manager" class="SwagEssentials\RedisStore\CacheManager"
+                 decorates="shopware.cache_manager"
+        >
+            <argument type="service" id="service_container" />
+            <argument type="service" id="swag_essentials.redis_store.cache_manager.inner"/>
+        </service>
+
     </services>
 </container>

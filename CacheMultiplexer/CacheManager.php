@@ -4,6 +4,7 @@
 namespace SwagEssentials\CacheMultiplexer;
 
 use Shopware\Components\DependencyInjection\Container;
+use SwagEssentials\Common\CacheManagerDecorationTrait;
 
 /**
  * Class CacheManager replaces the original CacheManager and collects all caches, which have been invalidated
@@ -11,15 +12,22 @@ use Shopware\Components\DependencyInjection\Container;
  */
 class CacheManager extends \Shopware\Components\CacheManager
 {
+    use CacheManagerDecorationTrait;
+
     private $tags = [];
     /** @var RemoteCacheInvalidator  */
     private $cacheInvalidator;
+    /**
+     * @var \Shopware\Components\CacheManager
+     */
+    private $innerCacheManager;
 
-    public function __construct(Container $container)
+    public function __construct(Container $container, \Shopware\Components\CacheManager $innerCacheManager)
     {
         parent::__construct($container);
 
         $this->cacheInvalidator = $container->get("swag_essentials.cache_multiplexer.cache_invalidator");
+        $this->innerCacheManager = $innerCacheManager;
     }
 
 
@@ -27,59 +35,53 @@ class CacheManager extends \Shopware\Components\CacheManager
     {
         $this->tags[] = 'http';
 
-        parent::clearHttpCache();
+        $this->innerCacheManager->clearHttpCache();
     }
 
     public function clearTemplateCache()
     {
         $this->tags[] = 'template';
 
-        parent::clearTemplateCache();
+        $this->innerCacheManager->clearTemplateCache();
     }
 
     public function clearThemeCache()
     {
         $this->tags[] = 'theme';
 
-        parent::clearThemeCache();
+        $this->innerCacheManager->clearThemeCache();
     }
 
     public function clearRewriteCache()
     {
         $this->tags[] = 'router';
 
-        parent::clearRewriteCache();
+        $this->innerCacheManager->clearRewriteCache();
     }
 
     public function clearSearchCache()
     {
         $this->tags[] = 'search';
 
-        parent::clearSearchCache();
+        $this->innerCacheManager->clearSearchCache();
     }
 
     public function clearConfigCache()
     {
         $this->tags[] = 'config';
 
-        parent::clearConfigCache();
+        $this->innerCacheManager->clearConfigCache();
     }
 
     public function clearProxyCache()
     {
         $this->tags[] = 'proxy';
 
-        parent::clearProxyCache();
-    }
-
-    public function clearOpCache()
-    {
-        parent::clearOpCache();
+        $this->innerCacheManager->clearProxyCache();
     }
 
     public function __destruct()
     {
-
         // prevent recursive cache invalidation, if cache was invalidated using the API
         if (PHP_SAPI !== 'cli' && strpos(Shopware()->Front()->Request()->getRequestUri(), 'api') !== false) {
             return;
