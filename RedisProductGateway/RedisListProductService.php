@@ -13,6 +13,8 @@ class RedisListProductService implements ListProductServiceInterface
      */
     private $service;
 
+    const HASH = 'list_product';
+
     /**
      * @var \Redis
      */
@@ -36,7 +38,7 @@ class RedisListProductService implements ListProductServiceInterface
 
         $keys = $this->getCacheKeys($numbers, $context);
 
-        $redisResult = $this->redis->mget($keys);
+        $redisResult = $this->redis->hMGet(self::HASH, $keys);
 
 
         $redisResult = array_combine(array_values($numbers), array_map('unserialize', $redisResult));
@@ -45,7 +47,8 @@ class RedisListProductService implements ListProductServiceInterface
         if (count($missingResults) > 0) {
             $missingResults = $this->service->getList($missingResults, $context);
 
-            $this->redis->mset(
+            $this->redis->hMset(
+                self::HASH,
                 array_map(
                     'serialize',
                     array_combine($this->getCacheKeys(array_keys($missingResults), $context), array_values($missingResults))
@@ -89,7 +92,7 @@ class RedisListProductService implements ListProductServiceInterface
 
         $keys = array_map(
             function ($number) use ($contextHash) {
-                return 'list_product.' . $contextHash . '.' . $number;
+                return $contextHash . '.' . $number;
             },
             $numbers
         );
