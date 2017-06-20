@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+
+        <service id="swag_essentials.redis.factory" class="SwagEssentials\Common\RedisFactory">
+        </service>
+
+        <service id="swag_essentials.redis" class="Redis">
+            <factory service="swag_essentials.redis.factory" method="factory" />
+            <argument>%swag_essentials.redis%</argument>
+        </service>
+
+        <service id="swag_essentials.redis.list_product_service"
+                 class="SwagEssentials\RedisProductGateway\RedisListProductService"
+                 decorates="shopware_storefront.list_product_service"
+                 decoration-priority="20"
+        >
+            <argument type="service" id="swag_essentials.redis.list_product_service.inner"/>
+            <argument type="service" id="swag_essentials.redis"/>
+
+        </service>
+    </services>
+</container>
