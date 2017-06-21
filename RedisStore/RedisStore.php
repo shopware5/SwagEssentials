@@ -2,6 +2,7 @@
 
 namespace SwagEssentials\RedisStore;
 
+use Shopware\Kernel;
 use SwagEssentials\Common\RedisFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,14 +44,19 @@ class RedisStore implements StoreInterface
     protected $cacheCookies;
 
     protected $keyCache;
+    /**
+     * @var Kernel
+     */
+    private $kernel;
 
-    public function __construct($options)
+    public function __construct($options, Kernel $kernel)
     {
         $this->cacheCookies = $options['cache_cookies'];
 
         $this->redisClient = RedisFactory::factory($options['redisConnections']);
 
         $this->keyCache = new \SplObjectStorage();
+        $this->kernel = $kernel;
     }
 
     /**
