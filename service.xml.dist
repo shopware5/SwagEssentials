@@ -7,16 +7,20 @@
 >
 
     <!--
-        Imports will load the submodules of this plugin. Just remove / uncomment modules, you don't need except the "Common" module
+        Imports will load the submodules of this plugin. Just remove / uncomment modules, you don't need
     -->
     <imports>
-        <import resource="Common/service.xml"/>
+        <!-- Use NumberRanges from Redis -->
         <import resource="RedisNumberRange/service.xml"/>
+        <!-- Use Redis as HTTP cache backend -->
         <import resource="RedisStore/service.xml"/>
+        <!-- Additional caching for shops without HTTP cache -->
         <import resource="Caching/service.xml"/>
+        <!-- Invalidate multiple appserver right from the backend -->
         <import resource="CacheMultiplexer/service.xml"/>
-        <import resource="CacheMultiplexer/service.xml"/>
+        <!-- Use multiple read databases -->
         <import resource="PrimaryReplica/service.xml"/>
+        <!-- Store ListProducts in Redis -->
         <import resource="RedisProductGateway/service.xml"/>
     </imports>
 
@@ -78,5 +82,15 @@
         <parameter key="swag_essentials.caching_ttl_product">3600</parameter>
         <parameter key="swag_essentials.caching_ttl_search">3600</parameter>
     </parameters>
+
+    <services>
+        <service id="swag_essentials.redis.factory" class="SwagEssentials\Common\RedisFactory">
+        </service>
+
+        <service id="swag_essentials.redis" class="Redis">
+            <factory service="swag_essentials.redis.factory" method="factory" />
+            <argument>%swag_essentials.redis%</argument>
+        </service>
+    </services>
 
 </container>
