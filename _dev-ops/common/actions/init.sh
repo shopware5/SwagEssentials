@@ -2,8 +2,8 @@
 #DESCRIPTION: execute on app_webserver to provision your environment
 
 rm -rf ./shopware
-./sw.phar install:release -r latest -i ./shopware --db-host __DB_HOST__ --db-user __DB_USER__ --db-password __DB_PASSWORD__ --db-name __DB_NAME__ --shop-host __SW_HOST__
-
+./sw.phar install:release -r __SWVERSION__ -i ./shopware --db-host __DB_HOST__ --db-user __DB_USER__ --db-password __DB_PASSWORD__ --db-name __DB_NAME__ --shop-host __SW_HOST__
+#
 I: mkdir shopware/custom/plugins/SwagEssentials
 
 ln -srf CacheMultiplexer shopware/custom/plugins/SwagEssentials/
