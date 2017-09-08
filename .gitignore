@@ -1,1 +1,9 @@
-/service.xml
+/.idea
+/.psh.yaml
+/shopware
+
+# dev-ops
+/_dev-ops/docker/containers/mysql/createuser.sh
+/_dev-ops/docker/containers/php7/createuser.sh
+/_dev-ops/docker/_volumes
+!_dev-ops/docker/_volumes/.gitkeep
