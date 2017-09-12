@@ -1,5 +1,6 @@
 /.idea
 /.psh.yaml
+/service.xml
 /shopware
 
 # dev-ops
