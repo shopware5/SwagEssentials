@@ -15,33 +15,34 @@ services:
     ports:
       - "8083:80"
     networks:
-      sw_essentials_docker:
+      sw_docker_swag_essentials:
         ipv4_address: 10.123.123.46
 
   app_mysql:
     build: _dev-ops/docker/containers/mysql
     volumes:
-      - ./_dev-ops/docker/_volumes/app-mysqldata:/var/lib/mysql
+      - ./_dev-ops/docker/_volumes/app-mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: app
       MYSQL_PASSWORD: app
     networks:
-      sw_essentials_docker:
+      sw_docker_swag_essentials:
         ipv4_address: 10.123.123.47
 
   app_es:
     build: _dev-ops/docker/containers/elastic-search
     volumes:
       - ./_dev-ops/docker/containers/elastic-search/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./_dev-ops/docker/_volumes/app-esdata:/usr/share/elasticsearch/data
+      - ./_dev-ops/docker/_volumes/app-es-data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
     environment:
+      TERM: xterm
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
-      sw_essentials_docker:
+      sw_docker_swag_essentials:
         ipv4_address: 10.123.123.48
 
   app_redis:
@@ -49,11 +50,11 @@ services:
     volumes:
       - ./_dev-ops/docker/_volumes/app-redisdata:/data
     networks:
-      sw_essentials_docker:
+      sw_docker_swag_essentials:
         ipv4_address: 10.123.123.49
 
 networks:
-  sw_essentials_docker:
+  sw_docker_swag_essentials:
     driver: bridge
     ipam:
       driver: default
