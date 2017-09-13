@@ -40,6 +40,9 @@ RUN docker-php-ext-install iconv mcrypt mbstring \
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+RUN pecl install redis \
+    && docker-php-ext-enable redis
+
 RUN npm install -g grunt-cli bower grunt jasmine
 
 ADD server-apache2-vhosts.conf /etc/apache2/sites-enabled/000-default.conf

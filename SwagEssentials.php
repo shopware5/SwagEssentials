@@ -18,10 +18,14 @@ class SwagEssentials extends Plugin
             new FileLocator()
         );
 
-        $container = $this->getPath() . '/service.xml';
-        if (!file_exists($container)) {
-            throw new \RuntimeException('SwagEssentials: Rename service.xml.dist to service.xml and configure it as needed');
+        $serviceFile = $this->getPath() . '/service.xml';
+
+        if (!file_exists($serviceFile)) {
+            throw new \RuntimeException(
+                'SwagEssentials: Rename service.xml.dist to service.xml and configure it as needed'
+            );
         }
-        $loader->load($this->getPath() . '/service.xml');
+
+        $loader->load($serviceFile);
     }
 }

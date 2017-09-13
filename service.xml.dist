@@ -12,6 +12,8 @@
     <imports>
         <!-- Use NumberRanges from Redis -->
         <import resource="RedisNumberRange/service.xml"/>
+        <!-- Use PluginCache from Redis -->
+        <import resource="RedisPluginConfig/service.xml"/>
         <!-- Use Redis as HTTP cache backend -->
         <import resource="RedisStore/service.xml"/>
         <!-- Additional caching for shops without HTTP cache -->
@@ -56,7 +58,7 @@
                     <parameter key="host">http://172.16.0.2/api</parameter>
                     <parameter key="user">demo</parameter>
                     <parameter key="password">89e495e7941cf9e40e6980d14a16bf023ccd4c91</parameter>
-                </parameter>                
+                </parameter>
         </parameter>
 
 

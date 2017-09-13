@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+
+        <service id="config_factory" class="SwagEssentials\RedisPluginConfig\ConfigFactory">
+            <argument type="service" id="swag_essentials.redis"/>
+        </service>
+        <service id="config" class="SwagEssentials\RedisPluginConfig\Config">
+            <factory service="config_factory" method="factory" />
+            <argument type="service" id="cache" />
+            <argument type="service" id="db" on-invalid="ignore"/>
+            <argument>%shopware.config%</argument>
+        </service>
+
+        <service id="swag_essentials.redis_plugin_config.config_reader"
+                 class="SwagEssentials\RedisPluginConfig\ConfigReader"
+                 decorates="shopware.plugin.config_reader"
+                 public="false">
+            <argument type="service" id="swag_essentials.redis_plugin_config.config_reader.inner"/>
+            <argument type="service" id="swag_essentials.redis"/>
+        </service>
+
+    </services>
+</container>

@@ -11,6 +11,7 @@ ln -srf Caching shopware/custom/plugins/SwagEssentials/
 ln -srf Common shopware/custom/plugins/SwagEssentials/
 ln -srf PrimaryReplica shopware/custom/plugins/SwagEssentials/
 ln -srf RedisNumberRange shopware/custom/plugins/SwagEssentials/
+ln -srf RedisPluginConfig shopware/custom/plugins/SwagEssentials/
 ln -srf RedisProductGateway shopware/custom/plugins/SwagEssentials/
 ln -srf RedisStore shopware/custom/plugins/SwagEssentials/
 ln -srf SwagEssentials.php shopware/custom/plugins/SwagEssentials/

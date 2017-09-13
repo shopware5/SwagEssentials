@@ -22,7 +22,7 @@ Shopware Essentials is a tool collection for professional shopware environments:
 [Read more](https://docs.enterprise.shopware.com/performance/essentials/#cachemultiplexer)
 
 ## Primary / replica
-**What it does**: Use mutiple databases for shopware. Will split write queries to primary connection and read queries to replica connections.
+**What it does**: Use multiple databases for shopware. Will split write queries to primary connection and read queries to replica connections.
 
 **Needed for**: Cluster setups and setups with high load on the primary database connection
 
