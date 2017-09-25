@@ -18,14 +18,14 @@ class SwagEssentials extends Plugin
             new FileLocator()
         );
 
-        $serviceFile = $this->getPath() . '/service.xml';
+        /** @var array $swagEssentialsModules */
+        $swagEssentialsModules = $container->getParameter('shopware.swag_essentials.modules');
 
-        if (!file_exists($serviceFile)) {
-            throw new \RuntimeException(
-                'SwagEssentials: Rename service.xml.dist to service.xml and configure it as needed'
-            );
+        foreach ($swagEssentialsModules as $module => $active) {
+            $serviceFile = $this->getPath() . '/' . $module . 'services.xml';
+            if ($active && file_exists($serviceFile)) {
+                $loader->load($serviceFile);
+            }
         }
-
-        $loader->load($serviceFile);
     }
 }

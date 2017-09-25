@@ -34,3 +34,43 @@ Shopware Essentials is a tool collection for professional shopware environments:
 **Needed for**: Setups with heavy simultaneous checkouts / registrations. Setups with high load on the database.
 
 [Read more](https://docs.enterprise.shopware.com/performance/essentials/#redisnumberrange)
+
+```php
+'swag_essentials' => [
+        'modules' => [
+            // invalidate multiple appserver right from the backend
+            'CacheMultiplexer' => true,
+            // additional caching for shops without HTTP cache
+            'Caching' => true,
+            // use multiple read databases
+            'PrimaryReplica' => true,
+            // use NumberRanges from Redis
+            'RedisNumberRange' => true,
+            // use PluginConfig from Redis
+            'RedisPluginConfig' => true,
+            // store ListProducts in Redis
+            'RedisProductGateway' => true,
+            // Use Redis as HTTP cache backend
+            'RedisStore' => true,
+        ],
+        'redis' => [
+            [
+                'host' => 'app_redis',
+                'port' => '6379',
+                'persistent' => 'true',
+                'dbindex' => 0,
+                'auth' => '',
+            ],
+        ],
+        // enable/disable caches
+        'caching_enable_urls' => true,
+        'caching_enable_list_product' => true,
+        'caching_enable_product' => true,
+        'caching_enable_search' => true,
+        // ttl configs
+        'caching_ttl_urls' => 3600,
+        'caching_ttl_list_product' => 3600,
+        'caching_ttl_product' => 3600,
+        'caching_ttl_search' => 3600,
+    ],
+```

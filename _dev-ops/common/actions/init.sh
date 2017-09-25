@@ -14,4 +14,10 @@ ln -srf RedisNumberRange shopware/custom/plugins/SwagEssentials/
 ln -srf RedisPluginConfig shopware/custom/plugins/SwagEssentials/
 ln -srf RedisProductGateway shopware/custom/plugins/SwagEssentials/
 ln -srf RedisStore shopware/custom/plugins/SwagEssentials/
+ln -srf Resources shopware/custom/plugins/SwagEssentials/
 ln -srf SwagEssentials.php shopware/custom/plugins/SwagEssentials/
+
+shopware/bin/console sw:plugin:refresh
+
+shopware/bin/console sw:plugin:install SwagEssentials
+shopware/bin/console sw:plugin:activate SwagEssentials

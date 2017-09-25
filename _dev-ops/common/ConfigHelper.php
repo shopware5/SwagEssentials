@@ -60,6 +60,56 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
+    public static function enableSwagEssentialsModule(string $moduleName)
+    {
+        $config = self::getConfig(self::CONFIG_PATH);
+        if (!isset($config['swag_essentials'])) {
+            $config['swag_essentials'] = [
+                'modules' => [
+                    // invalidate multiple appserver right from the backend
+                    'CacheMultiplexer' => false,
+                    // additional caching for shops without HTTP cache
+                    'Caching' => false,
+                    // use multiple read databases
+                    'PrimaryReplica' => false,
+                    // use NumberRanges from Redis
+                    'RedisNumberRange' => false,
+                    // use PluginConfig from Redis
+                    'RedisPluginConfig' => false,
+                    // store ListProducts in Redis
+                    'RedisProductGateway' => false,
+                    // Use Redis as HTTP cache backend
+                    'RedisStore' => false,
+                ],
+                'redis' => [
+                    [
+                        'host' => 'app_redis',
+                        'port' => '6379',
+                        'persistent' => 'true',
+                        'dbindex' => 0,
+                        'auth' => '',
+                    ],
+                ],
+                // enable/disable caches
+                'caching_enable_urls' => true,
+                'caching_enable_list_product' => true,
+                'caching_enable_product' => true,
+                'caching_enable_search' => true,
+                // ttl configs
+                'caching_ttl_urls' => 3600,
+                'caching_ttl_list_product' => 3600,
+                'caching_ttl_product' => 3600,
+                'caching_ttl_search' => 3600,
+            ];
+        }
+
+        if (isset($config['swag_essentials']['modules'][$moduleName])) {
+            $config['swag_essentials']['modules'][$moduleName] = true;
+        }
+
+        self::saveConfig($config);
+    }
+
     public static function disableElasticSearch()
     {
         $config = self::getConfig(self::CONFIG_PATH);
@@ -102,6 +152,17 @@ class ConfigHelper
             'frontend' => false,
             'backend' => false,
         ];
+
+        self::saveConfig($config);
+    }
+
+    public static function disableSwagEssentialsModule(string $moduleName)
+    {
+        $config = self::getConfig(self::CONFIG_PATH);
+
+        if (isset($config['swag_essentials']['modules'][$moduleName])) {
+            $config['swag_essentials']['modules'][$moduleName] = false;
+        }
 
         self::saveConfig($config);
     }
