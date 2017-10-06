@@ -8,7 +8,8 @@ services:
       - .:/project
       - .:/var/www/shopware
     links:
-      - app_mysql:mysql
+      - app_mysql_slave:mysql
+      - app_mysql_master:mysql
     environment:
       TERM: xterm
       COMPOSER_CACHE_DIR: /var/www/composer-cache-dir
@@ -16,10 +17,10 @@ services:
       - "8083:80"
     networks:
       sw_docker_swag_essentials:
-        ipv4_address: 10.123.123.46
+        ipv4_address: 10.123.123.30
 
-  app_mysql:
-    build: _dev-ops/docker/containers/mysql
+  app_mysql_master:
+    build: _dev-ops/docker/containers/mysql-master
     volumes:
       - ./_dev-ops/docker/_volumes/app-mysql-data:/var/lib/mysql
     environment:
@@ -28,7 +29,19 @@ services:
       MYSQL_PASSWORD: app
     networks:
       sw_docker_swag_essentials:
-        ipv4_address: 10.123.123.47
+        ipv4_address: 10.123.123.40
+
+  app_mysql_slave:
+    build: _dev-ops/docker/containers/mysql-slave
+    volumes:
+      - ./_dev-ops/docker/_volumes/app-mysql-slave-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+    networks:
+      sw_docker_swag_essentials:
+        ipv4_address: 10.123.123.41
 
   app_es:
     build: _dev-ops/docker/containers/elastic-search
@@ -43,7 +56,7 @@ services:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       sw_docker_swag_essentials:
-        ipv4_address: 10.123.123.48
+        ipv4_address: 10.123.123.50
 
   app_redis:
     build: _dev-ops/docker/containers/redis
@@ -51,7 +64,7 @@ services:
       - ./_dev-ops/docker/_volumes/app-redisdata:/data
     networks:
       sw_docker_swag_essentials:
-        ipv4_address: 10.123.123.49
+        ipv4_address: 10.123.123.60
 
 networks:
   sw_docker_swag_essentials:
