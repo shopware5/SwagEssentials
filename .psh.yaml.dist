@@ -6,7 +6,7 @@ const:
   DB_PASSWORD: "app"
   DB_HOST: "mysql"
   DB_NAME: "shopware"
-  SW_HOST: "10.123.123.46"
+  SW_HOST: "10.123.123.30"
   SW-VERSION: "latest"
 
 dynamic:
@@ -16,6 +16,8 @@ dynamic:
   MYSQL_SLAVE_ID: docker-compose ps -q app_mysql_slave
   ES_ID: docker-compose ps -q app_es
   REDIS_ID: docker-compose ps -q app_redis
+  DB_MASTER_LOGFILE: mysql -h 10.123.123.40 -u app -papp -A --skip-column-names -e"SHOW MASTER STATUS;" | awk '{print $1}'
+  DB_MASTER_POSITION: mysql -h 10.123.123.40 -u app -papp -A --skip-column-names -e"SHOW MASTER STATUS;" | awk '{print $2}'
 
 environments:
   docker:
