@@ -12,7 +12,8 @@ const:
 dynamic:
   USERKEY: echo "$(id -u):$(id -g)"
   APP_ID: docker-compose ps -q app_server
-  MYSQL_ID: docker-compose ps -q app_mysql
+  MYSQL_MASTER_ID: docker-compose ps -q app_mysql_master
+  MYSQL_SLAVE_ID: docker-compose ps -q app_mysql_slave
   ES_ID: docker-compose ps -q app_es
   REDIS_ID: docker-compose ps -q app_redis
 
