@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisPluginConfig;
+namespace SwagEssentials\Redis\PluginConfig;
 
 use Shopware;
 
@@ -30,7 +30,7 @@ class Config extends \Shopware_Components_Config
      *
      * @return array
      */
-    protected function readData()
+    protected function readData(): array
     {
         $parameters = [
             'fallbackShopId' => 1, //Shop parent id

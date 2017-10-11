@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisPluginConfig;
+namespace SwagEssentials\Redis\PluginConfig;
 
 use Shopware\Components\DependencyInjection\Bridge\Config as ShopwareConfig;
 
-class ConfigFactory extends ShopwareConfig
+class Factory extends ShopwareConfig
 {
     /**
      * @var \Redis

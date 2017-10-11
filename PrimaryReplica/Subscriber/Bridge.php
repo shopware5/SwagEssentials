@@ -32,18 +32,26 @@ class Bridge implements SubscriberInterface
     public function startDispatch()
     {
         if (Shopware()->Container()->has('shop')) {
-            PdoFactory::$connectionDecision->setPinnedTables(array_merge(Shopware()->Session()->get('tables', []), PdoFactory::$connectionDecision->getPinnedTables()));
+            PdoFactory::$connectionDecision->setPinnedTables(
+                array_merge(
+                    Shopware()->Session()->get('tables', []),
+                    PdoFactory::$connectionDecision->getPinnedTables()
+                )
+            );
         }
 
-
         if (Shopware()->Container()->has('backendsession')) {
-            PdoFactory::$connectionDecision->setPinnedTables(array_merge(Shopware()->BackendSession()->get('tables', []), PdoFactory::$connectionDecision->getPinnedTables()));
+            PdoFactory::$connectionDecision->setPinnedTables(
+                array_merge(
+                    Shopware()->BackendSession()->get('tables', []),
+                    PdoFactory::$connectionDecision->getPinnedTables()
+                )
+            );
         }
     }
 
     public function dispatchShutdown()
     {
-
         if (Shopware()->Container()->has('shop')) {
             /** @var ConnectionDecision $decision */
             Shopware()->Session()->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
@@ -52,8 +60,5 @@ class Bridge implements SubscriberInterface
         if (Shopware()->Container()->has('backendsession')) {
             Shopware()->BackendSession()->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
         }
-
     }
-
-
 }

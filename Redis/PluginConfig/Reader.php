@@ -1,12 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisPluginConfig;
+namespace SwagEssentials\Redis\PluginConfig;
 
 use Shopware\Components\Plugin\ConfigReader as ConfigReaderInterface;
 use Shopware\Components\Plugin\DBALConfigReader;
 use Shopware\Models\Shop\Shop;
 
-class ConfigReader implements ConfigReaderInterface
+class Reader implements ConfigReaderInterface
 {
     const HASH_NAME = 'sw_config';
 

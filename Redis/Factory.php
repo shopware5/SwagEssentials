@@ -1,10 +1,10 @@
 <?php
 
-namespace SwagEssentials\Common;
+namespace SwagEssentials\Redis;
 
-class RedisFactory
+class Factory
 {
-    public static function factory($configs)
+    public static function factory($configs): \Redis
     {
         $redis = new \Redis();
 

@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisNumberRange;
+namespace SwagEssentials\Redis\NumberRange;
 
 use Shopware\Components\NumberRangeIncrementerInterface;
 
-class RedisNumberRangeIncrementer implements NumberRangeIncrementerInterface
+class Incrementer implements NumberRangeIncrementerInterface
 {
     const HASH_NAME = 'sw_number_range';
 
@@ -18,9 +18,8 @@ class RedisNumberRangeIncrementer implements NumberRangeIncrementerInterface
         $this->redis = $redis;
     }
 
-    public function increment($name)
+    public function increment($name): int
     {
         return $this->redis->hIncrBy(self::HASH_NAME, $name, 1);
     }
-
 }

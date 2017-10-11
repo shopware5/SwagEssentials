@@ -1,6 +1,6 @@
 <?php
 
-namespace SwagEssentials\RedisStore;
+namespace SwagEssentials\Redis\Store;
 
 use Shopware\Components\DependencyInjection\Container;
 use Shopware\Components\HttpCache\AppCache;
@@ -11,16 +11,19 @@ class CacheManager extends \Shopware\Components\CacheManager
     use CacheManagerDecorationTrait;
 
     private $innerCacheManager;
+
     /** @var AppCache */
     private $httpCache = null;
+
     private $container;
 
     public function __construct(Container $container, \Shopware\Components\CacheManager $innerCacheManager)
     {
         parent::__construct($container);
         if ($container->has('httpCache')) {
-            $this->httpCache = $container->get("httpCache");
+            $this->httpCache = $container->get('httpCache');
         }
+
         $this->innerCacheManager = $innerCacheManager;
         $this->container = $container;
     }
@@ -30,10 +33,9 @@ class CacheManager extends \Shopware\Components\CacheManager
      * Returns cache information
      *
      * @param null $request
-     *
      * @return array
      */
-    public function getHttpCacheInfo($request = null)
+    public function getHttpCacheInfo($request = null): array
     {
         if (!$this->httpCache || !$this->httpCache->getStore() instanceof RedisStore) {
             return [];
@@ -46,7 +48,7 @@ class CacheManager extends \Shopware\Components\CacheManager
             'files' => $cacheInfo['entries'],
             'message' => '',
             'dir' => '',
-            'freeSpace' => ''
+            'freeSpace' => '',
         ];
 
         $info['name'] = 'Redis HTTP Cache';
