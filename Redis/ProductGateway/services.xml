@@ -7,11 +7,6 @@
 >
     <services>
 
-        <service id="swag_essentials.redis" class="Redis">
-            <factory service="swag_essentials.redis.factory" method="factory" />
-            <argument>%swag_essentials.redis%</argument>
-        </service>
-
         <service id="swag_essentials.redis.list_product_service"
                  class="SwagEssentials\Redis\ProductGateway\ListProductService"
                  decorates="shopware_storefront.list_product_service"
@@ -19,7 +14,6 @@
         >
             <argument type="service" id="swag_essentials.redis.list_product_service.inner"/>
             <argument type="service" id="swag_essentials.redis"/>
-
         </service>
     </services>
 </container>

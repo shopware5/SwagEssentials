@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\Common;
 
@@ -7,7 +7,6 @@ namespace SwagEssentials\Common;
  */
 trait CacheManagerDecorationTrait
 {
-
     public function getHttpCacheInfo($request = null)
     {
         return $this->innerCacheManager->getHttpCacheInfo($request = null);
@@ -98,6 +97,4 @@ trait CacheManagerDecorationTrait
     {
         return $this->innerCacheManager->encodeSize($bytes);
     }
-
-
 }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica\Subscriber;
 
@@ -7,7 +7,6 @@ use SwagEssentials\PrimaryReplica\Commands\RunSql;
 use Doctrine\Common\Collections\ArrayCollection;
 use SwagEssentials\PrimaryReplica\ConnectionDecision;
 use SwagEssentials\PrimaryReplica\PdoFactory;
-
 
 class Bridge implements SubscriberInterface
 {

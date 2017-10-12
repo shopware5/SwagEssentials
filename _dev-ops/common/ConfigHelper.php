@@ -84,8 +84,8 @@ class ConfigHelper
                 'redis' => [
                     [
                         'host' => 'app_redis',
-                        'port' => '6379',
-                        'persistent' => 'true',
+                        'port' => 6379,
+                        'persistent' => true,
                         'dbindex' => 0,
                         'auth' => '',
                     ],

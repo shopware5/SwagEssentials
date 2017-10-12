@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica\Commands;
 
@@ -50,7 +50,6 @@ EOF
             $output->writeln("<error>Handling $name</error>");
             /** @var \PDO $connection */
             $connection = $this->getContainer()->get('primaryreplica.connection_pool')->getConnectionByName($name);
-
 
             if ($isReadQuery) {
                 $stmt = $connection->query($sql);

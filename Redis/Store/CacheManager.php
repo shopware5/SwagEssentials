@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\Redis\Store;
 
@@ -27,7 +27,6 @@ class CacheManager extends \Shopware\Components\CacheManager
         $this->innerCacheManager = $innerCacheManager;
         $this->container = $container;
     }
-
 
     /**
      * Returns cache information

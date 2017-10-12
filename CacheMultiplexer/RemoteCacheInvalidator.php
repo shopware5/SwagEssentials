@@ -1,7 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\CacheMultiplexer;
-
 
 use Shopware\Components\Logger;
 use SwagEssentials\CacheMultiplexer\Api\Client;
