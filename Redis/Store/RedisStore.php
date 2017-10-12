@@ -74,7 +74,7 @@ class RedisStore implements StoreInterface
         $match = null;
         foreach ($entries as $entry) {
             if ($this->requestsMatch(
-                isset($entry[1]['vary'][0]) ? $entry[1]['vary'][0] : '',
+                $entry[1]['vary'][0] ?? '',
                 $request->headers->all(),
                 $entry[0]
             )

@@ -4,7 +4,7 @@ namespace SwagEssentials\Redis;
 
 class Factory
 {
-    public static function factory($configs): \Redis
+    public static function factory(array $configs): \Redis
     {
         $redis = new \Redis();
 

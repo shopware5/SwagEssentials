@@ -9,6 +9,7 @@
 
         <service id="config_factory" class="SwagEssentials\Redis\PluginConfig\Factory">
             <argument type="service" id="swag_essentials.redis"/>
+            <argument>%shopware.swag_essentials.caching_ttl_plugin_config%</argument>
         </service>
         <service id="config" class="SwagEssentials\Redis\PluginConfig\Config">
             <factory service="config_factory" method="factory" />
@@ -23,6 +24,7 @@
                  public="false">
             <argument type="service" id="swag_essentials.redis_plugin_config.config_reader.inner"/>
             <argument type="service" id="swag_essentials.redis"/>
+            <argument>%shopware.swag_essentials.caching_ttl_plugin_config%</argument>
         </service>
 
     </services>

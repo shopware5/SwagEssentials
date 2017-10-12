@@ -16,12 +16,14 @@ class RemoteCacheInvalidator
 
     /**
      * List of all hosts
+     *
      * @var array[]
      */
     private $hosts;
 
     /**
      * Core logger
+     *
      * @var Logger
      */
     private $logger;
@@ -67,13 +69,14 @@ class RemoteCacheInvalidator
      * @param $endpoint
      * @return Client
      */
-    private function getClientForEndpoint($endpoint)
+    private function getClientForEndpoint($endpoint): Api\Client
     {
         $client = new Client(
             $endpoint[self::ENDPOINT_HOST],
             $endpoint[self::ENDPOINT_USER],
             $endpoint[self::ENDPOINT_PASSWORD]
         );
+
         return $client;
     }
 
@@ -81,7 +84,7 @@ class RemoteCacheInvalidator
      * @param $caches
      * @return array
      */
-    private function normalizeCacheIds($caches)
+    private function normalizeCacheIds($caches): array
     {
         $caches = array_map(
             function ($cache) {
@@ -89,6 +92,7 @@ class RemoteCacheInvalidator
             },
             $caches
         );
+
         return $caches;
     }
 }

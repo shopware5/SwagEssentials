@@ -21,6 +21,8 @@ class SwagEssentials extends Plugin
             new FileLocator()
         );
 
+        $redisLoaded = false;
+
         foreach ($swagEssentialsModules as $module => $active) {
             if (!$active) {
                 continue;
@@ -28,7 +30,10 @@ class SwagEssentials extends Plugin
 
             if (strpos($module, 'Redis') === 0) {
                 $module = str_replace('Redis', 'Redis/', $module);
-                $loader->load($this->getPath() . '/Redis/services.xml');
+                if (!$redisLoaded) {
+                    $loader->load($this->getPath() . '/Redis/services.xml');
+                    $redisLoaded = true;
+                }
             }
 
             $serviceFile = $this->getPath() . '/' . $module . '/services.xml';

@@ -14,6 +14,11 @@ class Config extends \Shopware_Components_Config
     private $redis;
 
     /**
+     * @var int $cachingTtlPluginConfig
+     */
+    private $cachingTtlPluginConfig;
+
+    /**
      * Constructor method
      *
      * @param array $config
@@ -21,6 +26,9 @@ class Config extends \Shopware_Components_Config
     public function __construct($config)
     {
         $this->redis = $config['redis'];
+
+        $this->cachingTtlPluginConfig = $config['caching_ttl_plugin_config'];
+
 
         parent::__construct($config);
     }
@@ -93,7 +101,7 @@ class Config extends \Shopware_Components_Config
         $result['versiontext'] = Shopware::VERSION_TEXT;
 
         $this->redis->hSet(self::HASH_NAME, $key, json_encode($result));
-        $this->redis->expire(self::HASH_NAME, 600);
+        $this->redis->expire(self::HASH_NAME, $this->cachingTtlPluginConfig);
 
         return $result;
     }

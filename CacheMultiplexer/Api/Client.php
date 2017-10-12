@@ -4,19 +4,20 @@ namespace SwagEssentials\CacheMultiplexer\Api;
 
 class Client
 {
-    const METHODE_GET    = 'GET';
-    const METHODE_PUT    = 'PUT';
-    const METHODE_POST   = 'POST';
+    const METHODE_GET = 'GET';
+    const METHODE_PUT = 'PUT';
+    const METHODE_POST = 'POST';
     const METHODE_DELETE = 'DELETE';
 
     protected $validMethods = [
         self::METHODE_GET,
         self::METHODE_PUT,
         self::METHODE_POST,
-        self::METHODE_DELETE
+        self::METHODE_DELETE,
     ];
 
     protected $apiUrl;
+
     protected $cURL;
 
     public $lastCallTime;
@@ -35,9 +36,11 @@ class Client
         curl_setopt($this->cURL, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($this->cURL, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
         curl_setopt($this->cURL, CURLOPT_USERPWD, $username . ':' . $apiKey);
-        curl_setopt($this->cURL, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json; charset=utf-8',
-        ]);
+        curl_setopt(
+            $this->cURL,
+            CURLOPT_HTTPHEADER,
+            ['Content-Type: application/json; charset=utf-8',]
+        );
     }
 
     public function call($url, $method = self::METHODE_GET, $data = [], $params = [])

@@ -18,7 +18,7 @@ class Cache implements SubscriberInterface
 
     public function onDecorateRouter()
     {
-        if (!Shopware()->Container()->getParameter('swag_essentials.caching_enable_urls')) {
+        if (!Shopware()->Container()->getParameter('shopware.swag_essentials.caching_enable_urls')) {
             return;
         }
 
@@ -35,7 +35,7 @@ class Cache implements SubscriberInterface
                 $generator = new CachingRewriteGeneratorDecorator(
                     Shopware()->Cache(),
                     $generator,
-                    Shopware()->Container()->getParameter('swag_essentials.caching_ttl_urls')
+                    Shopware()->Container()->getParameter('shopware.swag_essentials.caching_ttl_urls')
                 );
             }
         }

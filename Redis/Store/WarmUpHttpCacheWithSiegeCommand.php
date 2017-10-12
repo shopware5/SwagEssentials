@@ -131,7 +131,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $this->output->writeln("Running: $cmd");
 
         $progressBar->start();
-        $fp = popen($cmd . " 2>&1 ", "r");
+        $fp = popen($cmd . ' 2>&1 ', 'r');
 
 
         while (!feof($fp)) {

@@ -2,24 +2,34 @@
 
 namespace SwagEssentials\Redis\Store;
 
+use Shopware\Components\CacheManager as ShopwareCacheManager;
 use Shopware\Components\DependencyInjection\Container;
 use Shopware\Components\HttpCache\AppCache;
 use SwagEssentials\Common\CacheManagerDecorationTrait;
 
-class CacheManager extends \Shopware\Components\CacheManager
+class CacheManager extends ShopwareCacheManager
 {
     use CacheManagerDecorationTrait;
 
+    /**
+     * @var ShopwareCacheManager
+     */
     private $innerCacheManager;
 
-    /** @var AppCache */
+    /**
+     * @var AppCache $httpCache
+     */
     private $httpCache = null;
 
+    /**
+     * @var Container
+     */
     private $container;
 
-    public function __construct(Container $container, \Shopware\Components\CacheManager $innerCacheManager)
+    public function __construct(Container $container, ShopwareCacheManager $innerCacheManager)
     {
         parent::__construct($container);
+
         if ($container->has('httpCache')) {
             $this->httpCache = $container->get('httpCache');
         }

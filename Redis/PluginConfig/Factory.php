@@ -11,9 +11,15 @@ class Factory extends ShopwareConfig
      */
     private $redis;
 
-    public function __construct(\Redis $redis)
+    /**
+     * @var int
+     */
+    private $cachingTtlPluginConfig;
+
+    public function __construct(\Redis $redis, int $cachingTtlPluginConfig)
     {
         $this->redis = $redis;
+        $this->cachingTtlPluginConfig = $cachingTtlPluginConfig;
     }
 
     public function factory(
@@ -31,6 +37,8 @@ class Factory extends ShopwareConfig
         $config['db'] = $db;
 
         $config['redis'] = $this->redis;
+
+        $config['caching_ttl_plugin_config'] = $this->cachingTtlPluginConfig;
 
         return new Config($config);
     }

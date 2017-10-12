@@ -100,6 +100,7 @@ class ConfigHelper
                 'caching_ttl_list_product' => 3600,
                 'caching_ttl_product' => 3600,
                 'caching_ttl_search' => 3600,
+                'caching_ttl_plugin_config' => 3600,
             ];
         }
 
@@ -156,7 +157,7 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function disableSwagEssentialsModule(string $moduleName)
+    public static function disableSwagEssentialsModule(string $moduleName = '')
     {
         $config = self::getConfig(self::CONFIG_PATH);
 
