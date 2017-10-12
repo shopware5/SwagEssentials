@@ -29,11 +29,11 @@ use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
  */
 class RedisStore implements StoreInterface
 {
-    const CACHE_KEY = 'cache_body';
-    const META_KEY = 'cache_meta';
-    const LOCK_KEY = 'cache_lock';
-    const ID_KEY = 'cache_ids';
-    const CACHE_SIZE_KEY = 'cache_size';
+    const CACHE_KEY = 'sw_http_cache_body';
+    const META_KEY = 'sw_http_cache_meta';
+    const LOCK_KEY = 'sw_http_cache_lock';
+    const ID_KEY = 'sw_http_cache_ids';
+    const CACHE_SIZE_KEY = 'sw_http_cache_size';
 
     protected $redisClient;
 
