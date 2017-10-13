@@ -111,9 +111,8 @@ class ConfigHelper
         }
 
         if ($moduleName === 'RedisStore') {
-
             $httpCache = [
-                'storeClass' => 'SwagEssentials\\Redis\\Store\\RedisStore',
+                'storeClass' => \SwagEssentials\Redis\Store\RedisStore::class,
                 'redisConnections' => [
                     0 =>
                         [

@@ -46,7 +46,7 @@ class CachingSearchDecorator implements ProductSearchInterface
 
         $result = $this->service->search($criteria, $context);
         $this->cache->save($result, $hash, [], $this->ttl);
+
         return $result;
     }
 }
-
