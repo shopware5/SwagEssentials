@@ -14,7 +14,7 @@ services:
       TERM: xterm
       COMPOSER_CACHE_DIR: /var/www/composer-cache-dir
     ports:
-      - "8083:80"
+      - "8088:80"
     networks:
       sw_docker_swag_essentials:
         ipv4_address: 10.123.123.30
