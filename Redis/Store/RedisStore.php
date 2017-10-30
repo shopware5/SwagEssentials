@@ -37,14 +37,10 @@ class RedisStore implements StoreInterface
 
     protected $redisClient;
 
+    /** @var array */
     protected $cacheCookies;
 
     protected $keyCache;
-
-    /**
-     * @var Kernel
-     */
-    private $kernel;
 
     public function __construct($options, Kernel $kernel)
     {
@@ -53,7 +49,6 @@ class RedisStore implements StoreInterface
         $this->redisClient = Factory::factory($options['redisConnections']);
 
         $this->keyCache = new \SplObjectStorage();
-        $this->kernel = $kernel;
     }
 
     /**
@@ -90,7 +85,7 @@ class RedisStore implements StoreInterface
 
         list($headers) = array_slice($match, 1, 1);
 
-        $body = $this->redisClient->hget(self::CACHE_KEY, $headers['x-content-digest'][0]);
+        $body = $this->redisClient->hGet(self::CACHE_KEY, $headers['x-content-digest'][0]);
 
         if ($body) {
             return $this->recreateResponse($headers, $body);
@@ -190,13 +185,11 @@ class RedisStore implements StoreInterface
      * @param Request $request A Request instance
      * @return Boolean|string true if the lock is acquired, the path to the current lock otherwise
      */
-    public function lock(Request $request)
+    public function lock(Request $request): bool
     {
         $metadataKey = $this->getMetadataKey($request);
 
-        $result = $this->redisClient->hSetNx(self::LOCK_KEY, $metadataKey, 1);
-
-        return $result == 1;
+        return $this->redisClient->hSetNx(self::LOCK_KEY, $metadataKey, 1);
     }
 
     /**
@@ -209,7 +202,7 @@ class RedisStore implements StoreInterface
     {
         $metadataKey = $this->getMetadataKey($request);
 
-        $result = $this->redisClient->hdel(self::LOCK_KEY, $metadataKey);
+        $result = $this->redisClient->hDel(self::LOCK_KEY, $metadataKey);
 
         return $result === 1;
     }
@@ -224,7 +217,7 @@ class RedisStore implements StoreInterface
     {
         $metadataKey = $this->getMetadataKey($request);
 
-        $result = $this->redisClient->hget(self::LOCK_KEY, $metadataKey);
+        $result = $this->redisClient->hGet(self::LOCK_KEY, $metadataKey);
 
         return $result === 1;
     }
@@ -242,15 +235,15 @@ class RedisStore implements StoreInterface
         // keep track of the overall HTTP cache size
         $this->redisClient->decrBy(self::CACHE_SIZE_KEY, strlen($this->load(self::META_KEY, $metadataKey)));
 
-        $result = $this->redisClient->hdel(self::META_KEY, $metadataKey);
+        $result = $this->redisClient->hDel(self::META_KEY, $metadataKey);
 
-        return $result == 1;
+        return $result === 1;
     }
 
     /**
      * Cleanups locks
      */
-    public function cleanup()
+    public function cleanup(): bool
     {
         $this->redisClient->del(self::LOCK_KEY);
 
@@ -270,7 +263,7 @@ class RedisStore implements StoreInterface
      * @param Request $request
      * @return array
      */
-    private function getRequestHeaders(Request $request)
+    private function getRequestHeaders(Request $request): array
     {
         return $request->headers->all();
     }
@@ -281,7 +274,7 @@ class RedisStore implements StoreInterface
      * @param Response $response
      * @return string
      */
-    protected function generateContentDigestKey(Response $response)
+    protected function generateContentDigestKey(Response $response): string
     {
         return sha1($response->getContent());
     }
@@ -298,18 +291,19 @@ class RedisStore implements StoreInterface
             return [];
         }
 
-        return unserialize($entries);
+        return unserialize($entries, true);
     }
 
     /**
      * Store an item to the cache
      *
+     * @param $hash
      * @param $key
      * @param $data
      */
     private function save($hash, $key, $data)
     {
-        $this->redisClient->hset($hash, $key, $data);
+        $this->redisClient->hSet($hash, $key, $data);
 
         // keep track of the overall HTTP cache size
         $this->redisClient->incrBy(self::CACHE_SIZE_KEY, strlen($data));
@@ -318,12 +312,13 @@ class RedisStore implements StoreInterface
     /**
      * Load an cached item
      *
+     * @param $hash
      * @param $key
-     * @return bool|string
+     * @return string|bool
      */
     private function load($hash, $key)
     {
-        return $this->redisClient->hget($hash, $key);
+        return $this->redisClient->hGet($hash, $key);
     }
 
     /**
@@ -342,9 +337,9 @@ class RedisStore implements StoreInterface
         }
 
         foreach (preg_split('/[\s,]+/', $vary) as $header) {
-            $key = strtr(strtolower($header), '_', '-');
-            $v1 = isset($env1[$key]) ? $env1[$key] : null;
-            $v2 = isset($env2[$key]) ? $env2[$key] : null;
+            $key = str_replace('_', '-', strtolower($header));
+            $v1 = $env1[$key] ?? null;
+            $v2 = $env2[$key] ?? null;
             if ($v1 !== $v2) {
                 return false;
             }
@@ -359,7 +354,7 @@ class RedisStore implements StoreInterface
      * @param Response $response A Response instance
      * @return array An array of HTTP headers
      */
-    private function getResponseHeaders(Response $response)
+    private function getResponseHeaders(Response $response): array
     {
         $headers = $response->headers->all();
         $headers['X-Status'] = [$response->getStatusCode()];
@@ -439,9 +434,9 @@ class RedisStore implements StoreInterface
             $this->redisClient->decrBy(self::CACHE_SIZE_KEY, strlen($this->load(self::ID_KEY, $cacheInvalidateKey)));
 
             // remove fields
-            $this->redisClient->hdel(self::CACHE_KEY, $cacheKey);
-            $this->redisClient->hdel(self::META_KEY, $headerKey);
-            $this->redisClient->hdel(self::ID_KEY, $cacheInvalidateKey);
+            $this->redisClient->hDel(self::CACHE_KEY, $cacheKey);
+            $this->redisClient->hDel(self::META_KEY, $headerKey);
+            $this->redisClient->hDel(self::ID_KEY, $cacheInvalidateKey);
         }
 
         return true;
@@ -470,7 +465,6 @@ class RedisStore implements StoreInterface
                 $content = [];
             }
 
-
             // Storing the headerKey and the cacheKey will increase the lookup file size a bit
             // but save a lot of reads when invalidating
             $content[$cacheKey] = $metadataKey;
@@ -487,7 +481,7 @@ class RedisStore implements StoreInterface
      * Build metadata key from URL + some cookies
      *
      * @param Request $request
-     * @return mixed|object
+     * @return mixed
      */
     protected function getMetadataKey(Request $request)
     {
@@ -550,10 +544,6 @@ class RedisStore implements StoreInterface
 
         $size = $this->redisClient->get(self::CACHE_SIZE_KEY);
 
-        return [
-            'entries' => $entries,
-            'size' => $size,
-        ];
+        return compact($entries, $size);
     }
-
 }

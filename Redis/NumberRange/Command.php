@@ -54,7 +54,7 @@ EOF
         $redis = $this->getContainer()->get('swag_essentials.redis');
 
         if ($toRedis) {
-            // check conflicts beforehands
+            // check conflicts before hands
             foreach ($shopwareNumberRange as $name => $value) {
                 if (!$force && $redisNumberRange[$name] > $value) {
                     $output->writeln("Redis value is higher than shopware's value. Use --force to import anyway");
@@ -70,7 +70,7 @@ EOF
         }
 
         if ($toShopware) {
-            // check conflicts beforehands
+            // check conflicts before hands
             foreach ($redisNumberRange as $name => $value) {
                 if (!$force && $shopwareNumberRange[$name] > $value) {
                     $output->writeln("Shopware value is higher than redis's value. Use --force to import anyway");

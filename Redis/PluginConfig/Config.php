@@ -90,7 +90,7 @@ class Config extends \Shopware_Components_Config
 
         $result = [];
         foreach ($data as $row) {
-            $value = !empty($row['value']) ? @unserialize($row['value']) : null;
+            $value = !empty($row['value']) ? @unserialize($row['value'], true) : null;
             $result[$row['name']] = $value;
             // Take namespaces (form names) into account
             $result[$row['form'] . '::' . $row['name']] = $value;
