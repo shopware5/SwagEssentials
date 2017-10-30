@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials;
 
@@ -13,17 +13,31 @@ class SwagEssentials extends Plugin
     {
         parent::build($container);
 
+        /** @var array $swagEssentialsModules */
+        $swagEssentialsModules = $container->getParameter('shopware.swag_essentials.modules');
+
         $loader = new XmlFileLoader(
             $container,
             new FileLocator()
         );
 
-        /** @var array $swagEssentialsModules */
-        $swagEssentialsModules = $container->getParameter('shopware.swag_essentials.modules');
+        $redisLoaded = false;
 
         foreach ($swagEssentialsModules as $module => $active) {
-            $serviceFile = $this->getPath() . '/' . $module . 'services.xml';
-            if ($active && file_exists($serviceFile)) {
+            if (!$active) {
+                continue;
+            }
+
+            if (strpos($module, 'Redis') === 0) {
+                $module = str_replace('Redis', 'Redis/', $module);
+                if (!$redisLoaded) {
+                    $loader->load($this->getPath() . '/Redis/services.xml');
+                    $redisLoaded = true;
+                }
+            }
+
+            $serviceFile = $this->getPath() . '/' . $module . '/services.xml';
+            if (file_exists($serviceFile)) {
                 $loader->load($serviceFile);
             }
         }

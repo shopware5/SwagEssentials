@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/../../shopware/vendor/autoload.php';
+
 class ConfigHelper
 {
     const CONFIG_PATH = __DIR__ . '/../../shopware/config.php';
@@ -84,8 +86,8 @@ class ConfigHelper
                 'redis' => [
                     [
                         'host' => 'app_redis',
-                        'port' => '6379',
-                        'persistent' => 'true',
+                        'port' => 6379,
+                        'persistent' => true,
                         'dbindex' => 0,
                         'auth' => '',
                     ],
@@ -100,11 +102,34 @@ class ConfigHelper
                 'caching_ttl_list_product' => 3600,
                 'caching_ttl_product' => 3600,
                 'caching_ttl_search' => 3600,
+                'caching_ttl_plugin_config' => 3600,
             ];
         }
 
         if (isset($config['swag_essentials']['modules'][$moduleName])) {
             $config['swag_essentials']['modules'][$moduleName] = true;
+        }
+
+        if ($moduleName === 'RedisStore') {
+            $httpCache = [
+                'storeClass' => \SwagEssentials\Redis\Store\RedisStore::class,
+                'redisConnections' => [
+                    0 =>
+                        [
+                            'host' => 'app_redis',
+                            'port' => 6379,
+                            'persistent' => true,
+                            'dbindex' => 0,
+                            'auth' => '',
+                        ],
+                ],
+            ];
+
+            if (isset($config['httpcache'])) {
+                $httpCache = array_merge($config['httpcache'], $httpCache);
+            }
+
+            $config['httpcache'] = $httpCache;
         }
 
         self::saveConfig($config);
@@ -156,7 +181,7 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function disableSwagEssentialsModule(string $moduleName)
+    public static function disableSwagEssentialsModule(string $moduleName = '')
     {
         $config = self::getConfig(self::CONFIG_PATH);
 
@@ -178,7 +203,10 @@ class ConfigHelper
 
     private static function saveConfig($config)
     {
-        $configFile = '<?php return ' . var_export($config, true) . ';';
+        $configFile = '<?php 
+            require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php\';
+            require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Factory.php\';
+        return ' . var_export($config, true) . ';';
         file_put_contents(self::CONFIG_PATH, $configFile);
     }
 }

@@ -1,12 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisPluginConfig;
+namespace SwagEssentials\Redis\PluginConfig;
 
 use Shopware\Components\Plugin\ConfigReader as ConfigReaderInterface;
 use Shopware\Components\Plugin\DBALConfigReader;
 use Shopware\Models\Shop\Shop;
 
-class ConfigReader implements ConfigReaderInterface
+class Reader implements ConfigReaderInterface
 {
     const HASH_NAME = 'sw_config';
 
@@ -20,10 +20,16 @@ class ConfigReader implements ConfigReaderInterface
      */
     private $redis;
 
-    public function __construct(DBALConfigReader $configReader, \Redis $redis)
+    /**
+     * @var int
+     */
+    private $cachingTtlPluginConfig;
+
+    public function __construct(DBALConfigReader $configReader, \Redis $redis, int $cachingTtlPluginConfig)
     {
         $this->configReader = $configReader;
         $this->redis = $redis;
+        $this->cachingTtlPluginConfig = $cachingTtlPluginConfig;
     }
 
     /**
@@ -48,7 +54,7 @@ class ConfigReader implements ConfigReaderInterface
         $result = $this->configReader->getByPluginName($pluginName, $shop);
 
         $this->redis->hSet(self::HASH_NAME, $key, json_encode($result));
-        $this->redis->expire(self::HASH_NAME, 600);
+        $this->redis->expire(self::HASH_NAME, $this->cachingTtlPluginConfig);
 
         return $result;
     }

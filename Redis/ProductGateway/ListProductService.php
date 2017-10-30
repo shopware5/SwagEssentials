@@ -1,19 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisProductGateway;
+namespace SwagEssentials\Redis\ProductGateway;
 
 use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
 
-
-class RedisListProductService implements ListProductServiceInterface
+class ListProductService implements ListProductServiceInterface
 {
     /**
      * @var ListProductServiceInterface The previously existing service
      */
     private $service;
 
-    const HASH = 'list_product';
+    const HASH_NAME = 'sw_list_product';
 
     /**
      * @var \Redis
@@ -38,7 +37,7 @@ class RedisListProductService implements ListProductServiceInterface
 
         $keys = $this->getCacheKeys($numbers, $context);
 
-        $redisResult = $this->redis->hMGet(self::HASH, $keys);
+        $redisResult = $this->redis->hMGet(self::HASH_NAME, $keys);
 
 
         $redisResult = array_combine(array_values($numbers), array_map('unserialize', $redisResult));
@@ -48,10 +47,13 @@ class RedisListProductService implements ListProductServiceInterface
             $missingResults = $this->service->getList($missingResults, $context);
 
             $this->redis->hMset(
-                self::HASH,
+                self::HASH_NAME,
                 array_map(
                     'serialize',
-                    array_combine($this->getCacheKeys(array_keys($missingResults), $context), array_values($missingResults))
+                    array_combine(
+                        $this->getCacheKeys(array_keys($missingResults), $context),
+                        array_values($missingResults)
+                    )
                 )
             );
 
@@ -77,7 +79,7 @@ class RedisListProductService implements ListProductServiceInterface
      * @param array $numbers
      * @return array
      */
-    private function getCacheKeys(array $numbers, Struct\ProductContextInterface $context)
+    private function getCacheKeys(array $numbers, Struct\ProductContextInterface $context): array
     {
         $contextHash = md5(
             serialize(
@@ -96,6 +98,7 @@ class RedisListProductService implements ListProductServiceInterface
             },
             $numbers
         );
+
         return $keys;
     }
 }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica;
 
@@ -30,19 +30,16 @@ class PdoDecorator extends \PDO
         $this->lastConnection = $connectionPool->getRandomConnection();
     }
 
-
     #
     # Overrides of the original PDO object
     # in order to inspect the queries
     #
-
     public function prepare($statement, $options = [])
     {
         $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
 
         return $this->lastConnection->prepare($statement, $options);
     }
-
 
     public function query()
     {

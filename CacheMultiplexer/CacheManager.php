@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\CacheMultiplexer;
 
@@ -94,5 +93,4 @@ class CacheManager extends \Shopware\Components\CacheManager
 
         $this->cacheInvalidator->remoteClear($this->tags);
     }
-
 }

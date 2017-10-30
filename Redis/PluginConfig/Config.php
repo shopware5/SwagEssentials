@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisPluginConfig;
+namespace SwagEssentials\Redis\PluginConfig;
 
 use Shopware;
 
@@ -14,6 +14,11 @@ class Config extends \Shopware_Components_Config
     private $redis;
 
     /**
+     * @var int $cachingTtlPluginConfig
+     */
+    private $cachingTtlPluginConfig;
+
+    /**
      * Constructor method
      *
      * @param array $config
@@ -21,6 +26,9 @@ class Config extends \Shopware_Components_Config
     public function __construct($config)
     {
         $this->redis = $config['redis'];
+
+        $this->cachingTtlPluginConfig = $config['caching_ttl_plugin_config'];
+
 
         parent::__construct($config);
     }
@@ -30,7 +38,7 @@ class Config extends \Shopware_Components_Config
      *
      * @return array
      */
-    protected function readData()
+    protected function readData(): array
     {
         $parameters = [
             'fallbackShopId' => 1, //Shop parent id
@@ -82,7 +90,7 @@ class Config extends \Shopware_Components_Config
 
         $result = [];
         foreach ($data as $row) {
-            $value = !empty($row['value']) ? @unserialize($row['value']) : null;
+            $value = !empty($row['value']) ? @unserialize($row['value'], true) : null;
             $result[$row['name']] = $value;
             // Take namespaces (form names) into account
             $result[$row['form'] . '::' . $row['name']] = $value;
@@ -93,7 +101,7 @@ class Config extends \Shopware_Components_Config
         $result['versiontext'] = Shopware::VERSION_TEXT;
 
         $this->redis->hSet(self::HASH_NAME, $key, json_encode($result));
-        $this->redis->expire(self::HASH_NAME, 600);
+        $this->redis->expire(self::HASH_NAME, $this->cachingTtlPluginConfig);
 
         return $result;
     }

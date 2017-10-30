@@ -8,16 +8,15 @@
     <services>
 
         <service id="swag_essentials.redis_number_range.redis_number_range_incrementor"
-                 class="SwagEssentials\RedisNumberRange\RedisNumberRangeIncrementer"
+                 class="SwagEssentials\Redis\NumberRange\Incrementer"
                  decorates="shopware.number_range_incrementer"
         >
             <argument type="service" id="swag_essentials.redis"/>
-
         </service>
 
         <service
                 id="swag_essentials.redis_number_range.command"
-                class="SwagEssentials\RedisNumberRange\RedisNumberRangeCommand">
+                class="SwagEssentials\Redis\NumberRange\Command">
             <tag name="console.command"/>
         </service>
     </services>

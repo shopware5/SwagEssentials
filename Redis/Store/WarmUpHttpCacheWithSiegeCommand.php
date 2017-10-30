@@ -1,7 +1,8 @@
-<?php
-namespace SwagEssentials\RedisStore;
+<?php declare(strict_types=1);
 
-use Shopware\Commands\ShopwareCommand;
+namespace SwagEssentials\Redis\Store;
+
+use Symfony\Component\Console\Command\Command;
 use Shopware\Kernel;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -9,18 +10,25 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
+class WarmUpHttpCacheWithSiegeCommand extends Command
 {
     protected $shops;
+
     /** @var  Kernel */
     protected $kernel;
+
     protected $front;
+
     protected $requestReflection;
+
     protected $responseReflection;
+
     /** @var  OutputInterface */
     protected $output;
-    /** @var  InputInterface  */
+
+    /** @var  InputInterface */
     protected $input;
+
     /**
      * {@inheritdoc}
      */
@@ -94,12 +102,10 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
             return 100;
         }
         $width = $dimensions[0];
-        $maxWidth =  $width - (strlen($totalUrlCount)*2 + 10);
+        $maxWidth = $width - (strlen($totalUrlCount) * 2 + 10);
+
         return min(200, $maxWidth);
-
-
     }
-
 
     /**
      * @return array
@@ -110,6 +116,7 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
         if (!empty($shopId)) {
             return [$shopId];
         }
+
         return $this->container->get('db')->fetchCol('SELECT id FROM s_core_shops WHERE active = 1');
     }
 
@@ -124,7 +131,7 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
         $this->output->writeln("Running: $cmd");
 
         $progressBar->start();
-        $fp = popen($cmd . " 2>&1 ", "r");
+        $fp = popen($cmd . ' 2>&1 ', 'r');
 
 
         while (!feof($fp)) {
@@ -174,6 +181,7 @@ class WarumUpHttpCacheWithSiegeCommand extends ShopwareCommand
             $offset += count($urls);
         }
         fclose($fh);
+
         return $fileName;
     }
 }

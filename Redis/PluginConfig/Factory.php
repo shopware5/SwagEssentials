@@ -1,19 +1,25 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisPluginConfig;
+namespace SwagEssentials\Redis\PluginConfig;
 
 use Shopware\Components\DependencyInjection\Bridge\Config as ShopwareConfig;
 
-class ConfigFactory extends ShopwareConfig
+class Factory extends ShopwareConfig
 {
     /**
      * @var \Redis
      */
     private $redis;
 
-    public function __construct(\Redis $redis)
+    /**
+     * @var int
+     */
+    private $cachingTtlPluginConfig;
+
+    public function __construct(\Redis $redis, int $cachingTtlPluginConfig)
     {
         $this->redis = $redis;
+        $this->cachingTtlPluginConfig = $cachingTtlPluginConfig;
     }
 
     public function factory(
@@ -31,6 +37,8 @@ class ConfigFactory extends ShopwareConfig
         $config['db'] = $db;
 
         $config['redis'] = $this->redis;
+
+        $config['caching_ttl_plugin_config'] = $this->cachingTtlPluginConfig;
 
         return new Config($config);
     }

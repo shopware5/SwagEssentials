@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\Caching;
 
@@ -28,14 +28,14 @@ class CacheFactory
      */
     public function createListProductService(ListProductServiceInterface $listProductService)
     {
-        if (!$this->container->getParameter('swag_essentials.caching_enable_list_product')) {
+        if (!$this->container->getParameter('shopware.swag_essentials.caching_enable_list_product')) {
             return $listProductService;
         }
 
         return new CachingListProductDecorator(
             $this->container->get('cache'),
             $listProductService,
-            $this->container->getParameter('swag_essentials.caching_ttl_list_product')
+            $this->container->getParameter('shopware.swag_essentials.caching_ttl_list_product')
         );
     }
 
@@ -45,14 +45,14 @@ class CacheFactory
      */
     public function createProductService(ProductServiceInterface $productService)
     {
-        if (!$this->container->getParameter('swag_essentials.caching_enable_product')) {
+        if (!$this->container->getParameter('shopware.swag_essentials.caching_enable_product')) {
             return $productService;
         }
 
         return new CachingProductDecorator(
             $this->container->get('cache'),
             $productService,
-            $this->container->getParameter('swag_essentials.caching_ttl_product')
+            $this->container->getParameter('shopware.swag_essentials.caching_ttl_product')
         );
     }
 
@@ -62,14 +62,14 @@ class CacheFactory
      */
     public function createProductSearch(ProductSearchInterface $productSearch)
     {
-        if (!$this->container->getParameter('swag_essentials.caching_enable_search')) {
+        if (!$this->container->getParameter('shopware.swag_essentials.caching_enable_search')) {
             return $productSearch;
         }
 
         return new CachingSearchDecorator(
             $this->container->get('cache'),
             $productSearch,
-            $this->container->getParameter('swag_essentials.caching_ttl_search')
+            $this->container->getParameter('shopware.swag_essentials.caching_ttl_search')
         );
     }
 }

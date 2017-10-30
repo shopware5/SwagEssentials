@@ -1,14 +1,13 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace SwagEssentials\RedisNumberRange;
+namespace SwagEssentials\Redis\NumberRange;
 
 use Shopware\Commands\ShopwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RedisNumberRangeCommand extends ShopwareCommand
+class Command extends ShopwareCommand
 {
     /**
      * {@inheritdoc}
@@ -55,7 +54,7 @@ EOF
         $redis = $this->getContainer()->get('swag_essentials.redis');
 
         if ($toRedis) {
-            // check conflicts beforehands
+            // check conflicts before hands
             foreach ($shopwareNumberRange as $name => $value) {
                 if (!$force && $redisNumberRange[$name] > $value) {
                     $output->writeln("Redis value is higher than shopware's value. Use --force to import anyway");
@@ -65,13 +64,13 @@ EOF
 
             foreach ($shopwareNumberRange as $name => $value) {
                 $output->write("Setting $name to $value");
-                $redis->hset(RedisNumberRangeIncrementer::HASH_NAME, $name, $value);
-                $output->writeln(" ✓");
+                $redis->hset(Incrementer::HASH_NAME, $name, $value);
+                $output->writeln(' ✓');
             }
         }
 
         if ($toShopware) {
-            // check conflicts beforehands
+            // check conflicts before hands
             foreach ($redisNumberRange as $name => $value) {
                 if (!$force && $shopwareNumberRange[$name] > $value) {
                     $output->writeln("Shopware value is higher than redis's value. Use --force to import anyway");
@@ -82,10 +81,9 @@ EOF
             foreach ($redisNumberRange as $name => $value) {
                 $output->write("Setting $name to $value");
                 $this->setShopwareKey($name, $value);
-                $output->writeln(" ✓");
+                $output->writeln(' ✓');
             }
         }
-
     }
 
     private function setShopwareKey($key, $value)
@@ -102,7 +100,7 @@ EOF
         /** @var \Redis $redis */
         $redis = $this->getContainer()->get('swag_essentials.redis');
 
-        return $redis->hGetAll(RedisNumberRangeIncrementer::HASH_NAME);
+        return $redis->hGetAll(Incrementer::HASH_NAME);
     }
 
     private function getShopwareNumberRange()
