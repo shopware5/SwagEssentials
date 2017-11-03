@@ -20,7 +20,8 @@ class ConnectionDecision
     private $counter = [];
 
     private $pinnedTables = [
-        's_core_sessions' => true
+        's_core_sessions' => true,
+        's_order_basket' => true,
     ];
 
     private $config;
