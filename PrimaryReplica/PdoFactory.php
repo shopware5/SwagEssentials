@@ -22,8 +22,8 @@ class PdoFactory
 
         self::$connectionPool = new ConnectionPool(
             $config,
-            isset($config['includePrimary']) ? $config['includePrimary'] : false,
-            isset($config['stickyConnection']) ? $config['stickyConnection'] : true
+            $config['includePrimary'] ?? false,
+            $config['stickyConnection'] ?? true
         );
 
         self::$connectionDecision = new ConnectionDecision(

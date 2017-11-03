@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php //declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica;
 
@@ -7,6 +7,7 @@ use PDO;
 /**
  * Class PdoDecorator decorates a default PDO connection and will dispatch any query to either the primary or
  * the replica connections. The connection selection is done by the `ConnectionDecision` service
+ *
  * @package SwagEssentials\PrimaryReplica
  */
 class PdoDecorator extends \PDO
@@ -17,6 +18,7 @@ class PdoDecorator extends \PDO
     private $connectionDecision;
 
     private $lastConnection = null;
+
     /**
      * @var ConnectionPool
      */
@@ -62,10 +64,13 @@ class PdoDecorator extends \PDO
     # Overrides of the original PDO object
     # in order to "decorate" it  - no inspection here
     #
-
     public function beginTransaction()
     {
-        return $this->connectionPool->getConnectionByName('primary')->beginTransaction();
+        if (!$this->inTransaction()) {
+            return $this->connectionPool->getConnectionByName('primary')->beginTransaction();
+        }
+
+        return true;
     }
 
     public function commit()

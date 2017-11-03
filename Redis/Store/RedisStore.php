@@ -291,7 +291,7 @@ class RedisStore implements StoreInterface
             return [];
         }
 
-        return unserialize($entries, true);
+        return unserialize($entries, [true]);
     }
 
     /**

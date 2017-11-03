@@ -19,7 +19,7 @@ DELIM
 
 echo "Created "$DIR/php7/createuser.sh
 
-cat > $DIR/mysql/createuser.sh <<DELIM
+cat > $DIR/mysql-slave/createuser.sh <<DELIM
 #!/usr/bin/env bash
 
 groupadd -g ${GROUP} app-mysql
@@ -30,4 +30,17 @@ echo -e "app-mysql\napp-mysql\n" | passwd app-mysql
 echo 'app-mysql  ALL=(ALL:ALL) ALL' >> /etc/sudoers
 DELIM
 
-echo "Created "$DIR/mysql/createuser.sh
+echo "Created "$DIR/mysql-slave/createuser.sh
+
+cat > $DIR/mysql-master/createuser.sh <<DELIM
+#!/usr/bin/env bash
+
+groupadd -g ${GROUP} app-mysql
+useradd -s /bin/bash -m -u ${USERID} -g ${GROUP} app-mysql
+mkdir -p /home/app-mysql/.ssh
+chown -R app-mysql:app-mysql /home/app-mysql
+echo -e "app-mysql\napp-mysql\n" | passwd app-mysql
+echo 'app-mysql  ALL=(ALL:ALL) ALL' >> /etc/sudoers
+DELIM
+
+echo "Created "$DIR/mysql-master/createuser.sh
