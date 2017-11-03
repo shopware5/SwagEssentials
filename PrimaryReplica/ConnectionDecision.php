@@ -10,7 +10,7 @@ namespace SwagEssentials\PrimaryReplica;
  */
 class ConnectionDecision
 {
-    private static $DEBUG = true;
+    private static $DEBUG = false;
 
     /**
      * @var ConnectionPool
