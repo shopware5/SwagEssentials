@@ -89,7 +89,7 @@ class ConfigHelper
                         'port' => 6379,
                         'persistent' => true,
                         'dbindex' => 0,
-                        'auth' => '',
+                        'auth' => 'app',
                     ],
                 ],
                 // enable/disable caches
@@ -120,7 +120,7 @@ class ConfigHelper
                             'port' => 6379,
                             'persistent' => true,
                             'dbindex' => 0,
-                            'auth' => '',
+                            'auth' => 'app',
                         ],
                 ],
             ];
