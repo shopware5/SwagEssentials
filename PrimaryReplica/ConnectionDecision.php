@@ -10,7 +10,7 @@ namespace SwagEssentials\PrimaryReplica;
  */
 class ConnectionDecision
 {
-    private static $DEBUG = false;
+    private static $DEBUG = true;
 
     /**
      * @var ConnectionPool
@@ -195,7 +195,7 @@ class ConnectionDecision
         $apc_available = $apc_store && $apc_fetch;
 
         if ($apc_available && $tables = $apc_fetch('primary_replica_tables')) {
-            return unserialize($tables);
+            return unserialize($tables, [true]);
         }
 
         $tables = $this->replicaPool->getRandomConnection()[1]->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);

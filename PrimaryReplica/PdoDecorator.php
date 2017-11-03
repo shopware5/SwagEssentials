@@ -1,4 +1,4 @@
-<?php //declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica;
 
@@ -75,12 +75,20 @@ class PdoDecorator extends \PDO
 
     public function commit()
     {
-        return $this->connectionPool->getConnectionByName('primary')->commit();
+        if ($this->inTransaction()) {
+            return $this->connectionPool->getConnectionByName('primary')->commit();
+        }
+
+        return false;
     }
 
     public function rollBack()
     {
-        return $this->connectionPool->getConnectionByName('primary')->rollBack();
+        if ($this->inTransaction()) {
+            return $this->connectionPool->getConnectionByName('primary')->rollBack();
+        }
+
+        return false;
     }
 
     public function inTransaction()
@@ -115,6 +123,6 @@ class PdoDecorator extends \PDO
 
     public function quote($string, $parameter_type = PDO::PARAM_STR)
     {
-        return $this->connectionPool->getRandomConnection()[1]->quote($string, $parameter_type);
+        return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, $parameter_type);
     }
 }
