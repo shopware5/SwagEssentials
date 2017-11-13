@@ -22,7 +22,7 @@ services:
   app_mysql_master:
     build: _dev-ops/docker/containers/mysql-master
     volumes:
-      - ./_dev-ops/docker/_volumes/app-mysql-data:/var/lib/mysql
+      - ./_dev-ops/docker/_volumes/app-mysql-master-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: app
