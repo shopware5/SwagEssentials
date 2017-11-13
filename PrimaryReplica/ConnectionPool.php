@@ -5,11 +5,13 @@ namespace SwagEssentials\PrimaryReplica;
 /**
  * Class ConnectionPool initializes and maintains all replica connection. Replica connections are created using the
  * primary connection as a template
+ *
  * @package SwagEssentials\PrimaryReplica
  */
 class ConnectionPool
 {
     private $config;
+
     private $connections = [];
 
     /**
@@ -32,11 +34,11 @@ class ConnectionPool
      */
     private $stickyConnectionName;
 
-    public function __construct($config, $includePrimary, $doSticktoConnection)
+    public function __construct($config, $includePrimary, $doStickToConnection)
     {
         $this->config = $config;
         $this->includePrimary = $includePrimary;
-        $this->doStickToConnection = $doSticktoConnection;
+        $this->doStickToConnection = $doStickToConnection;
 
         $this->prepareWeightedConnections();
     }
@@ -63,7 +65,7 @@ class ConnectionPool
      *
      * @return array
      */
-    public function getRandomConnection()
+    public function getRandomConnection(): array
     {
         if ($this->doStickToConnection && $this->stickyConnectionName) {
             return [$this->stickyConnectionName, $this->getConnectionByName($this->stickyConnectionName)];
@@ -92,7 +94,7 @@ class ConnectionPool
     {
         $weightedConnections = $this->weightedConnections;
 
-        $rand = mt_rand(1, (int)array_sum($weightedConnections));
+        $rand = random_int(1, (int) array_sum($weightedConnections));
 
         foreach ($weightedConnections as $name => $weight) {
             $rand -= $weight;
@@ -142,7 +144,6 @@ class ConnectionPool
             throw new \RuntimeException("Connection '$name' not found");
         }
 
-
         $password = isset($dbConfig['password']) ? $dbConfig['password'] : '';
         $connectionString = self::buildConnectionString($dbConfig);
 
@@ -164,7 +165,7 @@ class ConnectionPool
             $message = str_replace(
                 [
                     $dbConfig['username'],
-                    $dbConfig['password']
+                    $dbConfig['password'],
                 ],
                 '******',
                 $message
@@ -179,7 +180,6 @@ class ConnectionPool
         $this->connections[$name] = $conn;
 
         return $conn;
-
     }
 
 
@@ -193,9 +193,9 @@ class ConnectionPool
             $dbConfig['host'] = 'localhost';
         }
 
-        $connectionSettings = array(
+        $connectionSettings = [
             'host=' . $dbConfig['host'],
-        );
+        ];
 
         if (!empty($dbConfig['socket'])) {
             $connectionSettings[] = 'unix_socket=' . $dbConfig['socket'];
@@ -216,5 +216,4 @@ class ConnectionPool
 
         return implode(';', $connectionSettings);
     }
-
 }
