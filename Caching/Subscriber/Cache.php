@@ -6,10 +6,45 @@ use Enlight\Event\SubscriberInterface;
 use Shopware\Components\Routing\Generators\RewriteGenerator;
 use Shopware\Components\Routing\Router;
 use SwagEssentials\Caching\Caches\CachingRewriteGeneratorDecorator;
+use Zend_Cache_Core;
 
 class Cache implements SubscriberInterface
 {
-    public static function getSubscribedEvents()
+    /**
+     * @var Zend_Cache_Core
+     */
+    private $cache;
+
+    /**
+     * @var string
+     */
+    private $enabledCaching;
+
+    /**
+     * @var string
+     */
+    private $ttl;
+
+    /**
+     * @var Router
+     */
+    private $router;
+
+    /**
+     * @param Zend_Cache_Core $cache
+     * @param Router $router
+     * @param bool $enabledCaching
+     * @param int $ttl
+     */
+    public function __construct(Zend_Cache_Core $cache, Router $router, bool $enabledCaching, int $ttl)
+    {
+        $this->cache = $cache;
+        $this->enabledCaching = $enabledCaching;
+        $this->ttl = $ttl;
+        $this->router = $router;
+    }
+
+    public static function getSubscribedEvents(): array
     {
         return [
             'Enlight_Controller_Front_RouteShutdown' => 'onDecorateRouter'
@@ -18,29 +53,27 @@ class Cache implements SubscriberInterface
 
     public function onDecorateRouter()
     {
-        if (!Shopware()->Container()->getParameter('shopware.swag_essentials.caching_enable_urls')) {
+        if (!$this->enabledCaching) {
             return;
         }
 
-        if (!Shopware()->Container()->has('router')) {
+        if (!$this->router) {
             return;
         }
-        /** @var Router $router */
-        $router = Shopware()->Container()->get('router');
 
-        $generators = $router->getGenerators();
+        $generators = $this->router->getGenerators();
 
         foreach ($generators as &$generator) {
             if ($generator instanceof RewriteGenerator && !$generator instanceof CachingRewriteGeneratorDecorator) {
                 $generator = new CachingRewriteGeneratorDecorator(
-                    Shopware()->Cache(),
+                    $this->cache,
                     $generator,
-                    Shopware()->Container()->getParameter('shopware.swag_essentials.caching_ttl_urls')
+                    $this->ttl
                 );
             }
         }
         unset($generator);
 
-        $router->setGenerators($generators);
+        $this->router->setGenerators($generators);
     }
 }

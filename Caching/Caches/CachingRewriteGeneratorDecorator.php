@@ -27,11 +27,10 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
      * @param RewriteGenerator $service
      * @param int $ttl
      */
-    public function __construct(\Zend_Cache_Core $cache, RewriteGenerator $service, $ttl)
+    public function __construct(\Zend_Cache_Core $cache, RewriteGenerator $service, int $ttl)
     {
         $this->service = $service;
         $this->cache = $cache;
-
         $this->ttl = $ttl;
     }
 
