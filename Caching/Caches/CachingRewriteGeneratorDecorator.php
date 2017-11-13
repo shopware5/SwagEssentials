@@ -73,6 +73,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
 
         // list of items which could be resolved from the cache
         $cachedItems = array_filter($allItems);
+
         // list of items, still not resolved
         $unCachedItems = array_diff_key($list, $cachedItems);
 
@@ -83,7 +84,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
         foreach ($results as $result) {
             $this->cache->save([$result], $this->hashItem($result, $context), [], $this->ttl);
         }
-
 
         // merge and cache full list
         $totalResult = array_merge($cachedItems, $results);

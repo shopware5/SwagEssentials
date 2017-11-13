@@ -52,6 +52,7 @@ class CachingProductDecorator implements ProductServiceInterface
 
         $result = $this->service->getList($numbers, $context);
         $this->cache->save($result, $hash, [], $this->ttl);
+
         return $result;
     }
 

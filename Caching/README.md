@@ -15,7 +15,6 @@ Generally, you can configure the submodule for the following resources:
  * `urls`: Caching of generated SEO urls
  * `list_product`: Caching for listings
  * `product`: Caching for detail pages
- * `search`: Caching for searches
 
  Each of these resources can be enabled / disabled separately:
 
@@ -27,7 +26,7 @@ Generally, you can configure the submodule for the following resources:
 <parameter key="swag_essentials.caching_enable_search">1</parameter>
 ```
 
-Also each of these resouces can have an individual TTL (caching time):
+Also each of these resources can have an individual TTL (caching time):
 
 ```
 <!-- TTL configs -->

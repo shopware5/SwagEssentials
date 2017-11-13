@@ -8,10 +8,20 @@
     <services>
 
         <!-- Event Subscriber -->
-        <service id="swag_essentials.cache" class="SwagEssentials\Caching\Subscriber\Cache">
-            <argument type="service" id="service_container" />
-            <tag name="shopware.event_subscriber" />
+        <!--<service id="swag_essentials.cache" class="SwagEssentials\Caching\Subscriber\Cache">-->
+            <!--<argument type="service" id="service_container" />-->
+            <!--<argument></argument>-->
+            <!--<tag name="shopware.event_subscriber" />-->
+        <!--</service>-->
+
+        <service class="SwagEssentials\Caching\Subscriber\Cache" id="swag_essentials.caching.subscriber.cache">
+            <argument id="cache" type="service"/>
+            <argument id="router" type="service"/>
+            <argument>%shopware.swag_essentials.caching_enable_urls%</argument>
+            <argument>%shopware.swag_essentials.caching_ttl_urls%</argument>
+            <tag name="shopware.event_subscriber"/>
         </service>
+
 
         <service id="swag_essentials.cache_factory" class="SwagEssentials\Caching\CacheFactory" public="false">
             <argument type="service" id="service_container" />
@@ -31,13 +41,6 @@
         >
             <factory service="swag_essentials.cache_factory" method="createProductService" />
             <argument type="service" id="swag_essentials.product_service.inner"/>
-        </service>
-
-        <service id="swag_essentials.product_search"
-                 class="SwagEssentials\Caching\Caches\CachingSearchDecorator"
-                 decorates="shopware_search.product_search">
-            <factory service="swag_essentials.cache_factory" method="createProductSearch" />
-            <argument type="service" id="swag_essentials.product_search.inner"/>
         </service>
     </services>
 </container>

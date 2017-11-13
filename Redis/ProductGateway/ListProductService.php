@@ -39,7 +39,6 @@ class ListProductService implements ListProductServiceInterface
 
         $redisResult = $this->redis->hMGet(self::HASH_NAME, $keys);
 
-
         $redisResult = array_combine(array_values($numbers), array_map('unserialize', $redisResult));
         $missingResults = array_keys(array_filter($redisResult, 'is_bool')) ?: [];
 

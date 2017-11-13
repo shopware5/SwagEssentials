@@ -16,7 +16,7 @@ class ConfigHelper
             'number_of_shards' => null,
             'client' => [
                 'hosts' => [
-                    '10.123.123.48:9200',
+                    '10.123.123.50:9200',
                 ],
             ],
         ];
@@ -96,12 +96,12 @@ class ConfigHelper
                 'caching_enable_urls' => true,
                 'caching_enable_list_product' => true,
                 'caching_enable_product' => true,
-                'caching_enable_search' => true,
                 // ttl configs
                 'caching_ttl_urls' => 3600,
                 'caching_ttl_list_product' => 3600,
                 'caching_ttl_product' => 3600,
-                'caching_ttl_search' => 3600,
+
+                // ttl config for redis cache
                 'caching_ttl_plugin_config' => 3600,
             ];
         }
