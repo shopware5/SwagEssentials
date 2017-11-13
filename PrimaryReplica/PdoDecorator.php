@@ -123,6 +123,6 @@ class PdoDecorator extends \PDO
 
     public function quote($string, $parameter_type = PDO::PARAM_STR)
     {
-        return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, $parameter_type);
+        return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, (int) $parameter_type);
     }
 }
