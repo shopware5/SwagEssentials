@@ -75,8 +75,8 @@ error;
         return $this->body;
     }
 
-    public function isSuccess()
+    public function isSuccess(): bool
     {
-        return ($this->success === true);
+        return $this->success === true;
     }
 }

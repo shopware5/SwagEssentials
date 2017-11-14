@@ -19,6 +19,42 @@ services:
       sw_docker_swag_essentials:
         ipv4_address: 10.123.123.30
 
+  app_node_1_server:
+    build: _dev-ops/docker/containers/php7
+    volumes:
+      - ~/.composer/cache:/var/www/composer-cache-dir
+      - .:/project
+      - .:/var/www/shopware
+    links:
+      - app_mysql_slave:mysql
+      - app_mysql_master:mysql
+    environment:
+      TERM: xterm
+      COMPOSER_CACHE_DIR: /var/www/composer-cache-dir
+    ports:
+      - "8089:80"
+    networks:
+      sw_docker_swag_essentials:
+        ipv4_address: 10.123.123.31
+
+  app_node_2_server:
+    build: _dev-ops/docker/containers/php7
+    volumes:
+      - ~/.composer/cache:/var/www/composer-cache-dir
+      - .:/project
+      - .:/var/www/shopware
+    links:
+      - app_mysql_slave:mysql
+      - app_mysql_master:mysql
+    environment:
+      TERM: xterm
+      COMPOSER_CACHE_DIR: /var/www/composer-cache-dir
+    ports:
+      - "8090:80"
+    networks:
+      sw_docker_swag_essentials:
+        ipv4_address: 10.123.123.32
+
   app_mysql_master:
     build: _dev-ops/docker/containers/mysql-master
     volumes:
