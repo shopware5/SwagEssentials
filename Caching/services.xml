@@ -8,12 +8,6 @@
     <services>
 
         <!-- Event Subscriber -->
-        <!--<service id="swag_essentials.cache" class="SwagEssentials\Caching\Subscriber\Cache">-->
-            <!--<argument type="service" id="service_container" />-->
-            <!--<argument></argument>-->
-            <!--<tag name="shopware.event_subscriber" />-->
-        <!--</service>-->
-
         <service class="SwagEssentials\Caching\Subscriber\Cache" id="swag_essentials.caching.subscriber.cache">
             <argument id="cache" type="service"/>
             <argument id="router" type="service"/>
@@ -21,7 +15,6 @@
             <argument>%shopware.swag_essentials.caching_ttl_urls%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
-
 
         <service id="swag_essentials.cache_factory" class="SwagEssentials\Caching\CacheFactory" public="false">
             <argument type="service" id="service_container" />

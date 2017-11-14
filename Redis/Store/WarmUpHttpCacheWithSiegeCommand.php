@@ -84,7 +84,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $progressBar->setBarWidth($this->getWidth($totalUrlCount));
         $progressBar->setRedrawFrequency(100);
 
-        $this->checkForSiege($output);
+        $this->checkForSiege();
 
         $this->runSiege($concurrency, $fileName, $progressBar);
     }
@@ -123,7 +123,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
     /**
      * @param $concurrency
      * @param $fileName
-     * @param $progressBar
+     * @param ProgressBar $progressBar
      */
     protected function runSiege($concurrency, $fileName, $progressBar)
     {
@@ -147,14 +147,11 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $progressBar->finish();
     }
 
-    /**
-     * @param $output
-     */
-    protected function checkForSiege($output)
+    protected function checkForSiege()
     {
         $output = $this->output;
 
-        $output->writeln("Checking for siege");
+        $output->writeln('Checking for siege');
         if (!shell_exec('siege')) {
             throw new \RuntimeException("Could not run command. Make sure, that 'siege' is installed");
         }
@@ -166,7 +163,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
      * @param $totalUrlCount
      * @return string
      */
-    protected function exportUrls($shopId, $totalUrlCount)
+    protected function exportUrls($shopId, $totalUrlCount): string
     {
         $output = $this->output;
         $cacheWarmer = $this->container->get('http_cache_warmer');
@@ -174,7 +171,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $offset = 0;
         $output->writeln("\n Exporting URLs for shop with id " . $shopId);
         $fileName = tempnam(sys_get_temp_dir(), 'urls');
-        $fh = fopen($fileName, 'w');
+        $fh = fopen($fileName, 'wb');
         while ($offset < $totalUrlCount) {
             $urls = $cacheWarmer->getAllSEOUrls($shopId, 1000, $offset);
             fwrite($fh, implode("\n", $urls));
