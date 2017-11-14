@@ -3,13 +3,38 @@
 namespace SwagEssentials\PrimaryReplica\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
+use Enlight_Components_Session_Namespace;
 use SwagEssentials\PrimaryReplica\Commands\RunSql;
 use Doctrine\Common\Collections\ArrayCollection;
 use SwagEssentials\PrimaryReplica\ConnectionDecision;
 use SwagEssentials\PrimaryReplica\PdoFactory;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Bridge implements SubscriberInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * @var Enlight_Components_Session_Namespace
+     */
+    private $session;
+
+    /**
+     * @param ContainerInterface $container
+     * @param Enlight_Components_Session_Namespace $session
+     */
+    public function __construct(ContainerInterface $container, Enlight_Components_Session_Namespace $session)
+    {
+        $this->container = $container;
+        $this->session = $session;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -23,26 +48,26 @@ class Bridge implements SubscriberInterface
     {
         return new ArrayCollection(
             [
-                new RunSql()
+                new RunSql(),
             ]
         );
     }
 
     public function startDispatch()
     {
-        if (Shopware()->Container()->has('shop')) {
+        if ($this->container->has('shop')) {
             PdoFactory::$connectionDecision->setPinnedTables(
                 array_merge(
-                    Shopware()->Session()->get('tables', []),
+                    $this->container->get('backendsession')->get('tables', []),
                     PdoFactory::$connectionDecision->getPinnedTables()
                 )
             );
         }
 
-        if (Shopware()->Container()->has('backendsession')) {
+        if ($this->container->has('backendsession')) {
             PdoFactory::$connectionDecision->setPinnedTables(
                 array_merge(
-                    Shopware()->BackendSession()->get('tables', []),
+                    $this->container->get('backendsession')->get('tables', []),
                     PdoFactory::$connectionDecision->getPinnedTables()
                 )
             );
@@ -51,13 +76,15 @@ class Bridge implements SubscriberInterface
 
     public function dispatchShutdown()
     {
-        if (Shopware()->Container()->has('shop')) {
+        if ($this->container->has('shop')) {
             /** @var ConnectionDecision $decision */
-            Shopware()->Session()->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
+            $this->container->get('session')
+                ->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
         }
 
-        if (Shopware()->Container()->has('backendsession')) {
-            Shopware()->BackendSession()->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
+        if ($this->container->has('backendsession')) {
+            $this->container->get('backendsession')
+                ->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
         }
     }
 }

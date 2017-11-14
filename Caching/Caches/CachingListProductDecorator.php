@@ -44,14 +44,13 @@ class CachingListProductDecorator implements ListProductServiceInterface
             return [];
         }
 
-        $hash = md5(serialize(['listproduct', $numbers, $context]));
+        $hash = md5(serialize(['list_product', $numbers, $context]));
 
         if ($cache = $this->cache->load($hash)) {
             return $cache;
         }
 
         $result = $this->service->getList($numbers, $context);
-
         $this->cache->save($result, $hash, [], $this->ttl);
 
         return $result;

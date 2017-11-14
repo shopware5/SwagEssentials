@@ -6,6 +6,7 @@ namespace SwagEssentials\PrimaryReplica;
  * Class ConnectionDecision returns the primary or a replica connection depending on the given query
  * Write queries and queries involving tables that have been written to before will get the primary connection
  * returned, everything else a random replica connection
+ *
  * @package SwagEssentials\PrimaryReplica
  */
 class ConnectionDecision
@@ -45,6 +46,7 @@ class ConnectionDecision
     {
         // get list of tables involved in the query
         $affected = $this->getAffectedTables($sql);
+
         // is the given query a write query which needs to go to the primary connection?
         $isWriteQuery = $this->isWriteQuery($sql);
 
@@ -72,6 +74,7 @@ class ConnectionDecision
         list($name, $replica) = $this->replicaPool->getRandomConnection();
 
         $this->count($name, $sql);
+
         return $replica;
     }
 
@@ -107,13 +110,12 @@ class ConnectionDecision
      * @param $sql
      * @return bool
      */
-    private function isWriteQuery($sql)
+    private function isWriteQuery($sql): bool
     {
         $sql = trim($sql);
 
         // detect transaction related commands
-        if (
-            stripos($sql, 'START') === 0 ||
+        if (stripos($sql, 'START') === 0 ||
             stripos($sql, 'BEGIN') === 0 ||
             stripos($sql, 'ROLLBACK') === 0 ||
             stripos($sql, 'COMMIT') === 0
@@ -128,8 +130,7 @@ class ConnectionDecision
 
         // if query does NOT start with common READ keywords,
         // assume WRITE connection as well
-        if (
-            stripos($sql, 'SHOW') !== 0 &&
+        if (stripos($sql, 'SHOW') !== 0 &&
             stripos($sql, 'SELECT') !== 0 &&
             stripos($sql, 'EXPLAIN') !== 0 &&
             stripos($sql, 'DESC') !== 0 &&
@@ -146,7 +147,7 @@ class ConnectionDecision
     /**
      * @return array
      */
-    public function getPinnedTables()
+    public function getPinnedTables(): array
     {
         return $this->pinnedTables;
     }
@@ -154,11 +155,10 @@ class ConnectionDecision
     /**
      * @param array $pinnedTables
      */
-    public function setPinnedTables($pinnedTables)
+    public function setPinnedTables(array $pinnedTables)
     {
         $this->pinnedTables = $pinnedTables;
     }
-
 
     /**
      * Will quickly find all tables from within the given query.
@@ -167,7 +167,7 @@ class ConnectionDecision
      * @param $sql
      * @return array
      */
-    private function getAffectedTables($sql)
+    private function getAffectedTables($sql): array
     {
         $matches = [];
         $number = preg_match_all(
@@ -188,7 +188,7 @@ class ConnectionDecision
      *
      * @return string
      */
-    private function getTables()
+    private function getTables(): string
     {
         $apc_fetch = function_exists('apc_fetch') ? 'apc_fetch' : function_exists('apcu_fetch') ? 'apcu_fetch' : null;
         $apc_store = function_exists('apc_store') ? 'apc_fetch' : function_exists('apcu_store') ? 'apcu_store' : null;

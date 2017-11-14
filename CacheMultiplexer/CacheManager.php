@@ -14,8 +14,10 @@ class CacheManager extends \Shopware\Components\CacheManager
     use CacheManagerDecorationTrait;
 
     private $tags = [];
-    /** @var RemoteCacheInvalidator  */
+
+    /** @var RemoteCacheInvalidator */
     private $cacheInvalidator;
+
     /**
      * @var \Shopware\Components\CacheManager
      */

@@ -27,11 +27,10 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
      * @param RewriteGenerator $service
      * @param int $ttl
      */
-    public function __construct(\Zend_Cache_Core $cache, RewriteGenerator $service, $ttl)
+    public function __construct(\Zend_Cache_Core $cache, RewriteGenerator $service, int $ttl)
     {
         $this->service = $service;
         $this->cache = $cache;
-
         $this->ttl = $ttl;
     }
 
@@ -73,6 +72,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
 
         // list of items which could be resolved from the cache
         $cachedItems = array_filter($allItems);
+
         // list of items, still not resolved
         $unCachedItems = array_diff_key($list, $cachedItems);
 
@@ -83,7 +83,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
         foreach ($results as $result) {
             $this->cache->save([$result], $this->hashItem($result, $context), [], $this->ttl);
         }
-
 
         // merge and cache full list
         $totalResult = array_merge($cachedItems, $results);
