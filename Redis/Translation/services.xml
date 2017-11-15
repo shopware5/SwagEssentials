@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+
+        <service class="SwagEssentials\Redis\Translation\Translation"
+                 id="translation">
+            <argument id="dbal_connection" type="service"/>
+            <argument id="swag_essentials.redis" type="service"/>
+            <argument>%shopware.swag_essentials.caching_ttl_translation%</argument>
+        </service>
+
+        <service id="swag_essentials.redis_translation.cache_manager" class="SwagEssentials\Redis\Translation\CacheManager"
+                 decorates="shopware.cache_manager"
+        >
+            <argument type="service" id="service_container" />
+            <argument type="service" id="swag_essentials.redis_translation.cache_manager.inner"/>
+        </service>
+    </services>
+</container>
