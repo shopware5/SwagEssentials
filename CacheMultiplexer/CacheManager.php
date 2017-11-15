@@ -27,7 +27,7 @@ class CacheManager extends \Shopware\Components\CacheManager
     {
         parent::__construct($container);
 
-        $this->cacheInvalidator = $container->get("swag_essentials.cache_multiplexer.cache_invalidator");
+        $this->cacheInvalidator = $container->get('swag_essentials.cache_multiplexer.cache_invalidator');
         $this->innerCacheManager = $innerCacheManager;
     }
 

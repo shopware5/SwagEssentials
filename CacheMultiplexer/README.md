@@ -5,9 +5,34 @@
 
 ## Setting it up:
 ### Enabling it
-In order to enable the submodule, import it in your `service.xml`:
+In order to enable the submodule, import it in your `config.php`:
 
-`<import resource="CacheMultiplexer/service.xml"/>`
+```php
+'db' => [...],
+'swag_essentials' =>
+        [
+            'modules' =>
+                [
+                    ...,
+                    'CacheMultiplexer' => true,
+                ],
+            'cache_multiplexer_hosts' =>
+                [
+                    [
+                        'host' => 'http://10.123.123.31/api',
+                        'user' => 'demo',
+                        'password' => 'demo',
+
+                    ],
+                    [
+                        'host' => 'http://10.123.123.32/api',
+                        'user' => 'demo',
+                        'password' => 'demo',
+
+                    ],
+                ],
+        ],
+```
 
 ### Configuration
 The following example will configure one appserver. Credentials are credentials for the shopware API
@@ -19,29 +44,5 @@ The following example will configure one appserver. Credentials are credentials 
             <parameter key="user">demo</parameter>
             <parameter key="password">89e495e7941cf9e40e6980d14a16bf023ccd4c91</parameter>
         </parameter>
-</parameter>
-```
-
-**Security notice**:
-
-Make sure, that the `service.xml` file cannot be accessed from outside, e.g. with a rule in your webserver. As an
-alternative, you can store the credentials in your environment, see
-http://symfony.com/doc/current/configuration/external_parameters.html#environment-variables
-
-Environment configuration:
-
-```
-fastcgi_param SYMFONY__HOST1__HOST user;
-fastcgi_param SYMFONY__HOST1__USER user;
-fastcgi_param SYMFONY__HOST1__PASSWORD secret;
-```
-
-Configuration in your service.xml:
-
-```
-<parameter type="collection">
-    <parameter key="host">%host1.host%</parameter>
-    <parameter key="user">%host1.user%</parameter>
-    <parameter key="password">%host1.password%</parameter>
 </parameter>
 ```
