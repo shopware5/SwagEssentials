@@ -37,12 +37,14 @@ In order to enable the submodule, import it in your `config.php`:
 ### Configuration
 The following example will configure one appserver. Credentials are credentials for the shopware API
 
-```
-<parameter key="swag_essentials.cache_multiplexer_hosts" type="collection">
-        <parameter type="collection">
-            <parameter key="host">http://localhost/53/api</parameter>
-            <parameter key="user">demo</parameter>
-            <parameter key="password">89e495e7941cf9e40e6980d14a16bf023ccd4c91</parameter>
-        </parameter>
-</parameter>
+```php
+'cache_multiplexer_hosts' =>
+    [
+        [
+            'host' => 'http://10.123.123.31/api',
+            'user' => 'demo',
+            'password' => 'demo',
+
+        ],
+    ],
 ```

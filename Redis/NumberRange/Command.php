@@ -56,7 +56,7 @@ EOF
         if ($toRedis) {
             // check conflicts before hands
             foreach ($shopwareNumberRange as $name => $value) {
-                if (!$force && $redisNumberRange[$name] > $value) {
+                if (!$force && isset($redisNumberRange[$name]) && $redisNumberRange[$name] > $value) {
                     $output->writeln("Redis value is higher than shopware's value. Use --force to import anyway");
                     exit(1);
                 }
