@@ -6,7 +6,7 @@ use Shopware;
 
 class Config extends \Shopware_Components_Config
 {
-    const HASH_NAME = 'sw_config_core';
+    const HASH_NAME = \Shopware::VERSION . '-sw_config_core';
 
     /**
      * @var \Redis
