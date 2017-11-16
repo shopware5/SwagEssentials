@@ -5,9 +5,27 @@
 
 ## Setting it up:
 ### Enabling it
-In order to enable the submodule, import it in your `service.xml`:
+In order to enable the submodule, import it in your `config.php`:
 
-`<import resource="Caching/service.xml"/>`
+```php
+'db' =>[...],    
+'swag_essentials' =>
+    [
+        'modules' =>
+            [
+                ...
+                'Caching' => true,
+            ],        
+        'caching_enable_urls' => true,
+        'caching_enable_list_product' => true,
+        'caching_enable_product' => true,
+        'caching_ttl_urls' => 3600,
+        'caching_ttl_list_product' => 3600,
+        'caching_ttl_product' => 3600,
+        'caching_ttl_plugin_config' => 3600,
+        'caching_ttl_translation' => 3600,
+    ],
+```
 
 ### Configuration
 Generally, you can configure the submodule for the following resources:
@@ -18,20 +36,16 @@ Generally, you can configure the submodule for the following resources:
 
  Each of these resources can be enabled / disabled separately:
 
-```
-<!-- Enable / disable caches -->
-<parameter key="swag_essentials.caching_enable_urls">1</parameter>
-<parameter key="swag_essentials.caching_enable_list_product">1</parameter>
-<parameter key="swag_essentials.caching_enable_product">1</parameter>
-<parameter key="swag_essentials.caching_enable_search">1</parameter>
+```php
+    'caching_enable_urls' => true,
+    'caching_enable_list_product' => true,
+    'caching_enable_product' => true,
 ```
 
 Also each of these resources can have an individual TTL (caching time):
 
-```
-<!-- TTL configs -->
-<parameter key="swag_essentials.caching_ttl_urls">3600</parameter>
-<parameter key="swag_essentials.caching_ttl_list_product">3600</parameter>
-<parameter key="swag_essentials.caching_ttl_product">3600</parameter>
-<parameter key="swag_essentials.caching_ttl_search">3600</parameter>
+```php
+    'caching_ttl_urls' => 3600,
+    'caching_ttl_list_product' => 3600,
+    'caching_ttl_product' => 3600,
 ```
