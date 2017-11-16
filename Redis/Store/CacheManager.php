@@ -70,4 +70,12 @@ class CacheManager extends ShopwareCacheManager
 
         return $info;
     }
+
+    public function clearHttpCache()
+    {
+        $this->innerCacheManager->clearHttpCache();
+        if ($this->httpCache && $this->httpCache->getStore() instanceof RedisStore) {
+            $this->httpCache->getStore()->cleanup();
+        }
+    }
 }

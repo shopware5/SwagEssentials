@@ -83,15 +83,31 @@ class ConfigHelper
                     // Use Redis as HTTP cache backend
                     'RedisStore' => false,
                 ],
-                'redis' => [
+                'redis' =>
                     [
-                        'host' => 'app_redis',
-                        'port' => 6379,
-                        'persistent' => true,
-                        'dbindex' => 0,
-                        'auth' => 'app',
+                        [
+                            'host' => 'app_redis',
+                            'port' => 6379,
+                            'persistent' => true,
+                            'dbindex' => 0,
+                            'auth' => 'app',
+                        ],
                     ],
-                ],
+                'cache_multiplexer_hosts' =>
+                    [
+                        [
+                            'host' => 'http://10.123.123.31/api',
+                            'user' => 'demo',
+                            'password' => 'demo',
+
+                        ],
+                        [
+                            'host' => 'http://10.123.123.32/api',
+                            'user' => 'demo',
+                            'password' => 'demo',
+
+                        ],
+                    ],
                 // enable/disable caches
                 'caching_enable_urls' => true,
                 'caching_enable_list_product' => true,

@@ -8,7 +8,7 @@ use Shopware\Models\Shop\Shop;
 
 class Reader implements ConfigReaderInterface
 {
-    const HASH_NAME = 'sw_config';
+    const HASH_NAME = \Shopware::VERSION . 'sw_config';
 
     /**
      * @var DBALConfigReader

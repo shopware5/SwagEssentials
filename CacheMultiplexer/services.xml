@@ -15,7 +15,7 @@
         </service>
 
         <service id="swag_essentials.cache_multiplexer.cache_invalidator" class="SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator">
-            <argument>%swag_essentials.cache_multiplexer_hosts%</argument>
+            <argument>%shopware.swag_essentials.cache_multiplexer_hosts%</argument>
             <argument type="service" id="corelogger" />
         </service>
     </services>

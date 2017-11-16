@@ -12,7 +12,7 @@ class ListProductService implements ListProductServiceInterface
      */
     private $service;
 
-    const HASH_NAME = 'sw_list_product';
+    const HASH_NAME = \Shopware::VERSION . '-sw_list_product';
 
     /**
      * @var \Redis

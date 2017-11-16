@@ -2,8 +2,8 @@
 
 namespace SwagEssentials\CacheMultiplexer;
 
+use GuzzleHttp\Client;
 use Shopware\Components\Logger;
-use SwagEssentials\CacheMultiplexer\Api\Client;
 
 /**
  * Class RemoteCacheInvalidator will call a given list of app servers via API in order to invalidate the given caches
@@ -46,10 +46,14 @@ class RemoteCacheInvalidator
         foreach ($this->hosts as $endpoint) {
             $error = null;
             try {
-                $response = $this->getClientForEndpoint($endpoint)->delete('caches/', $caches);
+                $response = $this->getResponseForEndpoint($endpoint, $caches);
 
-                if ($response->getCode() < 200 || $response->getCode() >= 300) {
-                    $error = ['body' => $response->getRawBody(), 'code' => $response->getCode()];
+                if ($response && ($response->getStatusCode() < 200 || $response->getStatusCode() >= 300)) {
+                    $error = ['body' => $response->getBody(), 'code' => $response->getStatusCode()];
+                }
+
+                if (!$response) {
+                    $this->logger->error("Cache multiplexing failed for host {$endpoint[self::ENDPOINT_HOST]}", $error);
                 }
             } catch (\Exception $e) {
                 $error = ['message' => $e->getMessage()];
@@ -67,17 +71,19 @@ class RemoteCacheInvalidator
      * Get an API client for a given endpoint
      *
      * @param $endpoint
-     * @return Client
+     * @param $caches
+     * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
      */
-    private function getClientForEndpoint($endpoint): Api\Client
+    private function getResponseForEndpoint($endpoint, $caches)
     {
-        $client = new Client(
-            $endpoint[self::ENDPOINT_HOST],
-            $endpoint[self::ENDPOINT_USER],
-            $endpoint[self::ENDPOINT_PASSWORD]
+        $client = new Client();
+        return $client->delete(
+            $endpoint[self::ENDPOINT_HOST] . '/caches',
+            [
+                'auth' => [$endpoint[self::ENDPOINT_USER], $endpoint[self::ENDPOINT_PASSWORD]],
+                'json' => $caches,
+            ]
         );
-
-        return $client;
     }
 
     /**
