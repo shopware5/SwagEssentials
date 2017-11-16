@@ -5,10 +5,6 @@ namespace SwagEssentials\Redis\PluginConfig;
 use Shopware\Components\DependencyInjection\Container;
 use SwagEssentials\Common\CacheManagerDecorationTrait;
 
-/**
- * Class CacheManager replaces the original CacheManager and collects all caches, which have been invalidated
- * during a request. Triggers remote cache invalidation on the end of the request
- */
 class CacheManager extends \Shopware\Components\CacheManager
 {
     use CacheManagerDecorationTrait;

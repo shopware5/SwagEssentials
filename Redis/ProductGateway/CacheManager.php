@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SwagEssentials\Redis\Translation;
+namespace SwagEssentials\Redis\ProductGateway;
 
 use Shopware\Components\CacheManager as ShopwareCacheManager;
 use Shopware\Components\DependencyInjection\Container;
@@ -29,7 +29,7 @@ class CacheManager extends ShopwareCacheManager
 
     public function clearConfigCache()
     {
-        $this->redis->del(Translation::HASH_NAME);
+        $this->redis->del(ListProductService::HASH_NAME);
 
         $this->innerCacheManager->clearConfigCache();
     }
