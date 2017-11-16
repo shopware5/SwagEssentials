@@ -1,4 +1,4 @@
-# Caching
+# PluginConfigCaching
 **What it does**: Allows you to cache the Shopware Plugin Configuration
 
 **Needed for**: Uncached pages, Shopware instances without HTTP cache

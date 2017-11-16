@@ -1,4 +1,4 @@
-# Caching
+# ProductGatewayCaching
 **What it does**: Allows you to cache the ListProduct Structs from Shopware in Redis
 
 **Needed for**: Uncached pages, Shopware instances without HTTP cache

@@ -1,4 +1,4 @@
-# Caching
+# RedisHttpCaching
 **What it does**: Allows you to store the HTTP Cache in Redis
 
 **Needed for**: Cluster setups and setups with high load

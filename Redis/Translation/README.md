@@ -1,4 +1,4 @@
-# Caching
+# TranslationCaching
 **What it does**: Allows you to cache the translation calls against the mysql db 
 
 **Needed for**: Uncached pages, Shopware instances without HTTP cache, Cluster setups and setups with high load on the primary database connection
