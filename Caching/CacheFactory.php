@@ -2,12 +2,10 @@
 
 namespace SwagEssentials\Caching;
 
-use Shopware\Bundle\SearchBundle\ProductSearchInterface;
 use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Service\ProductServiceInterface;
 use SwagEssentials\Caching\Caches\CachingListProductDecorator;
 use SwagEssentials\Caching\Caches\CachingProductDecorator;
-use SwagEssentials\Caching\Caches\CachingSearchDecorator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class CacheFactory
@@ -53,23 +51,6 @@ class CacheFactory
             $this->container->get('cache'),
             $productService,
             $this->container->getParameter('shopware.swag_essentials.caching_ttl_product')
-        );
-    }
-
-    /**
-     * @param ProductSearchInterface $productSearch
-     * @return ProductSearchInterface
-     */
-    public function createProductSearch(ProductSearchInterface $productSearch)
-    {
-        if (!$this->container->getParameter('shopware.swag_essentials.caching_enable_search')) {
-            return $productSearch;
-        }
-
-        return new CachingSearchDecorator(
-            $this->container->get('cache'),
-            $productSearch,
-            $this->container->getParameter('shopware.swag_essentials.caching_ttl_search')
         );
     }
 }
