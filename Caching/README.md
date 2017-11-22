@@ -21,9 +21,7 @@ In order to enable the submodule, import it in your `config.php`:
         'caching_enable_product' => true,
         'caching_ttl_urls' => 3600,
         'caching_ttl_list_product' => 3600,
-        'caching_ttl_product' => 3600,
-        'caching_ttl_plugin_config' => 3600,
-        'caching_ttl_translation' => 3600,
+        'caching_ttl_product' => 3600,        
     ],
 ```
 
