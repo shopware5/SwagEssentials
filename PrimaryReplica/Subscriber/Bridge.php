@@ -51,10 +51,11 @@ class Bridge implements SubscriberInterface
         if ($this->container->has('shop')) {
             PdoFactory::$connectionDecision->setPinnedTables(
                 array_merge(
-                    $this->container->get('backendsession')->get('tables', []),
+                    $this->container->get('session')->get('tables', []),
                     PdoFactory::$connectionDecision->getPinnedTables()
                 )
             );
+            return;
         }
 
         if ($this->container->has('backendsession')) {
@@ -73,6 +74,7 @@ class Bridge implements SubscriberInterface
             /** @var ConnectionDecision $decision */
             $this->container->get('session')
                 ->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
+            return;
         }
 
         if ($this->container->has('backendsession')) {
