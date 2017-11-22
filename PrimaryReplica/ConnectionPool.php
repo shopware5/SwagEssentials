@@ -111,12 +111,12 @@ class ConnectionPool
     private function prepareWeightedConnections()
     {
         foreach ($this->config['replicas'] as $name => $config) {
-            $weight = isset($config['weight']) ? $config['weight'] : 1;
+            $weight = $config['weight'] ?? 1;
             $this->weightedConnections[$name] = $weight;
         }
 
         if ($this->includePrimary) {
-            $weight = isset($this->config['weight']) ? $this->config['weight'] : 1;
+            $weight = $this->config['weight'] ?? 1;
             $this->weightedConnections['primary'] = $weight;
         }
     }
@@ -144,7 +144,7 @@ class ConnectionPool
             throw new \RuntimeException("Connection '$name' not found");
         }
 
-        $password = isset($dbConfig['password']) ? $dbConfig['password'] : '';
+        $password = $dbConfig['password'] ?? '';
         $connectionString = self::buildConnectionString($dbConfig);
 
         try {
@@ -160,6 +160,9 @@ class ConnectionPool
             // Reset sql_mode "STRICT_TRANS_TABLES" that will be default in MySQL 5.6
             $conn->exec('SET @@session.sql_mode = ""');
             $conn->exec('SET @@session.sql_mode = ""');
+
+            // set encoding to utf8
+            $conn->exec('SET NAMES utf8');
         } catch (\PDOException $e) {
             $message = $e->getMessage();
             $message = str_replace(

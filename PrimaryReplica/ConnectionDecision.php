@@ -22,6 +22,7 @@ class ConnectionDecision
 
     private $pinnedTables = [
         's_core_sessions' => true,
+        's_core_sessions_backend' => true,
         's_order_basket' => true,
     ];
 
