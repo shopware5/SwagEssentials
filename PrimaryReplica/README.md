@@ -41,7 +41,12 @@ return [
                 'host' => '192.168.0.31',
                 'port' => '',
             ]
-        ]
+        ],
+        'modules' =>
+            [
+                ...
+                'PrimaryReplica' => true,
+            ],  
     ]
 ];
 ```
