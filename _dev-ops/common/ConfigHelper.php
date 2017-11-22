@@ -148,6 +148,23 @@ class ConfigHelper
             $config['httpcache'] = $httpCache;
         }
 
+        if ($moduleName === 'PrimaryReplica') {
+            $db = [
+                'factory' => '\SwagEssentials\PrimaryReplica\PdoFactory',
+                'replicas' => [
+                    'replica-slave' => [
+                        'username' => 'app',
+                        'password' => 'app',
+                        'dbname' => 'shopware',
+                        'host' => '10.123.123.41',
+                        'port' => '',
+                    ],
+                ],
+            ];
+
+            $config['db'] = array_merge($config['db'], $db);
+        }
+
         self::saveConfig($config);
     }
 
@@ -205,6 +222,11 @@ class ConfigHelper
             $config['swag_essentials']['modules'][$moduleName] = false;
         }
 
+        if ($moduleName === 'PrimaryReplica') {
+            unset($config['db']['factory'], $config['db']['replicas']);
+        }
+
+
         self::saveConfig($config);
     }
 
@@ -222,6 +244,8 @@ class ConfigHelper
         $configFile = '<?php 
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php\';
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Factory.php\';
+            require_once __DIR__ . \'/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php\';
+            
         return ' . var_export($config, true) . ';';
         file_put_contents(self::CONFIG_PATH, $configFile);
     }
