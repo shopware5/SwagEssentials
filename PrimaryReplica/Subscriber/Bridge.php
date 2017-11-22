@@ -18,18 +18,11 @@ class Bridge implements SubscriberInterface
     private $container;
 
     /**
-     * @var Enlight_Components_Session_Namespace
-     */
-    private $session;
-
-    /**
      * @param ContainerInterface $container
-     * @param Enlight_Components_Session_Namespace $session
      */
-    public function __construct(ContainerInterface $container, Enlight_Components_Session_Namespace $session)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->session = $session;
     }
 
     /**
