@@ -34,6 +34,7 @@ return [
     'httpcache' =>
         [
             'storeClass' => 'SwagEssentials\\Redis\\Store\\RedisStore',
+            'keyPrefix'  => '', //this is only needed when running multiple shops on one Redis-Cluster 
             'redisConnections' =>
                 [
                     0 =>
