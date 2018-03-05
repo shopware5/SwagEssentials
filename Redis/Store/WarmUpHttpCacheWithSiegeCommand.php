@@ -2,6 +2,7 @@
 
 namespace SwagEssentials\Redis\Store;
 
+use Shopware\Components\HttpCache\CacheWarmer;
 use Symfony\Component\Console\Command\Command;
 use Shopware\Kernel;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -12,6 +13,27 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class WarmUpHttpCacheWithSiegeCommand extends Command
 {
+    /**
+     * @var \Enlight_Components_Db_Adapter_Pdo_Mysql
+     */
+    private $db;
+
+    /**
+     * @var CacheWarmer
+     */
+    private $httpCacheWarmer;
+
+    /**
+     * @param \Enlight_Components_Db_Adapter_Pdo_Mysql $db
+     * @param CacheWarmer $httpCacheWarmer
+     */
+    public function __construct(\Enlight_Components_Db_Adapter_Pdo_Mysql $db, CacheWarmer $httpCacheWarmer)
+    {
+        parent::__construct();
+        $this->db = $db;
+        $this->httpCacheWarmer = $httpCacheWarmer;
+    }
+
     protected $shops;
 
     /** @var  Kernel */
@@ -52,6 +74,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $this->input = $input;
 
         $shopIds = $this->getShopsFromInput();
+
         foreach ($shopIds as $shopId) {
             $this->warmShopUrls($shopId);
         }
@@ -66,15 +89,12 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $output = $this->output;
         $concurrency = $this->input->getOption('concurrency') ?: 7;
 
-        /** @var \Shopware\Components\HttpCache\CacheWarmer $cacheWarmer */
-        $cacheWarmer = $this->container->get('http_cache_warmer');
-
         if ($this->input->getOption('urls')) {
             $file = $this->input->getOption('urls');
             $totalUrlCount = count(file($file));
             $fileName = $file;
         } else {
-            $totalUrlCount = $cacheWarmer->getAllSEOUrlCount($shopId);
+            $totalUrlCount = $this->httpCacheWarmer->getAllSEOUrlCount($shopId);
             $fileName = $this->exportUrls($shopId, $totalUrlCount);
         }
 
@@ -95,14 +115,17 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
      * @param $totalUrlCount
      * @return int
      */
-    private function getWidth($totalUrlCount)
+    private function getWidth($totalUrlCount): int
     {
         $dimensions = $this->getApplication()->getTerminalDimensions();
         if (!$dimensions) {
             return 100;
         }
         $width = $dimensions[0];
-        $maxWidth = $width - (strlen($totalUrlCount) * 2 + 10);
+        if ($width === 0) {
+            $width = 100;
+        }
+        $maxWidth = $width - (strlen((string) $totalUrlCount) * 2 + 10);
 
         return min(200, $maxWidth);
     }
@@ -110,14 +133,14 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
     /**
      * @return array
      */
-    protected function getShopsFromInput()
+    protected function getShopsFromInput(): array
     {
         $shopId = $this->input->getArgument('shopId');
         if (!empty($shopId)) {
             return [$shopId];
         }
 
-        return $this->container->get('db')->fetchCol('SELECT id FROM s_core_shops WHERE active = 1');
+        return $this->db->fetchCol('SELECT id FROM s_core_shops WHERE active = 1');
     }
 
     /**
@@ -166,14 +189,13 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
     protected function exportUrls($shopId, $totalUrlCount): string
     {
         $output = $this->output;
-        $cacheWarmer = $this->container->get('http_cache_warmer');
 
         $offset = 0;
         $output->writeln("\n Exporting URLs for shop with id " . $shopId);
         $fileName = tempnam(sys_get_temp_dir(), 'urls');
         $fh = fopen($fileName, 'wb');
         while ($offset < $totalUrlCount) {
-            $urls = $cacheWarmer->getAllSEOUrls($shopId, 1000, $offset);
+            $urls = $this->httpCacheWarmer->getAllSEOUrls($shopId, 1000, $offset);
             fwrite($fh, implode("\n", $urls));
             $offset += count($urls);
         }

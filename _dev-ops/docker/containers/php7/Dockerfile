@@ -25,6 +25,7 @@ RUN apt-get update -qq && apt-get install -y -qq \
         sudo \
         vim \
         graphviz \
+        siege \
         netcat-openbsd
 
 RUN docker-php-ext-install iconv mcrypt mbstring \

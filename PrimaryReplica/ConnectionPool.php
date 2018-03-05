@@ -10,8 +10,14 @@ namespace SwagEssentials\PrimaryReplica;
  */
 class ConnectionPool
 {
+    /**
+     * @var array
+     */
     private $config;
 
+    /**
+     * @var \PDO[]
+     */
     private $connections = [];
 
     /**
@@ -22,7 +28,7 @@ class ConnectionPool
     /**
      * @var bool
      */
-    private $doStickToConnection = false;
+    private $doStickToConnection;
 
     /**
      * @var array
@@ -34,7 +40,12 @@ class ConnectionPool
      */
     private $stickyConnectionName;
 
-    public function __construct($config, $includePrimary, $doStickToConnection)
+    /**
+     * @param array $config
+     * @param $includePrimary
+     * @param $doStickToConnection
+     */
+    public function __construct(array $config, $includePrimary, $doStickToConnection)
     {
         $this->config = $config;
         $this->includePrimary = $includePrimary;
@@ -42,7 +53,6 @@ class ConnectionPool
 
         $this->prepareWeightedConnections();
     }
-
 
     /**
      * Return a specific connection from the pool
@@ -104,7 +114,6 @@ class ConnectionPool
         }
     }
 
-
     /**
      * Build an array of all available database connections and it weight
      */
@@ -138,7 +147,6 @@ class ConnectionPool
         } else {
             $dbConfig = $this->config['replicas'][$name];
         }
-
 
         if (!$dbConfig) {
             throw new \RuntimeException("Connection '$name' not found");
@@ -185,7 +193,6 @@ class ConnectionPool
         return $conn;
     }
 
-
     /**
      * @param array $dbConfig
      * @return string
@@ -203,7 +210,6 @@ class ConnectionPool
         if (!empty($dbConfig['socket'])) {
             $connectionSettings[] = 'unix_socket=' . $dbConfig['socket'];
         }
-
 
         if (!empty($dbConfig['port'])) {
             $connectionSettings[] = 'port=' . $dbConfig['port'];

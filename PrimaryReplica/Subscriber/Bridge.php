@@ -3,7 +3,6 @@
 namespace SwagEssentials\PrimaryReplica\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
-use Enlight_Components_Session_Namespace;
 use SwagEssentials\PrimaryReplica\Commands\RunSql;
 use Doctrine\Common\Collections\ArrayCollection;
 use SwagEssentials\PrimaryReplica\ConnectionDecision;
