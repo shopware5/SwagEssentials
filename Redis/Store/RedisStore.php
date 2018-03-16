@@ -303,7 +303,7 @@ class RedisStore implements StoreInterface
             return [];
         }
 
-        return unserialize($entries, [true]);
+        return unserialize($entries, ['allowed_classes' => true]);
     }
 
     /**
@@ -443,7 +443,9 @@ class RedisStore implements StoreInterface
             // keep track of the overall HTTP cache size
             $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($this->load($this->getBodyKey(), $cacheKey)));
             $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($this->load($this->getMetaKey(), $headerKey)));
-            $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($this->load($this->getIdKey(), $cacheInvalidateKey)));
+            $this->redisClient->decrBy(
+                $this->getCacheSizeKey(), strlen($this->load($this->getIdKey(), $cacheInvalidateKey))
+            );
 
             // remove fields
             $this->redisClient->hDel($this->getBodyKey(), $cacheKey);

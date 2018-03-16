@@ -197,7 +197,7 @@ class ConnectionDecision
         $apc_available = $apc_store && $apc_fetch;
 
         if ($apc_available && $tables = $apc_fetch('primary_replica_tables')) {
-            return unserialize($tables, [true]);
+            return unserialize($tables, ['allowed_classes' => true]);
         }
 
         $tables = $this->replicaPool->getRandomConnection()[1]->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
