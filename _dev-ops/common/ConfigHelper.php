@@ -247,6 +247,6 @@ class ConfigHelper
             require_once __DIR__ . \'/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php\';
             
         return ' . var_export($config, true) . ';';
-        file_put_contents(self::CONFIG_PATH, $configFile);
+        file_put_contents(self::CONFIG_PATH, $configFile, LOCK_EX);
     }
 }
