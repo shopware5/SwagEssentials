@@ -20,6 +20,10 @@ class CacheManager extends ShopwareCacheManager
      */
     private $redis;
 
+    /**
+     * @param Container $container
+     * @param ShopwareCacheManager $innerCacheManager
+     */
     public function __construct(Container $container, ShopwareCacheManager $innerCacheManager)
     {
         parent::__construct($container);
