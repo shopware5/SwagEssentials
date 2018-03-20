@@ -13,6 +13,10 @@ class SwagEssentials extends Plugin
     {
         parent::build($container);
 
+        if (!$container->hasParameter('shopware.swag_essentials.modules')) {
+            return;
+        }
+
         /** @var array $swagEssentialsModules */
         $swagEssentialsModules = $container->getParameter('shopware.swag_essentials.modules');
 
