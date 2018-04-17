@@ -4,6 +4,9 @@
 **Needed for**: Uncached pages, Shopware instances without HTTP cache, Cluster setups and setups with high load on the primary database connection
 
 ## Setting it up:
+### Requirements
+* Shopware 5.3.4 or newer
+
 ### Enabling it
 In order to enable the submodule, import it in your `config.php`:
 

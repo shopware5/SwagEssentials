@@ -19,6 +19,10 @@ class ListProductService implements ListProductServiceInterface
      */
     private $redis;
 
+    /**
+     * @param ListProductServiceInterface $service
+     * @param \Redis $redis
+     */
     public function __construct(ListProductServiceInterface $service, \Redis $redis)
     {
         $this->service = $service;
