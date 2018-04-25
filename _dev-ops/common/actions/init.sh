@@ -17,5 +17,10 @@ php -r "require_once __DIR__(sic!).'/_dev-ops/common/ConfigHelper.php'; ConfigHe
 
 shopware/bin/console sw:plugin:refresh
 
+shopware/bin/console sw:firstrunwizard:disable
+
 shopware/bin/console sw:plugin:install SwagEssentials
 shopware/bin/console sw:plugin:activate SwagEssentials
+
+shopware/bin/console sw:store:download SwagDemoDataDE
+shopware/bin/console sw:plugin:install SwagDemoDataDE

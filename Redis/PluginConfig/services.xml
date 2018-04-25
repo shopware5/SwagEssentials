@@ -16,6 +16,7 @@
             <argument type="service" id="cache" />
             <argument type="service" id="db" on-invalid="ignore"/>
             <argument>%shopware.config%</argument>
+            <argument type="service" id="shopware.release" />
         </service>
 
         <service id="swag_essentials.redis_plugin_config.cache_manager" class="SwagEssentials\Redis\PluginConfig\CacheManager"
