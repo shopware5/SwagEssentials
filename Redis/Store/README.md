@@ -49,3 +49,31 @@ return [
         ],
 ];
 ```
+
+### Check Redis Connection 
+If you want to check the redis connection before you use it for the Store you can do it easily with a small config tweak:
+
+```php
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
+$config = [
+    ...
+];
+
+try {
+    $testConnection = $config['httpcache']['redisConnections'];
+    foreach ($testConnection as &$redisConnection) {
+        $redisConnection['persistent'] = false;
+    }
+    unset($redisConnection);
+    $redis = \SwagEssentials\Redis\Factory::factory($testConnection);
+    $redis->close();
+} catch (Exception $e) {
+    unset($config['httpcache']);
+    $config['swag_essentials']['modules']['RedisStore'] = false;
+}
+
+return $config;
+```
+
+If no redis connection is available it will automatically disable the RedisStore!
