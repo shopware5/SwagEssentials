@@ -1,18 +1,24 @@
 FROM php:7.1-apache
 
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update -qq && apt-get install -y -qq apt-utils && mkdir -p /usr/share/man/man1 \
+    && apt-get update -qq && apt-get install -y -qq openjdk-8-jre-headless \
+    && apt-get update -qq && apt-get install -y -qq  openjdk-8-jdk && dpkg --configure -a
+
 RUN apt-get update -qq && apt-get install -y -qq \
         libicu-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
+        libpng-dev \
         libcurl4-openssl-dev \
         software-properties-common  \
         libcurl3 curl \
+        gnupg \
         git \
         zip \
         unzip \
-        openjdk-7-jdk \
         inotify-tools
 
 RUN apt-get update -qq && apt-get install -y -qq \
