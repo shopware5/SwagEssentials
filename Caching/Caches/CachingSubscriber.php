@@ -35,16 +35,6 @@ class CachingSubscriber implements SubscriberInterface
             'Shopware\Models\Article\Article::postPersist' => 'onPostPersist',
             'Shopware\Models\Article\Detail::postUpdate' => 'onPostPersist',
             'Shopware\Models\Article\Detail::postPersist' => 'onPostPersist',
-            'Shopware\Models\Category\Category::postPersist' => 'onPostPersist',
-            'Shopware\Models\Category\Category::postUpdate' => 'onPostPersist',
-            'Shopware\Models\Banner\Banner::postPersist' => 'onPostPersist',
-            'Shopware\Models\Banner\Banner::postUpdate' => 'onPostPersist',
-            'Shopware\Models\Blog\Blog::postPersist' => 'onPostPersist',
-            'Shopware\Models\Blog\Blog::postUpdate' => 'onPostPersist',
-            'Shopware\Models\Emotion\Emotion::postPersist' => 'onPostPersist',
-            'Shopware\Models\Emotion\Emotion::postUpdate' => 'onPostPersist',
-            'Shopware\Models\Site\Site::postPersist' => 'onPostPersist',
-            'Shopware\Models\Site\Site::postUpdate' => 'onPostPersist',
         ];
     }
 
