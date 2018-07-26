@@ -431,7 +431,6 @@ class RedisStore implements StoreInterface
             return false;
         }
 
-
         $cacheInvalidateKey = $this->getShopwareIdKey($id);
 
         if (!$content = json_decode($this->load($this->getIdKey(), $cacheInvalidateKey), true)) {
