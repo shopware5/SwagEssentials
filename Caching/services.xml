@@ -35,5 +35,12 @@
             <factory service="swag_essentials.cache_factory" method="createProductService" />
             <argument type="service" id="swag_essentials.product_service.inner"/>
         </service>
+
+        <service id="swag_essentials.caching_subscriber" class="SwagEssentials\Caching\Caches\CachingSubscriber">
+            <argument type="service" id="cache"/>
+            <argument type="service" id="config"/>
+
+            <tag name="shopware.event_subscriber"/>
+        </service>
     </services>
 </container>

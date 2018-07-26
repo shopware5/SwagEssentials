@@ -30,7 +30,6 @@ class CachingProductDecorator implements ProductServiceInterface
     public function __construct(\Zend_Cache_Core $cache, ProductServiceInterface $service, $ttl)
     {
         $this->service = $service;
-
         $this->cache = $cache;
         $this->ttl = $ttl;
     }
@@ -51,7 +50,8 @@ class CachingProductDecorator implements ProductServiceInterface
         }
 
         $result = $this->service->getList($numbers, $context);
-        $this->cache->save($result, $hash, [], $this->ttl);
+
+        $this->cache->save($result, $hash, ['swag_essentials_product'], $this->ttl);
 
         return $result;
     }

@@ -51,7 +51,7 @@ class CachingListProductDecorator implements ListProductServiceInterface
         }
 
         $result = $this->service->getList($numbers, $context);
-        $this->cache->save($result, $hash, [], $this->ttl);
+        $this->cache->save($result, $hash, ['swag_essentials_list_product'], $this->ttl);
 
         return $result;
     }
