@@ -13,6 +13,7 @@ class RemoteCacheInvalidator
     const ENDPOINT_HOST = 'host';
     const ENDPOINT_USER = 'user';
     const ENDPOINT_PASSWORD = 'password';
+    const ENDPOINT_AUTH = 'auth';
 
     /**
      * List of all hosts
@@ -77,10 +78,11 @@ class RemoteCacheInvalidator
     private function getResponseForEndpoint($endpoint, $caches)
     {
         $client = new Client();
+        $authMethod = $endpoint[self::ENDPOINT_AUTH] ?? 'basic';
         return $client->delete(
             $endpoint[self::ENDPOINT_HOST] . '/caches',
             [
-                'auth' => [$endpoint[self::ENDPOINT_USER], $endpoint[self::ENDPOINT_PASSWORD]],
+                'auth' => [$endpoint[self::ENDPOINT_USER], $endpoint[self::ENDPOINT_PASSWORD], $authMethod],
                 'json' => $caches,
             ]
         );
