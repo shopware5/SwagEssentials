@@ -20,5 +20,12 @@
             <argument type="service" id="swag_essentials.redis_store.cache_manager.inner"/>
         </service>
 
+        <service id="swag_essentials.redis_store_caching_subscriber" class="SwagEssentials\Redis\Store\CachingSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="config"/>
+
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
     </services>
 </container>
