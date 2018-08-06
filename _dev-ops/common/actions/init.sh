@@ -24,3 +24,5 @@ shopware/bin/console sw:plugin:activate SwagEssentials
 
 shopware/bin/console sw:store:download SwagDemoDataDE
 shopware/bin/console sw:plugin:install SwagDemoDataDE
+
+I: mysql __DB_NAME__ -u "__DB_USER__" -p"__DB_PASSWORD__" -h "__DB_HOST__" < _dev-ops/common/fixtures.sql
