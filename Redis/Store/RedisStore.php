@@ -53,12 +53,16 @@ class RedisStore implements StoreInterface
      */
     protected $keyCache;
 
+    protected $ignoredUrlParameters;
+
     public function __construct($options, Kernel $kernel)
     {
         $this->cacheCookies = $options['cache_cookies'];
         $this->keyPrefix = $options['keyPrefix'] ?? '';
 
         $this->redisClient = Factory::factory($options['redisConnections']);
+
+        $this->ignoredUrlParameters = $options['ignored_url_parameters'] ?? [];
 
         $this->keyCache = new \SplObjectStorage();
     }
@@ -502,7 +506,7 @@ class RedisStore implements StoreInterface
             return $this->keyCache[$request];
         }
 
-        $uri = $this->sortQueryStringParameters($request->getUri());
+        $uri = $this->verifyIgnoredParameters($request);
 
         foreach ($this->cacheCookies as $cookieName) {
             if ($request->cookies->has($cookieName)) {
@@ -521,23 +525,16 @@ class RedisStore implements StoreInterface
      * @param $url
      * @return string
      */
-    private function sortQueryStringParameters($url): string
+    private function sortQueryStringParameters($params): string
     {
-        $pos = strpos($url, '?');
-        if ($pos === false) {
-            return $url;
-        }
+        $sParams = urldecode(http_build_query($params));
+        $query = explode('&', $sParams);
 
-        $urlPath = substr($url, 0, $pos + 1);
-        $queryString = substr($url, $pos + 1);
+        usort($query, function ($val1, $val2) {
+            return strcmp($val1, $val2);
+        });
 
-        $queryParts = [];
-        parse_str($queryString, $queryParts);
-        ksort($queryParts, SORT_STRING);
-
-        $queryString = http_build_query($queryParts);
-
-        return $urlPath . $queryString;
+        return implode('&', $query);
     }
 
     /**
@@ -631,5 +628,43 @@ class RedisStore implements StoreInterface
         $this->keyPrefix = $keyPrefix;
 
         return $this;
+    }
+
+    private function verifyIgnoredParameters(Request $request)
+    {
+        $requestParams = $request->query->all();
+
+        if (count($requestParams) === 0) {
+            return $request->getUri();
+        }
+
+        $parsed = parse_url($request->getUri());
+        $query = [];
+
+        parse_str($parsed['query'], $query);
+
+        $params = array_diff_key(
+            $query,
+            array_flip($this->ignoredUrlParameters)
+        );
+
+        /**
+         * Sort query parameters
+         */
+        $stringParams = $this->sortQueryStringParameters($params);
+
+        $path = $request->getPathInfo();
+
+        /**
+         * Normalize URL to consistently return the same path even when variables are present
+         */
+        $uri = sprintf(
+            '%s%s%s',
+            $request->getSchemeAndHttpHost(),
+            $path,
+            empty($stringParams) ? '' : "?$stringParams"
+        );
+
+        return $uri;
     }
 }
