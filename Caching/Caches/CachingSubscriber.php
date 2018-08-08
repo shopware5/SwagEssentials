@@ -13,6 +13,11 @@ class CachingSubscriber implements SubscriberInterface
     private $config;
 
     /**
+     * @var \Zend_Cache_Core
+     */
+    private $cache;
+
+    /**
      * @param \Zend_Cache_Core $cache
      * @param ProductServiceInterface $service
      * @param int $ttl
@@ -64,6 +69,6 @@ class CachingSubscriber implements SubscriberInterface
             return;
         }
 
-        $this->cache->clean(\Zend_Cache::CLEANING_MODE_MATCHING_TAG, ['swag_essentials_product', 'swag_essentials_list_product']);
+        $this->cache->clean(\Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG, ['swag_essentials_product', 'swag_essentials_list_product']);
     }
 }
