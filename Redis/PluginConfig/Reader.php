@@ -5,6 +5,7 @@ namespace SwagEssentials\Redis\PluginConfig;
 use Shopware\Components\Plugin\ConfigReader as ConfigReaderInterface;
 use Shopware\Components\Plugin\DBALConfigReader;
 use Shopware\Models\Shop\Shop;
+use SwagEssentials\Redis\RedisConnection;
 
 class Reader implements ConfigReaderInterface
 {
@@ -16,7 +17,7 @@ class Reader implements ConfigReaderInterface
     private $configReader;
 
     /**
-     * @var \Redis
+     * @var RedisConnection
      */
     private $redis;
 
@@ -25,7 +26,7 @@ class Reader implements ConfigReaderInterface
      */
     private $cachingTtlPluginConfig;
 
-    public function __construct(DBALConfigReader $configReader, \Redis $redis, int $cachingTtlPluginConfig)
+    public function __construct(DBALConfigReader $configReader, RedisConnection $redis, int $cachingTtlPluginConfig)
     {
         $this->configReader = $configReader;
         $this->redis = $redis;

@@ -1,20 +1,20 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace SwagEssentials\Redis;
 
 class Factory
 {
-    public static function factory(array $configs): \Redis
+    public static function factory(array $configs): RedisConnection
     {
-        $redis = new \Redis();
-
-        foreach ($configs as $config) {
+        $redis = false;
+        if (count($configs) === 1) {
+            $config = array_pop($configs);
             $persistent = $config['persistent'] ?? true;
             $port = $config['port'] ?? 6379;
             $timeout = $config['timeout'] ?? 30;
             $index = $config['dbindex'] ?? 0;
             $auth = $config['auth'] ?? '';
-
+            $redis = new \Redis();
             if ($persistent) {
                 /**
                  * Persistent connections are unique by host + port + timeout OR host + persistent_id OR unix_socket + persistent_id
@@ -38,8 +38,18 @@ class Factory
             }
 
             $redis->select($index);
+        } elseif (count($configs) > 1) {
+            $redisConfigArray = [];
+            $persistent = false;
+            foreach ($configs as $config) {
+                $redisConfigArray[] = $config['host'] . ':' . $config['port'];
+                if (isset($config['persistent']) && $config['persistent'] === true) {
+                    $persistent = true;
+                }
+            }
+            $redis = new \RedisCluster(null, $redisConfigArray, 1.5, 1.5, $persistent);
         }
 
-        return $redis;
+        return new RedisConnection($redis);
     }
 }

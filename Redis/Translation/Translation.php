@@ -3,13 +3,14 @@
 namespace SwagEssentials\Redis\Translation;
 
 use Doctrine\DBAL\Connection;
+use SwagEssentials\Redis\RedisConnection;
 
 class Translation extends \Shopware_Components_Translation
 {
     const HASH_NAME = \Shopware::VERSION . '-sw_translation';
 
     /**
-     * @var \Redis
+     * @var RedisConnection
      */
     private $redis;
 
@@ -20,10 +21,10 @@ class Translation extends \Shopware_Components_Translation
 
     /**
      * @param Connection|null $connection
-     * @param \Redis $redis
+     * @param RedisConnection $redis
      * @param int $cachingTtlTranslation
      */
-    public function __construct(Connection $connection = null, \Redis $redis, int $cachingTtlTranslation)
+    public function __construct(Connection $connection = null, RedisConnection $redis, int $cachingTtlTranslation)
     {
         parent::__construct($connection);
         $this->redis = $redis;

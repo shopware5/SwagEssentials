@@ -3,17 +3,18 @@
 namespace SwagEssentials\Redis\NumberRange;
 
 use Shopware\Components\NumberRangeIncrementerInterface;
+use SwagEssentials\Redis\RedisConnection;
 
 class Incrementer implements NumberRangeIncrementerInterface
 {
     const HASH_NAME = \Shopware::VERSION . '-sw_number_range';
 
     /**
-     * @var \Redis
+     * @var RedisConnection
      */
     private $redis;
 
-    public function __construct(\Redis $redis)
+    public function __construct(RedisConnection $redis)
     {
         $this->redis = $redis;
     }

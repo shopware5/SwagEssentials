@@ -5,6 +5,7 @@ namespace SwagEssentials\Redis\ProductGateway;
 use Shopware\Components\CacheManager as ShopwareCacheManager;
 use Shopware\Components\DependencyInjection\Container;
 use SwagEssentials\Common\CacheManagerDecorationTrait;
+use SwagEssentials\Redis\RedisConnection;
 
 class CacheManager extends ShopwareCacheManager
 {
@@ -16,7 +17,7 @@ class CacheManager extends ShopwareCacheManager
     private $innerCacheManager;
 
     /**
-     * @var \Redis
+     * @var RedisConnection
      */
     private $redis;
 
