@@ -4,6 +4,7 @@ namespace SwagEssentials\Redis\ProductGateway;
 
 use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
+use SwagEssentials\Redis\RedisConnection;
 
 class ListProductService implements ListProductServiceInterface
 {
@@ -15,15 +16,11 @@ class ListProductService implements ListProductServiceInterface
     const HASH_NAME = \Shopware::VERSION . '-sw_list_product';
 
     /**
-     * @var \Redis
+     * @var RedisConnection
      */
     private $redis;
 
-    /**
-     * @param ListProductServiceInterface $service
-     * @param \Redis $redis
-     */
-    public function __construct(ListProductServiceInterface $service, \Redis $redis)
+    public function __construct(ListProductServiceInterface $service, RedisConnection $redis)
     {
         $this->service = $service;
 
