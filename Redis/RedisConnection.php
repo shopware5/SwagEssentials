@@ -4,6 +4,9 @@ namespace SwagEssentials\Redis;
 
 class RedisConnection
 {
+    /**
+     * @var \Redis|\RedisCluster
+     */
     private $connection;
 
     public function __construct($connection)

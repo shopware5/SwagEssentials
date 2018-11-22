@@ -47,6 +47,7 @@ class Factory
                     $persistent = true;
                 }
             }
+
             $redis = new \RedisCluster(null, $redisConfigArray, 1.5, 1.5, $persistent);
         }
 
