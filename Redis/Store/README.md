@@ -10,6 +10,7 @@ In order to enable the submodule, import it in your `config.php`:
 ```php
 require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
 require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
 return [
     'db' => [...],
     'swag_essentials' =>
@@ -73,6 +74,7 @@ return [
 ```php
 require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
 require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
 return [
     'db' => [...],
     'swag_essentials' =>
@@ -118,6 +120,7 @@ If you want to check the redis connection before you use it for the Store you ca
 ```php
 require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
 require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
 $config = [
     ...
 ];
