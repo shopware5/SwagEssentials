@@ -261,7 +261,7 @@ class RedisStore implements StoreInterface
      */
     public function cleanup(): bool
     {
-        $this->purgeAll();
+        $this->redisClient->del($this->getLockKey());
 
         return true;
     }

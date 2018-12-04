@@ -4,7 +4,6 @@ namespace SwagEssentials\Redis\Store;
 
 use Shopware\Components\CacheManager as ShopwareCacheManager;
 use Shopware\Components\DependencyInjection\Container;
-use Shopware\Components\HttpCache\AppCache;
 use SwagEssentials\Common\CacheManagerDecorationTrait;
 
 class CacheManager extends ShopwareCacheManager
@@ -17,7 +16,7 @@ class CacheManager extends ShopwareCacheManager
     private $innerCacheManager;
 
     /**
-     * @var AppCache $httpCache
+     * @var RedisStore $httpCache
      */
     private $httpCache = null;
 
@@ -41,8 +40,9 @@ class CacheManager extends ShopwareCacheManager
     /**
      * Returns cache information
      *
-     * @param null $request
+     * @param \Enlight_Controller_Request_RequestHttp $request
      * @return array
+     * @throws \Exception
      */
     public function getHttpCacheInfo($request = null): array
     {
@@ -75,7 +75,7 @@ class CacheManager extends ShopwareCacheManager
     {
         $this->innerCacheManager->clearHttpCache();
         if ($this->httpCache && $this->httpCache->getStore() instanceof RedisStore) {
-            $this->httpCache->getStore()->cleanup();
+            $this->httpCache->getStore()->purgeAll();
         }
     }
 }
