@@ -101,7 +101,10 @@ class RedisStore implements StoreInterface
 
         list($headers) = array_slice($match, 1, 1);
 
-        $body = $this->redisClient->hGet($this->getBodyKey(), $headers['x-content-digest'][0]);
+        $body = $this->redisClient->hGet(
+            $this->getBodyKey($headers['x-content-digest'][0]),
+            $headers['x-content-digest'][0]
+        );
 
         if ($body) {
             return $this->recreateResponse($headers, $body);
@@ -123,7 +126,7 @@ class RedisStore implements StoreInterface
         if (!$response->headers->has('X-Content-Digest')) {
             $digest = $this->generateContentDigestKey($response);
 
-            if (false === $this->save($this->getBodyKey(), $digest, $response->getContent())) {
+            if (false === $this->save($this->getBodyKey($digest), $digest, $response->getContent())) {
                 throw new \RuntimeException('Unable to store the entity.');
             }
 
@@ -398,7 +401,9 @@ class RedisStore implements StoreInterface
      */
     public function purgeAll()
     {
-        $this->redisClient->del($this->getBodyKey());
+        foreach (array_merge(range('a', 'z'), range(0, 9)) as $bodyKey) {
+            $this->redisClient->del($this->getBodyKey((string) $bodyKey));
+        }
         $this->redisClient->del($this->getMetaKey());
         $this->redisClient->del($this->getIdKey());
         $this->redisClient->del($this->getLockKey());
@@ -444,14 +449,18 @@ class RedisStore implements StoreInterface
         // unlink all cache files which contain the given id
         foreach ($content as $cacheKey => $headerKey) {
             // keep track of the overall HTTP cache size
-            $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($this->load($this->getBodyKey(), $cacheKey)));
+            $this->redisClient->decrBy(
+                $this->getCacheSizeKey(),
+                strlen($this->load($this->getBodyKey($cacheKey), $cacheKey))
+            );
             $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($this->load($this->getMetaKey(), $headerKey)));
             $this->redisClient->decrBy(
-                $this->getCacheSizeKey(), strlen($this->load($this->getIdKey(), $cacheInvalidateKey))
+                $this->getCacheSizeKey(),
+                strlen($this->load($this->getIdKey(), $cacheInvalidateKey))
             );
 
             // remove fields
-            $this->redisClient->hDel($this->getBodyKey(), $cacheKey);
+            $this->redisClient->hDel($this->getBodyKey($cacheKey), $cacheKey);
             $this->redisClient->hDel($this->getMetaKey(), $headerKey);
             $this->redisClient->hDel($this->getIdKey(), $cacheInvalidateKey);
         }
@@ -548,7 +557,7 @@ class RedisStore implements StoreInterface
     {
         $entries = array_sum(
             [
-                $this->redisClient->hLen($this->getBodyKey()),
+                $this->redisClient->hLen($this->getBodyKey('*')),
                 $this->redisClient->hLen($this->getMetaKey()),
                 $this->redisClient->hLen($this->getIdKey()),
             ]
@@ -564,9 +573,9 @@ class RedisStore implements StoreInterface
      *
      * @return string
      */
-    protected function getBodyKey(): string
+    protected function getBodyKey(string $key): string
     {
-        return $this->getKeyPrefix() . self::CACHE_KEY;
+        return $this->getKeyPrefix() . self::CACHE_KEY . '-' . $key[0];
     }
 
     /**
@@ -639,6 +648,7 @@ class RedisStore implements StoreInterface
         if (count($requestParams) === 0) {
             return $request->getUri();
         }
+
 
         $parsed = parse_url($request->getUri());
         $query = [];
