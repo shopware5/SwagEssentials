@@ -322,6 +322,9 @@ class RedisStore implements StoreInterface
      */
     private function save($hash, $key, $data)
     {
+        if (function_exists('gzcompress')) {
+            $data = gzcompress($data, 9);
+        }
         $this->redisClient->hSet($hash, $key, $data);
 
         // keep track of the overall HTTP cache size
@@ -337,7 +340,12 @@ class RedisStore implements StoreInterface
      */
     private function load($hash, $key)
     {
-        return $this->redisClient->hGet($hash, $key);
+        $return = $this->redisClient->hGet($hash, $key);
+        if (function_exists('gzuncompress') && $return) {
+            $return = gzuncompress($this->redisClient->hGet($hash, $key));
+        }
+
+        return $return;
     }
 
     /**
