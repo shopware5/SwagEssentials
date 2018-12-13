@@ -101,10 +101,15 @@ class RedisStore implements StoreInterface
 
         list($headers) = array_slice($match, 1, 1);
 
+
         $body = $this->redisClient->hGet(
             $this->getBodyKey($headers['x-content-digest'][0]),
             $headers['x-content-digest'][0]
         );
+
+        if (\function_exists('gzuncompress') && $body) {
+            $body = gzuncompress($body);
+        }
 
         if ($body) {
             return $this->recreateResponse($headers, $body);
@@ -126,7 +131,7 @@ class RedisStore implements StoreInterface
         if (!$response->headers->has('X-Content-Digest')) {
             $digest = $this->generateContentDigestKey($response);
 
-            if (false === $this->save($this->getBodyKey($digest), $digest, $response->getContent())) {
+            if ($this->save($this->getBodyKey($digest), $digest, $response->getContent()) === false) {
                 throw new \RuntimeException('Unable to store the entity.');
             }
 
@@ -192,7 +197,7 @@ class RedisStore implements StoreInterface
         }
 
         if ($modified) {
-            if (false === $this->save($this->getMetaKey(), $key, serialize($newEntries))) {
+            if ($this->save($this->getMetaKey(), $key, serialize($newEntries)) === false) {
                 throw new \RuntimeException('Unable to store the metadata.');
             }
         }
@@ -295,7 +300,7 @@ class RedisStore implements StoreInterface
      */
     protected function generateContentDigestKey(Response $response): string
     {
-        return sha1($response->getContent());
+        return md5($response->getContent());
     }
 
     /**
@@ -322,10 +327,14 @@ class RedisStore implements StoreInterface
      */
     private function save($hash, $key, $data)
     {
-        $this->redisClient->hSet($hash, $key, $data);
-
         // keep track of the overall HTTP cache size
         $this->redisClient->incrBy($this->getCacheSizeKey(), strlen($data));
+
+        if (\function_exists('gzcompress')) {
+            $data = gzcompress($data, 9);
+        }
+
+        $this->redisClient->hSet($hash, $key, $data);
     }
 
     /**
@@ -337,7 +346,12 @@ class RedisStore implements StoreInterface
      */
     private function load($hash, $key)
     {
-        return $this->redisClient->hGet($hash, $key);
+        $return = $this->redisClient->hGet($hash, $key);
+        if (\function_exists('gzuncompress') && $return) {
+            $return = gzuncompress($return);
+        }
+
+        return $return;
     }
 
     /**
@@ -495,7 +509,7 @@ class RedisStore implements StoreInterface
             // but save a lot of reads when invalidating
             $content[$cacheKey] = $metadataKey;
 
-            if (!false === $this->save($this->getIdKey(), $key, json_encode($content))) {
+            if ($this->save($this->getIdKey(), $key, json_encode($content)) === !false) {
                 throw new \RuntimeException("Could not write cacheKey $key");
             }
         }
