@@ -6,7 +6,10 @@ use Shopware;
 
 class Config extends \Shopware_Components_Config
 {
-    const HASH_NAME = \Shopware::VERSION . '-sw_config_core';
+    /**
+     * @var string
+     */
+    private $hashName = Shopware::VERSION . '-sw_config_core';
 
     /**
      * @var \Redis
@@ -19,6 +22,11 @@ class Config extends \Shopware_Components_Config
     private $cachingTtlPluginConfig;
 
     /**
+     * @var array
+     */
+    private $config;
+
+    /**
      * Constructor method
      *
      * @param array $config
@@ -29,7 +37,11 @@ class Config extends \Shopware_Components_Config
 
         $this->cachingTtlPluginConfig = $config['caching_ttl_plugin_config'];
 
+        if (isset($config['release'])) {
+            $this->hashName = str_replace(Shopware::VERSION, $config['release']->getVersion(), $this->hashName);
+        }
 
+        $this->config = $config;
         parent::__construct($config);
     }
 
@@ -49,17 +61,17 @@ class Config extends \Shopware_Components_Config
 
         $key = implode('|', $parameters);
 
-        $result = $this->redis->hGet(self::HASH_NAME, $key);
+        $result = $this->redis->hGet($this->hashName, $key);
 
         if ($result) {
             return json_decode($result, true);
         }
 
-        $sql = "
+        $sql = '
             SELECT
-              LOWER(REPLACE(e.name, '_', '')) AS name,
+              LOWER(REPLACE(e.name, \'_\', \'\')) AS name,
               COALESCE(currentShop.value, parentShop.value, fallbackShop.value, e.value) AS value,
-              LOWER(REPLACE(forms.name, '_', '')) AS form,
+              LOWER(REPLACE(forms.name, \'_\', \'\')) AS form,
               currentShop.value AS currentShopval,
               parentShop.value AS parentShopval,
               fallbackShop.value AS fallbackShopval
@@ -80,13 +92,12 @@ class Config extends \Shopware_Components_Config
 
             LEFT JOIN s_core_config_forms forms
               ON forms.id = e.form_id
-        ";
+        ';
 
         $data = $this->_db->fetchAll(
             $sql,
             $parameters
         );
-
 
         $result = [];
         foreach ($data as $row) {
@@ -100,9 +111,20 @@ class Config extends \Shopware_Components_Config
         $result['revision'] = Shopware::REVISION;
         $result['versiontext'] = Shopware::VERSION_TEXT;
 
-        $this->redis->hSet(self::HASH_NAME, $key, json_encode($result));
-        $this->redis->expire(self::HASH_NAME, $this->cachingTtlPluginConfig);
+        if (isset($this->config['release'])) {
+            $result['version'] = $this->config['release']->getVersion();
+            $result['revision'] = $this->config['release']->getRevision();
+            $result['versiontext'] = $this->config['release']->getVersionText();
+        }
+
+        $this->redis->hSet($this->hashName, $key, json_encode($result));
+        $this->redis->expire($this->hashName, $this->cachingTtlPluginConfig);
 
         return $result;
+    }
+
+    protected function load()
+    {
+        $this->_data = $this->readData();
     }
 }
