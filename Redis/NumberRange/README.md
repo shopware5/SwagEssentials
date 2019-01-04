@@ -14,7 +14,7 @@ In order to enable the submodule, import it in your `config.php`:
         'modules' =>
             [
                 ...
-                'NumberRange' => true,
+                'RedisNumberRange' => true,
             ],
     ],
 ```
