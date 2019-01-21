@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 include __DIR__ . '/../../shopware/vendor/autoload.php';
 
@@ -230,7 +230,7 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    private static function getConfig($configPath)
+    private static function getConfig(string $configPath)
     {
         if (!file_exists($configPath)) {
             throw new RuntimeException('please install shopware first!');
@@ -244,6 +244,7 @@ class ConfigHelper
         $configFile = '<?php 
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php\';
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Factory.php\';
+            require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/RedisConnection.php\';
             require_once __DIR__ . \'/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php\';
             
         return ' . var_export($config, true) . ';';

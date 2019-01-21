@@ -39,7 +39,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
         return $this->service->getAssembleQuery();
     }
 
-
     protected function getOrgQueryArray($query)
     {
         return $this->service->getOrgQueryArray($query);

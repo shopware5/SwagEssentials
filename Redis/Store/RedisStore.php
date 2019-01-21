@@ -77,7 +77,7 @@ class RedisStore implements StoreInterface
     {
         $key = $this->getMetadataKey($request);
 
-        if (!$entries = $this->getMetadata($key)) {
+        if (!$entries = $this->getMetaData($key)) {
             return null;
         }
 
@@ -148,7 +148,7 @@ class RedisStore implements StoreInterface
         $requestHeaders = $this->getRequestHeaders($request);
         $metadataKey = $this->getMetadataKey($request);
 
-        foreach ($this->getMetadata($metadataKey) as $entry) {
+        foreach ($this->getMetaData($metadataKey) as $entry) {
             if (!isset($entry[1]['vary'][0])) {
                 $entry[1]['vary'] = [''];
             }
@@ -183,7 +183,7 @@ class RedisStore implements StoreInterface
 
         $key = $this->getMetadataKey($request);
 
-        foreach ($this->getMetadata($key) as $entry) {
+        foreach ($this->getMetaData($key) as $entry) {
             //We pass an empty body we only care about headers.
             $response = $this->recreateResponse($entry[1], null);
 
@@ -196,10 +196,8 @@ class RedisStore implements StoreInterface
             }
         }
 
-        if ($modified) {
-            if ($this->save($this->getMetaKey(), $key, serialize($newEntries)) === false) {
-                throw new \RuntimeException('Unable to store the metadata.');
-            }
+        if ($modified && $this->save($this->getMetaKey(), $key, serialize($newEntries)) === false) {
+            throw new \RuntimeException('Unable to store the metadata.');
         }
     }
 
@@ -276,9 +274,7 @@ class RedisStore implements StoreInterface
 
     private function getShopwareIdKey($cacheId)
     {
-        // return hash('sha256', $cacheId);
-
-        return $cacheId;
+        return hash('sha256', $cacheId);
     }
 
     /**
@@ -309,7 +305,7 @@ class RedisStore implements StoreInterface
      * @param $key
      * @return array
      */
-    private function getMetadata($key): array
+    private function getMetaData($key): array
     {
         if (false === $entries = $this->load($this->getMetaKey(), $key)) {
             return [];
@@ -545,7 +541,7 @@ class RedisStore implements StoreInterface
     /**
      * Sort query params, so that shop.de/?foo=1&bar=2 and shop.de/?bar=2&foo=1 are handled as the same cached page
      *
-     * @param $url
+     * @param $params
      * @return string
      */
     private function sortQueryStringParameters($params): string
@@ -554,9 +550,10 @@ class RedisStore implements StoreInterface
         $query = explode('&', $sParams);
 
         usort(
-            $query, function ($val1, $val2) {
-            return strcmp($val1, $val2);
-        }
+            $query,
+            function ($val1, $val2) {
+                return strcmp($val1, $val2);
+            }
         );
 
         return implode('&', $query);
@@ -585,6 +582,7 @@ class RedisStore implements StoreInterface
     /**
      * Get the prefixed key for body entries
      *
+     * @param string $key
      * @return string
      */
     protected function getBodyKey(string $key): string
@@ -655,7 +653,11 @@ class RedisStore implements StoreInterface
         return $this;
     }
 
-    private function verifyIgnoredParameters(Request $request)
+    /**
+     * @param Request $request
+     * @return string
+     */
+    private function verifyIgnoredParameters(Request $request): string
     {
         $requestParams = $request->query->all();
 

@@ -9,7 +9,7 @@ class Config extends \Shopware_Components_Config
     /**
      * @var string
      */
-    private $hashName = Shopware::VERSION . '-sw_config_core';
+    public $hashName = Shopware::VERSION . '-sw_config_core';
 
     /**
      * @var \Redis

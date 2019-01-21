@@ -4,6 +4,8 @@
     "phpunit/phpunit": "~5.6||~6.0.5"
   },
     "require": {
-        "ext-zlib": "*"
+        "ext-zlib": "*",
+        "ext-json": "*",
+        "ext-redis": "*"
     }
 }

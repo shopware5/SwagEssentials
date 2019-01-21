@@ -18,13 +18,12 @@ class CacheManager extends ShopwareCacheManager
     /**
      * @var RedisStore $httpCache
      */
-    private $httpCache = null;
+    private $httpCache;
 
     /**
-     * @var Container
+     * @param Container $container
+     * @param ShopwareCacheManager $innerCacheManager
      */
-    private $container;
-
     public function __construct(Container $container, ShopwareCacheManager $innerCacheManager)
     {
         parent::__construct($container);
@@ -34,7 +33,6 @@ class CacheManager extends ShopwareCacheManager
         }
 
         $this->innerCacheManager = $innerCacheManager;
-        $this->container = $container;
     }
 
     /**
