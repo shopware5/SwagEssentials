@@ -53,6 +53,11 @@ class RedisStore implements StoreInterface
      */
     protected $keyCache;
 
+    /**
+     * @var int zlib compression level used (0 = no compression, 9 = max compression)
+     */
+    protected $compressionLevel;
+
     protected $ignoredUrlParameters;
 
     public function __construct($options, Kernel $kernel)
@@ -61,6 +66,8 @@ class RedisStore implements StoreInterface
         $this->keyPrefix = $options['keyPrefix'] ?? '';
 
         $this->redisClient = Factory::factory($options['redisConnections']);
+
+        $this->compressionLevel = $options['compressionLevel'] ?? 9;
 
         $this->ignoredUrlParameters = $options['ignored_url_parameters'] ?? [];
 
@@ -327,7 +334,7 @@ class RedisStore implements StoreInterface
         $this->redisClient->incrBy($this->getCacheSizeKey(), strlen($data));
 
         if (\function_exists('gzcompress')) {
-            $data = gzcompress($data, 9);
+            $data = gzcompress($data, $this->compressionLevel);
         }
 
         $this->redisClient->hSet($hash, $key, $data);

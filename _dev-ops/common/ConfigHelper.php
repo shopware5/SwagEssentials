@@ -129,6 +129,7 @@ class ConfigHelper
         if ($moduleName === 'RedisStore') {
             $httpCache = [
                 'storeClass' => \SwagEssentials\Redis\Store\RedisStore::class,
+                'compressionLevel' => 9,
                 'redisConnections' => [
                     0 =>
                         [
