@@ -344,7 +344,7 @@ class RedisStore implements StoreInterface
     {
         $return = $this->redisClient->hGet($hash, $key);
         if (\function_exists('gzuncompress') && $return) {
-            $return = gzuncompress($return);
+            $return = @gzuncompress($return);
         }
 
         return $return;

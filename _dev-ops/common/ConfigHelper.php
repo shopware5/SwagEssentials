@@ -82,6 +82,8 @@ class ConfigHelper
                     'RedisProductGateway' => false,
                     // Use Redis as HTTP cache backend
                     'RedisStore' => false,
+                    // Use Redis for storing cached translations
+                    'RedisTranslation' => false,
                 ],
                 'redis' =>
                     [
@@ -119,6 +121,8 @@ class ConfigHelper
 
                 // ttl config for redis cache
                 'caching_ttl_plugin_config' => 3600,
+
+                'caching_ttl_translation' => 3600,
             ];
         }
 
