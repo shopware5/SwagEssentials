@@ -11,6 +11,7 @@ use Shopware\Components\Logger;
 class RemoteCacheInvalidator
 {
     const ENDPOINT_HOST = 'host';
+    const ENDPOINT_HEADERS = 'headers';
     const ENDPOINT_USER = 'user';
     const ENDPOINT_PASSWORD = 'password';
     const ENDPOINT_AUTHMETHOD = 'authMethod';
@@ -79,11 +80,14 @@ class RemoteCacheInvalidator
     {
         $client = new Client();
         $authMethod = $endpoint[self::ENDPOINT_AUTHMETHOD] ?? 'basic';
+        $headers = $endpoint[self::ENDPOINT_HEADERS] ?? [];
+
         return $client->delete(
             $endpoint[self::ENDPOINT_HOST] . '/caches',
             [
                 'auth' => [$endpoint[self::ENDPOINT_USER], $endpoint[self::ENDPOINT_PASSWORD], $authMethod],
                 'json' => $caches,
+                'headers' => $headers
             ]
         );
     }
