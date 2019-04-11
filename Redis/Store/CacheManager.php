@@ -55,7 +55,7 @@ class CacheManager extends ShopwareCacheManager
             'files' => $cacheInfo['entries'],
             'message' => '',
             'dir' => '',
-            'freeSpace' => '',
+            'freeSpace' => $cacheInfo['freeSpace'],
         ];
 
         $info['name'] = 'Redis HTTP Cache';
