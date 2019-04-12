@@ -582,8 +582,10 @@ class RedisStore implements StoreInterface
         );
 
         $size = $this->redisClient->get($this->getCacheSizeKey());
+        $memory = (array) $this->redisClient->info('memory');
+        $freeSpace = $memory['total_system_memory_human'] ?? '';
 
-        return compact($entries, $size);
+        return compact('entries', 'size', 'freeSpace');
     }
 
     /**
