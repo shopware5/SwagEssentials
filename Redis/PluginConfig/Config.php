@@ -2,14 +2,12 @@
 
 namespace SwagEssentials\Redis\PluginConfig;
 
-use Shopware;
-
 class Config extends \Shopware_Components_Config
 {
     /**
      * @var string
      */
-    public $hashName = Shopware::VERSION . '-sw_config_core';
+    public $hashName = '-sw_config_core';
 
     /**
      * @var \Redis
@@ -38,10 +36,10 @@ class Config extends \Shopware_Components_Config
         $this->cachingTtlPluginConfig = $config['caching_ttl_plugin_config'];
 
         if (isset($config['release'])) {
-            $this->hashName = str_replace(Shopware::VERSION, $config['release']->getVersion(), $this->hashName);
+            $this->hashName = $config['release']->getVersion() . $this->hashName;
         }
 
-        $this->config = $config;
+        $this->config  = $config;
         parent::__construct($config);
     }
 
@@ -67,55 +65,7 @@ class Config extends \Shopware_Components_Config
             return json_decode($result, true);
         }
 
-        $sql = '
-            SELECT
-              LOWER(REPLACE(e.name, \'_\', \'\')) AS name,
-              COALESCE(currentShop.value, parentShop.value, fallbackShop.value, e.value) AS value,
-              LOWER(REPLACE(forms.name, \'_\', \'\')) AS form,
-              currentShop.value AS currentShopval,
-              parentShop.value AS parentShopval,
-              fallbackShop.value AS fallbackShopval
-
-            FROM s_core_config_elements e
-
-            LEFT JOIN s_core_config_values currentShop
-              ON currentShop.element_id = e.id
-              AND currentShop.shop_id = :currentShopId
-
-            LEFT JOIN s_core_config_values parentShop
-              ON parentShop.element_id = e.id
-              AND parentShop.shop_id = :parentShopId
-
-            LEFT JOIN s_core_config_values fallbackShop
-              ON fallbackShop.element_id = e.id
-              AND fallbackShop.shop_id = :fallbackShopId
-
-            LEFT JOIN s_core_config_forms forms
-              ON forms.id = e.form_id
-        ';
-
-        $data = $this->_db->fetchAll(
-            $sql,
-            $parameters
-        );
-
-        $result = [];
-        foreach ($data as $row) {
-            $value = !empty($row['value']) ? @unserialize($row['value'], ['allowed_classes' => true]) : null;
-            $result[$row['name']] = $value;
-            // Take namespaces (form names) into account
-            $result[$row['form'] . '::' . $row['name']] = $value;
-        }
-
-        $result['version'] = Shopware::VERSION;
-        $result['revision'] = Shopware::REVISION;
-        $result['versiontext'] = Shopware::VERSION_TEXT;
-
-        if (isset($this->config['release'])) {
-            $result['version'] = $this->config['release']->getVersion();
-            $result['revision'] = $this->config['release']->getRevision();
-            $result['versiontext'] = $this->config['release']->getVersionText();
-        }
+        $result = parent::readData();
 
         $this->redis->hSet($this->hashName, $key, json_encode($result));
         $this->redis->expire($this->hashName, $this->cachingTtlPluginConfig);
