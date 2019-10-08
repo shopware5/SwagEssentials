@@ -24,6 +24,52 @@ return [
                 [
                     0 =>
                         [
+                            'host' => 'app_redis',
+                            'port' => 6379,
+                            'persistent' => true,
+                            'dbindex' => 0,
+                            'auth' => 'app',
+                        ],
+                ],
+        ],
+    'httpcache' =>
+        [
+            'storeClass' => 'SwagEssentials\\Redis\\Store\\RedisStore',
+            'keyPrefix'  => '', //this is only needed when running multiple shops on one Redis-Cluster 
+            'redisConnections' =>
+                [
+                    0 =>
+                        [
+                            'host' => 'app_redis',
+                            'port' => 6379,
+                            'persistent' => true,
+                            'dbindex' => 0,
+                            'auth' => 'app',
+                        ],
+                ],
+        ],
+];
+```
+
+### Enabling Redis Cluster
+
+```php
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
+return [
+    'db' => [...],
+    'swag_essentials' =>
+        [
+            'modules' =>
+                [
+                    ...
+                    'RedisStore' => true,
+                ],
+            'redis' =>
+                [
+                    0 =>
+                        [
                             'host' => 'app_redis_1',
                             'port' => 6379,
                             'persistent' => true,
@@ -67,52 +113,6 @@ return [
         ],
 ];
 ```
-
-### Enabling Redis Cluster
-
-
-```php
-require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
-require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
-require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
-return [
-    'db' => [...],
-    'swag_essentials' =>
-        [
-            'modules' =>
-                [
-                    ...
-                    'RedisStore' => true,
-                ],
-            'redis' =>
-                [
-                    0 =>
-                        [
-                            'host' => 'app_redis',
-                            'port' => 6379,
-                            'persistent' => true,
-                            'dbindex' => 0,
-                            'auth' => 'app',
-                        ],
-                ],
-        ],
-    'httpcache' =>
-        [
-            'storeClass' => 'SwagEssentials\\Redis\\Store\\RedisStore',
-            'keyPrefix'  => '', //this is only needed when running multiple shops on one Redis-Cluster 
-            'redisConnections' =>
-                [
-                    0 =>
-                        [
-                            'host' => 'app_redis',
-                            'port' => 6379,
-                            'persistent' => true,
-                            'dbindex' => 0,
-                            'auth' => 'app',
-                        ],
-                ],
-        ],
-];
 
 ### Check Redis Connection 
 If you want to check the redis connection before you use it for the Store you can do it easily with a small config tweak:
