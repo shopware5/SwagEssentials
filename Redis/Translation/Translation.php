@@ -7,7 +7,7 @@ use SwagEssentials\Redis\RedisConnection;
 
 class Translation extends \Shopware_Components_Translation
 {
-    const HASH_NAME = \Shopware::VERSION . '-sw_translation';
+    const HASH_NAME = 'sw_translation';
 
     /**
      * @var RedisConnection

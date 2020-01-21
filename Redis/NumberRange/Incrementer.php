@@ -7,7 +7,7 @@ use SwagEssentials\Redis\RedisConnection;
 
 class Incrementer implements NumberRangeIncrementerInterface
 {
-    const HASH_NAME = \Shopware::VERSION . '-sw_number_range';
+    const HASH_NAME = 'sw_number_range';
 
     /**
      * @var RedisConnection
