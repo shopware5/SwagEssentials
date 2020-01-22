@@ -9,7 +9,7 @@ use SwagEssentials\Redis\RedisConnection;
 
 class Reader implements ConfigReaderInterface
 {
-    const HASH_NAME = ''sw_config';
+    const HASH_NAME = 'sw_config';
 
     /**
      * @var DBALConfigReader
