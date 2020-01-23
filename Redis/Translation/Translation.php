@@ -35,7 +35,7 @@ class Translation extends \Shopware_Components_Translation
         RedisConnection $redis,
         int $cachingTtlTranslation
     ) {
-        parent::__construct($connection);
+        parent::__construct($connection, Shopware()->Container());
         $this->redis = $redis;
         $this->cachingTtlTranslation = $cachingTtlTranslation;
         $this->front = Shopware()->Container()->get('Front');
