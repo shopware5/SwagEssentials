@@ -2,6 +2,7 @@
 
 namespace SwagEssentials\Redis\PluginConfig;
 
+use Doctrine\DBAL\Connection;
 use Shopware\Components\DependencyInjection\Bridge\Config as ShopwareConfig;
 use SwagEssentials\Redis\RedisConnection;
 use Shopware\Components\ShopwareReleaseStruct;
@@ -26,7 +27,7 @@ class Factory extends ShopwareConfig
 
     public function factory(
         \Zend_Cache_Core $cache,
-        \Enlight_Components_Db_Adapter_Pdo_Mysql $db = null,
+        Connection $db = null,
         $config = [],
         ShopwareReleaseStruct $release = null
     ) {
