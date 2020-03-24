@@ -24,15 +24,13 @@ class CacheManager extends ShopwareCacheManager
      * @param Container $container
      * @param ShopwareCacheManager $innerCacheManager
      */
-    public function __construct(Container $container, ShopwareCacheManager $innerCacheManager)
+    public function __construct()
     {
-        parent::__construct($container);
+        $args = func_get_args();
+        $this->innerCacheManager = array_shift($args);
+        $this->httpCache = array_shift($args);
 
-        if ($container->has('httpCache')) {
-            $this->httpCache = $container->get('httpCache');
-        }
-
-        $this->innerCacheManager = $innerCacheManager;
+        parent::__construct(...$args);
     }
 
     /**

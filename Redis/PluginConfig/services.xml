@@ -22,8 +22,9 @@
         <service id="swag_essentials.redis_plugin_config.cache_manager" class="SwagEssentials\Redis\PluginConfig\CacheManager"
                  decorates="shopware.cache_manager"
         >
-            <argument type="service" id="service_container" />
             <argument type="service" id="swag_essentials.redis_plugin_config.cache_manager.inner"/>
+            <argument type="service" id="swag_essentials.redis"/>
+            <argument type="service" id="config"/>
         </service>
 
         <service id="swag_essentials.redis_plugin_config.config_reader"

@@ -3,7 +3,6 @@
 namespace SwagEssentials\Redis\ProductGateway;
 
 use Shopware\Components\CacheManager as ShopwareCacheManager;
-use Shopware\Components\DependencyInjection\Container;
 use SwagEssentials\Common\CacheManagerDecorationTrait;
 use SwagEssentials\Redis\RedisConnection;
 
@@ -21,15 +20,13 @@ class CacheManager extends ShopwareCacheManager
      */
     private $redis;
 
-    /**
-     * @param Container $container
-     * @param ShopwareCacheManager $innerCacheManager
-     */
-    public function __construct(Container $container, ShopwareCacheManager $innerCacheManager)
+    public function __construct()
     {
-        parent::__construct($container);
-        $this->innerCacheManager = $innerCacheManager;
-        $this->redis = $container->get('swag_essentials.redis');
+        $args = func_get_args();
+        $this->innerCacheManager = array_shift($args);
+        $this->redis = array_shift($args);
+
+        parent::__construct(...$args);
     }
 
     public function clearConfigCache()
