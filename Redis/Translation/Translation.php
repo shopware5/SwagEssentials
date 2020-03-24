@@ -50,13 +50,7 @@ class Translation extends \Shopware_Components_Translation
             return parent::filterData($type, $data, $key);
         }
 
-        $parameters = [
-            'type' => $type,
-            'data' => implode('|', $data),
-            'key' => $key,
-        ];
-
-        $hashKey = implode('|', $parameters);
+        $hashKey = json_encode(func_get_args());
 
         $result = $this->redis->hGet(self::HASH_NAME, $hashKey);
 
@@ -81,14 +75,7 @@ class Translation extends \Shopware_Components_Translation
             return parent::read($language, $type, $key, $merge);
         }
 
-        $parameters = [
-            'language' => $language,
-            'type' => $type,
-            'key' => $key,
-            'merge' => $merge,
-        ];
-
-        $hashKey = implode('|', $parameters);
+        $hashKey = json_encode(func_get_args());
 
         $result = $this->redis->hGet(self::HASH_NAME, $hashKey);
 
@@ -112,15 +99,7 @@ class Translation extends \Shopware_Components_Translation
             return parent::readBatch($language, $type, $key, $merge);
         }
 
-        $parameters = [
-            'method' => 'readBatch',
-            'language' => $language,
-            'type' => $type,
-            'key' => $key,
-            'merge' => $merge,
-        ];
-
-        $hashKey = implode('|', $parameters);
+        $hashKey = json_encode(func_get_args());
 
         $result = $this->redis->hGet(self::HASH_NAME, $hashKey);
 
