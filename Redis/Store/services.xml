@@ -16,8 +16,8 @@
         <service id="swag_essentials.redis_store.cache_manager" class="SwagEssentials\Redis\Store\CacheManager"
                  decorates="shopware.cache_manager"
         >
-            <argument type="service" id="service_container"/>
             <argument type="service" id="swag_essentials.redis_store.cache_manager.inner"/>
+            <argument type="service" id="httpCache" on-invalid="null"/>
         </service>
 
         <service id="swag_essentials.redis_store_caching_subscriber" class="SwagEssentials\Redis\Store\CachingSubscriber">

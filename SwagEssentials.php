@@ -3,6 +3,7 @@
 namespace SwagEssentials;
 
 use Shopware\Components\Plugin;
+use SwagEssentials\Redis\CacheManagerCompilerPass;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -44,6 +45,10 @@ class SwagEssentials extends Plugin
             if (file_exists($serviceFile)) {
                 $loader->load($serviceFile);
             }
+        }
+
+        if ($redisLoaded) {
+            $container->addCompilerPass(new CacheManagerCompilerPass());
         }
     }
 }

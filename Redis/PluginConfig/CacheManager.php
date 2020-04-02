@@ -21,12 +21,14 @@ class CacheManager extends \Shopware\Components\CacheManager
 
     private $config;
 
-    public function __construct(Container $container, \Shopware\Components\CacheManager $innerCacheManager)
+    public function __construct()
     {
-        parent::__construct($container);
-        $this->innerCacheManager = $innerCacheManager;
-        $this->redis = $container->get('swag_essentials.redis');
-        $this->config = $container->get('config');
+        $args = func_get_args();
+        $this->innerCacheManager = array_shift($args);
+        $this->redis = array_shift($args);
+        $this->config = array_shift($args);
+
+        parent::__construct(...$args);
     }
 
     public function clearConfigCache()
