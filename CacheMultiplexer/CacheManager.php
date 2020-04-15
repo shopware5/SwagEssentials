@@ -25,8 +25,6 @@ class CacheManager extends \Shopware\Components\CacheManager
 
     public function __construct(Container $container, \Shopware\Components\CacheManager $innerCacheManager)
     {
-        parent::__construct($container);
-
         $this->cacheInvalidator = $container->get('swag_essentials.cache_multiplexer.cache_invalidator');
         $this->innerCacheManager = $innerCacheManager;
     }
@@ -94,5 +92,10 @@ class CacheManager extends \Shopware\Components\CacheManager
         }
 
         $this->cacheInvalidator->remoteClear($this->tags);
+    }
+
+    public function __call($name, $arguments)
+    {
+        return $this->innerCacheManager->$name(...$arguments);
     }
 }
