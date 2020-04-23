@@ -3,7 +3,6 @@
 namespace SwagEssentials\CacheMultiplexer\Resource;
 
 use Doctrine\ORM\AbstractQuery;
-use Shopware\Components\Api\Exception\ParameterMissingException;
 use Shopware\Components\Api\Resource\Cache as ParentCache;
 use Shopware\Components\Api\Exception\NotFoundException;
 use Shopware\Components\CacheManager;
@@ -39,31 +38,36 @@ class Cache extends ParentCache
     public function getList()
     {
         $data = $this->innerCache->getList()['data'];
-        $data[] = $this->getCacheInfo('theme');
+        $data[] = array_merge($this->cacheManager->getThemeCacheInfo(), ['id' => 'theme']);
 
         return ['data' => $data, 'total' => count($data)];
     }
 
     public function getOne($id)
     {
-        $this->checkPrivilege('read');
+        try {
+            return $this->innerCache->getOne($id);
+        } catch (NotFoundException $e) {
+            if ($id === 'theme') {
+                return array_merge($this->cacheManager->getThemeCacheInfo(), ['id' => 'theme']);
+            }
 
-        if (empty($id)) {
-            throw new ParameterMissingException('id');
+            throw $e;
         }
-
-        return $this->getCacheInfo($id);
     }
 
     protected function clearCache($cache)
     {
         try {
             $this->innerCache->clearCache($cache);
-        } catch (NotFoundException $e) {}
+        } catch (NotFoundException $e) {
+            if (($cache === 'all') || (($cache === 'theme'))) {
+                $this->cacheManager->clearThemeCache();
+                $this->recompileThemeCache();
+                return;
+            }
 
-        if (($cache === 'all') || (($cache === 'theme'))) {
-            $this->cacheManager->clearThemeCache();
-            $this->recompileThemeCache();
+            throw $e;
         }
     }
 
@@ -76,42 +80,7 @@ class Cache extends ParentCache
         $compiler = $this->container->get('theme_compiler');
 
         foreach ($shopsWithThemes as $shop) {
-            try {
-                $compiler->recompile($shop);
-            } catch (\Exception $e) {}
+            $compiler->recompile($shop);
         }
-    }
-
-    private function getCacheInfo($cache): array
-    {
-        switch ($cache) {
-            case 'http':
-                $cacheInfo = $this->cacheManager->getHttpCacheInfo();
-                break;
-            case 'config':
-                $cacheInfo = $this->cacheManager->getConfigCacheInfo();
-                break;
-            case 'template':
-                $cacheInfo = $this->cacheManager->getTemplateCacheInfo();
-                break;
-            case 'proxy':
-                $cacheInfo = $this->cacheManager->getShopwareProxyCacheInfo();
-                break;
-            case 'doctrine-proxy':
-                $cacheInfo = $this->cacheManager->getDoctrineProxyCacheInfo();
-                break;
-            case 'opcache':
-                $cacheInfo = $this->cacheManager->getOpCacheCacheInfo();
-                break;
-            case 'theme':
-                $cacheInfo = $this->cacheManager->getThemeCacheInfo();
-                break;
-            default:
-                throw new NotFoundException(sprintf('Cache "%s" is not a valid cache id.', $cache));
-        }
-
-        $cacheInfo['id'] = $cache;
-
-        return $cacheInfo;
     }
 }
