@@ -18,5 +18,19 @@
             <argument>%shopware.swag_essentials.cache_multiplexer_hosts%</argument>
             <argument type="service" id="corelogger" />
         </service>
+
+        <service id="swag_essentials.cache_multiplexer.resource.cache" class="SwagEssentials\CacheMultiplexer\Resource\Cache"
+                 decorates="shopware.api.cache"
+                 public="false"
+                 shared="false"
+        >
+            <argument type="service" id="shopware.cache_manager" />
+            <argument type="service" id="swag_essentials.cache_multiplexer.resource.cache.inner"/>
+        </service>
+
+        <service id="swag_essentials.cache_multiplexer.subscriber.controller_backend_cache" class="SwagEssentials\CacheMultiplexer\Subscriber\BackendCache">
+            <tag name="shopware.event_subscriber"/>
+            <argument type="service" id="swag_essentials.cache_multiplexer.cache_invalidator" />
+        </service>
     </services>
 </container>
