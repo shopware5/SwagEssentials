@@ -69,6 +69,12 @@ class CachingSubscriber implements SubscriberInterface
             return;
         }
 
+        if ($this->cache->getBackend() instanceof \Zend_Cache_Backend_Apcu) {
+            $this->cache->clean(\Zend_Cache::CLEANING_MODE_ALL);
+
+            return;
+        }
+
         $this->cache->clean(\Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG, ['swag_essentials_product', 'swag_essentials_list_product']);
     }
 }

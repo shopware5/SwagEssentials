@@ -5,6 +5,7 @@ namespace SwagEssentials\Redis\Store;
 use Enlight\Event\SubscriberInterface;
 use Shopware\Bundle\StoreFrontBundle\Service\ProductServiceInterface;
 use Shopware\Components\DependencyInjection\Container;
+use Shopware\Components\HttpCache\AppCache;
 
 class CachingSubscriber implements SubscriberInterface
 {
@@ -14,7 +15,7 @@ class CachingSubscriber implements SubscriberInterface
     private $config;
 
     /**
-     * @var RedisStore
+     * @var AppCache|null
      */
     private $httpCache;
 
@@ -27,6 +28,11 @@ class CachingSubscriber implements SubscriberInterface
     {
         if ($container->has('httpCache')) {
             $this->httpCache = $container->get('httpCache');
+        } else {
+            $kernel = $container->get('kernel');
+            if ($kernel->isHttpCacheEnabled()) {
+                $this->httpCache = new AppCache($kernel, $kernel->getHttpCacheConfig());
+            }
         }
 
         $this->config = $config;
