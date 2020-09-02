@@ -65,14 +65,12 @@ class ListProductService implements ListProductServiceInterface
         /**
          * needed if some similar articles are inactive
          */
-        $redisResult = array_filter(
+        return array_filter(
             $redisResult,
             function ($product) {
                 return $product !== false;
             }
         );
-
-        return $redisResult;
     }
 
     /**

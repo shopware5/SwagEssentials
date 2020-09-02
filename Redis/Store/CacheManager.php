@@ -16,7 +16,7 @@ class CacheManager extends ShopwareCacheManager
     private $innerCacheManager;
 
     /**
-     * @var RedisStore $httpCache
+     * @var RedisStore
      */
     private $httpCache;
 

@@ -15,7 +15,7 @@ class Config extends \Shopware_Components_Config
     private $redis;
 
     /**
-     * @var int $cachingTtlPluginConfig
+     * @var int
      */
     private $cachingTtlPluginConfig;
 

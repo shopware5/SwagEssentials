@@ -4,8 +4,8 @@ namespace SwagEssentials\Redis\PluginConfig;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Components\DependencyInjection\Bridge\Config as ShopwareConfig;
-use SwagEssentials\Redis\RedisConnection;
 use Shopware\Components\ShopwareReleaseStruct;
+use SwagEssentials\Redis\RedisConnection;
 
 class Factory extends ShopwareConfig
 {

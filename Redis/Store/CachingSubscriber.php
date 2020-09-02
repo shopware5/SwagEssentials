@@ -20,8 +20,7 @@ class CachingSubscriber implements SubscriberInterface
 
     /**
      * @param \Zend_Cache_Core $cache
-     * @param ProductServiceInterface $service
-     * @param int $ttl
+     * @param \Shopware_Components_Config $config
      */
     public function __construct(Container $container, \Shopware_Components_Config $config)
     {

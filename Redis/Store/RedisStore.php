@@ -695,13 +695,11 @@ class RedisStore implements StoreInterface
         /**
          * Normalize URL to consistently return the same path even when variables are present
          */
-        $uri = sprintf(
+        return sprintf(
             '%s%s%s',
             $request->getSchemeAndHttpHost(),
             $path,
             empty($stringParams) ? '' : "?$stringParams"
         );
-
-        return $uri;
     }
 }
