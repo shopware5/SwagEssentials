@@ -99,7 +99,7 @@ class RemoteCacheInvalidator
     private function normalizeCacheIds($caches): array
     {
         $caches = array_map(
-            function ($cache) {
+            static function ($cache) {
                 return ['id' => $cache];
             },
             $caches

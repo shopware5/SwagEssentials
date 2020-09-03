@@ -2,9 +2,9 @@
 
 namespace SwagEssentials\PrimaryReplica\Subscriber;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Enlight\Event\SubscriberInterface;
 use SwagEssentials\PrimaryReplica\Commands\RunSql;
-use Doctrine\Common\Collections\ArrayCollection;
 use SwagEssentials\PrimaryReplica\ConnectionDecision;
 use SwagEssentials\PrimaryReplica\PdoFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -54,6 +54,7 @@ class Bridge implements SubscriberInterface
                     PdoFactory::$connectionDecision->getPinnedTables()
                 )
             );
+
             return;
         }
 
@@ -73,6 +74,7 @@ class Bridge implements SubscriberInterface
             /** @var ConnectionDecision $decision */
             $this->container->get('session')
                 ->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
+
             return;
         }
 

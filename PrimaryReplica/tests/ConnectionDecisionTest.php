@@ -53,12 +53,12 @@ class ConnectionDecisionTest extends TestCase
         $connectionPool = $this->getConnectionPoolMock();
 
         $connectionDecision = new \SwagEssentials\PrimaryReplica\ConnectionDecision($connectionPool, []);
-        $result = $this->invokeMethod($connectionDecision, 'getAffectedTables',  ['SELECT * FROM s_articles, s_articles_details']);
+        $result = $this->invokeMethod($connectionDecision, 'getAffectedTables', ['SELECT * FROM s_articles, s_articles_details']);
 
         $this->assertEquals(['s_articles', 's_articles_details'], $result);
     }
 
-    public function invokeMethod(&$object, $methodName, array $parameters = array())
+    public function invokeMethod(&$object, $methodName, array $parameters = [])
     {
         $reflection = new \ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
