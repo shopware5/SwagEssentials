@@ -79,6 +79,13 @@ class CacheManager extends \Shopware\Components\CacheManager
         $this->innerCacheManager->clearProxyCache();
     }
 
+    public function clearOpCache()
+    {
+        $this->tags[] = 'opcache';
+
+        $this->innerCacheManager->clearOpCache();
+    }
+
     public function __destruct()
     {
         // prevent recursive cache invalidation, if cache was invalidated using the API
