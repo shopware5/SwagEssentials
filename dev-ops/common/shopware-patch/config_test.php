@@ -114,4 +114,20 @@ return array (
             'caching_ttl_plugin_config' => 3600,
             'caching_ttl_translation' => 3600,
         ),
+    'httpcache' =>
+        [
+            'storeClass' => 'SwagEssentials\\Redis\\Store\\RedisStore',
+            'keyPrefix'  => '', //this is only needed when running multiple shops on one Redis-Cluster
+            'redisConnections' =>
+                [
+                    0 =>
+                        [
+                            'host' => 'app_redis',
+                            'port' => 6379,
+                            'persistent' => true,
+                            'dbindex' => 0,
+                            'auth' => 'app',
+                        ],
+                ],
+        ],
 );

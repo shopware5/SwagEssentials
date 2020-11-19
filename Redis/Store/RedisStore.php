@@ -60,7 +60,7 @@ class RedisStore implements StoreInterface
 
     protected $ignoredUrlParameters;
 
-    public function __construct($options, Kernel $kernel)
+    public function __construct($options, Kernel $kernel = null)
     {
         $this->cacheCookies = $options['cache_cookies'];
         $this->keyPrefix = $options['keyPrefix'] ?? '';

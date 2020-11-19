@@ -3,11 +3,11 @@
 namespace SwagEssentials\Tests\Common;
 
 use Enlight\Event\SubscriberInterface;
-use Symfony\Component\HttpKernel\Client;
-use Zend_Db_Table_Abstract;
 use function parse_url;
 use function restore_error_handler;
 use function restore_exception_handler;
+use Symfony\Component\HttpKernel\Client;
+use Zend_Db_Table_Abstract;
 
 class TestFactory implements TestFactoryInterface
 {

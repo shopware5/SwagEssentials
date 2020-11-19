@@ -7,6 +7,7 @@ use Enlight_Controller_Front;
 use Enlight_Controller_Request_RequestTestCase;
 use Enlight_Controller_Response_ResponseTestCase;
 use Enlight_Template_Manager;
+use function restore_error_handler;
 use Shopware\Kernel;
 use Shopware\Models\Shop\Shop;
 use Shopware_Components_Auth;
@@ -17,12 +18,11 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\TerminableInterface;
+use function urldecode;
 use Zend_Auth_Adapter_Exception;
 use Zend_Auth_Adapter_Interface;
 use Zend_Auth_Result;
 use Zend_Session;
-use function restore_error_handler;
-use function urldecode;
 
 class TestKernel extends Kernel implements TerminableInterface, TestKernelInterface
 {

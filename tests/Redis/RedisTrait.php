@@ -7,14 +7,14 @@ trait RedisTrait
     /**
      * @before
      */
-    public function activateRedis(): void {
-
+    public function activateRedis(): void
+    {
     }
 
     /**
      * @after
      */
-    public function deactivateRedis(): void {
-
+    public function deactivateRedis(): void
+    {
     }
 }

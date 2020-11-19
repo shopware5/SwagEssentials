@@ -2,13 +2,13 @@
 
 namespace SwagEssentials\Tests\Common;
 
+use function array_key_exists;
 use Doctrine\DBAL\Connection;
 use Exception;
-use InvalidArgumentException;
-use function array_key_exists;
 use function explode;
 use function file_exists;
 use function file_get_contents;
+use InvalidArgumentException;
 use function print_r;
 use function trim;
 
