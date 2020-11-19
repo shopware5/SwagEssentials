@@ -1,11 +1,9 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\CacheMultiplexer\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator;
-
 
 class BackendCache implements SubscriberInterface
 {
@@ -20,7 +18,7 @@ class BackendCache implements SubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'Shopware_Controllers_Backend_Cache::moveThemeFilesAction::after' => 'onAfterMoveThemeFiles'
+            'Shopware_Controllers_Backend_Cache::moveThemeFilesAction::after' => 'onAfterMoveThemeFiles',
         ];
     }
 

@@ -55,6 +55,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
         $result = $this->service->generate($params, $context);
 
         $this->cache->save([$result], $hash, [], $this->ttl);
+
         return $result;
     }
 
@@ -89,7 +90,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
 
         return array_combine(array_keys($list), $totalResult);
     }
-
 
     private function getCachedItemsFromList($list, $context)
     {

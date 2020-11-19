@@ -7,8 +7,6 @@ use PDO;
 /**
  * Class PdoDecorator decorates a default PDO connection and will dispatch any query to either the primary or
  * the replica connections. The connection selection is done by the `ConnectionDecision` service
- *
- * @package SwagEssentials\PrimaryReplica
  */
 class PdoDecorator extends \PDO
 {

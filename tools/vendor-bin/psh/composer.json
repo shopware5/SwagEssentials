@@ -1,0 +1,5 @@
+{
+    "require": {
+        "shopware/psh": "^1.4.0"
+    }
+}

@@ -85,6 +85,7 @@ class ListProductService implements ListProductServiceInterface
 
     /**
      * @param array $numbers
+     * @param Struct\ProductContextInterface $context
      * @return array
      */
     private function getCacheKeys(array $numbers, Struct\ProductContextInterface $context): array

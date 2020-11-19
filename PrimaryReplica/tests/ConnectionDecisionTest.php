@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
@@ -29,13 +29,15 @@ class ConnectionDecisionTest extends TestCase
 
     /**
      * @dataProvider sqlDataProvider
+     * @param mixed $query
+     * @param mixed $isWriteQuery
      */
     public function testIsWriteQuery($query, $isWriteQuery)
     {
         $connectionDecision = $this->createMock(\SwagEssentials\PrimaryReplica\ConnectionDecision::class);
 
         $result = $this->invokeMethod($connectionDecision, 'isWriteQuery', [$query]);
-        $this->assertEquals($isWriteQuery, $result);
+        static::assertEquals($isWriteQuery, $result);
     }
 
     public function testGetTables()
@@ -45,7 +47,7 @@ class ConnectionDecisionTest extends TestCase
         $connectionDecision = new \SwagEssentials\PrimaryReplica\ConnectionDecision($connectionPool, []);
         $result = $this->invokeMethod($connectionDecision, 'getTables');
 
-        $this->assertEquals('s_articles|s_user', $result);
+        static::assertEquals('s_articles|s_user', $result);
     }
 
     public function testGetAffectedTables()
@@ -55,7 +57,7 @@ class ConnectionDecisionTest extends TestCase
         $connectionDecision = new \SwagEssentials\PrimaryReplica\ConnectionDecision($connectionPool, []);
         $result = $this->invokeMethod($connectionDecision, 'getAffectedTables', ['SELECT * FROM s_articles, s_articles_details']);
 
-        $this->assertEquals(['s_articles', 's_articles_details'], $result);
+        static::assertEquals(['s_articles', 's_articles_details'], $result);
     }
 
     public function invokeMethod(&$object, $methodName, array $parameters = [])
@@ -82,15 +84,18 @@ class ConnectionDecisionTest extends TestCase
                         $stmt->method('fetchAll')->willReturn(
                             ['s_articles', 's_user', 's_user_billing']
                         );
+
                         return $stmt;
                     }
                 );
+
                 return [
                     'primary',
-                    $pdo
+                    $pdo,
                 ];
             }
         );
+
         return $connectionPool;
     }
 }

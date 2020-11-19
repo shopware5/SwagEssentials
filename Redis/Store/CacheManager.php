@@ -37,8 +37,8 @@ class CacheManager extends ShopwareCacheManager
      * Returns cache information
      *
      * @param \Enlight_Controller_Request_RequestHttp $request
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function getHttpCacheInfo($request = null): array
     {

@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\CacheMultiplexer\Resource;
 
 use Doctrine\ORM\AbstractQuery;
-use Shopware\Components\Api\Resource\Cache as ParentCache;
 use Shopware\Components\Api\Exception\NotFoundException;
+use Shopware\Components\Api\Resource\Cache as ParentCache;
 use Shopware\Components\CacheManager;
 use Shopware\Components\DependencyInjection\Container;
 use Shopware\Components\Theme\Compiler;
@@ -64,6 +64,7 @@ class Cache extends ParentCache
             if (($cache === 'all') || (($cache === 'theme'))) {
                 $this->cacheManager->clearThemeCache();
                 $this->recompileThemeCache();
+
                 return;
             }
 
@@ -71,7 +72,8 @@ class Cache extends ParentCache
         }
     }
 
-    private function recompileThemeCache() {
+    private function recompileThemeCache()
+    {
         /** @var Repository $repository */
         $repository = $this->container->get('models')->getRepository(Shop::class);
         /** @var Shop[] $shopsWithThemes */

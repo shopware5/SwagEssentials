@@ -62,7 +62,7 @@ class CachingSubscriber implements SubscriberInterface
             'Shopware_Plugins_HttpCache_ShouldNotInvalidateCache',
             [
                 'entity' => $entity,
-                'entityName' => $entityName
+                'entityName' => $entityName,
             ]
         )) {
             return;
