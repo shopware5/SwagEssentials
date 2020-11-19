@@ -1,6 +1,10 @@
 <?php declare(strict_types=1);
 
+namespace SwagEssentials\Tests\PrimaryReplica\Unit;
+
 use PHPUnit\Framework\TestCase;
+use SwagEssentials\PrimaryReplica\ConnectionDecision;
+use SwagEssentials\PrimaryReplica\ConnectionPool;
 
 class ConnectionDecisionTest extends TestCase
 {
@@ -34,7 +38,7 @@ class ConnectionDecisionTest extends TestCase
      */
     public function testIsWriteQuery($query, $isWriteQuery)
     {
-        $connectionDecision = $this->createMock(\SwagEssentials\PrimaryReplica\ConnectionDecision::class);
+        $connectionDecision = $this->createMock(ConnectionDecision::class);
 
         $result = $this->invokeMethod($connectionDecision, 'isWriteQuery', [$query]);
         static::assertEquals($isWriteQuery, $result);
@@ -44,7 +48,7 @@ class ConnectionDecisionTest extends TestCase
     {
         $connectionPool = $this->getConnectionPoolMock();
 
-        $connectionDecision = new \SwagEssentials\PrimaryReplica\ConnectionDecision($connectionPool, []);
+        $connectionDecision = new ConnectionDecision($connectionPool, []);
         $result = $this->invokeMethod($connectionDecision, 'getTables');
 
         static::assertEquals('s_articles|s_user', $result);
@@ -54,7 +58,7 @@ class ConnectionDecisionTest extends TestCase
     {
         $connectionPool = $this->getConnectionPoolMock();
 
-        $connectionDecision = new \SwagEssentials\PrimaryReplica\ConnectionDecision($connectionPool, []);
+        $connectionDecision = new ConnectionDecision($connectionPool, []);
         $result = $this->invokeMethod($connectionDecision, 'getAffectedTables', ['SELECT * FROM s_articles, s_articles_details']);
 
         static::assertEquals(['s_articles', 's_articles_details'], $result);
@@ -74,13 +78,13 @@ class ConnectionDecisionTest extends TestCase
      */
     private function getConnectionPoolMock()
     {
-        $connectionPool = $this->createMock(\SwagEssentials\PrimaryReplica\ConnectionPool::class);
+        $connectionPool = $this->createMock(ConnectionPool::class);
         $connectionPool->method('getRandomConnection')->willReturnCallback(
             function () {
-                $pdo = $this->createMock(Pdo::class);
+                $pdo = $this->createMock(\PDO::class);
                 $pdo->method('query')->willReturnCallback(
                     function () {
-                        $stmt = $this->createMock(PDOStatement::class);
+                        $stmt = $this->createMock(\PDOStatement::class);
                         $stmt->method('fetchAll')->willReturn(
                             ['s_articles', 's_user', 's_user_billing']
                         );

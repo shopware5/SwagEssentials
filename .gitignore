@@ -4,7 +4,6 @@
 /shopware
 /vendor
 
-
 # dev-ops
 /dev-ops/docker/containers/mysql/createuser.sh
 /dev-ops/docker/containers/php7/createuser.sh

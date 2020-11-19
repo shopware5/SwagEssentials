@@ -39,9 +39,9 @@ Php Cs Fixer:
           alias: app_redis
     parallel:
         matrix:
-            - SHOPWARE_VERSION: [ "5.6.6"]
+            - SHOPWARE_VERSION: [ "5.6.6", "5.6.9" ]
     before_script:
-        - apt-install mysql-client
+        - apt-install default-mysql-client
         - cd tools && composer install && cd ..
         - ./psh.phar init --SW-VERSION=${SHOPWARE_VERSION}
     script:
@@ -50,11 +50,11 @@ Php Cs Fixer:
 Unit 73:
     extends: .baseParralelUnit
     image: shopware/5-continuous:7.3
-#
-#Unit 72:
-#    extends: .baseParralelUnit
-#    image: shopware/5-continuous:7.2
-#
-#Unit 74:
-#    extends: .baseParralelUnit
-#    image: shopware/5-continuous:7.4
+
+Unit 72:
+    extends: .baseParralelUnit
+    image: shopware/5-continuous:7.2
+
+Unit 74:
+    extends: .baseParralelUnit
+    image: shopware/5-continuous:7.4

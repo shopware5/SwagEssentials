@@ -8,12 +8,6 @@ require_once __DIR__ . '/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory
 $csrfProtection = true;
 $sessionLocking = true;
 
-$eMailDir = __DIR__ . '/../build/mails';
-
-if (!is_dir($eMailDir) && !mkdir($eMailDir)) {
-    throw new \RuntimeException(sprintf('Directory "%s" was not created', $eMailDir));
-}
-
 if (getenv('SHOPWARE_ENV') === 'test') {
     $csrfProtection = false;
     $sessionLocking = false;
@@ -59,11 +53,6 @@ return array (
     'csrfprotection' => [
         'frontend' => $csrfProtection,
         'backend' => $csrfProtection,
-    ],
-
-    'mail' => [
-        'type' => 'file',
-        'path' => $eMailDir,
     ],
 
     'swag_essentials' =>

@@ -2,7 +2,6 @@
 
 namespace SwagEssentials\Tests\Common;
 
-use Enlight_Controller_ActionEventArgs;
 use Enlight_Controller_Front;
 use Enlight_Controller_Request_RequestTestCase;
 use Enlight_Controller_Response_ResponseTestCase;
@@ -54,15 +53,6 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         return $response;
     }
 
-    public function boot($skipDatabase = false)
-    {
-        $result = parent::boot($skipDatabase);
-
-        //$this->resetShopResource();
-
-        return $result;
-    }
-
     protected function buildContainer()
     {
         $containerBuilder = parent::buildContainer();
@@ -102,7 +92,6 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         }
 
         $this->resetFront();
-        #$this->resetShopResource();
     }
 
     public function beforeUnset()
