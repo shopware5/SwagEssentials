@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__.'/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
-require_once __DIR__.'/custom/plugins/SwagEssentials/Redis/Factory.php';
-require_once __DIR__.'/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
+require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
 require_once __DIR__ . '/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php';
 
 $csrfProtection = true;
@@ -16,13 +16,13 @@ if (getenv('SHOPWARE_ENV') === 'test') {
 
 return array (
     'db' =>
-        array (
+        [
             'host' => 'mysql',
             'port' => '3306',
             'username' => 'root',
             'password' => 'root',
             'dbname' => 'shopware-test',
-        ),
+    ],
 
     'errorHandler' => [
         'throwOnRecoverableError' => true,
@@ -56,9 +56,9 @@ return array (
     ],
 
     'swag_essentials' =>
-        array (
+        [
             'modules' =>
-                array (
+                [
                     'CacheMultiplexer' => true,
                     'Caching' => true,
                     'PrimaryReplica' => true,
@@ -67,33 +67,32 @@ return array (
                     'RedisProductGateway' => true,
                     'RedisStore' => true,
                     'RedisTranslation' => true,
-                ),
+                ],
             'redis' =>
-                array (
+                [
                     0 =>
-                        array (
+                        [
                             'host' => 'app_redis',
                             'port' => 6379,
                             'persistent' => true,
                             'dbindex' => 0,
                             'auth' => 'app',
-                        ),
-                ),
+                        ],
+                ],
             'cache_multiplexer_hosts' =>
-                array (
-                    0 =>
-                        array (
+                [
+
+                        [
                             'host' => 'http://10.123.123.31/api',
                             'user' => 'demo',
                             'password' => 'demo',
-                        ),
-                    1 =>
-                        array (
+                        ],
+                        [
                             'host' => 'http://10.123.123.32/api',
                             'user' => 'demo',
                             'password' => 'demo',
-                        ),
-                ),
+                        ],
+                ],
             'caching_enable_urls' => true,
             'caching_enable_list_product' => true,
             'caching_enable_product' => true,
@@ -102,7 +101,7 @@ return array (
             'caching_ttl_product' => 3600,
             'caching_ttl_plugin_config' => 3600,
             'caching_ttl_translation' => 3600,
-        ),
+        ],
     'httpcache' =>
         [
             'storeClass' => 'SwagEssentials\\Redis\\Store\\RedisStore',
@@ -118,5 +117,5 @@ return array (
                             'auth' => 'app',
                         ],
                 ],
-        ],
+        ]
 );

@@ -12,7 +12,7 @@ stages:
     - Test
 
 cache:
-    key: "Eternal static key"
+    key: ${CI_COMMIT_REF_SLUG}
     paths:
         - .composer
 
@@ -29,7 +29,7 @@ Php Cs Fixer:
             - php-cs-fixer.xml
 
 # base unit
-.baseParralelUnit:
+.baseParallelUnit:
     stage: Test
     services:
         - name: mysql:8.0
@@ -48,13 +48,13 @@ Php Cs Fixer:
         - ./psh.phar unit
 
 Unit 73:
-    extends: .baseParralelUnit
+    extends: .baseParallelUnit
     image: shopware/5-continuous:7.3
 
 Unit 72:
-    extends: .baseParralelUnit
+    extends: .baseParallelUnit
     image: shopware/5-continuous:7.2
 
 Unit 74:
-    extends: .baseParralelUnit
+    extends: .baseParallelUnit
     image: shopware/5-continuous:7.4
