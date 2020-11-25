@@ -13,7 +13,6 @@ if (getenv('SHOPWARE_ENV') === 'test') {
     $sessionLocking = false;
 }
 
-
 return array (
     'db' =>
         [
@@ -28,7 +27,6 @@ return array (
         'throwOnRecoverableError' => true,
         'ignoredExceptionClasses' => [],
     ],
-
 
     'session' => [
         'locking' => $sessionLocking,

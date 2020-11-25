@@ -21,16 +21,17 @@ Php Cs Fixer:
     stage: Static analysis
     image: webdevops/php-apache:7.3
     before_script:
-        - cd tools && composer install
+        - composer install --working-dir=tools
     script:
-        - ./php-cs-fixer fix --dry-run -v --allow-risky=yes --format=junit --config ../.php_cs | tee php-cs-fixer.xml
+        - cd tools && ./php-cs-fixer fix --dry-run -v --allow-risky=yes --format=junit --config ../.php_cs | tee php-cs-fixer.xml
     artifacts:
         paths:
             - php-cs-fixer.xml
 
 # base unit
-.baseParallelUnit:
+ParallelUnit:
     stage: Test
+    image: $IMAGE
     services:
         - name: mysql:8.0
           alias: mysql
@@ -40,21 +41,10 @@ Php Cs Fixer:
     parallel:
         matrix:
             - SHOPWARE_VERSION: [ "5.6.6", "5.6.9" ]
+              IMAGE: [ 'shopware/5-continuous:7.3', 'shopware/5-continuous:7.2', 'shopware/5-continuous:7.4' ]
     before_script:
         - apt-install default-mysql-client
-        - cd tools && composer install && cd ..
+        - composer install --working-dir=tools
         - ./psh.phar init --SW-VERSION=${SHOPWARE_VERSION}
     script:
         - ./psh.phar unit
-
-Unit 73:
-    extends: .baseParallelUnit
-    image: shopware/5-continuous:7.3
-
-Unit 72:
-    extends: .baseParallelUnit
-    image: shopware/5-continuous:7.2
-
-Unit 74:
-    extends: .baseParallelUnit
-    image: shopware/5-continuous:7.4
