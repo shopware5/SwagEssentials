@@ -1,8 +1,18 @@
 {
-  "name": "shopware/SwagEssentials",
-  "require-dev": {
-    "phpunit/phpunit": "~5.6||~6.0.5"
-  },
+  "name": "shopware/swagessentials",
+    "autoload": {
+        "psr-4": {
+            "SwagEssentials\\CacheMultiplexer\\": "CacheMultiplexer",
+            "SwagEssentials\\Caching\\": "Caching",
+            "SwagEssentials\\PrimaryReplica\\": "PrimaryReplica",
+            "SwagEssentials\\Redis\\": "Redis"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SwagEssentials\\Tests\\": "tests"
+        }
+    },
     "require": {
         "ext-zlib": "*",
         "ext-json": "*",

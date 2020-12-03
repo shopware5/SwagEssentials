@@ -29,7 +29,6 @@ class CacheManager extends \Shopware\Components\CacheManager
         $this->innerCacheManager = $innerCacheManager;
     }
 
-
     public function clearHttpCache()
     {
         $this->tags[] = 'http';

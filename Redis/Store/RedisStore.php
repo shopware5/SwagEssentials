@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SwagEssentials\Redis\Store;
 
@@ -60,7 +60,7 @@ class RedisStore implements StoreInterface
 
     protected $ignoredUrlParameters;
 
-    public function __construct($options, Kernel $kernel)
+    public function __construct($options, Kernel $kernel = null)
     {
         $this->cacheCookies = $options['cache_cookies'];
         $this->keyPrefix = $options['keyPrefix'] ?? '';
@@ -212,7 +212,7 @@ class RedisStore implements StoreInterface
      * Locks the cache for a given Request.
      *
      * @param Request $request A Request instance
-     * @return Boolean|string true if the lock is acquired, the path to the current lock otherwise
+     * @return bool|string true if the lock is acquired, the path to the current lock otherwise
      */
     public function lock(Request $request): bool
     {
@@ -225,7 +225,7 @@ class RedisStore implements StoreInterface
      * Releases the lock for the given Request.
      *
      * @param Request $request A Request instance
-     * @return Boolean False if the lock file does not exist or cannot be unlocked, true otherwise
+     * @return bool False if the lock file does not exist or cannot be unlocked, true otherwise
      */
     public function unlock(Request $request): bool
     {
@@ -240,7 +240,7 @@ class RedisStore implements StoreInterface
      * Returns whether or not a lock exists.
      *
      * @param Request $request A Request instance
-     * @return Boolean true if lock exists, false otherwise
+     * @return bool true if lock exists, false otherwise
      */
     public function isLocked(Request $request): bool
     {
@@ -255,7 +255,7 @@ class RedisStore implements StoreInterface
      * Purges data for the given URL.
      *
      * @param string $url A URL
-     * @return Boolean true if the URL exists and has been purged, false otherwise
+     * @return bool true if the URL exists and has been purged, false otherwise
      */
     public function purge($url): bool
     {

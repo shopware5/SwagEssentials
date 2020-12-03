@@ -18,7 +18,7 @@ class CacheManager extends ShopwareCacheManager
     /**
      * @var RedisStore
      */
-    private $httpCache;
+    private $redisStore;
 
     /**
      * @param Container $container
@@ -28,7 +28,7 @@ class CacheManager extends ShopwareCacheManager
     {
         $args = func_get_args();
         $this->innerCacheManager = array_shift($args);
-        $this->httpCache = array_shift($args);
+        $this->redisStore = new RedisStore(array_shift($args));
 
         parent::__construct(...$args);
     }
@@ -37,16 +37,12 @@ class CacheManager extends ShopwareCacheManager
      * Returns cache information
      *
      * @param \Enlight_Controller_Request_RequestHttp $request
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function getHttpCacheInfo($request = null): array
     {
-        if (!$this->httpCache || !$this->httpCache->getStore() instanceof RedisStore) {
-            return [];
-        }
-
-        $cacheInfo = $this->httpCache->getStore()->getCacheInfo();
+        $cacheInfo = $this->redisStore->getCacheInfo();
 
         $info = [
             'size' => $this->encodeSize($cacheInfo['size']),
@@ -70,8 +66,6 @@ class CacheManager extends ShopwareCacheManager
     public function clearHttpCache()
     {
         $this->innerCacheManager->clearHttpCache();
-        if ($this->httpCache && $this->httpCache->getStore() instanceof RedisStore) {
-            $this->httpCache->getStore()->purgeAll();
-        }
+        $this->redisStore->purgeAll();
     }
 }

@@ -22,6 +22,8 @@ class CachingSubscriber implements SubscriberInterface
      * @param \Zend_Cache_Core $cache
      * @param ProductServiceInterface $service
      * @param int $ttl
+     * @param Container $container
+     * @param \Shopware_Components_Config $config
      */
     public function __construct(Container $container, \Shopware_Components_Config $config)
     {
@@ -64,7 +66,7 @@ class CachingSubscriber implements SubscriberInterface
             'Shopware_Plugins_HttpCache_ShouldNotInvalidateCache',
             [
                 'entity' => $entity,
-                'entityName' => $entityName
+                'entityName' => $entityName,
             ]
         )) {
             return;

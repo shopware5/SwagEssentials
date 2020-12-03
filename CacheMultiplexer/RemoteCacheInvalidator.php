@@ -87,7 +87,7 @@ class RemoteCacheInvalidator
             [
                 'auth' => [$endpoint[self::ENDPOINT_USER], $endpoint[self::ENDPOINT_PASSWORD], $authMethod],
                 'json' => $caches,
-                'headers' => $headers
+                'headers' => $headers,
             ]
         );
     }

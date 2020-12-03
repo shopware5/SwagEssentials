@@ -47,7 +47,7 @@ class Cache implements SubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            'Enlight_Controller_Front_RouteShutdown' => 'onDecorateRouter'
+            'Enlight_Controller_Front_RouteShutdown' => 'onDecorateRouter',
         ];
     }
 

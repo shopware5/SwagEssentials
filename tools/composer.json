@@ -1,0 +1,16 @@
+{
+    "description": "A set of tools",
+    "type": "metapackage",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "1.4.1"
+    },
+    "scripts": {
+        "post-install-cmd": ["@composer bin all install --ansi"],
+        "post-update-cmd": ["@composer bin all update --ansi"]
+    },
+    "config": {
+        "bin-dir": "."
+    }
+}

@@ -57,7 +57,6 @@ trait CacheManagerDecorationTrait
         return $this->innerCacheManager->getCoreCache();
     }
 
-
     public function getConfigCacheInfo()
     {
         return $this->innerCacheManager->getConfigCacheInfo();

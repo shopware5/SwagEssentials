@@ -30,7 +30,8 @@ class RunSql extends ShopwareCommand
                 InputArgument::REQUIRED,
                 'The SQL query you want to run. Quoting with " is recommended'
             )
-            ->setHelp(<<<EOF
+            ->setHelp(
+                <<<EOF
 <info>%command.name%</info> will allow you to run a query on multiple connections simultaneously
 EOF
             );

@@ -3,8 +3,8 @@
 namespace SwagEssentials\Redis\Store;
 
 use Shopware\Components\HttpCache\CacheWarmer;
-use Symfony\Component\Console\Command\Command;
 use Shopware\Kernel;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,7 +36,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
 
     protected $shops;
 
-    /** @var  Kernel */
+    /** @var Kernel */
     protected $kernel;
 
     protected $front;
@@ -45,10 +45,10 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
 
     protected $responseReflection;
 
-    /** @var  OutputInterface */
+    /** @var OutputInterface */
     protected $output;
 
-    /** @var  InputInterface */
+    /** @var InputInterface */
     protected $input;
 
     /**
@@ -165,7 +165,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
                 }
             );
             $progressBar->advance(count($lines));
-
         }
         $progressBar->finish();
     }

@@ -5,8 +5,6 @@ namespace SwagEssentials\PrimaryReplica;
 /**
  * Class ConnectionPool initializes and maintains all replica connection. Replica connections are created using the
  * primary connection as a template
- *
- * @package SwagEssentials\PrimaryReplica
  */
 class ConnectionPool
 {

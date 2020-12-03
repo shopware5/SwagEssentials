@@ -1,13 +1,27 @@
+header: |
+  SHOPWARE Enterprise Essentials
+
+  ===-----------------------------!!*.               .--*--.
+   ==IIII  ------- NCC-1701 -->-  !!**    I'''''''''''''''''''''''''''!
+    =----------------------------I!!*'    !...........................!
+                             !=!         /   /       ''=.=''
+                             !=!        / ../
+                             !=!       / ../
+                           *'!.!''''''''''''L !
+                          (''  ..  ... --->=I(!-
+                           '''=.....        / !
+                                     `''''''
+
 paths:
-  - _dev-ops/common/actions
+  - dev-ops/common/actions
 
 const:
-  DB_USER: "app"
-  DB_PASSWORD: "app"
+  DB_USER: "root"
+  DB_PASSWORD: "root"
   DB_HOST: "mysql"
   DB_NAME: "shopware"
   SW_HOST: "10.123.123.30"
-  SW-VERSION: "latest"
+  SW-VERSION: "5.6.6"
 
 dynamic:
   USERKEY: echo "$(id -u):$(id -g)"
@@ -24,4 +38,4 @@ dynamic:
 environments:
   docker:
     paths:
-      - "_dev-ops/docker/actions"
+      - "dev-ops/docker/actions"

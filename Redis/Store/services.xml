@@ -10,6 +10,7 @@
         <service class="SwagEssentials\Redis\Store\WarmUpHttpCacheWithSiegeCommand" id="swag_essentials.redis_store.warm_up_http_cache_with_siege_command">
             <argument type="service" id="db"/>
             <argument type="service" id="http_cache_warmer"/>
+
             <tag name="console.command"/>
         </service>
 
@@ -17,7 +18,7 @@
                  decorates="shopware.cache_manager"
         >
             <argument type="service" id="swag_essentials.redis_store.cache_manager.inner"/>
-            <argument type="service" id="httpCache" on-invalid="null"/>
+            <argument>%shopware.httpcache%</argument>
         </service>
 
         <service id="swag_essentials.redis_store_caching_subscriber" class="SwagEssentials\Redis\Store\CachingSubscriber">
@@ -26,6 +27,5 @@
 
             <tag name="shopware.event_subscriber"/>
         </service>
-
     </services>
 </container>

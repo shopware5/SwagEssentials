@@ -6,8 +6,6 @@ namespace SwagEssentials\PrimaryReplica;
  * Class ConnectionDecision returns the primary or a replica connection depending on the given query
  * Write queries and queries involving tables that have been written to before will get the primary connection
  * returned, everything else a random replica connection
- *
- * @package SwagEssentials\PrimaryReplica
  */
 class ConnectionDecision
 {

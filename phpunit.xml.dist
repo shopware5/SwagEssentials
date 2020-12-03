@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        bootstrap="./tests/test_bootstrap.php"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        strict="true"
+>
+    <php>
+        <const name="SHOPWARE_ENV" value="test"/>
+        <env name="SHOPWARE_ENV" value="test"/>
+    </php>
+
+    <testsuite name="Enterprise Search Test Suite - Unit">
+        <directory>tests/**/Unit</directory>
+    </testsuite>
+
+    <testsuite name="Enterprise Search Test Suite - Integration">
+        <directory>tests/**/Integration</directory>
+    </testsuite>
+
+    <testsuite name="Enterprise Search Test Suite - Functional">
+        <directory>tests/**/Functional</directory>
+    </testsuite>
+
+    <filter>
+        <whitelist>
+            <directory>CacheMultiplexer/**</directory>
+            <directory>Caching/**</directory>
+            <directory>PrimaryReplica/**</directory>
+            <directory>Redis/**</directory>
+        </whitelist>
+    </filter>
+
+</phpunit>
