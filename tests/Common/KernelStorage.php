@@ -4,7 +4,7 @@ namespace SwagEssentials\Tests\Common;
 
 class KernelStorage
 {
-    private static $kernel;
+    protected static $kernel;
 
     /**
      * @var TestFactoryInterface

@@ -13,12 +13,12 @@ class CacheManager extends ShopwareCacheManager
     /**
      * @var ShopwareCacheManager
      */
-    private $innerCacheManager;
+    protected $innerCacheManager;
 
     /**
      * @var RedisStore
      */
-    private $redisStore;
+    protected $redisStore;
 
     /**
      * @param Container $container

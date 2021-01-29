@@ -76,7 +76,7 @@ class ConnectionDecisionTest extends TestCase
     /**
      * @return PHPUnit_Framework_MockObject_MockObject
      */
-    private function getConnectionPoolMock()
+    protected function getConnectionPoolMock()
     {
         $connectionPool = $this->createMock(ConnectionPool::class);
         $connectionPool->method('getRandomConnection')->willReturnCallback(

@@ -9,22 +9,22 @@ namespace SwagEssentials\PrimaryReplica;
  */
 class ConnectionDecision
 {
-    private static $DEBUG = false;
+    protected static $DEBUG = false;
 
     /**
      * @var ConnectionPool
      */
-    private $replicaPool;
+    protected $replicaPool;
 
-    private $counter = [];
+    protected $counter = [];
 
-    private $pinnedTables = [
+    protected $pinnedTables = [
         's_core_sessions' => true,
         's_core_sessions_backend' => true,
         's_order_basket' => true,
     ];
 
-    private $config;
+    protected $config;
 
     public function __construct(ConnectionPool $replicaPool, $config)
     {
@@ -83,7 +83,7 @@ class ConnectionDecision
      * @param $name
      * @param $query
      */
-    private function count($name, $query)
+    protected function count($name, $query)
     {
         if (!isset($this->counter[$name])) {
             $this->counter[$name] = 0;
@@ -109,7 +109,7 @@ class ConnectionDecision
      * @param $sql
      * @return bool
      */
-    private function isWriteQuery($sql): bool
+    protected function isWriteQuery($sql): bool
     {
         $sql = trim($sql);
 
@@ -166,7 +166,7 @@ class ConnectionDecision
      * @param $sql
      * @return array
      */
-    private function getAffectedTables($sql): array
+    protected function getAffectedTables($sql): array
     {
         $matches = [];
         $number = preg_match_all(
@@ -187,7 +187,7 @@ class ConnectionDecision
      *
      * @return string
      */
-    private function getTables(): string
+    protected function getTables(): string
     {
         $apc_fetch = function_exists('apc_fetch') ? 'apc_fetch' : function_exists('apcu_fetch') ? 'apcu_fetch' : null;
         $apc_store = function_exists('apc_store') ? 'apc_fetch' : function_exists('apcu_store') ? 'apcu_store' : null;

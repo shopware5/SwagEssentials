@@ -13,14 +13,14 @@ class PdoDecorator extends \PDO
     /**
      * @var ConnectionDecision
      */
-    private $connectionDecision;
+    protected $connectionDecision;
 
-    private $lastConnection = null;
+    protected $lastConnection = null;
 
     /**
      * @var ConnectionPool
      */
-    private $connectionPool;
+    protected $connectionPool;
 
     public function __construct(ConnectionDecision $connectionDecision, ConnectionPool $connectionPool)
     {

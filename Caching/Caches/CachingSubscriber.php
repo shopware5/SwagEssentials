@@ -10,12 +10,12 @@ class CachingSubscriber implements SubscriberInterface
     /**
      * @var \Shopware_Components_Config
      */
-    private $config;
+    protected $config;
 
     /**
      * @var \Zend_Cache_Core
      */
-    private $cache;
+    protected $cache;
 
     /**
      * @param \Zend_Cache_Core $cache

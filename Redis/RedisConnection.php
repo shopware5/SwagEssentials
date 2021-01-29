@@ -7,7 +7,7 @@ class RedisConnection
     /**
      * @var \Redis|\RedisCluster
      */
-    private $connection;
+    protected $connection;
 
     public function __construct($connection)
     {

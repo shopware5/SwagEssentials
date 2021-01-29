@@ -61,79 +61,79 @@ class DbalSessionHandler implements \SessionHandlerInterface
     /**
      * @var Connection
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string|null|false DSN string or null for session.save_path or false when lazy connection disabled
      */
-    private $dsn = false;
+    protected $dsn = false;
 
     /**
      * @var string Table name
      */
-    private $table = 'sessions';
+    protected $table = 'sessions';
 
     /**
      * @var string Column for session id
      */
-    private $idCol = 'sess_id';
+    protected $idCol = 'sess_id';
 
     /**
      * @var string Column for session data
      */
-    private $dataCol = 'sess_data';
+    protected $dataCol = 'sess_data';
 
     /**
      * @var string Column for lifetime
      */
-    private $expiryCol = 'sess_expiry';
+    protected $expiryCol = 'sess_expiry';
 
     /**
      * @var string Column for timestamp
      */
-    private $timeCol = 'sess_time';
+    protected $timeCol = 'sess_time';
 
     /**
      * @var string Username when lazy-connect
      */
-    private $username = '';
+    protected $username = '';
 
     /**
      * @var string Password when lazy-connect
      */
-    private $password = '';
+    protected $password = '';
 
     /**
      * @var array Connection options when lazy-connect
      */
-    private $connectionOptions = [];
+    protected $connectionOptions = [];
 
     /**
      * @var int The strategy for locking, see constants
      */
-    private $lockMode = self::LOCK_TRANSACTIONAL;
+    protected $lockMode = self::LOCK_TRANSACTIONAL;
 
     /**
      * It's an array to support multiple reads before closing which is manual, non-standard usage.
      *
      * @var \PDOStatement[] An array of statements to release advisory locks
      */
-    private $unlockStatements = [];
+    protected $unlockStatements = [];
 
     /**
      * @var bool True when the current session exists but expired according to session.gc_maxlifetime
      */
-    private $sessionExpired = false;
+    protected $sessionExpired = false;
 
     /**
      * @var bool Whether a transaction is active
      */
-    private $inTransaction = false;
+    protected $inTransaction = false;
 
     /**
      * @var bool Whether gc() has been called
      */
-    private $gcCalled = false;
+    protected $gcCalled = false;
 
     /**
      * Constructor.
@@ -372,7 +372,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      *
      * @param string $dsn DSN string
      */
-    private function connect($dsn)
+    protected function connect($dsn)
     {
         throw new \Exception('Should not get called');
     }
@@ -389,7 +389,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      * due to http://www.mysqlperformanceblog.com/2013/12/12/one-more-innodb-gap-lock-to-avoid/ .
      * So we change it to READ COMMITTED.
      */
-    private function beginTransaction()
+    protected function beginTransaction()
     {
         if (!$this->inTransaction) {
             $this->connection->exec('SET TRANSACTION ISOLATION LEVEL READ COMMITTED');
@@ -401,7 +401,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
     /**
      * Helper method to commit a transaction.
      */
-    private function commit()
+    protected function commit()
     {
         if ($this->inTransaction) {
             try {
@@ -418,7 +418,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
     /**
      * Helper method to rollback a transaction.
      */
-    private function rollback()
+    protected function rollback()
     {
         // We only need to rollback if we are in a transaction. Otherwise the resulting
         // error would hide the real problem why rollback was called. We might not be
@@ -440,7 +440,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      *
      * @return string The session data
      */
-    private function doRead($sessionId)
+    protected function doRead($sessionId)
     {
         $this->sessionExpired = false;
 
@@ -507,7 +507,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      *
      * @return \Doctrine\DBAL\Driver\Statement The statement that needs to be executed later to release the lock
      */
-    private function doAdvisoryLock($sessionId)
+    protected function doAdvisoryLock($sessionId)
     {
         // should we handle the return value? 0 on timeout, null on error
         // we use a timeout of 50 seconds which is also the default for innodb_lock_wait_timeout
@@ -528,7 +528,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      *
      * @return string The SQL string
      */
-    private function getSelectSql()
+    protected function getSelectSql()
     {
         if (self::LOCK_TRANSACTIONAL === $this->lockMode) {
             $this->beginTransaction();
@@ -548,7 +548,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      *
      * @return \Doctrine\DBAL\Driver\Statement The merge statement or null when not supported
      */
-    private function getMergeStatement($sessionId, $data, $maxlifetime)
+    protected function getMergeStatement($sessionId, $data, $maxlifetime)
     {
         $mergeSql = null;
         $mergeSql = "INSERT INTO $this->table ($this->idCol, $this->dataCol, $this->expiryCol, $this->timeCol) VALUES (:id, :data, :expiry, :time) " .

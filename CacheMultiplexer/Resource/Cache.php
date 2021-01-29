@@ -16,12 +16,12 @@ class Cache extends ParentCache
     /**
      * @var CacheManager
      */
-    private $cacheManager;
+    protected $cacheManager;
 
     /**
      * @var ParentCache
      */
-    private $innerCache;
+    protected $innerCache;
 
     public function setContainer(Container $container = null)
     {
@@ -72,7 +72,7 @@ class Cache extends ParentCache
         }
     }
 
-    private function recompileThemeCache()
+    protected function recompileThemeCache()
     {
         /** @var Repository $repository */
         $repository = $this->container->get('models')->getRepository(Shop::class);

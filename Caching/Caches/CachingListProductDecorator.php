@@ -10,17 +10,17 @@ class CachingListProductDecorator implements ListProductServiceInterface
     /**
      * @var \Zend_Cache_Core
      */
-    private $cache;
+    protected $cache;
 
     /**
      * @var ListProductServiceInterface The previously existing service
      */
-    private $service;
+    protected $service;
 
     /**
      * @var int
      */
-    private $ttl;
+    protected $ttl;
 
     /**
      * @param \Zend_Cache_Core $cache

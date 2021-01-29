@@ -14,7 +14,7 @@ class Bridge implements SubscriberInterface
     /**
      * @var ContainerInterface
      */
-    private $container;
+    protected $container;
 
     /**
      * @param ContainerInterface $container

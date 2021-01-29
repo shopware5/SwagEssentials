@@ -14,17 +14,17 @@ class Reader implements ConfigReaderInterface
     /**
      * @var DBALConfigReader
      */
-    private $configReader;
+    protected $configReader;
 
     /**
      * @var RedisConnection
      */
-    private $redis;
+    protected $redis;
 
     /**
      * @var int
      */
-    private $cachingTtlPluginConfig;
+    protected $cachingTtlPluginConfig;
 
     public function __construct(DBALConfigReader $configReader, RedisConnection $redis, int $cachingTtlPluginConfig)
     {

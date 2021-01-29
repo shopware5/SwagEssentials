@@ -26,7 +26,7 @@ class EmptyShopwareApplication
         $this->throwException('call', $name);
     }
 
-    private function throwException(string $type, string $name)
+    protected function throwException(string $type, string $name)
     {
         throw new DomainException('Restricted to ' . $type . ' ' . $name . ' on Shopware() , because you should not have a kernel in this test case.');
     }

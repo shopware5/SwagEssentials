@@ -14,7 +14,7 @@ class PdoFactory
 
     public static $connectionPool;
 
-    private static function createServices($config): PdoDecorator
+    protected static function createServices($config): PdoDecorator
     {
         if (self::$pdoDecorator) {
             return self::$pdoDecorator;

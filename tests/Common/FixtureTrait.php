@@ -17,24 +17,24 @@ trait FixtureTrait
     /**
      * @var bool
      */
-    private $commonFixturesImported = false;
+    protected $commonFixturesImported = false;
 
     /**
      * @var bool
      */
-    private $disableCommonFixtures = false;
+    protected $disableCommonFixtures = false;
 
     /**
      * @var array
      */
-    private $commonTestFixtures = [
+    protected $commonTestFixtures = [
         __DIR__ . '/../../common_test_fixtures.sql',
     ];
 
     /**
      * @var array
      */
-    private $importedFiles = [];
+    protected $importedFiles = [];
 
     /**
      * @after
@@ -99,7 +99,7 @@ trait FixtureTrait
         throw new Exception('unable to import fixtures ' . print_r($connection->errorInfo(), true));
     }
 
-    private function loadCommonFixtureSql(): string
+    protected function loadCommonFixtureSql(): string
     {
         $sql = '';
 

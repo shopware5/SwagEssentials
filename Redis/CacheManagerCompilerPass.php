@@ -15,7 +15,7 @@ class CacheManagerCompilerPass implements CompilerPassInterface
         $this->addCacheManagerArguments($container, 'swag_essentials.redis_store.cache_manager');
     }
 
-    private function addCacheManagerArguments(ContainerBuilder $container, string $decoratorDefinitionId)
+    protected function addCacheManagerArguments(ContainerBuilder $container, string $decoratorDefinitionId)
     {
         if (!$container->hasDefinition($decoratorDefinitionId)) {
             return;
