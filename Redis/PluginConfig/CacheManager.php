@@ -12,14 +12,14 @@ class CacheManager extends \Shopware\Components\CacheManager
     /**
      * @var \Shopware\Components\CacheManager
      */
-    private $innerCacheManager;
+    protected $innerCacheManager;
 
     /**
      * @var \Redis
      */
-    private $redis;
+    protected $redis;
 
-    private $config;
+    protected $config;
 
     public function __construct()
     {

@@ -12,12 +12,12 @@ class Factory extends ShopwareConfig
     /**
      * @var RedisConnection
      */
-    private $redis;
+    protected $redis;
 
     /**
      * @var int
      */
-    private $cachingTtlPluginConfig;
+    protected $cachingTtlPluginConfig;
 
     public function __construct(RedisConnection $redis, int $cachingTtlPluginConfig)
     {

@@ -12,17 +12,17 @@ class Config extends \Shopware_Components_Config
     /**
      * @var \Redis
      */
-    private $redis;
+    protected $redis;
 
     /**
      * @var int
      */
-    private $cachingTtlPluginConfig;
+    protected $cachingTtlPluginConfig;
 
     /**
      * @var array
      */
-    private $config;
+    protected $config;
 
     /**
      * Constructor method

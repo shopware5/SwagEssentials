@@ -13,7 +13,7 @@ trait KernelTestCaseTrait
     /**
      * @var bool
      */
-    private static $autoReboot = false;
+    protected static $autoReboot = false;
 
     public static function setAutoReboot(bool $set = true)
     {

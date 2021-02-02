@@ -235,7 +235,7 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    private static function getConfig(string $configPath)
+    protected static function getConfig(string $configPath)
     {
         if (!file_exists($configPath)) {
             throw new RuntimeException('please install shopware first!');
@@ -244,7 +244,7 @@ class ConfigHelper
         return include $configPath;
     }
 
-    private static function saveConfig($config)
+    protected static function saveConfig($config)
     {
         $configFile = '<?php 
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php\';

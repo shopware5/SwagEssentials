@@ -11,14 +11,14 @@ class ListProductService implements ListProductServiceInterface
     /**
      * @var ListProductServiceInterface The previously existing service
      */
-    private $service;
+    protected $service;
 
     const HASH_NAME = 'sw_list_product';
 
     /**
      * @var RedisConnection
      */
-    private $redis;
+    protected $redis;
 
     public function __construct(ListProductServiceInterface $service, RedisConnection $redis)
     {
@@ -88,7 +88,7 @@ class ListProductService implements ListProductServiceInterface
      * @param Struct\ProductContextInterface $context
      * @return array
      */
-    private function getCacheKeys(array $numbers, Struct\ProductContextInterface $context): array
+    protected function getCacheKeys(array $numbers, Struct\ProductContextInterface $context): array
     {
         $contextHash = md5(
             serialize(

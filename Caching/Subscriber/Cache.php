@@ -13,22 +13,22 @@ class Cache implements SubscriberInterface
     /**
      * @var Zend_Cache_Core
      */
-    private $cache;
+    protected $cache;
 
     /**
      * @var string
      */
-    private $enabledCaching;
+    protected $enabledCaching;
 
     /**
      * @var string
      */
-    private $ttl;
+    protected $ttl;
 
     /**
      * @var Router
      */
-    private $router;
+    protected $router;
 
     /**
      * @param Zend_Cache_Core $cache

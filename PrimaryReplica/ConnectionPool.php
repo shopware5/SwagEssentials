@@ -11,32 +11,32 @@ class ConnectionPool
     /**
      * @var array
      */
-    private $config;
+    protected $config;
 
     /**
      * @var \PDO[]
      */
-    private $connections = [];
+    protected $connections = [];
 
     /**
      * @var bool
      */
-    private $includePrimary;
+    protected $includePrimary;
 
     /**
      * @var bool
      */
-    private $doStickToConnection;
+    protected $doStickToConnection;
 
     /**
      * @var array
      */
-    private $weightedConnections;
+    protected $weightedConnections;
 
     /**
      * @var string
      */
-    private $stickyConnectionName;
+    protected $stickyConnectionName;
 
     /**
      * @param array $config
@@ -98,7 +98,7 @@ class ConnectionPool
      *
      * @return null|string
      */
-    private function getWeightedRandomConnection()
+    protected function getWeightedRandomConnection()
     {
         $weightedConnections = $this->weightedConnections;
 
@@ -115,7 +115,7 @@ class ConnectionPool
     /**
      * Build an array of all available database connections and it weight
      */
-    private function prepareWeightedConnections()
+    protected function prepareWeightedConnections()
     {
         foreach ($this->config['replicas'] as $name => $config) {
             $weight = $config['weight'] ?? 1;
@@ -195,7 +195,7 @@ class ConnectionPool
      * @param array $dbConfig
      * @return string
      */
-    private static function buildConnectionString(array $dbConfig)
+    protected static function buildConnectionString(array $dbConfig)
     {
         if (!isset($dbConfig['host']) || empty($dbConfig['host'])) {
             $dbConfig['host'] = 'localhost';

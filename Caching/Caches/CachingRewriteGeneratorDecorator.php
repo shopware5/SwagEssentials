@@ -10,17 +10,17 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
     /**
      * @var \Zend_Cache_Core
      */
-    private $cache;
+    protected $cache;
 
     /**
      * @var RewriteGenerator The previously existing service
      */
-    private $service;
+    protected $service;
 
     /**
      * @var int
      */
-    private $ttl;
+    protected $ttl;
 
     /**
      * @param \Zend_Cache_Core $cache
@@ -91,7 +91,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
         return array_combine(array_keys($list), $totalResult);
     }
 
-    private function getCachedItemsFromList($list, $context)
+    protected function getCachedItemsFromList($list, $context)
     {
         return array_map(
             function ($param) use ($context) {
@@ -108,7 +108,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
      * @param $context
      * @return string
      */
-    private function hashItem($params, $context)
+    protected function hashItem($params, $context)
     {
         return md5(serialize(['single_url', $params, $context]));
     }

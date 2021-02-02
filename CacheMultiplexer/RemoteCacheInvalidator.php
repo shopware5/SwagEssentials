@@ -21,14 +21,14 @@ class RemoteCacheInvalidator
      *
      * @var array[]
      */
-    private $hosts;
+    protected $hosts;
 
     /**
      * Core logger
      *
      * @var Logger
      */
-    private $logger;
+    protected $logger;
 
     public function __construct($hosts, Logger $logger)
     {
@@ -76,7 +76,7 @@ class RemoteCacheInvalidator
      * @param $caches
      * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
      */
-    private function getResponseForEndpoint($endpoint, $caches)
+    protected function getResponseForEndpoint($endpoint, $caches)
     {
         $client = new Client();
         $authMethod = $endpoint[self::ENDPOINT_AUTHMETHOD] ?? 'basic';
@@ -96,7 +96,7 @@ class RemoteCacheInvalidator
      * @param $caches
      * @return array
      */
-    private function normalizeCacheIds($caches): array
+    protected function normalizeCacheIds($caches): array
     {
         $caches = array_map(
             static function ($cache) {

@@ -86,7 +86,7 @@ EOF
         }
     }
 
-    private function setShopwareKey($key, $value)
+    protected function setShopwareKey($key, $value)
     {
         $stmt = $this->getContainer()->get('dbal_connection')->prepare(
             'REPLACE INTO s_order_number SET `name` = :key, `number` = :value'
@@ -95,7 +95,7 @@ EOF
         $stmt->execute(['key' => $key, 'value' => $value]);
     }
 
-    private function getRedisNumberRange()
+    protected function getRedisNumberRange()
     {
         /** @var \Redis $redis */
         $redis = $this->getContainer()->get('swag_essentials.redis');
@@ -103,7 +103,7 @@ EOF
         return $redis->hGetAll(Incrementer::HASH_NAME);
     }
 
-    private function getShopwareNumberRange()
+    protected function getShopwareNumberRange()
     {
         $result = $this->getContainer()->get('dbal_connection')->fetchAll(
             'SELECT `name`, `number` FROM s_order_number'

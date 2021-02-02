@@ -13,7 +13,7 @@ class CacheFactory
     /**
      * @var ContainerInterface
      */
-    private $container;
+    protected $container;
 
     public function __construct(ContainerInterface $container)
     {

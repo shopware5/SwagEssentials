@@ -8,7 +8,7 @@ use SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator;
 class BackendCache implements SubscriberInterface
 {
     /** @var RemoteCacheInvalidator */
-    private $cacheInvalidator;
+    protected $cacheInvalidator;
 
     public function __construct(RemoteCacheInvalidator $cacheInvalidator)
     {

@@ -279,7 +279,7 @@ class RedisStore implements StoreInterface
         return true;
     }
 
-    private function getShopwareIdKey($cacheId)
+    protected function getShopwareIdKey($cacheId)
     {
         return hash('sha256', $cacheId);
     }
@@ -290,7 +290,7 @@ class RedisStore implements StoreInterface
      * @param Request $request
      * @return array
      */
-    private function getRequestHeaders(Request $request): array
+    protected function getRequestHeaders(Request $request): array
     {
         return $request->headers->all();
     }
@@ -312,7 +312,7 @@ class RedisStore implements StoreInterface
      * @param $key
      * @return array
      */
-    private function getMetaData($key): array
+    protected function getMetaData($key): array
     {
         if (false === $entries = $this->load($this->getMetaKey(), $key)) {
             return [];
@@ -328,7 +328,7 @@ class RedisStore implements StoreInterface
      * @param $key
      * @param $data
      */
-    private function save($hash, $key, $data)
+    protected function save($hash, $key, $data)
     {
         // keep track of the overall HTTP cache size
         $this->redisClient->incrBy($this->getCacheSizeKey(), strlen($data));
@@ -347,7 +347,7 @@ class RedisStore implements StoreInterface
      * @param $key
      * @return string|bool
      */
-    private function load($hash, $key)
+    protected function load($hash, $key)
     {
         $return = $this->redisClient->hGet($hash, $key);
         if (\function_exists('gzuncompress') && $return) {
@@ -366,7 +366,7 @@ class RedisStore implements StoreInterface
      * @param array $env2 A Request HTTP header array
      * @return bool true if the two environments match, false otherwise
      */
-    private function requestsMatch($vary, $env1, $env2): bool
+    protected function requestsMatch($vary, $env1, $env2): bool
     {
         if (empty($vary)) {
             return true;
@@ -390,7 +390,7 @@ class RedisStore implements StoreInterface
      * @param Response $response A Response instance
      * @return array An array of HTTP headers
      */
-    private function getResponseHeaders(Response $response): array
+    protected function getResponseHeaders(Response $response): array
     {
         $headers = $response->headers->all();
         $headers['X-Status'] = [$response->getStatusCode()];
@@ -405,7 +405,7 @@ class RedisStore implements StoreInterface
      * @param $body
      * @return Response
      */
-    private function recreateResponse($headers, $body): Response
+    protected function recreateResponse($headers, $body): Response
     {
         $status = $headers['X-Status'][0];
         unset($headers['X-Status']);
@@ -451,7 +451,7 @@ class RedisStore implements StoreInterface
      * @param $id
      * @return bool
      */
-    private function purgeByShopwareId($id): bool
+    protected function purgeByShopwareId($id): bool
     {
         if (!$id) {
             return false;
@@ -493,7 +493,7 @@ class RedisStore implements StoreInterface
      * @param Response $response
      * @return mixed
      */
-    private function storeLookupOptimization($metadataKey, Response $response)
+    protected function storeLookupOptimization($metadataKey, Response $response)
     {
         if (!$response->headers->has('x-shopware-cache-id') || !$response->headers->has('x-content-digest')) {
             return $metadataKey;
@@ -551,7 +551,7 @@ class RedisStore implements StoreInterface
      * @param $params
      * @return string
      */
-    private function sortQueryStringParameters($params): string
+    protected function sortQueryStringParameters($params): string
     {
         $sParams = urldecode(http_build_query($params));
         $query = explode('&', $sParams);
@@ -666,7 +666,7 @@ class RedisStore implements StoreInterface
      * @param Request $request
      * @return string
      */
-    private function verifyIgnoredParameters(Request $request): string
+    protected function verifyIgnoredParameters(Request $request): string
     {
         $requestParams = $request->query->all();
 

@@ -150,7 +150,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         $this->getContainer()->set('auth', $auth);
     }
 
-    private function resetFront()
+    protected function resetFront()
     {
         $front = $this->container->get('front');
 
@@ -159,7 +159,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         $front->setResponse(Enlight_Controller_Response_ResponseTestCase::class);
     }
 
-    private function resetShopResource()
+    protected function resetShopResource()
     {
         $container = $this->getContainer();
 

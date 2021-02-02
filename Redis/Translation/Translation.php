@@ -12,17 +12,17 @@ class Translation extends \Shopware_Components_Translation
     /**
      * @var RedisConnection
      */
-    private $redis;
+    protected $redis;
 
     /**
      * @var int
      */
-    private $cachingTtlTranslation;
+    protected $cachingTtlTranslation;
 
     /**
      * @var \Enlight_Controller_Front
      */
-    private $front;
+    protected $front;
 
     /**
      * @param Connection $connection
@@ -114,7 +114,7 @@ class Translation extends \Shopware_Components_Translation
         return $result;
     }
 
-    private function isNotFrontend(): bool
+    protected function isNotFrontend(): bool
     {
         if (!$this->front->Request()) {
             return false;

@@ -16,12 +16,12 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
     /**
      * @var \Enlight_Components_Db_Adapter_Pdo_Mysql
      */
-    private $db;
+    protected $db;
 
     /**
      * @var CacheWarmer
      */
-    private $httpCacheWarmer;
+    protected $httpCacheWarmer;
 
     /**
      * @param \Enlight_Components_Db_Adapter_Pdo_Mysql $db
@@ -115,7 +115,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
      * @param $totalUrlCount
      * @return int
      */
-    private function getWidth($totalUrlCount): int
+    protected function getWidth($totalUrlCount): int
     {
         $dimensions = $this->getApplication()->getTerminalDimensions();
         if (!$dimensions) {

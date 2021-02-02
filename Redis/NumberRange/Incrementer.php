@@ -12,7 +12,7 @@ class Incrementer implements NumberRangeIncrementerInterface
     /**
      * @var RedisConnection
      */
-    private $redis;
+    protected $redis;
 
     public function __construct(RedisConnection $redis)
     {
