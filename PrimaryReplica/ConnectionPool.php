@@ -2,6 +2,8 @@
 
 namespace SwagEssentials\PrimaryReplica;
 
+use Shopware\Components\DependencyInjection\Bridge\Db;
+
 /**
  * Class ConnectionPool initializes and maintains all replica connection. Replica connections are created using the
  * primary connection as a template
@@ -150,77 +152,8 @@ class ConnectionPool
             throw new \RuntimeException("Connection '$name' not found");
         }
 
-        $password = $dbConfig['password'] ?? '';
-        $connectionString = self::buildConnectionString($dbConfig);
+        unset($dbConfig['factory'], $dbConfig['replicas']);
 
-        try {
-            $conn = new \PDO(
-                'mysql:' . $connectionString,
-                $dbConfig['username'],
-                $password
-            );
-
-            $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $conn->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
-
-            // Reset sql_mode "STRICT_TRANS_TABLES" that will be default in MySQL 5.6
-            $conn->exec('SET @@session.sql_mode = ""');
-            $conn->exec('SET @@session.sql_mode = ""');
-
-            // set encoding to utf8
-            $conn->exec('SET NAMES utf8');
-        } catch (\PDOException $e) {
-            $message = $e->getMessage();
-            $message = str_replace(
-                [
-                    $dbConfig['username'],
-                    $dbConfig['password'],
-                ],
-                '******',
-                $message
-            );
-
-            throw new \RuntimeException(
-                'Could not connect to database. Message from SQL Server: ' . $message,
-                $e->getCode()
-            );
-        }
-
-        $this->connections[$name] = $conn;
-
-        return $conn;
-    }
-
-    /**
-     * @param array $dbConfig
-     * @return string
-     */
-    protected static function buildConnectionString(array $dbConfig)
-    {
-        if (!isset($dbConfig['host']) || empty($dbConfig['host'])) {
-            $dbConfig['host'] = 'localhost';
-        }
-
-        $connectionSettings = [
-            'host=' . $dbConfig['host'],
-        ];
-
-        if (!empty($dbConfig['socket'])) {
-            $connectionSettings[] = 'unix_socket=' . $dbConfig['socket'];
-        }
-
-        if (!empty($dbConfig['port'])) {
-            $connectionSettings[] = 'port=' . $dbConfig['port'];
-        }
-
-        if (!empty($dbConfig['charset'])) {
-            $connectionSettings[] = 'charset=' . $dbConfig['charset'];
-        }
-
-        if (!empty($dbConfig['dbname'])) {
-            $connectionSettings[] = 'dbname=' . $dbConfig['dbname'];
-        }
-
-        return implode(';', $connectionSettings);
+        return $this->connections[$name] = Db::createPDO($dbConfig);
     }
 }
