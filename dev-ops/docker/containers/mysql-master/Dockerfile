@@ -11,3 +11,5 @@ ADD performance-schema.cnf /etc/mysql/conf.d/performance-schema.cnf
 COPY createuser.sh /tmp/createuser.sh
 RUN chmod +rwx /tmp/createuser.sh
 RUN /tmp/createuser.sh
+
+COPY grant.sql /docker-entrypoint-initdb.d/grant.sql
