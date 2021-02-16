@@ -25,6 +25,7 @@ Php Cs Fixer:
     script:
         - cd tools && ./php-cs-fixer fix --dry-run -v --allow-risky=yes --format=junit --config ../.php_cs | tee php-cs-fixer.xml
     artifacts:
+        expire_in: 1 week
         paths:
             - php-cs-fixer.xml
 
