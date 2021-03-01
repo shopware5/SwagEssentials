@@ -47,5 +47,6 @@ ParallelUnit:
         - apt-install default-mysql-client
         - composer install --working-dir=tools
         - ./psh.phar init --SW-VERSION=${SHOPWARE_VERSION}
+        - ./psh.phar essentials-on --module=RedisStore
     script:
         - ./psh.phar unit
