@@ -4,7 +4,6 @@ namespace SwagEssentials\Redis\Store;
 
 use Shopware\Kernel;
 use SwagEssentials\Redis\Factory;
-use SwagEssentials\Redis\RedisConnection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
@@ -61,10 +60,9 @@ class RedisStore implements StoreInterface
 
     protected $ignoredUrlParameters;
 
-    public function __construct(RedisConnection $connection, array $options)
+    public function __construct($options, Kernel $kernel = null)
     {
-        $this->redisClient = $connection;
-
+        $this->redisClient = Factory::factory($options['redisConnections']);
         $this->cacheCookies = $options['cache_cookies'];
         $this->keyPrefix = $options['keyPrefix'] ?? '';
         $this->compressionLevel = $options['compressionLevel'] ?? 9;

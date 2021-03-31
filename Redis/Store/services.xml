@@ -17,20 +17,10 @@
                  decorates="shopware.cache_manager"
         >
             <argument type="service" id="swag_essentials.redis_store.cache_manager.inner"/>
-            <argument type="service" id="swag_essentials.redis_store.redis_store"/>
-        </service>
-
-        <service id="swag_essentials.redis_store.redis_store" class="SwagEssentials\Redis\Store\RedisStore">
-            <argument type="service" id="swag_essentials.redis_store.redis_client"/>
             <argument>%shopware.httpcache%</argument>
         </service>
 
-        <service id="swag_essentials.redis_store.redis_client">
-            <factory service="swag_essentials.redis.factory" method="factory" />
-            <argument>%shopware.httpcache.redisConnections%</argument>
-        </service>
-
-        <service id="swag_essentials.redis_store.caching_subscriber" class="SwagEssentials\Redis\Store\CachingSubscriber">
+        <service id="swag_essentials.redis_store_caching_subscriber" class="SwagEssentials\Redis\Store\CachingSubscriber">
             <argument type="service" id="service_container" />
             <argument type="service" id="config"/>
 

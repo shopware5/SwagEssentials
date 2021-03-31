@@ -3,6 +3,7 @@
 namespace SwagEssentials\Tests\Redis\Integration;
 
 use PHPUnit\Framework\TestCase;
+use SwagEssentials\Redis\Factory;
 use SwagEssentials\Redis\RedisConnection;
 use SwagEssentials\Redis\Store\RedisStore;
 use SwagEssentials\Tests\Common\KernelTestCaseTrait;
@@ -13,12 +14,22 @@ class RedisStoreTest extends TestCase
 
     private function getRedisStoreRedisConnection(): RedisConnection
     {
-        return self::getKernel()->getContainer()->get('swag_essentials.redis_store.redis_client');
+        $params = self::getKernel()->getContainer()->getParameter('shopware.httpcache.redisConnections');
+
+        return Factory::factory(
+            $params
+        );
     }
 
     private function getRedisStore(): RedisStore
     {
-        return self::getKernel()->getContainer()->get('swag_essentials.redis_store.redis_store');
+        $params = $this->getKernel()->getContainer()->getParameter('shopware.httpcache');
+
+
+        return new RedisStore(
+            $params,
+            self::getKernel()
+        );
     }
 
     public function test_purge_all_works()
