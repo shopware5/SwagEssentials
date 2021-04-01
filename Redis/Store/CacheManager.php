@@ -21,17 +21,14 @@ class CacheManager extends ShopwareCacheManager
     protected $redisStore;
 
     /**
-     * @param ShopwareCacheManager $cacheManager
-     * @param RedisStore $redisStore
-     * @param $args
+     * @param Container $container
+     * @param ShopwareCacheManager $innerCacheManager
      */
-    public function __construct(
-        ShopwareCacheManager $cacheManager,
-        RedisStore $redisStore,
-        ...$args
-    ) {
-        $this->innerCacheManager = $cacheManager;
-        $this->redisStore = $redisStore;
+    public function __construct()
+    {
+        $args = func_get_args();
+        $this->innerCacheManager = array_shift($args);
+        $this->redisStore = new RedisStore(array_shift($args));
 
         parent::__construct(...$args);
     }
