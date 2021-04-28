@@ -259,9 +259,13 @@ class RedisStore implements StoreInterface
     public function purge($url): bool
     {
         $metadataKey = $this->getMetadataKey(Request::create($url));
+        $cacheItem = $this->load($this->getMetaKey(), $metadataKey);
+        if (!$cacheItem) {
+            return false;
+        }
 
         // keep track of the overall HTTP cache size
-        $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($this->load($this->getMetaKey(), $metadataKey)));
+        $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($cacheItem));
 
         $result = $this->redisClient->hDel($this->getMetaKey(), $metadataKey);
 
@@ -450,29 +454,36 @@ class RedisStore implements StoreInterface
         }
 
         $cacheInvalidateKey = $this->getShopwareIdKey($id);
-
-        if (!$content = json_decode($this->load($this->getIdKey(), $cacheInvalidateKey), true)) {
+        $cacheItem = $this->load($this->getIdKey(), $cacheInvalidateKey);
+        if (!$cacheItem || (!$content = json_decode($cacheItem, true))) {
             return false;
         }
 
         // unlink all cache files which contain the given id
         foreach ($content as $cacheKey => $headerKey) {
             // keep track of the overall HTTP cache size
-            $this->redisClient->decrBy(
-                $this->getCacheSizeKey(),
-                strlen($this->load($this->getBodyKey($cacheKey), $cacheKey))
-            );
-            $this->redisClient->decrBy($this->getCacheSizeKey(), strlen($this->load($this->getMetaKey(), $headerKey)));
-            $this->redisClient->decrBy(
-                $this->getCacheSizeKey(),
-                strlen($this->load($this->getIdKey(), $cacheInvalidateKey))
-            );
+            if ($this->load($this->getBodyKey($cacheKey), $cacheKey)) {
+                $this->redisClient->decrBy(
+                    $this->getCacheSizeKey(),
+                    strlen($this->load($this->getBodyKey($cacheKey), $cacheKey))
+                );
+                $this->redisClient->hDel($this->getBodyKey($cacheKey), $cacheKey);
+            }
 
-            // remove fields
-            $this->redisClient->hDel($this->getBodyKey($cacheKey), $cacheKey);
-            $this->redisClient->hDel($this->getMetaKey(), $headerKey);
-            $this->redisClient->hDel($this->getIdKey(), $cacheInvalidateKey);
+            if ($this->load($this->getMetaKey(), $headerKey)) {
+                $this->redisClient->decrBy(
+                    $this->getCacheSizeKey(),
+                    strlen($this->load($this->getMetaKey(), $headerKey))
+                );
+                $this->redisClient->hDel($this->getMetaKey(), $headerKey);
+            }
         }
+
+        $this->redisClient->decrBy(
+            $this->getCacheSizeKey(),
+            strlen($cacheItem)
+        );
+        $this->redisClient->hDel($this->getIdKey(), $cacheInvalidateKey);
 
         return true;
     }
@@ -496,7 +507,8 @@ class RedisStore implements StoreInterface
 
         foreach ($cacheIds as $cacheId) {
             $key = $this->getShopwareIdKey($cacheId);
-            if (!$content = json_decode($this->load($this->getIdKey(), $key), true)) {
+            $cacheItem = $this->load($this->getIdKey(), $key);
+            if (!$cacheItem || (!$content = json_decode($cacheItem, true))) {
                 $content = [];
             }
 
