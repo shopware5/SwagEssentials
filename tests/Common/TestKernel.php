@@ -2,6 +2,8 @@
 
 namespace SwagEssentials\Tests\Common;
 
+use function class_exists;
+use Enlight_Controller_ActionEventArgs;
 use Enlight_Controller_Front;
 use Enlight_Controller_Request_RequestTestCase;
 use Enlight_Controller_Response_ResponseTestCase;
@@ -12,16 +14,18 @@ use Shopware\Models\Shop\Shop;
 use Shopware_Components_Auth;
 use Smarty_Resource;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\TerminableInterface;
-use function urldecode;
 use Zend_Auth_Adapter_Exception;
 use Zend_Auth_Adapter_Interface;
 use Zend_Auth_Result;
-use Zend_Session;
 
 class TestKernel extends Kernel implements TerminableInterface, TestKernelInterface
 {
@@ -45,12 +49,20 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         $request = $this->transformSymfonyRequestToEnlightRequest($request);
         $front->setRequest($request);
         $response = $front->dispatch();
-        if (KernelTestCaseTrait::isShopware54($container)
-            || KernelTestCaseTrait::isShopware55($container)) {
-            $response = $this->transformEnlightResponseToSymfonyResponse($response);
-        }
 
         return $response;
+    }
+
+    public function boot($skipDatabase = false)
+    {
+        $result = parent::boot($skipDatabase);
+
+        /** @var \Shopware\Models\Shop\Repository $repository */
+        $repository = $this->getContainer()->get('models')->getRepository(Shop::class);
+        $shop = $repository->getActiveDefault();
+        @$shop->registerResources();
+
+        return $result;
     }
 
     protected function buildContainer()
@@ -60,7 +72,30 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         $loader = new XmlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('test-services.xml');
 
+        $containerBuilder->addCompilerPass(
+            $this->createMakeServicesPublicCompilerPass(),
+            PassConfig::TYPE_OPTIMIZE
+        );
+
+
         return $containerBuilder;
+    }
+
+    protected function createMakeServicesPublicCompilerPass(): CompilerPassInterface
+    {
+        return new class() implements CompilerPassInterface {
+            public function process(ContainerBuilder $container): void
+            {
+                foreach ($container->getDefinitions() as $id => $definition) {
+                    if (\mb_strpos($id, 'swag_essentials') !== 0) {
+                        continue;
+                    }
+
+                    $definition->setPublic(true);
+                    $definition->setShared(true);
+                }
+            }
+        };
     }
 
     /**
@@ -82,26 +117,38 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
 
     public function beforeTest()
     {
-        Zend_Session::$_unitTestEnabled = true;
+        if (class_exists("\Zend_Session")) {
+            \Zend_Session::$_unitTestEnabled = true;
 
-        if (Zend_Session::isStarted() && Zend_Session::isWritable()) {
+            if (\Zend_Session::isStarted() && \Zend_Session::isWritable()) {
+                $session = $this->getContainer()->get('session');
+                $sessionId = $session->get('sessionId');
+                $session->unsetAll();
+                $session->offsetSet('sessionId', $sessionId);
+            }
+        } else {
             $session = $this->getContainer()->get('session');
             $sessionId = $session->get('sessionId');
-            $session->unsetAll();
+            $session->clear();
             $session->offsetSet('sessionId', $sessionId);
         }
 
         $this->resetFront();
+        $this->resetShopResource();
     }
 
     public function beforeUnset()
     {
-        if (Zend_Session::isStarted() && Zend_Session::isWritable()) {
-            $this->getContainer()->get('session')->unsetAll();
-            Zend_Session::writeClose();
-
-            unset($_SESSION);
+        if (class_exists("\Zend_Session")) {
+            if (\Zend_Session::isStarted() && \Zend_Session::isWritable()) {
+                $this->getContainer()->get('session')->unsetAll();
+                \Zend_Session::writeClose();
+            }
+        } else {
+            $this->getContainer()->get(SessionInterface::class)->clear();
         }
+
+        unset($_SESSION);
 
         $this->getContainer()->get('dbal_connection')->close();
 
@@ -128,7 +175,9 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
 
     public function authenticateApiUser()
     {
-        Zend_Session::$_unitTestEnabled = true;
+        if (class_exists("\Zend_Session")) {
+            \Zend_Session::$_unitTestEnabled = true;
+        }
 
         $adapter = new class() implements Zend_Auth_Adapter_Interface {
             /**
@@ -159,7 +208,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         $front->setResponse(Enlight_Controller_Response_ResponseTestCase::class);
     }
 
-    protected function resetShopResource()
+    private function resetShopResource()
     {
         $container = $this->getContainer();
 
@@ -171,11 +220,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
         $repository = $container->get('models')->getRepository(Shop::class);
         $shop = $repository->getActiveDefault();
 
-        if (KernelTestCaseTrait::isShopware56($container)) {
-            $container->get('shopware.components.shop_registration_service')
-                ->registerResources($shop);
-        } else {
-            $shop->registerResources();
-        }
+        $container->get('shopware.components.shop_registration_service')
+            ->registerResources($shop);
     }
 }

@@ -32,21 +32,43 @@ Php Cs Fixer:
 # base unit
 ParallelUnit:
     stage: Test
-    image: $IMAGE
+    image: gitlab.shopware.com:5005/shopware/5/product/image/continuous:$PHP_VERSION
     services:
         - name: mysql:8.0
           alias: mysql
           command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-authentication-plugin=mysql_native_password"]
         - name: redis:latest
           alias: app_redis
+          command: ["redis-server", "--requirepass app"]
     parallel:
         matrix:
-            - SHOPWARE_VERSION: [ "5.6.6", "5.6.9" ]
-              IMAGE: [ 'shopware/5-continuous:7.3', 'shopware/5-continuous:7.2', 'shopware/5-continuous:7.4' ]
+            - SHOPWARE_VERSION: [ "~5.6.0" ]
+              PHP_VERSION: [
+                      '7.3',
+                      '7.2',
+                      '7.4'
+              ]
+            -   SHOPWARE_VERSION: [ "~5.7.0"]
+                PHP_VERSION: [
+                    '8.0',
+                    '7.4'
+                ]
+
     before_script:
-        - apt-install default-mysql-client
+        - apk add --no-cache mysql-client coreutils
         - composer install --working-dir=tools
-        - ./psh.phar init --SW-VERSION=${SHOPWARE_VERSION}
+        - ./psh.phar set-branch --VERSION=$SHOPWARE_VERSION
+        - >
+            if [[ $SHOPWARE_VERSION = "~5.6.0" ]]; then
+                composer update --with-all-dependencies --ignore-platform-reqs
+            else
+                if [[ $PHP_VERSION = "8.0" ]]; then
+                    composer update --with-all-dependencies --ignore-platform-reqs
+                else
+                    composer update --with-all-dependencies
+                fi
+            fi
+        - ./psh.phar init
         - ./psh.phar essentials-on --module=RedisStore
     script:
         - ./psh.phar unit

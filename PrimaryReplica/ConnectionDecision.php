@@ -189,8 +189,8 @@ class ConnectionDecision
      */
     protected function getTables(): string
     {
-        $apc_fetch = function_exists('apc_fetch') ? 'apc_fetch' : function_exists('apcu_fetch') ? 'apcu_fetch' : null;
-        $apc_store = function_exists('apc_store') ? 'apc_fetch' : function_exists('apcu_store') ? 'apcu_store' : null;
+        $apc_fetch = function_exists('apc_fetch') ? 'apc_fetch' : (function_exists('apcu_fetch') ? 'apcu_fetch' : null);
+        $apc_store = function_exists('apc_store') ? 'apc_fetch' : (function_exists('apcu_store') ? 'apcu_store' : null);
 
         $apc_available = $apc_store && $apc_fetch;
 

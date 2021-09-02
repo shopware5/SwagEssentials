@@ -1,0 +1,1 @@
+sed -i -r 's#"shopware\/shopware". "[\^A-Za-z\.@0-9 <>=-~]+"#"shopware/shopware": "__VERSION__"#g' composer.json

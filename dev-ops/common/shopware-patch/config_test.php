@@ -5,12 +5,14 @@ require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/Factory.php';
 require_once __DIR__ . '/custom/plugins/SwagEssentials/Redis/RedisConnection.php';
 require_once __DIR__ . '/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php';
 
+$unitTestEnabled = false;
 $csrfProtection = true;
 $sessionLocking = true;
 
 if (getenv('SHOPWARE_ENV') === 'test') {
     $csrfProtection = false;
     $sessionLocking = false;
+    $unitTestEnabled = true;
 }
 
 return array (
@@ -30,6 +32,7 @@ return array (
 
     'session' => [
         'locking' => $sessionLocking,
+        'unitTestEnabled' => $unitTestEnabled,
     ],
 
     'front' => [

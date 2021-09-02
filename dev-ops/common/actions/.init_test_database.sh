@@ -11,3 +11,4 @@ mysql __DB_NAME__-test -u "__DB_USER__" -p"__DB_PASSWORD__" -h "__DB_HOST__" -e 
 
 mysql __DB_NAME__-test -u __DB_USER__ -p__DB_PASSWORD__ -h __DB_HOST__ -e "UPDATE s_core_shops SET base_path = NULL"
 mysql __DB_NAME__-test -u __DB_USER__ -p__DB_PASSWORD__ -h __DB_HOST__ -e "UPDATE s_core_shops SET base_url = NULL"
+I: mysql __DB_NAME__ -u "__DB_USER__" -p"__DB_PASSWORD__" -h "__DB_HOST__" < dev-ops/common/fixtures.sql

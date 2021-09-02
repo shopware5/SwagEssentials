@@ -8,7 +8,7 @@
     <services>
         <service id="swag_essentials.redis.factory" class="SwagEssentials\Redis\Factory">
         </service>
-        <service id="swag_essentials.redis" class="SwagEssentials\Redis\RedisConnection">
+        <service id="swag_essentials.redis" class="SwagEssentials\Redis\RedisConnection" public="true">
             <factory service="swag_essentials.redis.factory" method="factory" />
             <argument>%shopware.swag_essentials.redis%</argument>
         </service>

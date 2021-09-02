@@ -9,8 +9,6 @@ use SwagEssentials\Tests\Common\KernelTestCaseTrait;
 
 class AppCacheTest extends TestCase
 {
-    use KernelTestCaseTrait;
-
     private function getOptions(): array
     {
         return [

@@ -7,24 +7,25 @@
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
-        strict="true"
 >
     <php>
         <const name="SHOPWARE_ENV" value="test"/>
         <env name="SHOPWARE_ENV" value="test"/>
     </php>
 
-    <testsuite name="Enterprise Search Test Suite - Unit">
-        <directory>tests/**/Unit</directory>
-    </testsuite>
+    <testsuites>
+        <testsuite name="Enterprise Search Test Suite - Unit">
+            <directory>tests/**/Unit</directory>
+        </testsuite>
 
-    <testsuite name="Enterprise Search Test Suite - Integration">
-        <directory>tests/**/Integration</directory>
-    </testsuite>
+        <testsuite name="Enterprise Search Test Suite - Integration">
+            <directory>tests/**/Integration</directory>
+        </testsuite>
 
-    <testsuite name="Enterprise Search Test Suite - Functional">
-        <directory>tests/**/Functional</directory>
-    </testsuite>
+        <testsuite name="Enterprise Search Test Suite - Functional">
+            <directory>tests/**/Functional</directory>
+        </testsuite>
+    </testsuites>
 
     <filter>
         <whitelist>

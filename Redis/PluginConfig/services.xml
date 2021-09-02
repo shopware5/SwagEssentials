@@ -11,7 +11,7 @@
             <argument type="service" id="swag_essentials.redis"/>
             <argument>%shopware.swag_essentials.caching_ttl_plugin_config%</argument>
         </service>
-        <service id="config" class="SwagEssentials\Redis\PluginConfig\Config">
+        <service id="config" class="SwagEssentials\Redis\PluginConfig\Config" public="true">
             <factory service="config_factory" method="factory" />
             <argument type="service" id="cache" />
             <argument type="service" id="dbal_connection" on-invalid="ignore"/>

@@ -158,8 +158,9 @@ class ConfigHelper
                 'factory' => '\SwagEssentials\PrimaryReplica\PdoFactory',
                 'replicas' => [
                     'replica-slave' => [
-                        'username' => 'app',
-                        'password' => 'app',
+                        'pdoOptions' => null,
+                        'username' => 'root',
+                        'password' => 'root',
                         'dbname' => 'shopware',
                         'host' => '10.123.123.41',
                         'port' => '',
@@ -246,12 +247,12 @@ class ConfigHelper
 
     protected static function saveConfig($config)
     {
-        $configFile = '<?php 
+        $configFile = '<?php
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php\';
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Factory.php\';
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/RedisConnection.php\';
             require_once __DIR__ . \'/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php\';
-            
+
         return ' . var_export($config, true) . ';';
         file_put_contents(self::CONFIG_PATH, $configFile, LOCK_EX);
     }

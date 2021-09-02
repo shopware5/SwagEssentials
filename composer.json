@@ -17,5 +17,8 @@
         "ext-zlib": "*",
         "ext-json": "*",
         "ext-redis": "*"
-    }
+    },
+  "require-dev": {
+    "shopware/shopware": "~5.6.0"
+  }
 }

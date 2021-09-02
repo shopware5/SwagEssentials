@@ -71,8 +71,6 @@ services:
       - ./dev-ops/docker/_volumes/app-mysql-slave-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: app
-      MYSQL_PASSWORD: app
     networks:
       sw_docker_swag_essentials:
         ipv4_address: 10.123.123.41
