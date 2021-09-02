@@ -1,6 +1,0 @@
-{
-    "minimum-stability": "dev",
-    "require": {
-        "shopwarelabs/sw-cli-tools": "0.1.0"
-    }
-}

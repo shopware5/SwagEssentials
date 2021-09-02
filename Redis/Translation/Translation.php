@@ -24,21 +24,16 @@ class Translation extends \Shopware_Components_Translation
      */
     protected $front;
 
-    /**
-     * @param Connection $connection
-     * @param RedisConnection $redis
-     * @param $auth
-     * @param int $cachingTtlTranslation
-     */
     public function __construct(
         Connection $connection,
         RedisConnection $redis,
-        int $cachingTtlTranslation
+        int $cachingTtlTranslation,
+        \Enlight_Controller_Front $front
     ) {
         parent::__construct($connection, Shopware()->Container());
         $this->redis = $redis;
         $this->cachingTtlTranslation = $cachingTtlTranslation;
-        $this->front = Shopware()->Container()->get('Front');
+        $this->front = $front;
     }
 
     /**

@@ -1,5 +1,11 @@
 {
     "require": {
         "shopware/psh": "^1.4.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.2"
+        },
+        "bin-dir": "."
     }
 }

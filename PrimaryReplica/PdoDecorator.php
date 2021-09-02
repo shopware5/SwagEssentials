@@ -4,123 +4,248 @@ namespace SwagEssentials\PrimaryReplica;
 
 use PDO;
 
-/**
- * Class PdoDecorator decorates a default PDO connection and will dispatch any query to either the primary or
- * the replica connections. The connection selection is done by the `ConnectionDecision` service
- */
-class PdoDecorator extends \PDO
-{
-    /**
-     * @var ConnectionDecision
-     */
-    protected $connectionDecision;
-
-    protected $lastConnection = null;
+if (PHP_VERSION_ID >= 80000) {
 
     /**
-     * @var ConnectionPool
+     * Class PdoDecorator decorates a default PDO connection and will dispatch any query to either the primary or
+     * the replica connections. The connection selection is done by the `ConnectionDecision` service
      */
-    protected $connectionPool;
-
-    public function __construct(ConnectionDecision $connectionDecision, ConnectionPool $connectionPool)
+    class PdoDecorator extends \PDO
     {
-        $this->connectionDecision = $connectionDecision;
-        $this->connectionPool = $connectionPool;
+        /**
+         * @var ConnectionDecision
+         */
+        protected $connectionDecision;
 
-        $this->lastConnection = $connectionPool->getRandomConnection();
-    }
+        protected $lastConnection = null;
 
-    #
-    # Overrides of the original PDO object
-    # in order to inspect the queries
-    #
-    public function prepare($statement, $options = [])
-    {
-        $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
+        /**
+         * @var ConnectionPool
+         */
+        protected $connectionPool;
 
-        return $this->lastConnection->prepare($statement, $options);
-    }
+        public function __construct(ConnectionDecision $connectionDecision, ConnectionPool $connectionPool)
+        {
+            $this->connectionDecision = $connectionDecision;
+            $this->connectionPool = $connectionPool;
 
-    public function query()
-    {
-        // remove empty constructor params list if it exists
-        $args = func_get_args();
-
-        $this->lastConnection = $this->connectionDecision->getConnectionForQuery($args[0]);
-
-        return call_user_func_array([$this->lastConnection, 'query'], $args);
-    }
-
-    public function exec($statement)
-    {
-        $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
-
-        return $this->lastConnection->exec($statement);
-    }
-
-    #
-    # Overrides of the original PDO object
-    # in order to "decorate" it  - no inspection here
-    #
-    public function beginTransaction()
-    {
-        if (!$this->inTransaction()) {
-            return $this->connectionPool->getConnectionByName('primary')->beginTransaction();
+            $this->lastConnection = $connectionPool->getRandomConnection();
         }
 
-        return true;
-    }
+        #
+        # Overrides of the original PDO object
+        # in order to inspect the queries
+        #
+        public function prepare($statement, $options = [])
+        {
+            $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
 
-    public function commit()
-    {
-        if ($this->inTransaction()) {
-            return $this->connectionPool->getConnectionByName('primary')->commit();
+            return $this->lastConnection->prepare($statement, $options);
         }
 
-        return false;
-    }
+        public function query(string $query, ?int $fetchMode = null, mixed ...$fetchModeArgs)
+        {
+            // remove empty constructor params list if it exists
+            $args = func_get_args();
 
-    public function rollBack()
-    {
-        if ($this->inTransaction()) {
-            return $this->connectionPool->getConnectionByName('primary')->rollBack();
+            $this->lastConnection = $this->connectionDecision->getConnectionForQuery($args[0]);
+
+            return call_user_func_array([$this->lastConnection, 'query'], $args);
         }
 
-        return false;
-    }
+        public function exec($statement)
+        {
+            $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
 
-    public function inTransaction()
-    {
-        return $this->connectionPool->getConnectionByName('primary')->inTransaction();
-    }
+            return $this->lastConnection->exec($statement);
+        }
 
-    public function setAttribute($attribute, $value)
-    {
-        $this->connectionPool->getConnectionByName('primary')->setAttribute($attribute, $value);
-    }
+        #
+        # Overrides of the original PDO object
+        # in order to "decorate" it  - no inspection here
+        #
+        public function beginTransaction()
+        {
+            if (!$this->inTransaction()) {
+                return $this->connectionPool->getConnectionByName('primary')->beginTransaction();
+            }
 
-    public function lastInsertId($name = null)
-    {
-        return $this->connectionPool->getConnectionByName('primary')->lastInsertId($name);
-    }
+            return true;
+        }
 
-    public function errorCode()
-    {
-        return $this->lastConnection->errorCode();
-    }
+        public function commit()
+        {
+            if ($this->inTransaction()) {
+                return $this->connectionPool->getConnectionByName('primary')->commit();
+            }
 
-    public function errorInfo()
-    {
-        return $this->lastConnection->errorInfo();
-    }
+            return false;
+        }
 
-    public function getAttribute($attribute)
-    {
-        return $this->connectionPool->getRandomConnection()[1]->getAttribute($attribute);
-    }
+        public function rollBack()
+        {
+            if ($this->inTransaction()) {
+                return $this->connectionPool->getConnectionByName('primary')->rollBack();
+            }
 
-    public function quote($string, $parameter_type = PDO::PARAM_STR)
+            return false;
+        }
+
+        public function inTransaction()
+        {
+            return $this->connectionPool->getConnectionByName('primary')->inTransaction();
+        }
+
+        public function setAttribute($attribute, $value)
+        {
+            $this->connectionPool->getConnectionByName('primary')->setAttribute($attribute, $value);
+        }
+
+        public function lastInsertId($name = null)
+        {
+            return $this->connectionPool->getConnectionByName('primary')->lastInsertId($name);
+        }
+
+        public function errorCode()
+        {
+            return $this->lastConnection->errorCode();
+        }
+
+        public function errorInfo()
+        {
+            return $this->lastConnection->errorInfo();
+        }
+
+        public function getAttribute($attribute)
+        {
+            return $this->connectionPool->getRandomConnection()[1]->getAttribute($attribute);
+        }
+
+        public function quote($string, $parameter_type = PDO::PARAM_STR)
+        {
+            return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, (int) $parameter_type);
+        }
+    }
+} else {
+
+    /**
+     * Class PdoDecorator decorates a default PDO connection and will dispatch any query to either the primary or
+     * the replica connections. The connection selection is done by the `ConnectionDecision` service
+     */
+    class PdoDecorator extends \PDO
     {
-        return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, (int) $parameter_type);
+        /**
+         * @var ConnectionDecision
+         */
+        protected $connectionDecision;
+
+        protected $lastConnection = null;
+
+        /**
+         * @var ConnectionPool
+         */
+        protected $connectionPool;
+
+        public function __construct(ConnectionDecision $connectionDecision, ConnectionPool $connectionPool)
+        {
+            $this->connectionDecision = $connectionDecision;
+            $this->connectionPool = $connectionPool;
+
+            $this->lastConnection = $connectionPool->getRandomConnection();
+        }
+
+        #
+        # Overrides of the original PDO object
+        # in order to inspect the queries
+        #
+        public function prepare($statement, $options = [])
+        {
+            $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
+
+            return $this->lastConnection->prepare($statement, $options);
+        }
+
+        public function query()
+        {
+            // remove empty constructor params list if it exists
+            $args = func_get_args();
+
+            $this->lastConnection = $this->connectionDecision->getConnectionForQuery($args[0]);
+
+            return call_user_func_array([$this->lastConnection, 'query'], $args);
+        }
+
+        public function exec($statement)
+        {
+            $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
+
+            return $this->lastConnection->exec($statement);
+        }
+
+        #
+        # Overrides of the original PDO object
+        # in order to "decorate" it  - no inspection here
+        #
+        public function beginTransaction()
+        {
+            if (!$this->inTransaction()) {
+                return $this->connectionPool->getConnectionByName('primary')->beginTransaction();
+            }
+
+            return true;
+        }
+
+        public function commit()
+        {
+            if ($this->inTransaction()) {
+                return $this->connectionPool->getConnectionByName('primary')->commit();
+            }
+
+            return false;
+        }
+
+        public function rollBack()
+        {
+            if ($this->inTransaction()) {
+                return $this->connectionPool->getConnectionByName('primary')->rollBack();
+            }
+
+            return false;
+        }
+
+        public function inTransaction()
+        {
+            return $this->connectionPool->getConnectionByName('primary')->inTransaction();
+        }
+
+        public function setAttribute($attribute, $value)
+        {
+            $this->connectionPool->getConnectionByName('primary')->setAttribute($attribute, $value);
+        }
+
+        public function lastInsertId($name = null)
+        {
+            return $this->connectionPool->getConnectionByName('primary')->lastInsertId($name);
+        }
+
+        public function errorCode()
+        {
+            return $this->lastConnection->errorCode();
+        }
+
+        public function errorInfo()
+        {
+            return $this->lastConnection->errorInfo();
+        }
+
+        public function getAttribute($attribute)
+        {
+            return $this->connectionPool->getRandomConnection()[1]->getAttribute($attribute);
+        }
+
+        public function quote($string, $parameter_type = PDO::PARAM_STR)
+        {
+            return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, (int) $parameter_type);
+        }
     }
 }

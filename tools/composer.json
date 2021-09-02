@@ -11,6 +11,9 @@
         "post-update-cmd": ["@composer bin all update --ansi"]
     },
     "config": {
+        "platform": {
+            "php": "7.2"
+        },
         "bin-dir": "."
     }
 }

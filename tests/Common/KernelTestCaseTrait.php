@@ -74,27 +74,6 @@ trait KernelTestCaseTrait
         return KernelStorage::retrieve();
     }
 
-    public static function isShopware54(ContainerInterface $container = null): bool
-    {
-        if (!$container) {
-            $container = self::getKernel()->getContainer();
-        }
-
-        return $container->has('customer_search.dbal.number_search')
-            && $container->has('shopware.release')
-            && !$container->has('shopware.filesystem.public');
-    }
-
-    public static function isShopware55(ContainerInterface $container = null): bool
-    {
-        if (!$container) {
-            $container = self::getKernel()->getContainer();
-        }
-
-        return $container->has('shopware.filesystem.public')
-            && !$container->has('shopware.components.shop_registration_service');
-    }
-
     public static function isShopware56(ContainerInterface $container = null): bool
     {
         if (!$container) {

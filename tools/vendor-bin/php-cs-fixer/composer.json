@@ -1,5 +1,11 @@
 {
     "require": {
         "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "config": {
+        "platform": {
+            "php": "7.2"
+        },
+        "bin-dir": "."
     }
 }

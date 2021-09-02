@@ -12,6 +12,7 @@
             <argument id="dbal_connection" type="service"/>
             <argument id="swag_essentials.redis" type="service"/>
             <argument>%shopware.swag_essentials.caching_ttl_translation%</argument>
+            <argument id="front" type="service"/>
         </service>
 
         <service id="swag_essentials.redis_translation.cache_manager" class="SwagEssentials\Redis\Translation\CacheManager"
