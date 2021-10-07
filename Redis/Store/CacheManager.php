@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\Store;
 
@@ -21,7 +23,7 @@ class CacheManager extends ShopwareCacheManager
     protected $redisStore;
 
     /**
-     * @param Container $container
+     * @param Container            $container
      * @param ShopwareCacheManager $innerCacheManager
      */
     public function __construct()
@@ -37,8 +39,8 @@ class CacheManager extends ShopwareCacheManager
      * Returns cache information
      *
      * @param \Enlight_Controller_Request_RequestHttp $request
+     *
      * @throws \Exception
-     * @return array
      */
     public function getHttpCacheInfo($request = null): array
     {

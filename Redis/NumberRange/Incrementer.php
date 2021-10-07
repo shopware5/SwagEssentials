@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\NumberRange;
 
@@ -7,7 +9,7 @@ use SwagEssentials\Redis\RedisConnection;
 
 class Incrementer implements NumberRangeIncrementerInterface
 {
-    const HASH_NAME = 'sw_number_range';
+    public const HASH_NAME = 'sw_number_range';
 
     /**
      * @var RedisConnection

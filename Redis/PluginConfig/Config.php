@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\PluginConfig;
 
@@ -39,14 +41,12 @@ class Config extends \Shopware_Components_Config
             $this->hashName = $config['release']->getVersion() . $this->hashName;
         }
 
-        $this->config  = $config;
+        $this->config = $config;
         parent::__construct($config);
     }
 
     /**
      * Read data with translations from database
-     *
-     * @return array
      */
     protected function readData(): array
     {

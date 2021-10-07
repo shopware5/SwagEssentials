@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\Store;
 
@@ -29,11 +31,11 @@ use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
  */
 class RedisStore implements StoreInterface
 {
-    const CACHE_KEY = 'sw_http_cache_body';
-    const META_KEY = 'sw_http_cache_meta';
-    const LOCK_KEY = 'sw_http_cache_lock';
-    const ID_KEY = 'sw_http_cache_ids';
-    const CACHE_SIZE_KEY = 'sw_http_cache_size';
+    public const CACHE_KEY = 'sw_http_cache_body';
+    public const META_KEY = 'sw_http_cache_meta';
+    public const LOCK_KEY = 'sw_http_cache_lock';
+    public const ID_KEY = 'sw_http_cache_ids';
+    public const CACHE_SIZE_KEY = 'sw_http_cache_size';
 
     /**
      * @var string
@@ -45,7 +47,9 @@ class RedisStore implements StoreInterface
      */
     protected $redisClient;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $cacheCookies;
 
     /**
@@ -73,8 +77,7 @@ class RedisStore implements StoreInterface
     /**
      * Check if there is a cached result for a given request. Return null otherwise
      *
-     * @param Request $request
-     * @return null|Response
+     * @return Response|null
      */
     public function lookup(Request $request)
     {
@@ -94,16 +97,16 @@ class RedisStore implements StoreInterface
             )
             ) {
                 $match = $entry;
+
                 break;
             }
         }
 
-        if (null === $match) {
+        if ($match === null) {
             return null;
         }
 
         list($headers) = array_slice($match, 1, 1);
-
 
         $body = $this->redisClient->hGet(
             $this->getBodyKey($headers['x-content-digest'][0]),
@@ -123,10 +126,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Cache a given response for a given request
-     *
-     * @param Request $request
-     * @param Response $response
-     * @return string
      */
     public function write(Request $request, Response $response): string
     {
@@ -167,7 +166,7 @@ class RedisStore implements StoreInterface
 
         array_unshift($entries, [$requestHeaders, $headers]);
 
-        if (false === $this->save($this->getMetaKey(), $metadataKey, serialize($entries))) {
+        if ($this->save($this->getMetaKey(), $metadataKey, serialize($entries)) === false) {
             throw new \RuntimeException('Unable to store the metadata.');
         }
 
@@ -208,6 +207,7 @@ class RedisStore implements StoreInterface
      * Locks the cache for a given Request.
      *
      * @param Request $request A Request instance
+     *
      * @return bool|string true if the lock is acquired, the path to the current lock otherwise
      */
     public function lock(Request $request): bool
@@ -221,6 +221,7 @@ class RedisStore implements StoreInterface
      * Releases the lock for the given Request.
      *
      * @param Request $request A Request instance
+     *
      * @return bool False if the lock file does not exist or cannot be unlocked, true otherwise
      */
     public function unlock(Request $request): bool
@@ -236,6 +237,7 @@ class RedisStore implements StoreInterface
      * Returns whether or not a lock exists.
      *
      * @param Request $request A Request instance
+     *
      * @return bool true if lock exists, false otherwise
      */
     public function isLocked(Request $request): bool
@@ -251,6 +253,7 @@ class RedisStore implements StoreInterface
      * Purges data for the given URL.
      *
      * @param string $url A URL
+     *
      * @return bool true if the URL exists and has been purged, false otherwise
      */
     public function purge($url): bool
@@ -282,9 +285,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Return the request's headers
-     *
-     * @param Request $request
-     * @return array
      */
     protected function getRequestHeaders(Request $request): array
     {
@@ -293,9 +293,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Create content hash
-     *
-     * @param Response $response
-     * @return string
      */
     protected function generateContentDigestKey(Response $response): string
     {
@@ -306,7 +303,6 @@ class RedisStore implements StoreInterface
      * Returns the meta information of a cached item. Will contain e.g. headers and the content hash
      *
      * @param $key
-     * @return array
      */
     protected function getMetaData($key): array
     {
@@ -341,6 +337,7 @@ class RedisStore implements StoreInterface
      *
      * @param $hash
      * @param $key
+     *
      * @return string|bool
      */
     protected function load($hash, $key)
@@ -358,8 +355,9 @@ class RedisStore implements StoreInterface
      * the vary response header value provided.
      *
      * @param string $vary A Response vary header
-     * @param array $env1 A Request HTTP header array
-     * @param array $env2 A Request HTTP header array
+     * @param array  $env1 A Request HTTP header array
+     * @param array  $env2 A Request HTTP header array
+     *
      * @return bool true if the two environments match, false otherwise
      */
     protected function requestsMatch($vary, $env1, $env2): bool
@@ -384,6 +382,7 @@ class RedisStore implements StoreInterface
      * Persists the Response HTTP headers.
      *
      * @param Response $response A Response instance
+     *
      * @return array An array of HTTP headers
      */
     protected function getResponseHeaders(Response $response): array
@@ -399,7 +398,6 @@ class RedisStore implements StoreInterface
      *
      * @param $headers
      * @param $body
-     * @return Response
      */
     protected function recreateResponse($headers, $body): Response
     {
@@ -430,7 +428,6 @@ class RedisStore implements StoreInterface
      *
      * @param $name
      * @param null $value
-     * @return bool
      */
     public function purgeByHeader($name, $value = null): bool
     {
@@ -445,7 +442,6 @@ class RedisStore implements StoreInterface
      * Clear all cached pages with a certain shopwareID in them
      *
      * @param $id
-     * @return bool
      */
     protected function purgeByShopwareId($id): bool
     {
@@ -486,7 +482,7 @@ class RedisStore implements StoreInterface
      * to easily invalidate all pages with a certain ID
      *
      * @param $metadataKey
-     * @param Response $response
+     *
      * @return mixed
      */
     protected function storeLookupOptimization($metadataKey, Response $response)
@@ -519,7 +515,6 @@ class RedisStore implements StoreInterface
     /**
      * Build metadata key from URL + some cookies
      *
-     * @param Request $request
      * @return mixed
      */
     protected function getMetadataKey(Request $request)
@@ -545,7 +540,6 @@ class RedisStore implements StoreInterface
      * Sort query params, so that shop.de/?foo=1&bar=2 and shop.de/?bar=2&foo=1 are handled as the same cached page
      *
      * @param $params
-     * @return string
      */
     protected function sortQueryStringParameters($params): string
     {
@@ -564,8 +558,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Return information regarding cache keys and size
-     *
-     * @return array
      */
     public function getCacheInfo(): array
     {
@@ -586,9 +578,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Get the prefixed key for body entries
-     *
-     * @param string $key
-     * @return string
      */
     protected function getBodyKey(string $key): string
     {
@@ -597,8 +586,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Get the prefixed key for meta entries
-     *
-     * @return string
      */
     protected function getMetaKey(): string
     {
@@ -607,8 +594,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Get the prefixed key for size entries
-     *
-     * @return string
      */
     protected function getCacheSizeKey(): string
     {
@@ -617,8 +602,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Get the prefixed key for id entries
-     *
-     * @return string
      */
     protected function getIdKey(): string
     {
@@ -627,8 +610,6 @@ class RedisStore implements StoreInterface
 
     /**
      * Get the prefixed key for lock entries
-     *
-     * @return string
      */
     protected function getLockKey(): string
     {
@@ -637,8 +618,6 @@ class RedisStore implements StoreInterface
 
     /**
      * get the key prefix
-     *
-     * @return string
      */
     public function getKeyPrefix(): string
     {
@@ -648,7 +627,6 @@ class RedisStore implements StoreInterface
     /**
      * set the key prefix
      *
-     * @param string $keyPrefix
      * @return RedisStore
      */
     public function setKeyPrefix(string $keyPrefix): self
@@ -658,10 +636,6 @@ class RedisStore implements StoreInterface
         return $this;
     }
 
-    /**
-     * @param Request $request
-     * @return string
-     */
     protected function verifyIgnoredParameters(Request $request): string
     {
         $requestParams = $request->query->all();
@@ -669,7 +643,6 @@ class RedisStore implements StoreInterface
         if (count($requestParams) === 0) {
             return $request->getUri();
         }
-
 
         $parsed = parse_url($request->getUri());
         $query = [];
@@ -688,7 +661,7 @@ class RedisStore implements StoreInterface
 
         $path = $request->getPathInfo();
 
-        /**
+        /*
          * Normalize URL to consistently return the same path even when variables are present
          */
         return sprintf(

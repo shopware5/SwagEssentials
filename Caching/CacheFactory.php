@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Caching;
 
@@ -21,7 +23,6 @@ class CacheFactory
     }
 
     /**
-     * @param ListProductServiceInterface $listProductService
      * @return ListProductServiceInterface
      */
     public function createListProductService(ListProductServiceInterface $listProductService)
@@ -38,7 +39,6 @@ class CacheFactory
     }
 
     /**
-     * @param ProductServiceInterface $productService
      * @return ProductServiceInterface
      */
     public function createProductService(ProductServiceInterface $productService)

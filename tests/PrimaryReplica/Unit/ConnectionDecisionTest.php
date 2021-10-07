@@ -1,14 +1,17 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Tests\PrimaryReplica\Unit;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SwagEssentials\PrimaryReplica\ConnectionDecision;
 use SwagEssentials\PrimaryReplica\ConnectionPool;
 
 class ConnectionDecisionTest extends TestCase
 {
-    public function sqlDataProvider()
+    public function sqlDataProvider(): array
     {
         return [
             ['SELECT * FROM s_user', false],
@@ -33,10 +36,8 @@ class ConnectionDecisionTest extends TestCase
 
     /**
      * @dataProvider sqlDataProvider
-     * @param mixed $query
-     * @param mixed $isWriteQuery
      */
-    public function testIsWriteQuery($query, $isWriteQuery)
+    public function testIsWriteQuery(string $query, bool $isWriteQuery): void
     {
         $connectionDecision = $this->createMock(ConnectionDecision::class);
 
@@ -44,7 +45,7 @@ class ConnectionDecisionTest extends TestCase
         static::assertEquals($isWriteQuery, $result);
     }
 
-    public function testGetTables()
+    public function testGetTables(): void
     {
         $connectionPool = $this->getConnectionPoolMock();
 
@@ -54,7 +55,7 @@ class ConnectionDecisionTest extends TestCase
         static::assertEquals('s_articles|s_user', $result);
     }
 
-    public function testGetAffectedTables()
+    public function testGetAffectedTables(): void
     {
         $connectionPool = $this->getConnectionPoolMock();
 
@@ -64,17 +65,16 @@ class ConnectionDecisionTest extends TestCase
         static::assertEquals(['s_articles', 's_articles_details'], $result);
     }
 
-    public function invokeMethod(&$object, $methodName, array $parameters = [])
+    public function invokeMethod($object, $methodName, array $parameters = [])
     {
-        $reflection = new \ReflectionClass(get_class($object));
-        $method = $reflection->getMethod($methodName);
+        $method = (new \ReflectionClass(get_class($object)))->getMethod($methodName);
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);
     }
 
     /**
-     * @return PHPUnit_Framework_MockObject_MockObject
+     * @return MockObject&ConnectionPool
      */
     protected function getConnectionPoolMock()
     {

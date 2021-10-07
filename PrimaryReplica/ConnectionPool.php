@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica;
 
@@ -41,7 +43,6 @@ class ConnectionPool
     protected $stickyConnectionName;
 
     /**
-     * @param array $config
      * @param $includePrimary
      * @param $doStickToConnection
      */
@@ -58,6 +59,7 @@ class ConnectionPool
      * Return a specific connection from the pool
      *
      * @param $name
+     *
      * @return mixed
      */
     public function getConnectionByName($name)
@@ -72,8 +74,6 @@ class ConnectionPool
     /**
      * Return a random connection from the pool
      * if `includePrimary` is set in the `config.php` this might also include the primary connection
-     *
-     * @return array
      */
     public function getRandomConnection(): array
     {
@@ -83,7 +83,7 @@ class ConnectionPool
 
         $name = $this->getWeightedRandomConnection();
 
-        if (null === $name) {
+        if ($name === null) {
             throw new \RuntimeException('No connection found');
         }
 
@@ -98,7 +98,7 @@ class ConnectionPool
      * Return a random connection based on the configured weights. E.g. a connection with weight "10" is more likely
      * to be returned than a connection with weight "1"
      *
-     * @return null|string
+     * @return string|null
      */
     protected function getWeightedRandomConnection()
     {
@@ -134,6 +134,7 @@ class ConnectionPool
      * Create a PDO connection.
      *
      * @param $name
+     *
      * @return \PDO
      */
     public function getPDOConnection($name)

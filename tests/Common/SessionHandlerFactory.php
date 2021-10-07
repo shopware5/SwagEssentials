@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Tests\Common;
 
@@ -8,8 +10,6 @@ use Shopware\Components\Session\PdoSessionHandler;
 class SessionHandlerFactory
 {
     /**
-     * @param Container $container
-     *
      * @return \SessionHandlerInterface|null
      */
     public static function createSaveHandler(Container $container)

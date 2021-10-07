@@ -1,9 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Caching\Caches;
 
 use Enlight\Event\SubscriberInterface;
-use Shopware\Bundle\StoreFrontBundle\Service\ProductServiceInterface;
 
 class CachingSubscriber implements SubscriberInterface
 {
@@ -17,10 +18,6 @@ class CachingSubscriber implements SubscriberInterface
      */
     protected $cache;
 
-    /**
-     * @param \Zend_Cache_Core $cache
-     * @param \Shopware_Components_Config $config
-     */
     public function __construct(\Zend_Cache_Core $cache, \Shopware_Components_Config $config)
     {
         $this->cache = $cache;
@@ -42,9 +39,6 @@ class CachingSubscriber implements SubscriberInterface
         ];
     }
 
-    /**
-     * @param \Enlight_Event_EventArgs $eventArgs
-     */
     public function onPostPersist(\Enlight_Event_EventArgs $eventArgs)
     {
         if (!$this->config->get('proxyPrune')) {

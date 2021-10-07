@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\CacheMultiplexer;
 
@@ -10,11 +12,11 @@ use Shopware\Components\Logger;
  */
 class RemoteCacheInvalidator
 {
-    const ENDPOINT_HOST = 'host';
-    const ENDPOINT_HEADERS = 'headers';
-    const ENDPOINT_USER = 'user';
-    const ENDPOINT_PASSWORD = 'password';
-    const ENDPOINT_AUTHMETHOD = 'authMethod';
+    public const ENDPOINT_HOST = 'host';
+    public const ENDPOINT_HEADERS = 'headers';
+    public const ENDPOINT_USER = 'user';
+    public const ENDPOINT_PASSWORD = 'password';
+    public const ENDPOINT_AUTHMETHOD = 'authMethod';
 
     /**
      * List of all hosts
@@ -47,6 +49,7 @@ class RemoteCacheInvalidator
 
         foreach ($this->hosts as $endpoint) {
             $error = null;
+
             try {
                 $response = $this->getResponseForEndpoint($endpoint, $caches);
 
@@ -74,6 +77,7 @@ class RemoteCacheInvalidator
      *
      * @param $endpoint
      * @param $caches
+     *
      * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
      */
     protected function getResponseForEndpoint($endpoint, $caches)
@@ -94,7 +98,6 @@ class RemoteCacheInvalidator
 
     /**
      * @param $caches
-     * @return array
      */
     protected function normalizeCacheIds($caches): array
     {

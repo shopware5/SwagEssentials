@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Caching\Caches;
 
@@ -22,11 +24,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
      */
     protected $ttl;
 
-    /**
-     * @param \Zend_Cache_Core $cache
-     * @param RewriteGenerator $service
-     * @param int $ttl
-     */
     public function __construct(\Zend_Cache_Core $cache, RewriteGenerator $service, int $ttl)
     {
         $this->service = $service;
@@ -97,7 +94,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
             function ($param) use ($context) {
                 $hash = $this->hashItem($param, $context);
 
-                return  $this->cache->load($hash);
+                return $this->cache->load($hash);
             },
             $list
         );
@@ -106,6 +103,7 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
     /**
      * @param $params
      * @param $context
+     *
      * @return string
      */
     protected function hashItem($params, $context)

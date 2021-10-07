@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\CacheMultiplexer\Subscriber;
 
@@ -7,7 +9,9 @@ use SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator;
 
 class BackendCache implements SubscriberInterface
 {
-    /** @var RemoteCacheInvalidator */
+    /**
+     * @var RemoteCacheInvalidator
+     */
     protected $cacheInvalidator;
 
     public function __construct(RemoteCacheInvalidator $cacheInvalidator)

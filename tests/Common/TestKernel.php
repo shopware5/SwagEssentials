@@ -1,9 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Tests\Common;
 
 use function class_exists;
-use Enlight_Controller_ActionEventArgs;
 use Enlight_Controller_Front;
 use Enlight_Controller_Request_RequestTestCase;
 use Enlight_Controller_Response_ResponseTestCase;
@@ -31,7 +32,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
 {
     public function handle(SymfonyRequest $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
-        if (false === $this->booted) {
+        if ($this->booted === false) {
             $this->boot();
         }
 
@@ -77,7 +78,6 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
             PassConfig::TYPE_OPTIMIZE
         );
 
-
         return $containerBuilder;
     }
 
@@ -103,7 +103,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
      *
      * Should be called after sending the response and before shutting down the kernel.
      *
-     * @param SymfonyRequest $request A Request instance
+     * @param SymfonyRequest  $request  A Request instance
      * @param SymfonyResponse $response A Response instance
      */
     public function terminate(SymfonyRequest $request, SymfonyResponse $response)
@@ -184,6 +184,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
              * Performs an authentication attempt
              *
              * @throws Zend_Auth_Adapter_Exception If authentication cannot be performed
+             *
              * @return Zend_Auth_Result
              */
             public function authenticate()

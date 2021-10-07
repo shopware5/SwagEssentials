@@ -1,5 +1,5 @@
 {
-  "name": "shopware/swagessentials",
+    "name": "shopware/swagessentials",
     "autoload": {
         "psr-4": {
             "SwagEssentials\\CacheMultiplexer\\": "CacheMultiplexer",
@@ -18,7 +18,7 @@
         "ext-json": "*",
         "ext-redis": "*"
     },
-  "require-dev": {
-    "shopware/shopware": "~5.6.0"
-  }
+    "require-dev": {
+        "shopware/shopware": "~5.6.0 || ~5.7.0 || 5.7.x-dev"
+    }
 }

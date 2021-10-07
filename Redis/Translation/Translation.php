@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\Translation;
 
@@ -7,7 +9,7 @@ use SwagEssentials\Redis\RedisConnection;
 
 class Translation extends \Shopware_Components_Translation
 {
-    const HASH_NAME = 'sw_translation';
+    public const HASH_NAME = 'sw_translation';
 
     /**
      * @var RedisConnection

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Tests\Redis\Integration;
 
@@ -23,8 +25,7 @@ class RedisStoreTest extends TestCase
 
     private function getRedisStore(): RedisStore
     {
-        $params = $this->getKernel()->getContainer()->getParameter('shopware.httpcache');
-
+        $params = static::getKernel()->getContainer()->getParameter('shopware.httpcache');
 
         return new RedisStore(
             $params,
@@ -32,7 +33,7 @@ class RedisStoreTest extends TestCase
         );
     }
 
-    public function test_purge_all_works()
+    public function testPurgeAllWorks(): void
     {
         $connection = $this->getRedisStoreRedisConnection();
         $redisStore = $this->getRedisStore();

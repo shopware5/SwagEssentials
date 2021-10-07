@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Tests\Common;
 
@@ -40,14 +42,14 @@ class FixedEnlightMysqlAdapter extends \Enlight_Components_Db_Adapter_Pdo_Mysql
     }
 
     /**
-     * @param Connection $connection
      * @param array $config
+     *
      * @return self
      */
     public static function createFromDbalConnectionAndConfig(Connection $connection, $config)
     {
         $adapter = new self($config);
-        $adapter->dbalConnection= $connection;
+        $adapter->dbalConnection = $connection;
 
         unset($adapter->_config['username'], $adapter->_config['password']);
 

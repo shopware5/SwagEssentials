@@ -1,8 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\PluginConfig;
 
-use Shopware\Components\DependencyInjection\Container;
 use SwagEssentials\Common\CacheManagerDecorationTrait;
 
 class CacheManager extends \Shopware\Components\CacheManager
