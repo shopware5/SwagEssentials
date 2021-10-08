@@ -18,19 +18,14 @@ class RedisStoreTest extends TestCase
     {
         $params = self::getKernel()->getContainer()->getParameter('shopware.httpcache.redisConnections');
 
-        return Factory::factory(
-            $params
-        );
+        return Factory::factory($params);
     }
 
     private function getRedisStore(): RedisStore
     {
         $params = static::getKernel()->getContainer()->getParameter('shopware.httpcache');
 
-        return new RedisStore(
-            $params,
-            self::getKernel()
-        );
+        return new RedisStore($params);
     }
 
     public function testPurgeAllWorks(): void
@@ -43,44 +38,18 @@ class RedisStoreTest extends TestCase
         $connection->set(RedisStore::CACHE_SIZE_KEY, 1000, ['ex']);
         $connection->hSet(RedisStore::ID_KEY, 'foo', 'bar');
         $connection->hSet(RedisStore::LOCK_KEY, 'foo', 1);
-        static::assertEquals(
-            'bar',
-            $connection->hGet(RedisStore::META_KEY, 'foo')
-        );
-        static::assertEquals(
-            'bar',
-            $connection->hGet(RedisStore::CACHE_KEY . '-a', 'foo')
-        );
-        static::assertEquals(
-            'bar',
-            $connection->hGet(RedisStore::ID_KEY, 'foo')
-        );
-        static::assertEquals(
-            '1',
-            $connection->hGet(RedisStore::LOCK_KEY, 'foo')
-        );
-        static::assertEquals(
-            '1000',
-            $connection->get(RedisStore::CACHE_SIZE_KEY)
-        );
+        static::assertEquals('bar', $connection->hGet(RedisStore::META_KEY, 'foo'));
+        static::assertEquals('bar', $connection->hGet(RedisStore::CACHE_KEY . '-a', 'foo'));
+        static::assertEquals('bar', $connection->hGet(RedisStore::ID_KEY, 'foo'));
+        static::assertEquals('1', $connection->hGet(RedisStore::LOCK_KEY, 'foo'));
+        static::assertEquals('1000', $connection->get(RedisStore::CACHE_SIZE_KEY));
 
         $redisStore->purgeAll();
 
-        static::assertFalse(
-            $connection->hGet(RedisStore::META_KEY, 'foo')
-        );
-        static::assertFalse(
-            $connection->hGet(RedisStore::CACHE_KEY . '-a', 'foo')
-        );
-        static::assertFalse(
-            $connection->hGet(RedisStore::ID_KEY, 'foo')
-        );
-        static::assertFalse(
-            $connection->hGet(RedisStore::LOCK_KEY, 'foo')
-        );
-        static::assertEquals(
-            0,
-            $connection->get(RedisStore::CACHE_SIZE_KEY)
-        );
+        static::assertFalse($connection->hGet(RedisStore::META_KEY, 'foo'));
+        static::assertFalse($connection->hGet(RedisStore::CACHE_KEY . '-a', 'foo'));
+        static::assertFalse($connection->hGet(RedisStore::ID_KEY, 'foo'));
+        static::assertFalse($connection->hGet(RedisStore::LOCK_KEY, 'foo'));
+        static::assertEquals(0, $connection->get(RedisStore::CACHE_SIZE_KEY));
     }
 }

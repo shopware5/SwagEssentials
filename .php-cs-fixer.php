@@ -33,9 +33,7 @@ return (new Config())
        'no_empty_comment' => true,
        'no_useless_return' => true,
        'ordered_imports' => true,
-       'phpdoc_add_missing_param_annotation' => [
-           'only_untyped' => false,
-       ],
+       'phpdoc_add_missing_param_annotation' => true,
        'concat_space' => ['spacing' => 'one'],
        'phpdoc_no_empty_return' => true,
        'phpdoc_order' => true,
