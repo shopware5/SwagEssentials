@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Caching\Subscriber;
 
@@ -30,12 +32,6 @@ class Cache implements SubscriberInterface
      */
     protected $router;
 
-    /**
-     * @param Zend_Cache_Core $cache
-     * @param Router $router
-     * @param bool $enabledCaching
-     * @param int $ttl
-     */
     public function __construct(Zend_Cache_Core $cache, Router $router, bool $enabledCaching, int $ttl)
     {
         $this->cache = $cache;

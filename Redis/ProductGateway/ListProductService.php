@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\ProductGateway;
 
@@ -13,7 +15,7 @@ class ListProductService implements ListProductServiceInterface
      */
     protected $service;
 
-    const HASH_NAME = 'sw_list_product';
+    public const HASH_NAME = 'sw_list_product';
 
     /**
      * @var RedisConnection
@@ -62,7 +64,7 @@ class ListProductService implements ListProductServiceInterface
             }
         }
 
-        /**
+        /*
          * needed if some similar articles are inactive
          */
         return array_filter(
@@ -83,11 +85,6 @@ class ListProductService implements ListProductServiceInterface
         return array_shift($products);
     }
 
-    /**
-     * @param array $numbers
-     * @param Struct\ProductContextInterface $context
-     * @return array
-     */
     protected function getCacheKeys(array $numbers, Struct\ProductContextInterface $context): array
     {
         $contextHash = md5(

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\CacheMultiplexer;
 
@@ -15,7 +17,9 @@ class CacheManager extends \Shopware\Components\CacheManager
 
     protected $tags = [];
 
-    /** @var RemoteCacheInvalidator */
+    /**
+     * @var RemoteCacheInvalidator
+     */
     protected $cacheInvalidator;
 
     /**

@@ -1,11 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica\Subscriber;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Enlight\Event\SubscriberInterface;
 use SwagEssentials\PrimaryReplica\Commands\RunSql;
-use SwagEssentials\PrimaryReplica\ConnectionDecision;
 use SwagEssentials\PrimaryReplica\PdoFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,9 +17,6 @@ class Bridge implements SubscriberInterface
      */
     protected $container;
 
-    /**
-     * @param ContainerInterface $container
-     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -71,9 +69,7 @@ class Bridge implements SubscriberInterface
     public function dispatchShutdown()
     {
         if ($this->container->has('shop')) {
-            /** @var ConnectionDecision $decision */
-            $this->container->get('session')
-                ->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
+            $this->container->get('session')->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());
 
             return;
         }

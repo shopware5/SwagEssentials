@@ -21,10 +21,7 @@ class SwagEssentials extends Plugin
         /** @var array $swagEssentialsModules */
         $swagEssentialsModules = $container->getParameter('shopware.swag_essentials.modules');
 
-        $loader = new XmlFileLoader(
-            $container,
-            new FileLocator()
-        );
+        $loader = new XmlFileLoader($container, new FileLocator());
 
         $redisLoaded = false;
 

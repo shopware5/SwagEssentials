@@ -1,0 +1,17 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 8
+    symfony:
+        constant_hassers: false
+        # Decide which config paths to use, depdending on your setup. Copy to "phpstan.neon" to not edit this file
+        container_xml_path: shopware/var/cache/production____REVISION___/container.xml
+        console_application_loader: shopware/tests/phpstan-console-application.php
+#        container_xml_path: ../../../var/cache/production____REVISION___/container.xml
+#        console_application_loader: ../../../tests/phpstan-console-application.php
+    excludes_analyse:
+        - .githooks
+        - vendor
+        - tools
+        - dev-ops

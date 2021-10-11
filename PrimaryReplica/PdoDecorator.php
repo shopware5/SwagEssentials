@@ -1,11 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica;
 
 use PDO;
 
 if (PHP_VERSION_ID >= 80000) {
-
     /**
      * Class PdoDecorator decorates a default PDO connection and will dispatch any query to either the primary or
      * the replica connections. The connection selection is done by the `ConnectionDecision` service
@@ -32,10 +33,10 @@ if (PHP_VERSION_ID >= 80000) {
             $this->lastConnection = $connectionPool->getRandomConnection();
         }
 
-        #
-        # Overrides of the original PDO object
-        # in order to inspect the queries
-        #
+        //
+        // Overrides of the original PDO object
+        // in order to inspect the queries
+        //
         public function prepare($statement, $options = [])
         {
             $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
@@ -60,10 +61,10 @@ if (PHP_VERSION_ID >= 80000) {
             return $this->lastConnection->exec($statement);
         }
 
-        #
-        # Overrides of the original PDO object
-        # in order to "decorate" it  - no inspection here
-        #
+        //
+        // Overrides of the original PDO object
+        // in order to "decorate" it  - no inspection here
+        //
         public function beginTransaction()
         {
             if (!$this->inTransaction()) {
@@ -127,7 +128,6 @@ if (PHP_VERSION_ID >= 80000) {
         }
     }
 } else {
-
     /**
      * Class PdoDecorator decorates a default PDO connection and will dispatch any query to either the primary or
      * the replica connections. The connection selection is done by the `ConnectionDecision` service
@@ -154,10 +154,10 @@ if (PHP_VERSION_ID >= 80000) {
             $this->lastConnection = $connectionPool->getRandomConnection();
         }
 
-        #
-        # Overrides of the original PDO object
-        # in order to inspect the queries
-        #
+        //
+        // Overrides of the original PDO object
+        // in order to inspect the queries
+        //
         public function prepare($statement, $options = [])
         {
             $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
@@ -182,10 +182,10 @@ if (PHP_VERSION_ID >= 80000) {
             return $this->lastConnection->exec($statement);
         }
 
-        #
-        # Overrides of the original PDO object
-        # in order to "decorate" it  - no inspection here
-        #
+        //
+        // Overrides of the original PDO object
+        // in order to "decorate" it  - no inspection here
+        //
         public function beginTransaction()
         {
             if (!$this->inTransaction()) {

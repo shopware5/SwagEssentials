@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\PrimaryReplica;
 
@@ -39,6 +41,7 @@ class ConnectionDecision
      * If e.g. a table has been written to before, the primary connection will be returned ("primary pinning")
      *
      * @param $sql
+     *
      * @return \PDO
      */
     public function getConnectionForQuery($sql)
@@ -107,7 +110,6 @@ class ConnectionDecision
      * Determine, whether the given query is a write query or not
      *
      * @param $sql
-     * @return bool
      */
     protected function isWriteQuery($sql): bool
     {
@@ -138,22 +140,15 @@ class ConnectionDecision
             return true;
         }
 
-
         // by now, only read queries should remain
         return false;
     }
 
-    /**
-     * @return array
-     */
     public function getPinnedTables(): array
     {
         return $this->pinnedTables;
     }
 
-    /**
-     * @param array $pinnedTables
-     */
     public function setPinnedTables(array $pinnedTables)
     {
         $this->pinnedTables = $pinnedTables;
@@ -164,7 +159,6 @@ class ConnectionDecision
      * Is quite a rough heuristic, but is way faster than other approaches
      *
      * @param $sql
-     * @return array
      */
     protected function getAffectedTables($sql): array
     {
@@ -184,8 +178,6 @@ class ConnectionDecision
     /**
      * Gets a shortened and cached list of all database tables. It is safe to assume, that the cache will be cleared
      * after a structural change in the database
-     *
-     * @return string
      */
     protected function getTables(): string
     {
@@ -205,7 +197,6 @@ class ConnectionDecision
             $parts = explode('_', $table);
             $result[] = $parts[0] . '_' . $parts[1];
         }
-
 
         $tables = implode('|', array_map('preg_quote', array_unique($result)));
 

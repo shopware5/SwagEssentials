@@ -6,22 +6,23 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
     <services>
-        <service class="SwagEssentials\Redis\Store\WarmUpHttpCacheWithSiegeCommand" id="swag_essentials.redis_store.warm_up_http_cache_with_siege_command">
-            <argument type="service" id="db"/>
+        <service class="SwagEssentials\Redis\Store\WarmUpHttpCacheWithSiegeCommand"
+                 id="swag_essentials.redis_store.warm_up_http_cache_with_siege_command">
+            <argument type="service" id="dbal_connection"/>
             <argument type="service" id="http_cache_warmer"/>
 
             <tag name="console.command"/>
         </service>
 
         <service id="swag_essentials.redis_store.cache_manager" class="SwagEssentials\Redis\Store\CacheManager"
-                 decorates="shopware.cache_manager"
-        >
+                 decorates="shopware.cache_manager">
             <argument type="service" id="swag_essentials.redis_store.cache_manager.inner"/>
             <argument>%shopware.httpcache%</argument>
         </service>
 
-        <service id="swag_essentials.redis_store_caching_subscriber" class="SwagEssentials\Redis\Store\CachingSubscriber">
-            <argument type="service" id="service_container" />
+        <service id="swag_essentials.redis_store_caching_subscriber"
+                 class="SwagEssentials\Redis\Store\CachingSubscriber">
+            <argument type="service" id="service_container"/>
             <argument type="service" id="config"/>
 
             <tag name="shopware.event_subscriber"/>

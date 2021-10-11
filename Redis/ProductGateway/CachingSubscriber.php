@@ -1,9 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\ProductGateway;
 
 use Enlight\Event\SubscriberInterface;
-use Shopware\Bundle\StoreFrontBundle\Service\ProductServiceInterface;
 use Shopware\Components\DependencyInjection\Container;
 
 class CachingSubscriber implements SubscriberInterface
@@ -18,13 +19,6 @@ class CachingSubscriber implements SubscriberInterface
      */
     protected $redis;
 
-    /**
-     * @param \Zend_Cache_Core $cache
-     * @param ProductServiceInterface $service
-     * @param int $ttl
-     * @param Container $container
-     * @param \Shopware_Components_Config $config
-     */
     public function __construct(Container $container, \Shopware_Components_Config $config)
     {
         $this->redis = $container->get('swag_essentials.redis');
@@ -46,9 +40,6 @@ class CachingSubscriber implements SubscriberInterface
         ];
     }
 
-    /**
-     * @param \Enlight_Event_EventArgs $eventArgs
-     */
     public function onPostPersist(\Enlight_Event_EventArgs $eventArgs)
     {
         if (!$this->config->get('proxyPrune')) {

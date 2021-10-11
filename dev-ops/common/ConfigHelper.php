@@ -1,14 +1,24 @@
 <?php declare(strict_types=1);
 
-include __DIR__ . '/../../shopware/vendor/autoload.php';
+use SwagEssentials\PrimaryReplica\PdoFactory;
+use SwagEssentials\Redis\Store\RedisStore;
+
+if (file_exists(__DIR__ . '/../../shopware/vendor/autoload.php')) {
+    include __DIR__ . '/../../shopware/vendor/autoload.php';
+} elseif(file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
+    include __DIR__ . '/../../../../../vendor/autoload.php';
+} else {
+    throw new RuntimeException('Composer autoload file not found');
+}
 
 class ConfigHelper
 {
-    const CONFIG_PATH = __DIR__ . '/../../shopware/config.php';
+    private const CONFIG_PATH = __DIR__ . '/../../shopware/config.php';
+    private const FALLBACK_CONFIG_PATH = __DIR__ . '/../../../../../config.php';
 
-    public static function enableElasticSearch()
+    public static function enableElasticSearch(): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
 
         $config['es'] = [
             'enabled' => true,
@@ -24,9 +34,9 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function enableDebug()
+    public static function enableDebug(): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
 
         $config['errorHandler'] = [
             'throwOnRecoverableError' => true,
@@ -51,9 +61,9 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function enableCsrfProtection()
+    public static function enableCsrfProtection(): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
 
         if (isset($config['csrfprotection'])) {
             unset($config['csrfprotection']);
@@ -62,9 +72,9 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function enableSwagEssentialsModule(string $moduleName)
+    public static function enableSwagEssentialsModule(string $moduleName): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
         if (!isset($config['swag_essentials'])) {
             $config['swag_essentials'] = [
                 'modules' => [
@@ -132,7 +142,7 @@ class ConfigHelper
 
         if ($moduleName === 'RedisStore') {
             $httpCache = [
-                'storeClass' => \SwagEssentials\Redis\Store\RedisStore::class,
+                'storeClass' => RedisStore::class,
                 'compressionLevel' => 9,
                 'redisConnections' => [
                     0 =>
@@ -155,7 +165,7 @@ class ConfigHelper
 
         if ($moduleName === 'PrimaryReplica') {
             $db = [
-                'factory' => '\SwagEssentials\PrimaryReplica\PdoFactory',
+                'factory' => PdoFactory::class,
                 'replicas' => [
                     'replica-slave' => [
                         'pdoOptions' => null,
@@ -174,9 +184,9 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function disableElasticSearch()
+    public static function disableElasticSearch(): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
 
         if (isset($config['es'])) {
             unset($config['es']);
@@ -185,9 +195,9 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function disableDebug()
+    public static function disableDebug(): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
 
         if (isset($config['errorHandler'])) {
             unset($config['errorHandler']);
@@ -208,9 +218,9 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function disableCsrfProtection()
+    public static function disableCsrfProtection(): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
 
         $config['csrfprotection'] = [
             'frontend' => false,
@@ -220,9 +230,9 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    public static function disableSwagEssentialsModule(string $moduleName = '')
+    public static function disableSwagEssentialsModule(string $moduleName = ''): void
     {
-        $config = self::getConfig(self::CONFIG_PATH);
+        $config = self::getConfig();
 
         if (isset($config['swag_essentials']['modules'][$moduleName])) {
             $config['swag_essentials']['modules'][$moduleName] = false;
@@ -236,16 +246,12 @@ class ConfigHelper
         self::saveConfig($config);
     }
 
-    protected static function getConfig(string $configPath)
+    protected static function getConfig(): array
     {
-        if (!file_exists($configPath)) {
-            throw new RuntimeException('please install shopware first!');
-        }
-
-        return include $configPath;
+        return include self::getConfigPath();
     }
 
-    protected static function saveConfig($config)
+    protected static function saveConfig($config): void
     {
         $configFile = '<?php
             require_once __DIR__.\'/custom/plugins/SwagEssentials/Redis/Store/RedisStore.php\';
@@ -254,6 +260,20 @@ class ConfigHelper
             require_once __DIR__ . \'/custom/plugins/SwagEssentials/PrimaryReplica/PdoFactory.php\';
 
         return ' . var_export($config, true) . ';';
-        file_put_contents(self::CONFIG_PATH, $configFile, LOCK_EX);
+
+        file_put_contents(self::getConfigPath(), $configFile, LOCK_EX);
+    }
+
+    private static function getConfigPath(): string
+    {
+        $configPath = self::CONFIG_PATH;
+        if (!is_file($configPath)) {
+            $configPath = self::FALLBACK_CONFIG_PATH;
+            if (!is_file($configPath)) {
+                throw new RuntimeException('Shopware "config.php" file not found. Please install Shopware first!');
+            }
+        }
+
+        return $configPath;
     }
 }

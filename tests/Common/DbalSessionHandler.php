@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Tests\Common;
 
@@ -39,7 +41,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      * write will win in this case. It might be useful when you implement your own
      * logic to deal with this like an optimistic approach.
      */
-    const LOCK_NONE = 0;
+    public const LOCK_NONE = 0;
 
     /**
      * Creates an application-level lock on a session. The disadvantage is that the
@@ -48,7 +50,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      * does not require a transaction.
      * This mode is not available for SQLite and not yet implemented for oci and sqlsrv.
      */
-    const LOCK_ADVISORY = 1;
+    public const LOCK_ADVISORY = 1;
 
     /**
      * Issues a real row lock. Since it uses a transaction between opening and
@@ -56,7 +58,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      * that you also use for your application logic. This mode is the default because
      * it's the only reliable solution across DBMSs.
      */
-    const LOCK_TRANSACTIONAL = 2;
+    public const LOCK_TRANSACTIONAL = 2;
 
     /**
      * @var Connection
@@ -64,7 +66,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
     protected $connection;
 
     /**
-     * @var string|null|false DSN string or null for session.save_path or false when lazy connection disabled
+     * @var string|false|null DSN string or null for session.save_path or false when lazy connection disabled
      */
     protected $dsn = false;
 
@@ -276,7 +278,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
         try {
             // We use a single MERGE SQL query when supported by the database.
             $mergeStmt = $this->getMergeStatement($sessionId, $data, $maxlifetime);
-            if (null !== $mergeStmt) {
+            if ($mergeStmt !== null) {
                 $mergeStmt->execute();
 
                 return true;
@@ -308,7 +310,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
                     $insertStmt->execute();
                 } catch (\PDOException $e) {
                     // Handle integrity violation SQLSTATE 23000 (or a subclass like 23505 in Postgres) for duplicate keys
-                    if (0 === strpos($e->getCode(), '23')) {
+                    if (strpos($e->getCode(), '23') === 0) {
                         $updateStmt->execute();
                     } else {
                         throw $e;
@@ -346,7 +348,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
             $stmt->execute();
         }
 
-        if (false !== $this->dsn) {
+        if ($this->dsn !== false) {
             $this->connection = null; // only close lazy-connection
         }
 
@@ -360,7 +362,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      */
     protected function getConnection()
     {
-        if (null === $this->connection) {
+        if ($this->connection === null) {
             $this->connect($this->dsn ?: ini_get('session.save_path'));
         }
 
@@ -444,7 +446,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
     {
         $this->sessionExpired = false;
 
-        if (self::LOCK_ADVISORY === $this->lockMode) {
+        if ($this->lockMode === self::LOCK_ADVISORY) {
             $this->unlockStatements[] = $this->doAdvisoryLock($sessionId);
         }
 
@@ -452,7 +454,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
         $selectStmt = $this->connection->prepare($selectSql);
         $selectStmt->bindParam(':id', $sessionId, \PDO::PARAM_STR);
 
-        do {
+        while (true) {
             $selectStmt->execute();
             $sessionRows = $selectStmt->fetchAll(\PDO::FETCH_NUM);
 
@@ -466,7 +468,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
                 return is_resource($sessionRows[0][0]) ? stream_get_contents($sessionRows[0][0]) : $sessionRows[0][0];
             }
 
-            if (self::LOCK_TRANSACTIONAL === $this->lockMode) {
+            if ($this->lockMode === self::LOCK_TRANSACTIONAL) {
                 // Exclusive-reading of non-existent rows does not block, so we need to do an insert to block
                 // until other connections to the session are committed.
                 try {
@@ -481,12 +483,13 @@ class DbalSessionHandler implements \SessionHandlerInterface
                 } catch (\PDOException $e) {
                     // Catch duplicate key error because other connection created the session already.
                     // It would only not be the case when the other connection destroyed the session.
-                    if (0 === strpos($e->getCode(), '23')) {
+                    if (strpos($e->getCode(), '23') === 0) {
                         // Retrieve finished session data written by concurrent connection by restarting the loop.
                         // We have to start a new transaction as a failed query will mark the current transaction as
                         // aborted in PostgreSQL and disallow further queries within it.
                         $this->rollback();
                         $this->beginTransaction();
+
                         continue;
                     }
 
@@ -495,7 +498,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
             }
 
             return '';
-        } while (true);
+        }
     }
 
     /**
@@ -530,7 +533,7 @@ class DbalSessionHandler implements \SessionHandlerInterface
      */
     protected function getSelectSql()
     {
-        if (self::LOCK_TRANSACTIONAL === $this->lockMode) {
+        if ($this->lockMode === self::LOCK_TRANSACTIONAL) {
             $this->beginTransaction();
 
             return "SELECT $this->dataCol, $this->expiryCol, $this->timeCol FROM $this->table WHERE $this->idCol = :id FOR UPDATE";

@@ -1,7 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\Store;
 
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\FetchMode;
 use Shopware\Components\HttpCache\CacheWarmer;
 use Shopware\Kernel;
 use Symfony\Component\Console\Command\Command;
@@ -14,29 +18,27 @@ use Symfony\Component\Console\Output\OutputInterface;
 class WarmUpHttpCacheWithSiegeCommand extends Command
 {
     /**
-     * @var \Enlight_Components_Db_Adapter_Pdo_Mysql
+     * @var Connection
      */
-    protected $db;
+    private $connection;
 
     /**
      * @var CacheWarmer
      */
     protected $httpCacheWarmer;
 
-    /**
-     * @param \Enlight_Components_Db_Adapter_Pdo_Mysql $db
-     * @param CacheWarmer $httpCacheWarmer
-     */
-    public function __construct(\Enlight_Components_Db_Adapter_Pdo_Mysql $db, CacheWarmer $httpCacheWarmer)
+    public function __construct(Connection $connection, CacheWarmer $httpCacheWarmer)
     {
         parent::__construct();
-        $this->db = $db;
+        $this->connection = $connection;
         $this->httpCacheWarmer = $httpCacheWarmer;
     }
 
     protected $shops;
 
-    /** @var Kernel */
+    /**
+     * @var Kernel
+     */
     protected $kernel;
 
     protected $front;
@@ -45,10 +47,14 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
 
     protected $responseReflection;
 
-    /** @var OutputInterface */
+    /**
+     * @var OutputInterface
+     */
     protected $output;
 
-    /** @var InputInterface */
+    /**
+     * @var InputInterface
+     */
     protected $input;
 
     /**
@@ -113,7 +119,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
      * Calculate the size of the progressbar depending on the terminal's size
      *
      * @param $totalUrlCount
-     * @return int
      */
     protected function getWidth($totalUrlCount): int
     {
@@ -130,9 +135,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         return min(200, $maxWidth);
     }
 
-    /**
-     * @return array
-     */
     protected function getShopsFromInput(): array
     {
         $shopId = $this->input->getArgument('shopId');
@@ -140,7 +142,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
             return [$shopId];
         }
 
-        return $this->db->fetchCol('SELECT id FROM s_core_shops WHERE active = 1');
+        return $this->connection->executeQuery('SELECT id FROM s_core_shops WHERE active = 1')->fetchAll(FetchMode::COLUMN);
     }
 
     /**
@@ -155,7 +157,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
 
         $progressBar->start();
         $fp = popen($cmd . ' 2>&1 ', 'r');
-
 
         while (!feof($fp)) {
             $lines = array_filter(
@@ -183,7 +184,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
     /**
      * @param $shopId
      * @param $totalUrlCount
-     * @return string
      */
     protected function exportUrls($shopId, $totalUrlCount): string
     {

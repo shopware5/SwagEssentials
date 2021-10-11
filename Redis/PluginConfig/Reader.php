@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Redis\PluginConfig;
 
@@ -9,7 +11,7 @@ use SwagEssentials\Redis\RedisConnection;
 
 class Reader implements ConfigReaderInterface
 {
-    const HASH_NAME = 'sw_config';
+    public const HASH_NAME = 'sw_config';
 
     /**
      * @var DBALConfigReader
@@ -35,7 +37,7 @@ class Reader implements ConfigReaderInterface
 
     /**
      * @param string $pluginName
-     * @param Shop|null $shop
+     *
      * @return array
      */
     public function getByPluginName($pluginName, Shop $shop = null)

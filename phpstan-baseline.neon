@@ -1,0 +1,4737 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method getRequestUri\\(\\) on Enlight_Controller_Request_Request\\|null\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:__call\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:__call\\(\\) has parameter \\$arguments with no typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:__call\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearConfigCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearHttpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearOpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearProxyCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearRewriteCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearSearchCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearTemplateCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:clearThemeCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getConfigCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getDirectoryInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getDoctrineProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getHttpCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getOpCacheCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getShopwareProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getTemplateCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:getThemeCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Property SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:\\$cacheInvalidator \\(SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\) does not accept object\\|null\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Property SwagEssentials\\\\CacheMultiplexer\\\\CacheManager\\:\\:\\$tags has no typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Service \"swag_essentials\\.cache_multiplexer\\.cache_invalidator\" is not registered in the container\\.$#"
+			count: 1
+			path: CacheMultiplexer/CacheManager.php
+
+		-
+			message: "#^Call to method getBody\\(\\) on an unknown class GuzzleHttp\\\\Message\\\\FutureResponse\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Call to method getBody\\(\\) on an unknown class GuzzleHttp\\\\Message\\\\ResponseInterface\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Call to method getStatusCode\\(\\) on an unknown class GuzzleHttp\\\\Message\\\\FutureResponse\\.$#"
+			count: 3
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Call to method getStatusCode\\(\\) on an unknown class GuzzleHttp\\\\Message\\\\ResponseInterface\\.$#"
+			count: 3
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:__construct\\(\\) has parameter \\$hosts with no typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:getResponseForEndpoint\\(\\) has parameter \\$caches with no typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:getResponseForEndpoint\\(\\) has parameter \\$endpoint with no typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:getResponseForEndpoint\\(\\) should return GuzzleHttp\\\\Message\\\\FutureResponse\\|GuzzleHttp\\\\Message\\\\ResponseInterface\\|GuzzleHttp\\\\Ring\\\\Future\\\\FutureInterface\\|null but returns Psr\\\\Http\\\\Message\\\\ResponseInterface\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:normalizeCacheIds\\(\\) has parameter \\$caches with no typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:normalizeCacheIds\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:remoteClear\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$caches\\)\\: Unexpected token \"\\$caches\", expected type at offset 18$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$caches\\)\\: Unexpected token \"\\$caches\", expected type at offset 95$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$endpoint\\)\\: Unexpected token \"\\$endpoint\", expected type at offset 71$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Parameter \\#2 \\$context of method Monolog\\\\Logger\\:\\:error\\(\\) expects array, array\\<string, mixed\\>\\|null given\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Return typehint of method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:getResponseForEndpoint\\(\\) has invalid type GuzzleHttp\\\\Message\\\\FutureResponse\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Return typehint of method SwagEssentials\\\\CacheMultiplexer\\\\RemoteCacheInvalidator\\:\\:getResponseForEndpoint\\(\\) has invalid type GuzzleHttp\\\\Message\\\\ResponseInterface\\.$#"
+			count: 1
+			path: CacheMultiplexer/RemoteCacheInvalidator.php
+
+		-
+			message: "#^Cannot call method get\\(\\) on Shopware\\\\Components\\\\DependencyInjection\\\\Container\\|null\\.$#"
+			count: 2
+			path: CacheMultiplexer/Resource/Cache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Resource\\\\Cache\\:\\:clearCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/Resource/Cache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Resource\\\\Cache\\:\\:getList\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/Resource/Cache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Resource\\\\Cache\\:\\:getOne\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: CacheMultiplexer/Resource/Cache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Resource\\\\Cache\\:\\:recompileThemeCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/Resource/Cache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Resource\\\\Cache\\:\\:setContainer\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/Resource/Cache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Subscriber\\\\BackendCache\\:\\:onAfterMoveThemeFiles\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: CacheMultiplexer/Subscriber/BackendCache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Subscriber\\\\BackendCache\\:\\:onAfterMoveThemeFiles\\(\\) has parameter \\$args with no value type specified in iterable type Enlight_Event_EventArgs\\.$#"
+			count: 1
+			path: CacheMultiplexer/Subscriber/BackendCache.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingListProductDecorator\\:\\:getList\\(\\) has parameter \\$numbers with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingListProductDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generate\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generate\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generateList\\(\\) has parameter \\$list with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generateList\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getCachedItemsFromList\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getCachedItemsFromList\\(\\) has parameter \\$context with no typehint specified\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getCachedItemsFromList\\(\\) has parameter \\$list with no typehint specified\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getOrgQueryArray\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getOrgQueryArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:hashItem\\(\\) has parameter \\$context with no typehint specified\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:hashItem\\(\\) has parameter \\$params with no typehint specified\\.$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$context\\)\\: Unexpected token \"\\$context\", expected type at offset 40$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$params\\)\\: Unexpected token \"\\$params\", expected type at offset 18$#"
+			count: 1
+			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Caching/Caches/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingSubscriber\\:\\:onPostPersist\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Caching/Caches/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingSubscriber\\:\\:onPostPersist\\(\\) has parameter \\$eventArgs with no value type specified in iterable type Enlight_Event_EventArgs\\.$#"
+			count: 1
+			path: Caching/Caches/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Caching\\\\Subscriber\\\\Cache\\:\\:onDecorateRouter\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Caching/Subscriber/Cache.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: Caching/Subscriber/Cache.php
+
+		-
+			message: "#^Parameter \\#3 \\$ttl of class SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator constructor expects int, string given\\.$#"
+			count: 1
+			path: Caching/Subscriber/Cache.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Caching\\\\Subscriber\\\\Cache\\:\\:\\$enabledCaching \\(string\\) does not accept bool\\.$#"
+			count: 1
+			path: Caching/Subscriber/Cache.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Caching\\\\Subscriber\\\\Cache\\:\\:\\$ttl \\(string\\) does not accept int\\.$#"
+			count: 1
+			path: Caching/Subscriber/Cache.php
+
+		-
+			message: "#^Cannot access offset 0 on array\\|false\\.$#"
+			count: 1
+			path: PrimaryReplica/Commands/RunSql.php
+
+		-
+			message: "#^Cannot call method fetchAll\\(\\) on PDOStatement\\|false\\.$#"
+			count: 1
+			path: PrimaryReplica/Commands/RunSql.php
+
+		-
+			message: "#^Cannot call method getConnectionByName\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: PrimaryReplica/Commands/RunSql.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Commands\\\\RunSql\\:\\:configure\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/Commands/RunSql.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Commands\\\\RunSql\\:\\:execute\\(\\) should return int but return statement is missing\\.$#"
+			count: 1
+			path: PrimaryReplica/Commands/RunSql.php
+
+		-
+			message: "#^Service \"primaryreplica\\.connection_pool\" is not registered in the container\\.$#"
+			count: 1
+			path: PrimaryReplica/Commands/RunSql.php
+
+		-
+			message: "#^Access to an undefined property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$tables\\.$#"
+			count: 2
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:__construct\\(\\) has parameter \\$config with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:count\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:count\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:count\\(\\) has parameter \\$query with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getAffectedTables\\(\\) has parameter \\$sql with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getAffectedTables\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getConnectionForQuery\\(\\) has parameter \\$sql with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getPinnedTables\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:isWriteQuery\\(\\) has parameter \\$sql with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:setPinnedTables\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:setPinnedTables\\(\\) has parameter \\$pinnedTables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$name\\)\\: Unexpected token \"\\$name\", expected type at offset 93$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$query\\)\\: Unexpected token \"\\$query\", expected type at offset 113$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$sql\\)\\: Unexpected token \"\\$sql\", expected type at offset 165$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$sql\\)\\: Unexpected token \"\\$sql\", expected type at offset 192$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$sql\\)\\: Unexpected token \"\\$sql\", expected type at offset 91$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$DEBUG has no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$config has no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$counter has no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$pinnedTables has no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Trying to invoke 'apc_fetch'\\|'apcu_store'\\|null but it might not be a callable\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionDecision.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:__construct\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:__construct\\(\\) has parameter \\$doStickToConnection with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:__construct\\(\\) has parameter \\$includePrimary with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getConnectionByName\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getPDOConnection\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getRandomConnection\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getWeightedRandomConnection\\(\\) should return string\\|null but return statement is missing\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:prepareWeightedConnections\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$doStickToConnection\\)\\: Unexpected token \"\\$doStickToConnection\", expected type at offset 48$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$includePrimary\\)\\: Unexpected token \"\\$includePrimary\", expected type at offset 18$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$name\\)\\: Unexpected token \"\\$name\", expected type at offset 57$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$name\\)\\: Unexpected token \"\\$name\", expected type at offset 75$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:\\$config type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:\\$weightedConnections type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/ConnectionPool.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:errorInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 2
+			path: PrimaryReplica/PdoDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:prepare\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 2
+			path: PrimaryReplica/PdoDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:setAttribute\\(\\) should return bool but return statement is missing\\.$#"
+			count: 2
+			path: PrimaryReplica/PdoDecorator.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:\\$lastConnection has no typehint specified\\.$#"
+			count: 2
+			path: PrimaryReplica/PdoDecorator.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:createPDO\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/PdoFactory.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:createPDO\\(\\) has parameter \\$dbConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: PrimaryReplica/PdoFactory.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:createServices\\(\\) has parameter \\$config with no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/PdoFactory.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:\\$connectionDecision has no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/PdoFactory.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:\\$connectionPool has no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/PdoFactory.php
+
+		-
+			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:\\$pdoDecorator has no typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/PdoFactory.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:addConsoleCommands\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/Subscriber/Bridge.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:dispatchShutdown\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/Subscriber/Bridge.php
+
+		-
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:startDispatch\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: PrimaryReplica/Subscriber/Bridge.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\CacheManagerCompilerPass\\:\\:addCacheManagerArguments\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/CacheManagerCompilerPass.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\CacheManagerCompilerPass\\:\\:process\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/CacheManagerCompilerPass.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Factory\\:\\:factory\\(\\) has parameter \\$configs with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Factory.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\NumberRange\\\\Command\\:\\:configure\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/NumberRange/Command.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\NumberRange\\\\Command\\:\\:execute\\(\\) should return int but return statement is missing\\.$#"
+			count: 1
+			path: Redis/NumberRange/Command.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\NumberRange\\\\Command\\:\\:getRedisNumberRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/NumberRange/Command.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\NumberRange\\\\Command\\:\\:getShopwareNumberRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/NumberRange/Command.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\NumberRange\\\\Command\\:\\:setShopwareKey\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/NumberRange/Command.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\NumberRange\\\\Command\\:\\:setShopwareKey\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/NumberRange/Command.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\NumberRange\\\\Command\\:\\:setShopwareKey\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/NumberRange/Command.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearConfigCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearHttpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearOpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearProxyCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearRewriteCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearSearchCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearTemplateCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:clearThemeCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getConfigCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getDirectoryInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getDoctrineProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getHttpCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getOpCacheCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getShopwareProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getTemplateCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:getThemeCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\PluginConfig\\\\CacheManager\\:\\:\\$config has no typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\Config\\:\\:__construct\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/Config.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\Config\\:\\:load\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/PluginConfig/Config.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\Config\\:\\:readData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/Config.php
+
+		-
+			message: "#^Parameter \\#3 \\$value of method Redis\\:\\:hSet\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: Redis/PluginConfig/Config.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\PluginConfig\\\\Config\\:\\:\\$config type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/Config.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\Factory\\:\\:factory\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/Factory.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\PluginConfig\\\\Reader\\:\\:getByPluginName\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/PluginConfig/Reader.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearConfigCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearHttpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearOpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearProxyCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearRewriteCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearSearchCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearTemplateCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:clearThemeCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getConfigCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getDirectoryInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getDoctrineProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getHttpCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getOpCacheCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getShopwareProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getTemplateCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CacheManager\\:\\:getThemeCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CachingSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CachingSubscriber\\:\\:onPostPersist\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\CachingSubscriber\\:\\:onPostPersist\\(\\) has parameter \\$eventArgs with no value type specified in iterable type Enlight_Event_EventArgs\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CachingSubscriber.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\ProductGateway\\\\CachingSubscriber\\:\\:\\$redis \\(Redis\\) does not accept SwagEssentials\\\\Redis\\\\RedisConnection\\.$#"
+			count: 1
+			path: Redis/ProductGateway/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\ListProductService\\:\\:getCacheKeys\\(\\) has parameter \\$numbers with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/ListProductService.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\ListProductService\\:\\:getCacheKeys\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/ListProductService.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\ListProductService\\:\\:getList\\(\\) has parameter \\$numbers with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/ProductGateway/ListProductService.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:auth\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:delete\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:evaluate\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:evaluateSha\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:getKeys\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:getMultiple\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:lGetRange\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:lRemove\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:lSize\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:listTrim\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:migrate\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:move\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:open\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:pconnect\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:popen\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:renameKey\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:resetStat\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:sContains\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:sGetMembers\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:sRemove\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:select\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:setTimeout\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:slaveof\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:substr\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:wait\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:zDelete\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:zDeleteRangeByRank\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:zDeleteRangeByScore\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:zInter\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:zSize\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Call to an undefined method Redis\\|RedisCluster\\:\\:zUnion\\(\\)\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:__construct\\(\\) has parameter \\$connection with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:_prefix\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:_prefix\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:_serialize\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:_serialize\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:_unserialize\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:_unserialize\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:append\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:append\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:append\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:auth\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:auth\\(\\) has parameter \\$password with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bgrewriteaof\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bgsave\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitCount\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitCount\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitOp\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitOp\\(\\) has parameter \\$keys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitOp\\(\\) has parameter \\$operation with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitOp\\(\\) has parameter \\$retKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitpos\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitpos\\(\\) has parameter \\$bit with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitpos\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitpos\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:bitpos\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:blPop\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:blPop\\(\\) has parameter \\$keys with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:blPop\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:brPop\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:brPop\\(\\) has parameter \\$keys with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:brPop\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:brpoplpush\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:brpoplpush\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:brpoplpush\\(\\) has parameter \\$srcKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:brpoplpush\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:clearLastError\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:client\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:client\\(\\) has parameter \\$arg with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:client\\(\\) has parameter \\$command with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:close\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:config\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:config\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:config\\(\\) has parameter \\$operation with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:config\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:dbSize\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:decr\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:decr\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:decrBy\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:decrBy\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:decrBy\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:del\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:del\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:del\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:del\\(\\) has parameter \\$key3 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:delete\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:delete\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:delete\\(\\) has parameter \\$key3 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:discard\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:dump\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:dump\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evalSha\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evalSha\\(\\) has parameter \\$args with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evalSha\\(\\) has parameter \\$numKeys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evalSha\\(\\) has parameter \\$scriptSha with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluate\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluate\\(\\) has parameter \\$args with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluate\\(\\) has parameter \\$numKeys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluate\\(\\) has parameter \\$script with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluateSha\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluateSha\\(\\) has parameter \\$args with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluateSha\\(\\) has parameter \\$numKeys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:evaluateSha\\(\\) has parameter \\$scriptSha with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:exec\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:exists\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:exists\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:expire\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:expire\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:expire\\(\\) has parameter \\$ttl with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:expireAt\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:expireAt\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:expireAt\\(\\) has parameter \\$timestamp with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:flushAll\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:flushDB\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:get\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:get\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getBit\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getBit\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getBit\\(\\) has parameter \\$offset with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getKeys\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getKeys\\(\\) has parameter \\$pattern with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getLastError\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getMode\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getMultiple\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getMultiple\\(\\) has parameter \\$keys with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getOption\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getOption\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getRange\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getRange\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getRange\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getSet\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getSet\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:getSet\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hDel\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hDel\\(\\) has parameter \\$hashKey1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hDel\\(\\) has parameter \\$hashKey2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hDel\\(\\) has parameter \\$hashKeyN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hDel\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hExists\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hExists\\(\\) has parameter \\$hashKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hExists\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hGet\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hGet\\(\\) has parameter \\$hashKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hGet\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hGetAll\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hGetAll\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrBy\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrBy\\(\\) has parameter \\$hashKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrBy\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrBy\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrByFloat\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrByFloat\\(\\) has parameter \\$field with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrByFloat\\(\\) has parameter \\$increment with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hIncrByFloat\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hKeys\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hKeys\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hLen\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hLen\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hMGet\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hMGet\\(\\) has parameter \\$hashKeys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hMGet\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hMSet\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hMSet\\(\\) has parameter \\$hashKeys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hMSet\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hScan\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hScan\\(\\) has parameter \\$count with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hScan\\(\\) has parameter \\$iterator with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hScan\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hScan\\(\\) has parameter \\$pattern with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSet\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSet\\(\\) has parameter \\$hashKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSet\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSet\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSetNx\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSetNx\\(\\) has parameter \\$hashKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSetNx\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hSetNx\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hVals\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:hVals\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incr\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incr\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incrBy\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incrBy\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incrBy\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incrByFloat\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incrByFloat\\(\\) has parameter \\$increment with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:incrByFloat\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:info\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:info\\(\\) has parameter \\$option with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:keys\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:keys\\(\\) has parameter \\$pattern with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lGet\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lGet\\(\\) has parameter \\$index with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lGet\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lGetRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lGetRange\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lGetRange\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lGetRange\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lIndex\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lIndex\\(\\) has parameter \\$index with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lIndex\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lInsert\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lInsert\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lInsert\\(\\) has parameter \\$pivot with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lInsert\\(\\) has parameter \\$position with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lInsert\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lLen\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lLen\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPop\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPop\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPush\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPush\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPush\\(\\) has parameter \\$value1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPush\\(\\) has parameter \\$value2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPush\\(\\) has parameter \\$valueN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPushx\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPushx\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lPushx\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRange\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRange\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRange\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRem\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRem\\(\\) has parameter \\$count with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRem\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRem\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRemove\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRemove\\(\\) has parameter \\$count with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRemove\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lRemove\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lSet\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lSet\\(\\) has parameter \\$index with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lSet\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lSet\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lSize\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lSize\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lTrim\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lTrim\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lTrim\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lTrim\\(\\) has parameter \\$stop with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:lastSave\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:listTrim\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:listTrim\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:listTrim\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:listTrim\\(\\) has parameter \\$stop with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:mget\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:mget\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has parameter \\$copy with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has parameter \\$db with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has parameter \\$host with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has parameter \\$port with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has parameter \\$replace with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:migrate\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:move\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:move\\(\\) has parameter \\$dbindex with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:move\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:mset\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:mset\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:msetnx\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:msetnx\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:multi\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:multi\\(\\) has parameter \\$mode with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:object\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:object\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:object\\(\\) has parameter \\$string with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:open\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:open\\(\\) has parameter \\$host with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:open\\(\\) has parameter \\$port with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:open\\(\\) has parameter \\$retry_interval with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:open\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pExpire\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pExpire\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pExpire\\(\\) has parameter \\$ttl with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pExpireAt\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pExpireAt\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pExpireAt\\(\\) has parameter \\$timestamp with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pconnect\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pconnect\\(\\) has parameter \\$host with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pconnect\\(\\) has parameter \\$persistent_id with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pconnect\\(\\) has parameter \\$port with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pconnect\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:persist\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:persist\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfAdd\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfAdd\\(\\) has parameter \\$elements with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfAdd\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfCount\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfCount\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfMerge\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfMerge\\(\\) has parameter \\$destkey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pfMerge\\(\\) has parameter \\$sourcekeys with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:ping\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:popen\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:popen\\(\\) has parameter \\$host with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:popen\\(\\) has parameter \\$persistent_id with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:popen\\(\\) has parameter \\$port with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:popen\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:psetex\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:psetex\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:psetex\\(\\) has parameter \\$ttl with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:psetex\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:psubscribe\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:psubscribe\\(\\) has parameter \\$callback with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:psubscribe\\(\\) has parameter \\$patterns with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pttl\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pttl\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:publish\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:publish\\(\\) has parameter \\$channel with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:publish\\(\\) has parameter \\$message with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pubsub\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pubsub\\(\\) has parameter \\$argument with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:pubsub\\(\\) has parameter \\$keyword with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPop\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPop\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPush\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPush\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPush\\(\\) has parameter \\$value1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPush\\(\\) has parameter \\$value2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPush\\(\\) has parameter \\$valueN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPushx\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPushx\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rPushx\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:randomKey\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rawCommand\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rawCommand\\(\\) has parameter \\$arguments with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rawCommand\\(\\) has parameter \\$command with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rename\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rename\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rename\\(\\) has parameter \\$srcKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:renameKey\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:renameKey\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:renameKey\\(\\) has parameter \\$srcKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:renameNx\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:renameNx\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:renameNx\\(\\) has parameter \\$srcKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:resetStat\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:restore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:restore\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:restore\\(\\) has parameter \\$ttl with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:restore\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rpoplpush\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rpoplpush\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:rpoplpush\\(\\) has parameter \\$srcKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAdd\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAdd\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAdd\\(\\) has parameter \\$value1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAdd\\(\\) has parameter \\$value2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAdd\\(\\) has parameter \\$valueN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAddArray\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAddArray\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sAddArray\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sCard\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sCard\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sContains\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sContains\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sContains\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiff\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiff\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiff\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiff\\(\\) has parameter \\$keyN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiffStore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiffStore\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiffStore\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiffStore\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sDiffStore\\(\\) has parameter \\$keyN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sGetMembers\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sGetMembers\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInter\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInter\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInter\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInter\\(\\) has parameter \\$keyN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInterStore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInterStore\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInterStore\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInterStore\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sInterStore\\(\\) has parameter \\$keyN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sIsMember\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sIsMember\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sIsMember\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sMembers\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sMembers\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sMove\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sMove\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sMove\\(\\) has parameter \\$member with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sMove\\(\\) has parameter \\$srcKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sPop\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sPop\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRandMember\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRandMember\\(\\) has parameter \\$count with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRandMember\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRem\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRem\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRem\\(\\) has parameter \\$member1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRem\\(\\) has parameter \\$member2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRem\\(\\) has parameter \\$memberN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRemove\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRemove\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRemove\\(\\) has parameter \\$member1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRemove\\(\\) has parameter \\$member2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sRemove\\(\\) has parameter \\$memberN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sScan\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sScan\\(\\) has parameter \\$count with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sScan\\(\\) has parameter \\$iterator with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sScan\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sScan\\(\\) has parameter \\$pattern with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnion\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnion\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnion\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnion\\(\\) has parameter \\$keyN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnionStore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnionStore\\(\\) has parameter \\$dstKey with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnionStore\\(\\) has parameter \\$key1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnionStore\\(\\) has parameter \\$key2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sUnionStore\\(\\) has parameter \\$keyN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:save\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:scan\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:scan\\(\\) has parameter \\$count with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:scan\\(\\) has parameter \\$iterator with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:scan\\(\\) has parameter \\$pattern with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:script\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:script\\(\\) has parameter \\$command with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:script\\(\\) has parameter \\$script with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:select\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:select\\(\\) has parameter \\$dbindex with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:set\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:set\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:set\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setBit\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setBit\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setBit\\(\\) has parameter \\$offset with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setBit\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setOption\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setOption\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setOption\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setRange\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setRange\\(\\) has parameter \\$offset with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setRange\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setTimeout\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setTimeout\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setTimeout\\(\\) has parameter \\$ttl with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setex\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setex\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setex\\(\\) has parameter \\$ttl with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setex\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setnx\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setnx\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:setnx\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:slaveof\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:slaveof\\(\\) has parameter \\$host with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:slaveof\\(\\) has parameter \\$port with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:slowlog\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:slowlog\\(\\) has parameter \\$command with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sort\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sort\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:sort\\(\\) has parameter \\$option with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:strlen\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:strlen\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:subscribe\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:subscribe\\(\\) has parameter \\$callback with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:subscribe\\(\\) has parameter \\$channels with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:substr\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:substr\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:substr\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:substr\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:time\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:ttl\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:ttl\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:type\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:type\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:unwatch\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:wait\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:wait\\(\\) has parameter \\$numSlaves with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:wait\\(\\) has parameter \\$timeout with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:watch\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:watch\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has parameter \\$score1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has parameter \\$score2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has parameter \\$scoreN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has parameter \\$value1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has parameter \\$value2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zAdd\\(\\) has parameter \\$valueN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zCard\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zCard\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zCount\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zCount\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zCount\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zCount\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDelete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDelete\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDelete\\(\\) has parameter \\$member1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDelete\\(\\) has parameter \\$member2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDelete\\(\\) has parameter \\$memberN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByRank\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByRank\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByRank\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByRank\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByScore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByScore\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByScore\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zDeleteRangeByScore\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zIncrBy\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zIncrBy\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zIncrBy\\(\\) has parameter \\$member with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zIncrBy\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zInter\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zInter\\(\\) has parameter \\$Output with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zInter\\(\\) has parameter \\$Weights with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zInter\\(\\) has parameter \\$ZSetKeys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zInter\\(\\) has parameter \\$aggregateFunction with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRange\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRange\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRange\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRange\\(\\) has parameter \\$withscores with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByLex\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByLex\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByLex\\(\\) has parameter \\$limit with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByLex\\(\\) has parameter \\$max with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByLex\\(\\) has parameter \\$min with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByLex\\(\\) has parameter \\$offset with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByScore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByScore\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByScore\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByScore\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRangeByScore\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRank\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRank\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRank\\(\\) has parameter \\$member with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRem\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRem\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRem\\(\\) has parameter \\$member1 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRem\\(\\) has parameter \\$member2 with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRem\\(\\) has parameter \\$memberN with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByRank\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByRank\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByRank\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByRank\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByScore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByScore\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByScore\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRemRangeByScore\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRange\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRange\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRange\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRange\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRange\\(\\) has parameter \\$withscore with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByLex\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByLex\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByLex\\(\\) has parameter \\$limit with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByLex\\(\\) has parameter \\$max with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByLex\\(\\) has parameter \\$min with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByLex\\(\\) has parameter \\$offset with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByScore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByScore\\(\\) has parameter \\$end with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByScore\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByScore\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRangeByScore\\(\\) has parameter \\$start with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRank\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRank\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zRevRank\\(\\) has parameter \\$member with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScan\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScan\\(\\) has parameter \\$count with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScan\\(\\) has parameter \\$iterator with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScan\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScan\\(\\) has parameter \\$pattern with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScore\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zScore\\(\\) has parameter \\$member with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zSize\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zSize\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zUnion\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zUnion\\(\\) has parameter \\$Output with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zUnion\\(\\) has parameter \\$Weights with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zUnion\\(\\) has parameter \\$ZSetKeys with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\RedisConnection\\:\\:zUnion\\(\\) has parameter \\$aggregateFunction with no typehint specified\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Parameter \\#3 \\.\\.\\.\\$retKey of method Redis\\:\\:bitOp\\(\\) expects string, array\\<int, mixed\\> given\\.$#"
+			count: 1
+			path: Redis/RedisConnection.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearConfigCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearHttpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearOpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearProxyCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearRewriteCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearSearchCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearTemplateCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:clearThemeCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getConfigCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getDirectoryInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getDoctrineProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getHttpCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getOpCacheCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getShopwareProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getTemplateCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CacheManager\\:\\:getThemeCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$container$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$innerCacheManager$#"
+			count: 1
+			path: Redis/Store/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CachingSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CachingSubscriber\\:\\:onPostPersist\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\CachingSubscriber\\:\\:onPostPersist\\(\\) has parameter \\$eventArgs with no value type specified in iterable type Enlight_Event_EventArgs\\.$#"
+			count: 1
+			path: Redis/Store/CachingSubscriber.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$cache$#"
+			count: 1
+			path: Redis/Store/CachingSubscriber.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\CachingSubscriber\\:\\:\\$httpCache \\(Shopware\\\\Components\\\\HttpCache\\\\AppCache\\|null\\) does not accept object\\|null\\.$#"
+			count: 1
+			path: Redis/Store/CachingSubscriber.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:__construct\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:getCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:getMetaData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:getRequestHeaders\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:getResponseHeaders\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:recreateResponse\\(\\) has parameter \\$headers with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:requestsMatch\\(\\) has parameter \\$env1 with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:requestsMatch\\(\\) has parameter \\$env2 with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:sortQueryStringParameters\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:\\$cacheCookies type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:\\$ignoredUrlParameters type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\RedisStore\\:\\:\\$keyCache with generic class SplObjectStorage does not specify its types\\: TObject, TData$#"
+			count: 1
+			path: Redis/Store/RedisStore.php
+
+		-
+			message: "#^Call to an undefined method Shopware\\\\Components\\\\HttpCache\\\\CacheWarmer\\:\\:getAllSEOUrlCount\\(\\)\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Call to an undefined method Shopware\\\\Components\\\\HttpCache\\\\CacheWarmer\\:\\:getAllSEOUrls\\(\\)\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Cannot call method getTerminalDimensions\\(\\) on Symfony\\\\Component\\\\Console\\\\Application\\|null\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:checkForSiege\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:configure\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:execute\\(\\) should return int but return statement is missing\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:exportUrls\\(\\) has parameter \\$shopId with no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:exportUrls\\(\\) has parameter \\$totalUrlCount with no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:exportUrls\\(\\) should return string but returns string\\|false\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:getShopsFromInput\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:getWidth\\(\\) has parameter \\$totalUrlCount with no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:runSiege\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:runSiege\\(\\) has parameter \\$concurrency with no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:runSiege\\(\\) has parameter \\$fileName with no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:warmShopUrls\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:warmShopUrls\\(\\) has parameter \\$shopId with no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$concurrency\\)\\: Unexpected token \"\\$concurrency\", expected type at offset 18$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$fileName\\)\\: Unexpected token \"\\$fileName\", expected type at offset 45$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$shopId\\)\\: Unexpected token \"\\$shopId\", expected type at offset 18$#"
+			count: 2
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$totalUrlCount\\)\\: Unexpected token \"\\$totalUrlCount\", expected type at offset 103$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\$totalUrlCount\\)\\: Unexpected token \"\\$totalUrlCount\", expected type at offset 40$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$filename of function fopen expects string, string\\|false given\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function fclose expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function feof expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function fread expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function fwrite expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, array\\<int, string\\>\\|false given\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$string of function explode expects string, string\\|false given\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:\\$front has no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:\\$requestReflection has no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:\\$responseReflection has no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Redis\\\\Store\\\\WarmUpHttpCacheWithSiegeCommand\\:\\:\\$shops has no typehint specified\\.$#"
+			count: 1
+			path: Redis/Store/WarmUpHttpCacheWithSiegeCommand.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearConfigCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearHttpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearOpCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearProxyCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearRewriteCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearSearchCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearTemplateCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:clearThemeCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getConfigCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getDirectoryInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getDoctrineProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getHttpCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getOpCacheCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getShopwareProxyCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getTemplateCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\CacheManager\\:\\:getThemeCacheInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/CacheManager.php
+
+		-
+			message: "#^Cannot call method getModuleName\\(\\) on Enlight_Controller_Request_Request\\|null\\.$#"
+			count: 1
+			path: Redis/Translation/Translation.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\Translation\\:\\:filterData\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/Translation.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\Translation\\:\\:read\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/Translation.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Redis\\\\Translation\\\\Translation\\:\\:readBatch\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Redis/Translation/Translation.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$swagEssentialsModules has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: SwagEssentials.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\BlackHoleThemeCompiler\\:\\:compileJavascript\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/BlackHoleThemeCompiler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\BlackHoleThemeCompiler\\:\\:compileLess\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/BlackHoleThemeCompiler.php
+
+		-
+			message: "#^Array \\(array\\<PDOStatement\\>\\) does not accept Doctrine\\\\DBAL\\\\Driver\\\\Statement\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:__construct\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:beginTransaction\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:commit\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:connect\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:createTable\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:doAdvisoryLock\\(\\) return type has no value type specified in iterable type Doctrine\\\\DBAL\\\\Driver\\\\Statement\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:getMergeStatement\\(\\) return type has no value type specified in iterable type Doctrine\\\\DBAL\\\\Driver\\\\Statement\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:rollback\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Parameter \\#1 \\$dsn of method SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:connect\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:\\$connection \\(Doctrine\\\\DBAL\\\\Connection\\) does not accept null\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Tests\\\\Common\\\\DbalSessionHandler\\:\\:\\$connectionOptions type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 2
+			path: tests/Common/DbalSessionHandler.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__call\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__call\\(\\) has parameter \\$arguments with no typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__call\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__get\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__get\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__isset\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__isset\\(\\) should return bool but return statement is missing\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__set\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:__set\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication\\:\\:throwException\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/EmptyShopwareApplication.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\FixedEnlightMysqlAdapter\\:\\:_beginTransaction\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/FixedEnlightMysqlAdapter.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\FixedEnlightMysqlAdapter\\:\\:_commit\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/FixedEnlightMysqlAdapter.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\FixedEnlightMysqlAdapter\\:\\:_rollBack\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/FixedEnlightMysqlAdapter.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\FixedEnlightMysqlAdapter\\:\\:createFromDbalConnectionAndConfig\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Common/FixedEnlightMysqlAdapter.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\KernelStorage\\:\\:init\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/KernelStorage.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\KernelStorage\\:\\:store\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/KernelStorage.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\KernelStorage\\:\\:unset\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/KernelStorage.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Tests\\\\Common\\\\KernelStorage\\:\\:\\$kernel has no typehint specified\\.$#"
+			count: 1
+			path: tests/Common/KernelStorage.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\ReflectionHelper\\:\\:getPropertyValue\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/ReflectionHelper.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 2
+			path: tests/Common/ReflectionHelper.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestClient\\:\\:request\\(\\) has parameter \\$files with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Common/TestClient.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestClient\\:\\:request\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Common/TestClient.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestClient\\:\\:request\\(\\) has parameter \\$server with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Common/TestClient.php
+
+		-
+			message: "#^Constant SHOP_HOST not found\\.$#"
+			count: 1
+			path: tests/Common/TestFactory.php
+
+		-
+			message: "#^Method class@anonymous/tests/Common/TestFactory\\.php\\:24\\:\\:overwriteDb\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestFactory.php
+
+		-
+			message: "#^Cannot call method get\\(\\) on Shopware\\\\Components\\\\DependencyInjection\\\\Container\\|null\\.$#"
+			count: 2
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Cannot call method getId\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Cannot call method setBaseUrl\\(\\) on Enlight_Controller_Request_Request\\|null\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Cannot call method setHost\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Constant SHOP_HOST not found\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:afterWebTest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:authenticateApiUser\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:beforeTest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:beforeUnset\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:beforeWebTest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:boot\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:resetFront\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:resetShopResource\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernel\\:\\:terminate\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Parameter \\#1 \\$newInstance of function Shopware expects Shopware\\|null, SwagEssentials\\\\Tests\\\\Common\\\\EmptyShopwareApplication given\\.$#"
+			count: 1
+			path: tests/Common/TestKernel.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernelInterface\\:\\:afterWebTest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernelInterface.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernelInterface\\:\\:authenticateApiUser\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernelInterface.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernelInterface\\:\\:beforeTest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernelInterface.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernelInterface\\:\\:beforeUnset\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernelInterface.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Common\\\\TestKernelInterface\\:\\:beforeWebTest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Common/TestKernelInterface.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\PrimaryReplica\\\\Unit\\\\ConnectionDecisionTest\\:\\:invokeMethod\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/PrimaryReplica/Unit/ConnectionDecisionTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\PrimaryReplica\\\\Unit\\\\ConnectionDecisionTest\\:\\:invokeMethod\\(\\) has parameter \\$methodName with no typehint specified\\.$#"
+			count: 1
+			path: tests/PrimaryReplica/Unit/ConnectionDecisionTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\PrimaryReplica\\\\Unit\\\\ConnectionDecisionTest\\:\\:invokeMethod\\(\\) has parameter \\$object with no typehint specified\\.$#"
+			count: 1
+			path: tests/PrimaryReplica/Unit/ConnectionDecisionTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\PrimaryReplica\\\\Unit\\\\ConnectionDecisionTest\\:\\:invokeMethod\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/PrimaryReplica/Unit/ConnectionDecisionTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\PrimaryReplica\\\\Unit\\\\ConnectionDecisionTest\\:\\:sqlDataProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/PrimaryReplica/Unit/ConnectionDecisionTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\AppCacheTest\\:\\:getOptions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Redis/Integration/AppCacheTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:activateShopById\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:cleanUpFixtureTraitState\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:disableCommonFixtures\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:handleAutoReboot\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:importFixtures\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:importFixturesFileOnce\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:setAutoReboot\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:startTransactionBefore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:stopTransactionAfter\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:terminateKernel\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$object of static method SwagEssentials\\\\Tests\\\\Common\\\\ReflectionHelper\\:\\:getPropertyValue\\(\\) expects object, object\\|null given\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:\\$commonTestFixtures type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\CacheManagerTest\\:\\:\\$importedFiles type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Service \"swag_essentials\\.redis_store\\.cache_manager\" is not registered in the container\\.$#"
+			count: 2
+			path: tests/Redis/Integration/CacheManagerTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:activateShopById\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:cleanUpFixtureTraitState\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:disableCommonFixtures\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:handleAutoReboot\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:importFixtures\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:importFixturesFileOnce\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:setAutoReboot\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:startTransactionBefore\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:stopTransactionAfter\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Method SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:terminateKernel\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:\\$commonTestFixtures type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+
+		-
+			message: "#^Property SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:\\$importedFiles type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Redis/Integration/RedisStoreTest.php
+

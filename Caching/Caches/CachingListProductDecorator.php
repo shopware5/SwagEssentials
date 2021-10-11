@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SwagEssentials\Caching\Caches;
 
@@ -23,8 +25,6 @@ class CachingListProductDecorator implements ListProductServiceInterface
     protected $ttl;
 
     /**
-     * @param \Zend_Cache_Core $cache
-     * @param ListProductServiceInterface $service
      * @param int $ttl
      */
     public function __construct(\Zend_Cache_Core $cache, ListProductServiceInterface $service, $ttl)
