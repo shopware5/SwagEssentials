@@ -307,8 +307,9 @@ class RedisStore implements StoreInterface
      */
     protected function getMetaData(string $key): array
     {
-        $entries = $this->load($this->getMetaKey(), $key);
-        if (!is_string($entries)) {
+        try {
+            $entries = $this->load($this->getMetaKey(), $key);
+        } catch (\RuntimeException $e) {
             return [];
         }
 
@@ -494,13 +495,15 @@ class RedisStore implements StoreInterface
 
         foreach ($cacheIds as $cacheId) {
             $key = $this->getShopwareIdKey($cacheId);
-            $cacheItem = $this->load($this->getIdKey(), $key);
-            $content = [];
-            if (is_string($cacheItem)) {
+
+            try {
+                $cacheItem = $this->load($this->getIdKey(), $key);
                 $content = json_decode($cacheItem, true);
                 if (!is_array($content)) {
                     $content = [];
                 }
+            } catch (\RuntimeException $e) {
+                $content = [];
             }
 
             // Storing the headerKey and the cacheKey will increase the lookup file size a bit
@@ -508,7 +511,7 @@ class RedisStore implements StoreInterface
             $content[$cacheKey] = $metadataKey;
 
             try {
-                $this->save($this->getIdKey(), $key, json_encode($content, JSON_THROW_ON_ERROR));
+                $this->save($this->getIdKey(), $key, json_encode($content));
             } catch (\Throwable $e) {
                 throw new \RuntimeException(sprintf('Could not write cacheKey %s', $key), 0, $e);
             }
