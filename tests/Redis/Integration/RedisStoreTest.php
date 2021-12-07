@@ -17,6 +17,7 @@ class RedisStoreTest extends TestCase
     private function getRedisStoreRedisConnection(): RedisConnection
     {
         $params = self::getKernel()->getContainer()->getParameter('shopware.httpcache.redisConnections');
+        static::assertIsArray($params);
 
         return Factory::factory($params);
     }
