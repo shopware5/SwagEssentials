@@ -4734,4 +4734,3 @@ parameters:
 			message: "#^Property SwagEssentials\\\\Tests\\\\Redis\\\\Integration\\\\RedisStoreTest\\:\\:\\$importedFiles type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/Redis/Integration/RedisStoreTest.php
-

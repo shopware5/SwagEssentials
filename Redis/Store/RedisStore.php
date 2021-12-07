@@ -307,9 +307,8 @@ class RedisStore implements StoreInterface
      */
     protected function getMetaData(string $key): array
     {
-        try {
-            $entries = $this->load($this->getMetaKey(), $key);
-        } catch (\RuntimeException $e) {
+        $entries = $this->load($this->getMetaKey(), $key);
+        if (!is_string($entries)) {
             return [];
         }
 
@@ -339,11 +338,17 @@ class RedisStore implements StoreInterface
     /**
      * Load a cached item
      */
-    protected function load(string $hash, string $key): string
+    protected function load(string $hash, string $key): ?string
     {
         $return = $this->redisClient->hGet($hash, $key);
-        if (\function_exists('gzuncompress') && is_string($return)) {
+        if (!is_string($return)) {
+            return null;
+        }
+
+        if (\function_exists('gzuncompress')) {
             $return = @gzuncompress($return);
+        } else {
+            throw new \RuntimeException('Function "gzuncompress" does not exists');
         }
 
         if ($return === false) {
@@ -498,7 +503,7 @@ class RedisStore implements StoreInterface
 
             try {
                 $cacheItem = $this->load($this->getIdKey(), $key);
-                $content = json_decode($cacheItem, true);
+                $content = json_decode((string) $cacheItem, true);
                 if (!is_array($content)) {
                     $content = [];
                 }
