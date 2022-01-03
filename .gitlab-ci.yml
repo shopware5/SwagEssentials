@@ -7,6 +7,10 @@ variables:
     WEB_DOCUMENT_ROOT: $CI_PROJECT_DIR/
     COMPOSER_HOME: $CI_PROJECT_DIR/.composer
 
+default:
+  tags:
+    - t3.nano
+
 stages:
     - Static analysis
     - Test
@@ -28,6 +32,8 @@ Php Cs Fixer:
 # base unit
 ParallelUnit:
     stage: Test
+    tags:
+      - t3.medium
     image: gitlab.shopware.com:5005/shopware/5/product/image/continuous:$PHP_VERSION
     services:
         -   name: mysql:8.0
