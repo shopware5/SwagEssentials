@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SwagEssentials\Redis\Store;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\FetchMode;
+use \PDO;
 use Shopware\Components\HttpCache\CacheWarmer;
 use Shopware\Kernel;
 use Symfony\Component\Console\Command\Command;
@@ -142,7 +142,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
             return [$shopId];
         }
 
-        return $this->connection->executeQuery('SELECT id FROM s_core_shops WHERE active = 1')->fetchAll(FetchMode::COLUMN);
+        return $this->connection->executeQuery('SELECT id FROM s_core_shops WHERE active = 1')->fetchAll(PDO::FETCH_COLUMN);
     }
 
     /**
