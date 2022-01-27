@@ -5,47 +5,44 @@ declare(strict_types=1);
 namespace SwagEssentials\Redis\Store;
 
 use Doctrine\DBAL\Connection;
-use \PDO;
-use Shopware\Components\HttpCache\CacheWarmer;
-use Shopware\Kernel;
+use PDO;
+use Shopware\Components\HttpCache\UrlProvider\UrlProviderInterface;
+use Shopware\Components\HttpCache\UrlProviderFactoryInterface;
+use Shopware\Components\Model\ModelManager;
+use Shopware\Components\Routing\Context;
+use Shopware\Models\Shop\DetachedShop;
+use Shopware\Models\Shop\Repository as ShopRepository;
+use Shopware\Models\Shop\Shop;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Terminal;
 
 class WarmUpHttpCacheWithSiegeCommand extends Command
 {
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
-    /**
-     * @var CacheWarmer
-     */
-    protected $httpCacheWarmer;
+    private UrlProviderFactoryInterface $urlProviderFactory;
 
-    public function __construct(Connection $connection, CacheWarmer $httpCacheWarmer)
-    {
+    private ShopRepository $shopRepository;
+
+    private \Shopware_Components_Config $config;
+
+    public function __construct(
+        Connection $connection,
+        UrlProviderFactoryInterface $urlProviderFactory,
+        ModelManager $modelManager,
+        \Shopware_Components_Config $config
+    ) {
         parent::__construct();
+        $this->shopRepository = $modelManager->getRepository(Shop::class);
         $this->connection = $connection;
-        $this->httpCacheWarmer = $httpCacheWarmer;
+        $this->urlProviderFactory = $urlProviderFactory;
+        $this->config = $config;
     }
-
-    protected $shops;
-
-    /**
-     * @var Kernel
-     */
-    protected $kernel;
-
-    protected $front;
-
-    protected $requestReflection;
-
-    protected $responseReflection;
 
     /**
      * @var OutputInterface
@@ -74,7 +71,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $this->output = $output;
         $this->input = $input;
@@ -82,16 +79,24 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $shopIds = $this->getShopsFromInput();
 
         foreach ($shopIds as $shopId) {
-            $this->warmShopUrls($shopId);
+            $this->warmShopUrls((int) $shopId);
         }
         $output->writeln("\n The HttpCache is now warmed up");
     }
 
-    /**
-     * @param $shopId
-     */
-    protected function warmShopUrls($shopId)
+    protected function warmShopUrls(int $shopId): void
     {
+        $shop = $this->shopRepository->getById($shopId);
+
+        if (!$shop instanceof DetachedShop) {
+            throw new \Exception(sprintf('Shop with ID "%s" was not found', $shopId));
+        }
+
+        $context = Context::createFromShop(
+            $shop,
+            $this->config
+        );
+
         $output = $this->output;
         $concurrency = $this->input->getOption('concurrency') ?: 7;
 
@@ -100,8 +105,8 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
             $totalUrlCount = count(file($file));
             $fileName = $file;
         } else {
-            $totalUrlCount = $this->httpCacheWarmer->getAllSEOUrlCount($shopId);
-            $fileName = $this->exportUrls($shopId, $totalUrlCount);
+            $totalUrlCount = $this->getTotalUrlCount($context);
+            $fileName = $this->getFileNameWithUrls($context);
         }
 
         $output->writeln("\n Starting warmup from URL file {$fileName} and {$concurrency} workers\n");
@@ -120,16 +125,11 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
      *
      * @param $totalUrlCount
      */
-    protected function getWidth($totalUrlCount): int
+    protected function getWidth(int $totalUrlCount): int
     {
-        $dimensions = $this->getApplication()->getTerminalDimensions();
-        if (!$dimensions) {
-            return 100;
-        }
-        $width = $dimensions[0];
-        if ($width === 0) {
-            $width = 100;
-        }
+        $terminal = new Terminal();
+        $width = $terminal->getWidth();
+
         $maxWidth = $width - (strlen((string) $totalUrlCount) * 2 + 10);
 
         return min(200, $maxWidth);
@@ -145,32 +145,23 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         return $this->connection->executeQuery('SELECT id FROM s_core_shops WHERE active = 1')->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    /**
-     * @param $concurrency
-     * @param $fileName
-     * @param ProgressBar $progressBar
-     */
-    protected function runSiege($concurrency, $fileName, $progressBar)
+    protected function runSiege(string $concurrency, string $fileName, ProgressBar $progressBar): void
     {
-        $cmd = "siege -b -v -c {$concurrency} -f {$fileName} -r once ";
+        $cmd = "siege -b -v --no-follow -c {$concurrency} -f {$fileName} -r 1 ";
         $this->output->writeln("Running: $cmd");
 
         $progressBar->start();
         $fp = popen($cmd . ' 2>&1 ', 'r');
 
         while (!feof($fp)) {
-            $lines = array_filter(
-                explode("\n", fread($fp, 11024)),
-                function ($line) {
-                    return strpos($line, '==>') !== false;
-                }
-            );
+            $read = fread($fp, 11024);
+            $lines = explode("\n", $read);
             $progressBar->advance(count($lines));
         }
         $progressBar->finish();
     }
 
-    protected function checkForSiege()
+    protected function checkForSiege(): void
     {
         $output = $this->output;
 
@@ -181,25 +172,33 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         $output->writeln("Done\n");
     }
 
-    /**
-     * @param $shopId
-     * @param $totalUrlCount
-     */
-    protected function exportUrls($shopId, $totalUrlCount): string
+    private function getFileNameWithUrls(Context $context): string
     {
-        $output = $this->output;
-
-        $offset = 0;
-        $output->writeln("\n Exporting URLs for shop with id " . $shopId);
+        $this->output->writeln("\n Exporting URLs for shop with id " . $context->getShopId());
         $fileName = tempnam(sys_get_temp_dir(), 'urls');
         $fh = fopen($fileName, 'wb');
-        while ($offset < $totalUrlCount) {
-            $urls = $this->httpCacheWarmer->getAllSEOUrls($shopId, 1000, $offset);
+
+        /** @var UrlProviderInterface[] $providers */
+        $providers = $this->urlProviderFactory->getAllProviders();
+        foreach ($providers as $provider) {
+            $urls = $provider->getUrls($context);
             fwrite($fh, implode("\n", $urls));
-            $offset += count($urls);
         }
         fclose($fh);
 
         return $fileName;
+    }
+
+    private function getTotalUrlCount(Context $context): int
+    {
+        $count = 0;
+
+        /** @var UrlProviderInterface[] $providers */
+        $providers = $this->urlProviderFactory->getAllProviders();
+        foreach ($providers as $provider) {
+            $count += $provider->getCount($context);
+        }
+
+        return $count;
     }
 }
