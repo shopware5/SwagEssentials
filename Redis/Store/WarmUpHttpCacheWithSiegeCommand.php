@@ -13,6 +13,7 @@ use Shopware\Components\Routing\Context;
 use Shopware\Models\Shop\DetachedShop;
 use Shopware\Models\Shop\Repository as ShopRepository;
 use Shopware\Models\Shop\Shop;
+use Shopware_Components_Config;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,19 +24,31 @@ use Symfony\Component\Console\Terminal;
 
 class WarmUpHttpCacheWithSiegeCommand extends Command
 {
-    private Connection $connection;
+    /**
+     * @var Connection
+     */
+    private $connection;
 
-    private UrlProviderFactoryInterface $urlProviderFactory;
+    /**
+     * @var UrlProviderFactoryInterface
+     */
+    private $urlProviderFactory;
 
-    private ShopRepository $shopRepository;
+    /**
+     * @var ShopRepository
+     */
+    private $shopRepository;
 
-    private \Shopware_Components_Config $config;
+    /**
+     * @var Shopware_Components_Config
+     */
+    private $config;
 
     public function __construct(
         Connection $connection,
         UrlProviderFactoryInterface $urlProviderFactory,
         ModelManager $modelManager,
-        \Shopware_Components_Config $config
+        Shopware_Components_Config $config
     ) {
         parent::__construct();
         $this->shopRepository = $modelManager->getRepository(Shop::class);
