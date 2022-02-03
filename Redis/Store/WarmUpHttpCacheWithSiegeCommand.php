@@ -160,7 +160,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
 
     protected function runSiege(string $concurrency, string $fileName, ProgressBar $progressBar): void
     {
-        $cmd = "siege -b -v --no-follow -c {$concurrency} -f {$fileName} -r 1 ";
+        $cmd = "siege -b -v --no-follow -c {$concurrency} -f {$fileName} -r 'once' ";
         $this->output->writeln("Running: $cmd");
 
         $progressBar->start();
