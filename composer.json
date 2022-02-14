@@ -4,6 +4,7 @@
         "psr-4": {
             "SwagEssentials\\CacheMultiplexer\\": "CacheMultiplexer",
             "SwagEssentials\\Caching\\": "Caching",
+            "SwagEssentials\\Common\\": "Common",
             "SwagEssentials\\PrimaryReplica\\": "PrimaryReplica",
             "SwagEssentials\\Redis\\": "Redis"
         }
@@ -20,5 +21,11 @@
     },
     "require-dev": {
         "shopware/shopware": "~5.6.0 || ~5.7.0 || 5.7.x-dev"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     }
 }

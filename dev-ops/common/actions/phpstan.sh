@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-#DESCRIPTION: fix code style
+#DESCRIPTION: static analysis of code
 
-./tools/phpstan analyze .
+./tools/phpstan

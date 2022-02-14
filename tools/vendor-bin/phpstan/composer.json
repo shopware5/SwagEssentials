@@ -1,15 +1,19 @@
 {
     "require": {
         "phpstan/extension-installer": "1.1.0",
-        "phpstan/phpstan": "0.12.99",
-        "phpstan/phpstan-doctrine": "0.12.44",
-        "phpstan/phpstan-phpunit": "0.12.22",
-        "phpstan/phpstan-symfony": "0.12.44"
+        "phpstan/phpstan": "1.4.6",
+        "phpstan/phpstan-doctrine": "1.2.10",
+        "phpstan/phpstan-phpunit": "1.0.0",
+        "phpstan/phpstan-symfony": "1.1.5"
     },
     "config": {
         "platform": {
             "php": "7.2"
         },
-        "bin-dir": "."
+        "bin-dir": ".",
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     }
 }
