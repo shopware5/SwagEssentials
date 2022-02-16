@@ -10,8 +10,17 @@ parameters:
         console_application_loader: shopware/tests/phpstan-console-application.php
 #        container_xml_path: ../../../var/cache/production____REVISION___/container.xml
 #        console_application_loader: ../../../tests/phpstan-console-application.php
-    excludes_analyse:
-        - .githooks
-        - vendor
-        - tools
-        - dev-ops
+    doctrine:
+        repositoryClass: Shopware\Components\Model\ModelRepository
+        objectManagerLoader: shopware/tests/phpstan-doctrine-model-manager.php
+#        objectManagerLoader: ../../../tests/phpstan-doctrine-model-manager.php
+    paths:
+        - CacheMultiplexer
+        - Caching
+        - Common
+        - PrimaryReplica
+        - Redis
+        - tests
+    bootstrapFiles:
+        - tests/test_constants.php
+        - tools/vendor-bin/phpunit/vendor/autoload.php

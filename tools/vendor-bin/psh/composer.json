@@ -6,6 +6,7 @@
         "platform": {
             "php": "7.2"
         },
-        "bin-dir": "."
+        "bin-dir": ".",
+        "sort-packages": true
     }
 }

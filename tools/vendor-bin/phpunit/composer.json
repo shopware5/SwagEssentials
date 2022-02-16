@@ -1,11 +1,13 @@
 {
+    "require": {
+        "phpunit/phpunit": "^8.0",
+        "symfony/browser-kit": "~4.4.27"
+    },
     "config": {
         "platform": {
             "php": "7.2"
         },
-        "bin-dir": "."
-    },
-    "require": {
-        "phpunit/phpunit": "^8.0"
+        "bin-dir": ".",
+        "sort-packages": true
     }
 }
