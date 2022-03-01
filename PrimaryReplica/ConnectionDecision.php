@@ -212,7 +212,8 @@ class ConnectionDecision
         $tables = implode('|', array_map('preg_quote', array_unique($result)));
 
         if ($apc_available) {
-            $apc_store('primary_replica_tables', serialize($tables));
+            $serialize = serialize($tables);
+            $apc_store('primary_replica_tables', $serialize);
         }
 
         return $tables;
