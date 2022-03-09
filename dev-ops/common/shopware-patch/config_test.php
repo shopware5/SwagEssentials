@@ -16,13 +16,26 @@ if (getenv('SHOPWARE_ENV') === 'test') {
 }
 
 return array (
-    'db' =>
-        [
-            'host' => 'mysql',
-            'port' => '3306',
-            'username' => 'root',
-            'password' => 'root',
-            'dbname' => 'shopware-test',
+    'db' => [
+        'host' => 'mysql_master',
+        'port' => '3306',
+        'username' => 'root',
+        'password' => 'root',
+        'dbname' => 'shopware-test',
+        'factory' => 'SwagEssentials\\PrimaryReplica\\PdoFactory',
+        'replicas' =>
+            [
+                'replica-slave' =>
+                    [
+                        'pdoOptions' => NULL,
+                        'username' => 'root',
+                        'charset' => 'utf8',
+                        'password' => 'root',
+                        'dbname' => 'shopware',
+                        'host' => 'mysql_slave',
+                        'port' => '',
+                    ],
+            ],
     ],
 
     'errorHandler' => [
@@ -83,16 +96,16 @@ return array (
             'cache_multiplexer_hosts' =>
                 [
 
-                        [
-                            'host' => 'http://10.123.123.31/api',
-                            'user' => 'demo',
-                            'password' => 'demo',
-                        ],
-                        [
-                            'host' => 'http://10.123.123.32/api',
-                            'user' => 'demo',
-                            'password' => 'demo',
-                        ],
+                    [
+                        'host' => 'http://10.123.123.31/api',
+                        'user' => 'demo',
+                        'password' => 'demo',
+                    ],
+                    [
+                        'host' => 'http://10.123.123.32/api',
+                        'user' => 'demo',
+                        'password' => 'demo',
+                    ],
                 ],
             'caching_enable_urls' => true,
             'caching_enable_list_product' => true,

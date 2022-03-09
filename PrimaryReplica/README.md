@@ -33,6 +33,8 @@ return [
                 'dbname' => 'training',
                 'host' => '192.168.0.30',
                 'port' => '',
+                'charset' => 'utf8',
+                'pdoOptions' => null,
             ],
             'replica-redundancy' => [
                 'username' => 'root',
@@ -40,6 +42,8 @@ return [
                 'dbname' => 'training',
                 'host' => '192.168.0.31',
                 'port' => '',
+                'charset' => 'utf8',
+                'pdoOptions' => null,
             ]
         ],
         'modules' =>

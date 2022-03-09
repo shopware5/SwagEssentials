@@ -35,7 +35,7 @@ PHPStan:
     image: gitlab.shopware.com:5005/shopware/5/product/image/continuous:7.4
     services:
         -   name: mysql:8.0
-            alias: mysql
+            alias: mysql_master
             command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-authentication-plugin=mysql_native_password" ]
     before_script:
         - apk add --no-cache mysql-client coreutils
@@ -51,8 +51,11 @@ ParallelUnit:
     image: gitlab.shopware.com:5005/shopware/5/product/image/continuous:$PHP_VERSION
     services:
         -   name: mysql:8.0
-            alias: mysql
-            command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-authentication-plugin=mysql_native_password" ]
+            alias: mysql_master
+            command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-authentication-plugin=mysql_native_password", "--server-id=1", "--log_bin=mysql-bin" ]
+        -   name: mysql:8.0
+            alias: mysql_slave
+            command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-authentication-plugin=mysql_native_password", "--server-id=2", "--log_bin=mysql-bin"]
         -   name: redis:latest
             alias: app_redis
             command: [ "redis-server", "--requirepass app" ]
@@ -80,12 +83,14 @@ ParallelUnit:
                 composer install --ignore-platform-reqs
             else
                 if [[ $PHP_VERSION = "8.0" ]]; then
-                    composer update
+                    composer update --with-all-dependencies
                 else
                     composer install
                 fi
             fi
         - ./psh.phar init
         - ./psh.phar essentials-on --module=RedisStore
+        - ./psh.phar essentials-on --module=PrimaryReplica
+        - ./psh.phar activate-master-slave
     script:
         - ./psh.phar unit

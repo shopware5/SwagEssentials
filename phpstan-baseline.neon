@@ -396,107 +396,7 @@ parameters:
 			path: PrimaryReplica/Commands/RunSql.php
 
 		-
-			message: "#^Access to an undefined property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$tables\\.$#"
-			count: 2
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:__construct\\(\\) has parameter \\$config with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:count\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:count\\(\\) has parameter \\$name with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:count\\(\\) has parameter \\$query with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getAffectedTables\\(\\) has parameter \\$sql with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getAffectedTables\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getConnectionForQuery\\(\\) has parameter \\$sql with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:getPinnedTables\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:isWriteQuery\\(\\) has parameter \\$sql with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:setPinnedTables\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:setPinnedTables\\(\\) has parameter \\$pinnedTables with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$name\\)\\: Unexpected token \"\\$name\", expected type at offset 93$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$query\\)\\: Unexpected token \"\\$query\", expected type at offset 113$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$sql\\)\\: Unexpected token \"\\$sql\", expected type at offset 165$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$sql\\)\\: Unexpected token \"\\$sql\", expected type at offset 192$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$sql\\)\\: Unexpected token \"\\$sql\", expected type at offset 91$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$DEBUG has no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$config has no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$counter has no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionDecision.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\:\\:\\$pinnedTables has no type specified\\.$#"
+			message: "#^Cannot call method fetchAll\\(\\) on PDOStatement\\|false\\.$#"
 			count: 1
 			path: PrimaryReplica/ConnectionDecision.php
 
@@ -521,47 +421,12 @@ parameters:
 			path: PrimaryReplica/ConnectionPool.php
 
 		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getConnectionByName\\(\\) has parameter \\$name with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionPool.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getPDOConnection\\(\\) has parameter \\$name with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionPool.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getRandomConnection\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionPool.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:getWeightedRandomConnection\\(\\) should return string\\|null but return statement is missing\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionPool.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\ConnectionPool\\:\\:prepareWeightedConnections\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/ConnectionPool.php
-
-		-
 			message: "#^PHPDoc tag @param has invalid value \\(\\$doStickToConnection\\)\\: Unexpected token \"\\$doStickToConnection\", expected type at offset 48$#"
 			count: 1
 			path: PrimaryReplica/ConnectionPool.php
 
 		-
 			message: "#^PHPDoc tag @param has invalid value \\(\\$includePrimary\\)\\: Unexpected token \"\\$includePrimary\", expected type at offset 18$#"
-			count: 1
-			path: PrimaryReplica/ConnectionPool.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$name\\)\\: Unexpected token \"\\$name\", expected type at offset 57$#"
-			count: 1
-			path: PrimaryReplica/ConnectionPool.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$name\\)\\: Unexpected token \"\\$name\", expected type at offset 75$#"
 			count: 1
 			path: PrimaryReplica/ConnectionPool.php
 
@@ -576,54 +441,14 @@ parameters:
 			path: PrimaryReplica/ConnectionPool.php
 
 		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:errorInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$name of method PDO\\:\\:lastInsertId\\(\\) expects string, string\\|null given\\.$#"
 			count: 2
 			path: PrimaryReplica/PdoDecorator.php
 
 		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:prepare\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 2
-			path: PrimaryReplica/PdoDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:setAttribute\\(\\) should return bool but return statement is missing\\.$#"
-			count: 2
-			path: PrimaryReplica/PdoDecorator.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoDecorator\\:\\:\\$lastConnection has no type specified\\.$#"
-			count: 2
-			path: PrimaryReplica/PdoDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:createPDO\\(\\) has no return type specified\\.$#"
+			message: "#^Cannot call method getPinnedTables\\(\\) on SwagEssentials\\\\PrimaryReplica\\\\ConnectionDecision\\|null\\.$#"
 			count: 1
-			path: PrimaryReplica/PdoFactory.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:createPDO\\(\\) has parameter \\$dbConfig with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: PrimaryReplica/PdoFactory.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:createServices\\(\\) has parameter \\$config with no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/PdoFactory.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:\\$connectionDecision has no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/PdoFactory.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:\\$connectionPool has no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/PdoFactory.php
-
-		-
-			message: "#^Property SwagEssentials\\\\PrimaryReplica\\\\PdoFactory\\:\\:\\$pdoDecorator has no type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/PdoFactory.php
+			path: PrimaryReplica/Subscriber/Bridge.php
 
 		-
 			message: "#^If condition is always true\\.$#"
@@ -631,22 +456,12 @@ parameters:
 			path: PrimaryReplica/Subscriber/Bridge.php
 
 		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:addConsoleCommands\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: PrimaryReplica/Subscriber/Bridge.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:dispatchShutdown\\(\\) has no return type specified\\.$#"
+			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:addConsoleCommands\\(\\) return type with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
 			count: 1
 			path: PrimaryReplica/Subscriber/Bridge.php
 
 		-
 			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: PrimaryReplica/Subscriber/Bridge.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:startDispatch\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: PrimaryReplica/Subscriber/Bridge.php
 

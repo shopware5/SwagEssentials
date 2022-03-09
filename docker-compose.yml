@@ -7,9 +7,6 @@ services:
       - ~/.composer/cache:/var/www/composer-cache-dir
       - .:/project
       - .:/var/www/shopware
-    links:
-      - app_mysql_slave:mysql
-      - app_mysql_master:mysql
     environment:
       TERM: xterm
       COMPOSER_CACHE_DIR: /var/www/composer-cache-dir
@@ -25,9 +22,6 @@ services:
       - ~/.composer/cache:/var/www/composer-cache-dir
       - .:/project
       - .:/var/www/shopware
-    links:
-      - app_mysql_slave:mysql
-      - app_mysql_master:mysql
     environment:
       TERM: xterm
       COMPOSER_CACHE_DIR: /var/www/composer-cache-dir
@@ -43,9 +37,6 @@ services:
       - ~/.composer/cache:/var/www/composer-cache-dir
       - .:/project
       - .:/var/www/shopware
-    links:
-      - app_mysql_slave:mysql
-      - app_mysql_master:mysql
     environment:
       TERM: xterm
       COMPOSER_CACHE_DIR: /var/www/composer-cache-dir
@@ -55,7 +46,7 @@ services:
       sw_docker_swag_essentials:
         ipv4_address: 10.123.123.32
 
-  app_mysql_master:
+  mysql_master:
     build: dev-ops/docker/containers/mysql-master
     volumes:
       - ./dev-ops/docker/_volumes/app-mysql-master-data:/var/lib/mysql
@@ -65,7 +56,7 @@ services:
       sw_docker_swag_essentials:
         ipv4_address: 10.123.123.40
 
-  app_mysql_slave:
+  mysql_slave:
     build: dev-ops/docker/containers/mysql-slave
     volumes:
       - ./dev-ops/docker/_volumes/app-mysql-slave-data:/var/lib/mysql

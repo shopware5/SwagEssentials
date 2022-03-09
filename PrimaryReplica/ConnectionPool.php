@@ -43,6 +43,11 @@ class ConnectionPool
     protected $stickyConnectionName;
 
     /**
+     * @var array<int, mixed>
+     */
+    protected $attributes = [];
+
+    /**
      * @param $includePrimary
      * @param $doStickToConnection
      */
@@ -58,11 +63,9 @@ class ConnectionPool
     /**
      * Return a specific connection from the pool
      *
-     * @param $name
-     *
-     * @return mixed
+     * @return \PDO
      */
-    public function getConnectionByName($name)
+    public function getConnectionByName(string $name)
     {
         if ($name !== 'primary' && !isset($this->config['replicas'][$name])) {
             throw new \RuntimeException("Connection '$name' not found");
@@ -74,6 +77,8 @@ class ConnectionPool
     /**
      * Return a random connection from the pool
      * if `includePrimary` is set in the `config.php` this might also include the primary connection
+     *
+     * @return array{0: string, 1: \PDO}
      */
     public function getRandomConnection(): array
     {
@@ -97,10 +102,8 @@ class ConnectionPool
     /**
      * Return a random connection based on the configured weights. E.g. a connection with weight "10" is more likely
      * to be returned than a connection with weight "1"
-     *
-     * @return string|null
      */
-    protected function getWeightedRandomConnection()
+    protected function getWeightedRandomConnection(): ?string
     {
         $weightedConnections = $this->weightedConnections;
 
@@ -112,12 +115,14 @@ class ConnectionPool
                 return $name;
             }
         }
+
+        return null;
     }
 
     /**
      * Build an array of all available database connections and it weight
      */
-    protected function prepareWeightedConnections()
+    protected function prepareWeightedConnections(): void
     {
         foreach ($this->config['replicas'] as $name => $config) {
             $weight = $config['weight'] ?? 1;
@@ -132,12 +137,8 @@ class ConnectionPool
 
     /**
      * Create a PDO connection.
-     *
-     * @param $name
-     *
-     * @return \PDO
      */
-    public function getPDOConnection($name)
+    public function getPDOConnection(string $name): \PDO
     {
         if (isset($this->connections[$name])) {
             return $this->connections[$name];
@@ -155,6 +156,28 @@ class ConnectionPool
 
         unset($dbConfig['factory'], $dbConfig['replicas']);
 
-        return $this->connections[$name] = Db::createPDO($dbConfig);
+        $connection = Db::createPDO($dbConfig);
+
+        foreach ($this->attributes as $attribute => $value) {
+            $connection->setAttribute($attribute, $value);
+        }
+
+        return $this->connections[$name] = $connection;
+    }
+
+    /**
+     * @return \PDO[]
+     */
+    public function getActiveConnections(): array
+    {
+        return $this->connections;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function setAttribute(int $attribute, $value): void
+    {
+        $this->attributes[$attribute] = $value;
     }
 }

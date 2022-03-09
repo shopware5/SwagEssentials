@@ -18,7 +18,10 @@ if (PHP_VERSION_ID >= 80000) {
          */
         protected $connectionDecision;
 
-        protected $lastConnection = null;
+        /**
+         * @var \PDO
+         */
+        protected $lastConnection;
 
         /**
          * @var ConnectionPool
@@ -30,13 +33,16 @@ if (PHP_VERSION_ID >= 80000) {
             $this->connectionDecision = $connectionDecision;
             $this->connectionPool = $connectionPool;
 
-            $this->lastConnection = $connectionPool->getRandomConnection();
+            $this->lastConnection = $connectionPool->getRandomConnection()[1];
         }
 
-        //
-        // Overrides of the original PDO object
-        // in order to inspect the queries
-        //
+        /**
+         * Overrides of the original PDO object
+         * in order to inspect the queries
+         *
+         * @param string                $statement
+         * @param array<\PDO::*, mixed> $options
+         */
         public function prepare($statement, $options = [])
         {
             $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
@@ -99,7 +105,14 @@ if (PHP_VERSION_ID >= 80000) {
 
         public function setAttribute($attribute, $value)
         {
-            $this->connectionPool->getConnectionByName('primary')->setAttribute($attribute, $value);
+            $this->connectionPool->setAttribute($attribute, $value);
+
+            $results = [];
+            foreach ($this->connectionPool->getActiveConnections() as $connection) {
+                $results[] = $connection->setAttribute($attribute, $value);
+            }
+
+            return !in_array(false, $results);
         }
 
         public function lastInsertId($name = null)
@@ -109,11 +122,22 @@ if (PHP_VERSION_ID >= 80000) {
 
         public function errorCode()
         {
+            if (!$this->lastConnection instanceof \PDO) {
+                throw new \Exception('No last connection existing');
+            }
+
             return $this->lastConnection->errorCode();
         }
 
+        /**
+         * @return array<int, string>
+         */
         public function errorInfo()
         {
+            if (!$this->lastConnection instanceof \PDO) {
+                throw new \Exception('No last connection existing');
+            }
+
             return $this->lastConnection->errorInfo();
         }
 
@@ -139,7 +163,10 @@ if (PHP_VERSION_ID >= 80000) {
          */
         protected $connectionDecision;
 
-        protected $lastConnection = null;
+        /**
+         * @var \PDO
+         */
+        protected $lastConnection;
 
         /**
          * @var ConnectionPool
@@ -151,13 +178,16 @@ if (PHP_VERSION_ID >= 80000) {
             $this->connectionDecision = $connectionDecision;
             $this->connectionPool = $connectionPool;
 
-            $this->lastConnection = $connectionPool->getRandomConnection();
+            $this->lastConnection = $connectionPool->getRandomConnection()[1];
         }
 
-        //
-        // Overrides of the original PDO object
-        // in order to inspect the queries
-        //
+        /**
+         * Overrides of the original PDO object
+         * in order to inspect the queries
+         *
+         * @param string                $statement
+         * @param array<\PDO::*, mixed> $options
+         */
         public function prepare($statement, $options = [])
         {
             $this->lastConnection = $this->connectionDecision->getConnectionForQuery($statement);
@@ -220,7 +250,14 @@ if (PHP_VERSION_ID >= 80000) {
 
         public function setAttribute($attribute, $value)
         {
-            $this->connectionPool->getConnectionByName('primary')->setAttribute($attribute, $value);
+            $this->connectionPool->setAttribute($attribute, $value);
+
+            $results = [];
+            foreach ($this->connectionPool->getActiveConnections() as $connection) {
+                $results[] = $connection->setAttribute($attribute, $value);
+            }
+
+            return !in_array(false, $results);
         }
 
         public function lastInsertId($name = null)
@@ -230,11 +267,22 @@ if (PHP_VERSION_ID >= 80000) {
 
         public function errorCode()
         {
+            if (!$this->lastConnection instanceof \PDO) {
+                throw new \Exception('No last connection existing');
+            }
+
             return $this->lastConnection->errorCode();
         }
 
+        /**
+         * @return array<int, string>
+         */
         public function errorInfo()
         {
+            if (!$this->lastConnection instanceof \PDO) {
+                throw new \Exception('No last connection existing');
+            }
+
             return $this->lastConnection->errorInfo();
         }
 

@@ -10,13 +10,25 @@ require_once __DIR__ . '/ConnectionPool.php';
 
 class PdoFactory
 {
+    /**
+     * @var PdoDecorator|null
+     */
     public static $pdoDecorator;
 
+    /**
+     * @var ConnectionDecision|null
+     */
     public static $connectionDecision;
 
+    /**
+     * @var ConnectionPool|null
+     */
     public static $connectionPool;
 
-    protected static function createServices($config): PdoDecorator
+    /**
+     * @param array<string, mixed> $config
+     */
+    protected static function createServices(array $config): PdoDecorator
     {
         if (self::$pdoDecorator) {
             return self::$pdoDecorator;
@@ -29,8 +41,7 @@ class PdoFactory
         );
 
         self::$connectionDecision = new ConnectionDecision(
-            self::$connectionPool,
-            $config
+            self::$connectionPool
         );
 
         self::$pdoDecorator = new PdoDecorator(
@@ -41,10 +52,11 @@ class PdoFactory
         return self::$pdoDecorator;
     }
 
-    public static function createPDO(array $dbConfig)
+    /**
+     * @param array<string, mixed> $dbConfig
+     */
+    public static function createPDO(array $dbConfig): PdoDecorator
     {
-        self::createServices($dbConfig);
-
-        return self::$pdoDecorator;
+        return self::createServices($dbConfig);
     }
 }

@@ -18,7 +18,7 @@ paths:
 const:
   DB_USER: "root"
   DB_PASSWORD: "root"
-  DB_HOST: "mysql"
+  DB_HOST: "mysql_master"
   DB_NAME: "shopware"
   SW_HOST: "10.123.123.30"
   VERSION: "~5.7.0"
@@ -28,12 +28,12 @@ dynamic:
   APP_ID: docker-compose ps -q app_server
   APP_NODE_1_ID: docker-compose ps -q app_node_1_server
   APP_NODE_2_ID: docker-compose ps -q app_node_2_server
-  MYSQL_MASTER_ID: docker-compose ps -q app_mysql_master
-  MYSQL_SLAVE_ID: docker-compose ps -q app_mysql_slave
+  MYSQL_MASTER_ID: docker-compose ps -q mysql_master
+  MYSQL_SLAVE_ID: docker-compose ps -q mysql_slave
   ES_ID: docker-compose ps -q app_es
   REDIS_ID: docker-compose ps -q app_redis
-  DB_MASTER_LOGFILE: mysql -h 10.123.123.40 -u root -proot -A --skip-column-names -e"SHOW MASTER STATUS;" | awk '{print $1}'
-  DB_MASTER_POSITION: mysql -h 10.123.123.40 -u root -proot -A --skip-column-names -e"SHOW MASTER STATUS;" | awk '{print $2}'
+  DB_MASTER_LOGFILE: mysql -h mysql_master -u root -proot -A --skip-column-names -e"SHOW MASTER STATUS;" | awk '{print $1}'
+  DB_MASTER_POSITION: mysql -h mysql_master -u root -proot -A --skip-column-names -e"SHOW MASTER STATUS;" | awk '{print $2}'
 
 environments:
   docker:
