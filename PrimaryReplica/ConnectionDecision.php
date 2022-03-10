@@ -11,6 +11,9 @@ namespace SwagEssentials\PrimaryReplica;
  */
 class ConnectionDecision
 {
+    /**
+     * @var bool
+     */
     protected static $DEBUG = false;
 
     /**
@@ -18,33 +21,36 @@ class ConnectionDecision
      */
     protected $replicaPool;
 
+    /**
+     * @var array<string, int>
+     */
     protected $counter = [];
 
+    /**
+     * @var array<string, bool|string>
+     */
     protected $pinnedTables = [
         's_core_sessions' => true,
         's_core_sessions_backend' => true,
         's_order_basket' => true,
     ];
 
-    protected $config;
+    /**
+     * @var string
+     */
+    private $tables;
 
-    public function __construct(ConnectionPool $replicaPool, $config)
+    public function __construct(ConnectionPool $replicaPool)
     {
         $this->replicaPool = $replicaPool;
-
         $this->tables = $this->getTables();
-        $this->config = $config;
     }
 
     /**
      * Return a PDO connection for the given SQL query.
      * If e.g. a table has been written to before, the primary connection will be returned ("primary pinning")
-     *
-     * @param $sql
-     *
-     * @return \PDO
      */
-    public function getConnectionForQuery($sql)
+    public function getConnectionForQuery(string $sql): \PDO
     {
         // get list of tables involved in the query
         $affected = $this->getAffectedTables($sql);
@@ -73,7 +79,7 @@ class ConnectionDecision
             return $this->replicaPool->getConnectionByName('primary');
         }
 
-        list($name, $replica) = $this->replicaPool->getRandomConnection();
+        [$name, $replica] = $this->replicaPool->getRandomConnection();
 
         $this->count($name, $sql);
 
@@ -82,11 +88,8 @@ class ConnectionDecision
 
     /**
      * Simple statistics: Which connection has been used how often?
-     *
-     * @param $name
-     * @param $query
      */
-    protected function count($name, $query)
+    protected function count(string $name, string $query): void
     {
         if (!isset($this->counter[$name])) {
             $this->counter[$name] = 0;
@@ -108,10 +111,8 @@ class ConnectionDecision
 
     /**
      * Determine, whether the given query is a write query or not
-     *
-     * @param $sql
      */
-    protected function isWriteQuery($sql): bool
+    protected function isWriteQuery(string $sql): bool
     {
         $sql = trim($sql);
 
@@ -144,12 +145,18 @@ class ConnectionDecision
         return false;
     }
 
+    /**
+     * @return array<string, bool|string>
+     */
     public function getPinnedTables(): array
     {
         return $this->pinnedTables;
     }
 
-    public function setPinnedTables(array $pinnedTables)
+    /**
+     * @param array<string, bool|string> $pinnedTables
+     */
+    public function setPinnedTables(array $pinnedTables): void
     {
         $this->pinnedTables = $pinnedTables;
     }
@@ -158,9 +165,9 @@ class ConnectionDecision
      * Will quickly find all tables from within the given query.
      * Is quite a rough heuristic, but is way faster than other approaches
      *
-     * @param $sql
+     * @return array<string>
      */
-    protected function getAffectedTables($sql): array
+    protected function getAffectedTables(string $sql): array
     {
         $matches = [];
         $number = preg_match_all(
@@ -191,6 +198,10 @@ class ConnectionDecision
         }
 
         $tables = $this->replicaPool->getRandomConnection()[1]->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
+
+        if (!is_array($tables)) {
+            throw new \Exception('Tables not set');
+        }
 
         $result = [];
         foreach ($tables as $table) {

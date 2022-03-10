@@ -7,6 +7,7 @@ namespace SwagEssentials\PrimaryReplica\Subscriber;
 use Doctrine\Common\Collections\ArrayCollection;
 use Enlight\Event\SubscriberInterface;
 use SwagEssentials\PrimaryReplica\Commands\RunSql;
+use SwagEssentials\PrimaryReplica\ConnectionDecision;
 use SwagEssentials\PrimaryReplica\PdoFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -25,7 +26,7 @@ class Bridge implements SubscriberInterface
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             'Shopware_Console_Add_Command' => 'addConsoleCommands',
@@ -34,7 +35,7 @@ class Bridge implements SubscriberInterface
         ];
     }
 
-    public function addConsoleCommands()
+    public function addConsoleCommands(): ArrayCollection
     {
         return new ArrayCollection(
             [
@@ -43,9 +44,13 @@ class Bridge implements SubscriberInterface
         );
     }
 
-    public function startDispatch()
+    public function startDispatch(): void
     {
         if ($this->container->has('shop')) {
+            if (!PdoFactory::$connectionDecision instanceof ConnectionDecision) {
+                throw new \Exception('Connectiondecision not set');
+            }
+
             PdoFactory::$connectionDecision->setPinnedTables(
                 array_merge(
                     $this->container->get('session')->get('tables', []),
@@ -57,6 +62,10 @@ class Bridge implements SubscriberInterface
         }
 
         if ($this->container->has('backendsession')) {
+            if (!PdoFactory::$connectionDecision instanceof ConnectionDecision) {
+                throw new \Exception('Connectiondecision not set');
+            }
+
             PdoFactory::$connectionDecision->setPinnedTables(
                 array_merge(
                     $this->container->get('backendsession')->get('tables', []),
@@ -66,7 +75,7 @@ class Bridge implements SubscriberInterface
         }
     }
 
-    public function dispatchShutdown()
+    public function dispatchShutdown(): void
     {
         if ($this->container->has('shop')) {
             $this->container->get('session')->offsetSet('tables', PdoFactory::$connectionDecision->getPinnedTables());

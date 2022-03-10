@@ -170,9 +170,10 @@ class ConfigHelper
                     'replica-slave' => [
                         'pdoOptions' => null,
                         'username' => 'root',
+                        'charset' => 'utf8',
                         'password' => 'root',
                         'dbname' => 'shopware',
-                        'host' => '10.123.123.41',
+                        'host' => 'mysql_slave',
                         'port' => '',
                     ],
                 ],

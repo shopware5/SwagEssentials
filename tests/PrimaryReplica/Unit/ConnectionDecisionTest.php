@@ -49,7 +49,7 @@ class ConnectionDecisionTest extends TestCase
     {
         $connectionPool = $this->getConnectionPoolMock();
 
-        $connectionDecision = new ConnectionDecision($connectionPool, []);
+        $connectionDecision = new ConnectionDecision($connectionPool);
         $result = $this->invokeMethod($connectionDecision, 'getTables');
 
         static::assertEquals('s_articles|s_user', $result);
@@ -59,7 +59,7 @@ class ConnectionDecisionTest extends TestCase
     {
         $connectionPool = $this->getConnectionPoolMock();
 
-        $connectionDecision = new ConnectionDecision($connectionPool, []);
+        $connectionDecision = new ConnectionDecision($connectionPool);
         $result = $this->invokeMethod($connectionDecision, 'getAffectedTables', ['SELECT * FROM s_articles, s_articles_details']);
 
         static::assertEquals(['s_articles', 's_articles_details'], $result);
