@@ -64,8 +64,7 @@ ParallelUnit:
             -   SHOPWARE_VERSION: [ "~5.6.0" ]
                 PHP_VERSION: [
                     '7.2',
-                    '7.3',
-                    '7.4'
+                    '7.3'
                 ]
             -   SHOPWARE_VERSION: [ "~5.7.0" ]
                 PHP_VERSION: [
@@ -76,11 +75,12 @@ ParallelUnit:
     before_script:
         - apk add --no-cache mysql-client coreutils
         - composer install --working-dir=tools
+        - composer config platform.php $PHP_VERSION
         - ./psh.phar set-branch --VERSION=$SHOPWARE_VERSION
         - >
             if [[ $SHOPWARE_VERSION = "~5.6.0" ]]; then
                 rm composer.lock
-                composer install --ignore-platform-reqs
+                composer install
             else
                 if [[ $PHP_VERSION = "8.0" ]]; then
                     composer update --with-all-dependencies
