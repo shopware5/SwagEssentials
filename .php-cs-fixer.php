@@ -3,6 +3,14 @@
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
+$header = <<<EOF
+(c) shopware AG <info@shopware.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+EOF;
+
+
 $finder = Finder::create()
     ->filter(function(SplFileInfo $file) {
         $blacklistedFiles = [
@@ -34,6 +42,7 @@ return (new Config())
        'no_useless_return' => true,
        'ordered_imports' => true,
        'phpdoc_add_missing_param_annotation' => true,
+       'header_comment' => ['header' => $header, 'separate' => 'bottom', 'comment_type' => 'PHPDoc'],
        'concat_space' => ['spacing' => 'one'],
        'phpdoc_no_empty_return' => true,
        'phpdoc_order' => true,

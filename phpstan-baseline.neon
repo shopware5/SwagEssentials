@@ -236,47 +236,12 @@ parameters:
 			path: CacheMultiplexer/Resource/Cache.php
 
 		-
-			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Resource\\\\Cache\\:\\:setContainer\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: CacheMultiplexer/Resource/Cache.php
-
-		-
-			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Subscriber\\\\BackendCache\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: CacheMultiplexer/Subscriber/BackendCache.php
-
-		-
 			message: "#^Method SwagEssentials\\\\CacheMultiplexer\\\\Subscriber\\\\BackendCache\\:\\:onAfterMoveThemeFiles\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: CacheMultiplexer/Subscriber/BackendCache.php
 
 		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingListProductDecorator\\:\\:getList\\(\\) has parameter \\$numbers with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Caching/Caches/CachingListProductDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generate\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generate\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generateList\\(\\) has parameter \\$list with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generateList\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generateList\\(\\) should return array but returns array\\|false\\.$#"
+			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:generateList\\(\\) should return array\\<int, string\\|false\\> but returns array\\<int, mixed\\>\\|false\\.$#"
 			count: 2
 			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
 
@@ -292,16 +257,6 @@ parameters:
 
 		-
 			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getCachedItemsFromList\\(\\) has parameter \\$list with no type specified\\.$#"
-			count: 1
-			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getOrgQueryArray\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingRewriteGeneratorDecorator\\:\\:getOrgQueryArray\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Caching/Caches/CachingRewriteGeneratorDecorator.php
 
@@ -334,11 +289,6 @@ parameters:
 			message: "#^Method SwagEssentials\\\\Caching\\\\Caches\\\\CachingSubscriber\\:\\:onPostPersist\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: Caching/Caches/CachingSubscriber.php
-
-		-
-			message: "#^Method SwagEssentials\\\\Caching\\\\Subscriber\\\\Cache\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Caching/Subscriber/Cache.php
 
 		-
 			message: "#^Method SwagEssentials\\\\Caching\\\\Subscriber\\\\Cache\\:\\:onDecorateRouter\\(\\) has no return type specified\\.$#"
@@ -457,11 +407,6 @@ parameters:
 
 		-
 			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:addConsoleCommands\\(\\) return type with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: PrimaryReplica/Subscriber/Bridge.php
-
-		-
-			message: "#^Method SwagEssentials\\\\PrimaryReplica\\\\Subscriber\\\\Bridge\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: PrimaryReplica/Subscriber/Bridge.php
 
@@ -636,11 +581,6 @@ parameters:
 			path: Redis/PluginConfig/Config.php
 
 		-
-			message: "#^Property Shopware_Components_Config\\:\\:\\$_shop \\(Shopware\\\\Models\\\\Shop\\\\Shop\\) in isset\\(\\) is not nullable\\.$#"
-			count: 2
-			path: Redis/PluginConfig/Config.php
-
-		-
 			message: "#^Property SwagEssentials\\\\Redis\\\\PluginConfig\\\\Config\\:\\:\\$config type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Redis/PluginConfig/Config.php
@@ -766,12 +706,7 @@ parameters:
 			path: Redis/ProductGateway/ListProductService.php
 
 		-
-			message: "#^Method SwagEssentials\\\\Redis\\\\ProductGateway\\\\ListProductService\\:\\:getList\\(\\) has parameter \\$numbers with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Redis/ProductGateway/ListProductService.php
-
-		-
-			message: "#^Parameter \\#1 \\$input of function array_filter expects array, array\\|false given\\.$#"
+			message: "#^Parameter \\#1 \\$input of function array_filter expects array, array\\<string, mixed\\>\\|false given\\.$#"
 			count: 2
 			path: Redis/ProductGateway/ListProductService.php
 
@@ -4216,12 +4151,7 @@ parameters:
 			path: tests/Common/TestClient.php
 
 		-
-			message: "#^Method class@anonymous/tests/Common/TestFactory\\.php\\:24\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/Common/TestFactory.php
-
-		-
-			message: "#^Method class@anonymous/tests/Common/TestFactory\\.php\\:24\\:\\:overwriteDb\\(\\) has no return type specified\\.$#"
+			message: "#^Method class@anonymous/tests/Common/TestFactory\\.php\\:30\\:\\:overwriteDb\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: tests/Common/TestFactory.php
 

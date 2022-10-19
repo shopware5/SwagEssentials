@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.5/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label lang="de">SwagEssentials</label>
+    <label lang="en">SwagEssentials</label>
+    <version>dev</version>
+    <copyright>(c) by Shopware AG</copyright>
+    <license>MIT</license>
+    <author>Shopware AG</author>
+    <compatibility minVersion="5.6.0" maxVersion="5.99.99"/>
+</plugin>
