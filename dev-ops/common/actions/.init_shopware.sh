@@ -6,7 +6,7 @@ I: rm -R vendor/shopware/shopware/var/cache/test*
 I: rm -R vendor/shopware/shopware/var/cache/dev*
 
 composer dumpautoload --optimize
-shopware/bin/console sw:database:setup -vvvv --steps=drop,create,import,importDemodata
+shopware/bin/console sw:database:setup --steps=drop,create,import,importDemodata
 shopware/bin/console sw:cache:clear
 shopware/bin/console sw:database:setup --steps=setupShop --shop-url=http://__SW_HOST__
 shopware/bin/console sw:snippets:to:db --include-plugins

@@ -1,5 +1,10 @@
 {
-    "name": "shopware/swagessentials",
+    "name": "shopware-labs/swag-essentials",
+    "license": "MIT",
+    "type": "shopware-plugin",
+    "extra": {
+        "installer-name": "SwagEssentials"
+    },
     "autoload": {
         "psr-4": {
             "SwagEssentials\\CacheMultiplexer\\": "CacheMultiplexer",
