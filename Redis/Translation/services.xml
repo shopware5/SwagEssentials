@@ -7,7 +7,7 @@
 >
     <services>
 
-        <service class="SwagEssentials\Redis\Translation\Translation"
+        <service class="SwagEssentials\Redis\Translation\Translation" public="true"
                  id="translation">
             <argument id="dbal_connection" type="service"/>
             <argument id="swag_essentials.redis" type="service"/>
