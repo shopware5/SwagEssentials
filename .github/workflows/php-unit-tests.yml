@@ -1,0 +1,60 @@
+name: PHPUnit Tests
+
+on:
+    workflow_call:
+
+jobs:
+    execute-php-unit-tests:
+        name: Code analysis
+        runs-on: ubuntu-latest
+
+        services:
+            app_redis:
+                image: redis:latest
+                options:
+                    --requirepass app
+
+        strategy:
+            matrix:
+                include:
+                    -   shopware-version: 5.6
+                        php-version: [ 7.2, 7.3 ]
+
+                    -   shopware-version: 5.7
+                        php-version: [ 7.4, 8.2 ]
+
+        env:
+            GH_TOKEN: ${{ github.token }}
+
+        container:
+            image: ghcr.io/shopware5/docker-images-testing/install:shopware_${{ matrix.shopware-version }}_8.0_${{ matrix.php-version }}_none
+            credentials:
+                username: ${{ github.actor }}
+                password: ${{ secrets.github_token }}
+
+        steps:
+            -   name: Checkout SwagEssentials
+                uses: actions/checkout@v3
+                with:
+                    path: plugin
+
+            -   name: Move plugin
+                run: mv "$(pwd)/plugin" /shopware/custom/plugins/SwagEssentials
+
+            -   name: Move config.php
+                run: mv /shopware/custom/plugins/SwagEssentials/.guthub/config.php /shopware/config.php
+
+            -   name:
+
+            -   name: Setup SwagEssentials
+                run: |
+                    cd /shopware/custom/plugins/SwagEssentials
+                    composer install --no-dev
+                    cd ../../..
+                    php bin/console sw:plugin:install SwagEssentials
+                    php bin/console sw:cache:clear
+
+            -   name: Execute unit tests
+                run: |
+                    composer dump-autoload --dev
+                    tools/phpunit --stop-on-failure --stop-on-error --configuration phpunit.xml.dist --colors=never

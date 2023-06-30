@@ -33,7 +33,6 @@ return (new Config())
        '@PSR12' => true,
        '@Symfony' => true,
 
-       'single_blank_line_before_namespace' => true,
        'function_typehint_space' => true,
        'declare_strict_types' => true,
        'function_declaration' => true,

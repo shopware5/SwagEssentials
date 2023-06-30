@@ -6,14 +6,14 @@ parameters:
     symfony:
         constant_hassers: false
         # Decide which config paths to use, depdending on your setup. Copy to "phpstan.neon" to not edit this file
-        container_xml_path: shopware/var/cache/production____REVISION___/container.xml
-        console_application_loader: shopware/tests/phpstan-console-application.php
-#        container_xml_path: ../../../var/cache/production____REVISION___/container.xml
-#        console_application_loader: ../../../tests/phpstan-console-application.php
+#        container_xml_path: shopware/var/cache/production____REVISION___/container.xml
+#        console_application_loader: shopware/tests/phpstan-console-application.php
+        container_xml_path: ../../../var/cache/production____REVISION___/container.xml
+        console_application_loader: ../../../tests/phpstan-console-application.php
     doctrine:
         repositoryClass: Shopware\Components\Model\ModelRepository
-        objectManagerLoader: shopware/tests/phpstan-doctrine-model-manager.php
-#        objectManagerLoader: ../../../tests/phpstan-doctrine-model-manager.php
+#        objectManagerLoader: shopware/tests/phpstan-doctrine-model-manager.php
+        objectManagerLoader: ../../../tests/phpstan-doctrine-model-manager.php
     paths:
         - CacheMultiplexer
         - Caching
@@ -23,4 +23,4 @@ parameters:
         - tests
     bootstrapFiles:
         - tests/test_constants.php
-        - tools/vendor-bin/phpunit/vendor/autoload.php
+#        - tools/vendor-bin/phpunit/vendor/autoload.php

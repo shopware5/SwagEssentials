@@ -1,0 +1,17 @@
+name: Run
+
+on:
+    workflow_dispatch:
+    push:
+    schedule:
+        -   cron: '30 02 * * *'
+
+concurrency:
+    group: ${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
+
+jobs:
+    php-code-analysis:
+        name: PHP
+        uses: ./.github/workflows/php-code-analysis.yml
+        secrets: inherit
