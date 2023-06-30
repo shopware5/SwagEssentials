@@ -29,9 +29,6 @@ class Bridge implements SubscriberInterface
         $this->container = $container;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

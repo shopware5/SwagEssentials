@@ -81,9 +81,6 @@ class RemoteCacheInvalidator
     /**
      * Get an API client for a given endpoint
      *
-     * @param $endpoint
-     * @param $caches
-     *
      * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
      */
     protected function getResponseForEndpoint($endpoint, $caches)
@@ -102,9 +99,6 @@ class RemoteCacheInvalidator
         );
     }
 
-    /**
-     * @param $caches
-     */
     protected function normalizeCacheIds($caches): array
     {
         $caches = array_map(

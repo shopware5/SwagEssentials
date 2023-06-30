@@ -10,16 +10,8 @@ declare(strict_types=1);
 
 namespace SwagEssentials\Tests\Common;
 
-use function class_exists;
-use Enlight_Controller_Front;
-use Enlight_Controller_Request_RequestTestCase;
-use Enlight_Controller_Response_ResponseTestCase;
-use Enlight_Template_Manager;
-use function restore_error_handler;
 use Shopware\Kernel;
 use Shopware\Models\Shop\Shop;
-use Shopware_Components_Auth;
-use Smarty_Resource;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
@@ -30,9 +22,6 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\TerminableInterface;
-use Zend_Auth_Adapter_Exception;
-use Zend_Auth_Adapter_Interface;
-use Zend_Auth_Result;
 
 class TestKernel extends Kernel implements TerminableInterface, TestKernelInterface
 {
@@ -48,7 +37,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
             $container->get('shop')->setHost($request->getHost());
         }
 
-        /** @var Enlight_Controller_Front $front */
+        /** @var \Enlight_Controller_Front $front */
         $front = $this->container->get('front');
 
         $front->Response()->setHttpResponseCode(200);
@@ -114,16 +103,16 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
      */
     public function terminate(SymfonyRequest $request, SymfonyResponse $response)
     {
-        Smarty_Resource::$sources = [];
-        Smarty_Resource::$compileds = [];
-        Enlight_Template_Manager::$_smarty_vars = [];
+        \Smarty_Resource::$sources = [];
+        \Smarty_Resource::$compileds = [];
+        \Enlight_Template_Manager::$_smarty_vars = [];
 
         $this->resetFront();
     }
 
     public function beforeTest()
     {
-        if (class_exists("\Zend_Session")) {
+        if (\class_exists("\Zend_Session")) {
             \Zend_Session::$_unitTestEnabled = true;
 
             if (\Zend_Session::isStarted() && \Zend_Session::isWritable()) {
@@ -145,7 +134,7 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
 
     public function beforeUnset()
     {
-        if (class_exists("\Zend_Session")) {
+        if (\class_exists("\Zend_Session")) {
             if (\Zend_Session::isStarted() && \Zend_Session::isWritable()) {
                 $this->getContainer()->get('session')->unsetAll();
                 \Zend_Session::writeClose();
@@ -158,8 +147,8 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
 
         $this->getContainer()->get('dbal_connection')->close();
 
-        Smarty_Resource::$sources = [];
-        Smarty_Resource::$compileds = [];
+        \Smarty_Resource::$sources = [];
+        \Smarty_Resource::$compileds = [];
 
         Shopware(new EmptyShopwareApplication());
     }
@@ -176,30 +165,30 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
 
     public function afterWebTest()
     {
-        restore_error_handler();
+        \restore_error_handler();
     }
 
     public function authenticateApiUser()
     {
-        if (class_exists("\Zend_Session")) {
+        if (\class_exists("\Zend_Session")) {
             \Zend_Session::$_unitTestEnabled = true;
         }
 
-        $adapter = new class() implements Zend_Auth_Adapter_Interface {
+        $adapter = new class() implements \Zend_Auth_Adapter_Interface {
             /**
              * Performs an authentication attempt
              *
-             * @throws Zend_Auth_Adapter_Exception If authentication cannot be performed
+             * @throws \Zend_Auth_Adapter_Exception If authentication cannot be performed
              *
-             * @return Zend_Auth_Result
+             * @return \Zend_Auth_Result
              */
             public function authenticate()
             {
-                return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, ['id' => 1, 'username' => 'demo']);
+                return new \Zend_Auth_Result(\Zend_Auth_Result::SUCCESS, ['id' => 1, 'username' => 'demo']);
             }
         };
 
-        $auth = Shopware_Components_Auth::getInstance();
+        $auth = \Shopware_Components_Auth::getInstance();
         $auth->setBaseAdapter($adapter);
         $auth->addAdapter($adapter);
 
@@ -210,9 +199,9 @@ class TestKernel extends Kernel implements TerminableInterface, TestKernelInterf
     {
         $front = $this->container->get('front');
 
-        $front->setRequest(Enlight_Controller_Request_RequestTestCase::class);
+        $front->setRequest(\Enlight_Controller_Request_RequestTestCase::class);
         $front->Request()->setBaseUrl(SHOP_HOST);
-        $front->setResponse(Enlight_Controller_Response_ResponseTestCase::class);
+        $front->setResponse(\Enlight_Controller_Response_ResponseTestCase::class);
     }
 
     private function resetShopResource()

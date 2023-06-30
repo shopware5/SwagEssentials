@@ -53,10 +53,6 @@ class ConnectionPool
      */
     protected $attributes = [];
 
-    /**
-     * @param $includePrimary
-     * @param $doStickToConnection
-     */
     public function __construct(array $config, $includePrimary, $doStickToConnection)
     {
         $this->config = $config;
@@ -179,9 +175,6 @@ class ConnectionPool
         return $this->connections;
     }
 
-    /**
-     * @param mixed $value
-     */
     public function setAttribute(int $attribute, $value): void
     {
         $this->attributes[$attribute] = $value;

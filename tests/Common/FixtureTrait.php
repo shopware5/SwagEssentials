@@ -10,15 +10,7 @@ declare(strict_types=1);
 
 namespace SwagEssentials\Tests\Common;
 
-use function array_key_exists;
 use Doctrine\DBAL\Connection;
-use Exception;
-use function explode;
-use function file_exists;
-use function file_get_contents;
-use InvalidArgumentException;
-use function print_r;
-use function trim;
 
 trait FixtureTrait
 {
@@ -60,17 +52,17 @@ trait FixtureTrait
 
     protected function importFixturesFileOnce(string $filePath)
     {
-        if (!file_exists($filePath)) {
-            throw new InvalidArgumentException('Could not find file ' . $filePath);
+        if (!\file_exists($filePath)) {
+            throw new \InvalidArgumentException('Could not find file ' . $filePath);
         }
 
-        if (array_key_exists($filePath, $this->importedFiles)) {
+        if (\array_key_exists($filePath, $this->importedFiles)) {
             return;
         }
 
         $this->importedFiles[$filePath] = true;
 
-        $sql = file_get_contents($filePath);
+        $sql = \file_get_contents($filePath);
 
         if (!$sql) {
             return;
@@ -90,21 +82,21 @@ trait FixtureTrait
         /** @var Connection $connection */
         $connection = self::getKernel()->getContainer()->get('dbal_connection');
 
-        $sqlStatements = explode(";\n", $sql);
+        $sqlStatements = \explode(";\n", $sql);
 
         foreach ($sqlStatements as $sqlStatement) {
-            if (!trim($sqlStatement)) {
+            if (!\trim($sqlStatement)) {
                 continue;
             }
 
-            $connection->exec(trim($sqlStatement));
+            $connection->exec(\trim($sqlStatement));
         }
 
         if (!(int) $connection->errorCode()) {
             return;
         }
 
-        throw new Exception('unable to import fixtures ' . print_r($connection->errorInfo(), true));
+        throw new \Exception('unable to import fixtures ' . \print_r($connection->errorInfo(), true));
     }
 
     protected function loadCommonFixtureSql(): string
@@ -115,7 +107,7 @@ trait FixtureTrait
             $this->commonFixturesImported = true;
             $this->disableCommonFixtures(false);
             foreach ($this->commonTestFixtures as $commonFile) {
-                $sql .= file_get_contents($commonFile);
+                $sql .= \file_get_contents($commonFile);
             }
         }
 

@@ -44,9 +44,6 @@ class Translation extends \Shopware_Components_Translation
         $this->front = $front;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function filterData($type, array $data, $key = null)
     {
         if ($this->isNotFrontend()) {
@@ -69,9 +66,6 @@ class Translation extends \Shopware_Components_Translation
         return $result;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function read($language, $type, $key = 1, $merge = false)
     {
         if ($this->isNotFrontend()) {
@@ -93,9 +87,6 @@ class Translation extends \Shopware_Components_Translation
         return $result;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function readBatch($language, $type, $key = 1, $merge = false)
     {
         if ($this->isNotFrontend()) {

@@ -81,13 +81,13 @@ class RedisStoreTest extends TestCase
         ], $connection->keys('*')),
             array_diff(
                 $connection->keys('*'),
-            [
-                'sw_http_cache_body-d',
-                'sw_http_cache_size',
-                'sw_http_cache_ids',
-                'sw_http_cache_meta',
-                '___VERSION___-sw_config_core',
-            ]));
+                [
+                    'sw_http_cache_body-d',
+                    'sw_http_cache_size',
+                    'sw_http_cache_ids',
+                    'sw_http_cache_meta',
+                    '___VERSION___-sw_config_core',
+                ]));
 
         static::assertSame(
             ['d41d8cd98f00b204e9800998ecf8427e'],

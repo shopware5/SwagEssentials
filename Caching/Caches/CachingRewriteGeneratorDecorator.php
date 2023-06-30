@@ -107,9 +107,6 @@ class CachingRewriteGeneratorDecorator extends RewriteGenerator
     }
 
     /**
-     * @param $params
-     * @param $context
-     *
      * @return string
      */
     protected function hashItem($params, $context)

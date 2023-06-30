@@ -41,9 +41,6 @@ class CachingListProductDecorator implements ListProductServiceInterface
         $this->ttl = $ttl;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getList(array $numbers, Struct\ProductContextInterface $context)
     {
         if (empty($numbers)) {
@@ -62,9 +59,6 @@ class CachingListProductDecorator implements ListProductServiceInterface
         return $result;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function get($number, Struct\ProductContextInterface $context)
     {
         $products = $this->getList([$number], $context);

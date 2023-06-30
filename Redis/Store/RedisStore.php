@@ -195,7 +195,7 @@ class RedisStore implements StoreInterface
         $key = $this->getMetadataKey($request);
 
         foreach ($this->getMetaData($key) as $entry) {
-            //We pass an empty body we only care about headers.
+            // We pass an empty body we only care about headers.
             $response = $this->recreateResponse($entry[1], '');
 
             if ($response->isFresh()) {
@@ -256,9 +256,6 @@ class RedisStore implements StoreInterface
         return $result === 1;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function purge($url): bool
     {
         $metadataKey = $this->getMetadataKey(Request::create($url));
@@ -440,7 +437,7 @@ class RedisStore implements StoreInterface
     /**
      * Clears all cached pages with certain headers in them
      */
-    public function purgeByHeader(string $name, ?string $value = null): bool
+    public function purgeByHeader(string $name, string $value = null): bool
     {
         if ($name === 'x-shopware-cache-id') {
             return $this->purgeByShopwareId($value);
@@ -641,8 +638,6 @@ class RedisStore implements StoreInterface
 
     /**
      * set the key prefix
-     *
-     * @return RedisStore
      */
     public function setKeyPrefix(string $keyPrefix): self
     {
@@ -669,7 +664,7 @@ class RedisStore implements StoreInterface
             array_flip($this->ignoredUrlParameters)
         );
 
-        //Sort query parameters
+        // Sort query parameters
         $stringParams = $this->sortQueryStringParameters($params);
 
         $path = $request->getPathInfo();

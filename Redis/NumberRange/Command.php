@@ -17,9 +17,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Command extends ShopwareCommand
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         $this
@@ -47,9 +44,6 @@ EOF
             );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $toRedis = $input->getOption('to-redis');

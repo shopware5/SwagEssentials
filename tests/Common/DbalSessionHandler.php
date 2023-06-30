@@ -219,17 +219,11 @@ class DbalSessionHandler implements \SessionHandlerInterface
         return $this->sessionExpired;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function open($savePath, $sessionName)
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function read($sessionId)
     {
         try {
@@ -241,9 +235,6 @@ class DbalSessionHandler implements \SessionHandlerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function gc($maxlifetime)
     {
         // We delay gc() to close() so that it is executed outside the transactional and blocking read-write process.
@@ -253,9 +244,6 @@ class DbalSessionHandler implements \SessionHandlerInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function destroy($sessionId)
     {
         // delete the record associated with this id
@@ -274,9 +262,6 @@ class DbalSessionHandler implements \SessionHandlerInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function write($sessionId, $data)
     {
         $maxlifetime = (int) ini_get('session.gc_maxlifetime');
@@ -332,9 +317,6 @@ class DbalSessionHandler implements \SessionHandlerInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function close()
     {
         $this->commit();

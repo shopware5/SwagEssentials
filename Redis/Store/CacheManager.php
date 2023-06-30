@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace SwagEssentials\Redis\Store;
 
 use Shopware\Components\CacheManager as ShopwareCacheManager;
-use Shopware\Components\DependencyInjection\Container;
 use SwagEssentials\Common\CacheManagerDecorationTrait;
 
 class CacheManager extends ShopwareCacheManager
@@ -28,10 +27,6 @@ class CacheManager extends ShopwareCacheManager
      */
     protected $redisStore;
 
-    /**
-     * @param Container            $container
-     * @param ShopwareCacheManager $innerCacheManager
-     */
     public function __construct()
     {
         $args = func_get_args();

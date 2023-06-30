@@ -11,11 +11,7 @@ declare(strict_types=1);
 namespace SwagEssentials\Tests\Common;
 
 use Enlight\Event\SubscriberInterface;
-use function parse_url;
-use function restore_error_handler;
-use function restore_exception_handler;
 use Symfony\Component\HttpKernel\Client;
-use Zend_Db_Table_Abstract;
 
 class TestFactory implements TestFactoryInterface
 {
@@ -24,8 +20,8 @@ class TestFactory implements TestFactoryInterface
         $kernel = new TestKernel('test', true);
         $kernel->boot();
 
-        restore_error_handler();
-        restore_exception_handler();
+        \restore_error_handler();
+        \restore_exception_handler();
 
         $kernel->getContainer()->get('events')->addSubscriber(new class() implements SubscriberInterface {
             public static function getSubscribedEvents()
@@ -42,7 +38,7 @@ class TestFactory implements TestFactoryInterface
                 $options = ['dbname' => $options['dbname'], 'username' => null, 'password' => null];
                 $db = FixedEnlightMysqlAdapter::createFromDbalConnectionAndConfig($container->get('dbal_connection'), $options);
 
-                Zend_Db_Table_Abstract::setDefaultAdapter($db);
+                \Zend_Db_Table_Abstract::setDefaultAdapter($db);
 
                 return $db;
             }
@@ -60,6 +56,6 @@ class TestFactory implements TestFactoryInterface
             ->get('dbal_connection')
             ->exec('UPDATE s_core_auth SET apiKey=123 WHERE id=1');
 
-        return new TestClient($kernel, ['HTTP_HOST' => parse_url(SHOP_HOST, PHP_URL_HOST)]);
+        return new TestClient($kernel, ['HTTP_HOST' => \parse_url(SHOP_HOST, PHP_URL_HOST)]);
     }
 }

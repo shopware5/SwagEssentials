@@ -56,7 +56,7 @@ if (PHP_VERSION_ID >= 80000) {
             return $this->lastConnection->prepare($statement, $options);
         }
 
-        public function query(string $query, ?int $fetchMode = null, mixed ...$fetchModeArgs)
+        public function query(string $query, int $fetchMode = null, mixed ...$fetchModeArgs)
         {
             // remove empty constructor params list if it exists
             $args = func_get_args();
@@ -152,7 +152,7 @@ if (PHP_VERSION_ID >= 80000) {
             return $this->connectionPool->getRandomConnection()[1]->getAttribute($attribute);
         }
 
-        public function quote($string, $parameter_type = PDO::PARAM_STR)
+        public function quote($string, $parameter_type = \PDO::PARAM_STR)
         {
             return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, (int) $parameter_type);
         }
@@ -297,7 +297,7 @@ if (PHP_VERSION_ID >= 80000) {
             return $this->connectionPool->getRandomConnection()[1]->getAttribute($attribute);
         }
 
-        public function quote($string, $parameter_type = PDO::PARAM_STR)
+        public function quote($string, $parameter_type = \PDO::PARAM_STR)
         {
             return $this->connectionPool->getRandomConnection()[1]->quote((string) $string, (int) $parameter_type);
         }

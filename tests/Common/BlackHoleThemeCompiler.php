@@ -17,11 +17,11 @@ class BlackHoleThemeCompiler extends Compiler
 {
     public function compileLess($timestamp, Shop\Template $template, Shop\Shop $shop)
     {
-        //nth
+        // nth
     }
 
     public function compileJavascript($timestamp, Shop\Template $template, Shop\Shop $shop)
     {
-        //nth
+        // nth
     }
 }

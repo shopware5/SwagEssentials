@@ -123,10 +123,10 @@ class ConnectionDecision
         $sql = trim($sql);
 
         // detect transaction related commands
-        if (stripos($sql, 'START') === 0 ||
-            stripos($sql, 'BEGIN') === 0 ||
-            stripos($sql, 'ROLLBACK') === 0 ||
-            stripos($sql, 'COMMIT') === 0
+        if (stripos($sql, 'START') === 0
+            || stripos($sql, 'BEGIN') === 0
+            || stripos($sql, 'ROLLBACK') === 0
+            || stripos($sql, 'COMMIT') === 0
         ) {
             return true;
         }
@@ -138,11 +138,11 @@ class ConnectionDecision
 
         // if query does NOT start with common READ keywords,
         // assume WRITE connection as well
-        if (stripos($sql, 'SHOW') !== 0 &&
-            stripos($sql, 'SELECT') !== 0 &&
-            stripos($sql, 'EXPLAIN') !== 0 &&
-            stripos($sql, 'DESC') !== 0 &&
-            stripos($sql, 'DESCRIBE') !== 0
+        if (stripos($sql, 'SHOW') !== 0
+            && stripos($sql, 'SELECT') !== 0
+            && stripos($sql, 'EXPLAIN') !== 0
+            && stripos($sql, 'DESC') !== 0
+            && stripos($sql, 'DESCRIBE') !== 0
         ) {
             return true;
         }

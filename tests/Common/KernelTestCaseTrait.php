@@ -64,6 +64,7 @@ trait KernelTestCaseTrait
 
     /**
      * @before
+     *
      * @after
      */
     protected function handleAutoReboot()

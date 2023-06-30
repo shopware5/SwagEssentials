@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace SwagEssentials\Redis\Store;
 
 use Doctrine\DBAL\Connection;
-use PDO;
 use Shopware\Components\HttpCache\UrlProvider\UrlProviderInterface;
 use Shopware\Components\HttpCache\UrlProviderFactoryInterface;
 use Shopware\Components\Model\ModelManager;
@@ -19,7 +18,6 @@ use Shopware\Components\Routing\Context;
 use Shopware\Models\Shop\DetachedShop;
 use Shopware\Models\Shop\Repository as ShopRepository;
 use Shopware\Models\Shop\Shop;
-use Shopware_Components_Config;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -46,7 +44,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
     private $shopRepository;
 
     /**
-     * @var Shopware_Components_Config
+     * @var \Shopware_Components_Config
      */
     private $config;
 
@@ -54,7 +52,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
         Connection $connection,
         UrlProviderFactoryInterface $urlProviderFactory,
         ModelManager $modelManager,
-        Shopware_Components_Config $config
+        \Shopware_Components_Config $config
     ) {
         parent::__construct();
         $this->shopRepository = $modelManager->getRepository(Shop::class);
@@ -73,9 +71,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
      */
     protected $input;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         $this
@@ -87,9 +82,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
             ->setHelp('The <info>%command.name%</info> warms up the http cache faster by re-using the kernel');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $this->output = $output;
@@ -141,8 +133,6 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
 
     /**
      * Calculate the size of the progressbar depending on the terminal's size
-     *
-     * @param $totalUrlCount
      */
     protected function getWidth(int $totalUrlCount): int
     {
@@ -161,7 +151,7 @@ class WarmUpHttpCacheWithSiegeCommand extends Command
             return [$shopId];
         }
 
-        return $this->connection->executeQuery('SELECT id FROM s_core_shops WHERE active = 1')->fetchAll(PDO::FETCH_COLUMN);
+        return $this->connection->executeQuery('SELECT id FROM s_core_shops WHERE active = 1')->fetchAll(\PDO::FETCH_COLUMN);
     }
 
     protected function runSiege(string $concurrency, string $fileName, ProgressBar $progressBar): void

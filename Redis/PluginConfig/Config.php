@@ -57,7 +57,7 @@ class Config extends \Shopware_Components_Config
     protected function readData(): array
     {
         $parameters = [
-            'fallbackShopId' => 1, //Shop parent id
+            'fallbackShopId' => 1, // Shop parent id
             'parentShopId' => isset($this->_shop) && $this->_shop->getMain() !== null ? $this->_shop->getMain()->getId(
             ) : 1,
             'currentShopId' => isset($this->_shop) ? $this->_shop->getId() : null,

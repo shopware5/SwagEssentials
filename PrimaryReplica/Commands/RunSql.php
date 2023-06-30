@@ -19,9 +19,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class RunSql extends ShopwareCommand
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         $this
@@ -45,9 +42,6 @@ EOF
             );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $names = $input->getOption('connection');

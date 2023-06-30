@@ -14,12 +14,11 @@ use Enlight\Event\SubscriberInterface;
 use Shopware\Components\Routing\Generators\RewriteGenerator;
 use Shopware\Components\Routing\Router;
 use SwagEssentials\Caching\Caches\CachingRewriteGeneratorDecorator;
-use Zend_Cache_Core;
 
 class Cache implements SubscriberInterface
 {
     /**
-     * @var Zend_Cache_Core
+     * @var \Zend_Cache_Core
      */
     protected $cache;
 
@@ -38,7 +37,7 @@ class Cache implements SubscriberInterface
      */
     protected $router;
 
-    public function __construct(Zend_Cache_Core $cache, Router $router, bool $enabledCaching, int $ttl)
+    public function __construct(\Zend_Cache_Core $cache, Router $router, bool $enabledCaching, int $ttl)
     {
         $this->cache = $cache;
         $this->enabledCaching = $enabledCaching;

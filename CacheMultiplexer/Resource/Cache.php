@@ -69,7 +69,7 @@ class Cache extends ParentCache
         try {
             $this->innerCache->clearCache($cache);
         } catch (NotFoundException $e) {
-            if (($cache === 'all') || (($cache === 'theme'))) {
+            if (($cache === 'all') || ($cache === 'theme')) {
                 $this->cacheManager->clearThemeCache();
                 $this->recompileThemeCache();
 
