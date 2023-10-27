@@ -13,7 +13,10 @@
             <argument type="service" id="swag_essentials.cache_multiplexer.cache_manager.inner"/>
         </service>
 
-        <service id="swag_essentials.cache_multiplexer.cache_invalidator" class="SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator">
+        <service id="swag_essentials.cache_multiplexer.cache_invalidator"
+                 class="SwagEssentials\CacheMultiplexer\RemoteCacheInvalidator"
+                 public="true"
+        >
             <argument>%shopware.swag_essentials.cache_multiplexer_hosts%</argument>
             <argument type="service" id="corelogger" />
         </service>
